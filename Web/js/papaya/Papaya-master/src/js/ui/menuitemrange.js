@@ -87,7 +87,7 @@ papaya.ui.MenuItemRange.prototype.buildHTML = function (parentId) {
                         "<img id='" + sliderId + "' class='" + PAPAYA_MENU_UNSELECTABLE +
                             "' style='position:absolute;top:0;left:" +
                             (parseInt(papaya.viewer.ColorTable.ARROW_ICON_WIDTH / 2, 10)) + "px;' src='" +
-                            this.viewer.screenVolumes[parseInt(this.index, 10)].colorTable.colorBar + "' />" +
+                            this.viewer.screenVolumes[parseInt(this.index, 10)].colorBar + "' />" +
                     "</div>" +
                     "<input class='" + PAPAYA_MENU_INPUT_FIELD + "' type='text' size='4' id='" + this.maxId +
                         "' value='" + range[1] + "' />" +
@@ -101,6 +101,13 @@ papaya.ui.MenuItemRange.prototype.buildHTML = function (parentId) {
     minSliderHtml = $("#" + minSliderId);
     maxSliderHtml = $("#" + maxSliderId);
     sliderHtml = $("#" + sliderId);
+
+    if (papaya.utilities.PlatformUtils.ios) {
+        minHtml[0].style.width = 35 + 'px';
+        minHtml[0].style.marginRight = 4 + 'px';
+        maxHtml[0].style.width = 35 + 'px';
+        maxHtml[0].style.marginRight = 4 + 'px';
+    }
 
     minSliderHtml.bind(papaya.utilities.PlatformUtils.ios ? 'touchstart' : 'mousedown', function (ev) {
         menuItemRange.grabOffset = papaya.ui.MenuItemRange.getRelativeMousePositionX(minSliderHtml, ev);
@@ -125,8 +132,8 @@ papaya.ui.MenuItemRange.prototype.buildHTML = function (parentId) {
             minSliderHtml.css({"left": val + "px"});
             menuItemRange.viewer.drawViewer(false, true);
             minHtml.val(menuItemRange.dataSource[menuItemRange.method]()[0]);
-            menuItemRange.screenVol.colorTable.updateColorBar();
-            sliderHtml.attr("src", menuItemRange.screenVol.colorTable.colorBar);
+            menuItemRange.screenVol.updateColorBar();
+            sliderHtml.attr("src", menuItemRange.screenVol.colorBar);
         });
 
         return false;  // disable img drag
@@ -154,8 +161,8 @@ papaya.ui.MenuItemRange.prototype.buildHTML = function (parentId) {
             maxSliderHtml.css({"left": val + "px"});
             menuItemRange.viewer.drawViewer(false, true);
             maxHtml.val(menuItemRange.dataSource[menuItemRange.method]()[1]);
-            menuItemRange.screenVol.colorTable.updateColorBar();
-            sliderHtml.attr("src", menuItemRange.screenVol.colorTable.colorBar);
+            menuItemRange.screenVol.updateColorBar();
+            sliderHtml.attr("src", menuItemRange.screenVol.colorBar);
         });
 
         return false;  // disable img drag
@@ -254,5 +261,5 @@ papaya.ui.MenuItemRange.prototype.resetSlider = function () {
     maxSliderHtml.css({"left": (papaya.viewer.ColorTable.COLOR_BAR_WIDTH - 1) + "px"});
 
     this.screenVol.resetDynamicRange();
-    sliderHtml.attr("src", this.screenVol.colorTable.colorBar);
+    sliderHtml.attr("src", this.screenVol.colorBar);
 };

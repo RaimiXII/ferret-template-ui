@@ -1,6 +1,6 @@
 
 /*jslint browser: true, node: true */
-/*global */
+/*global papayaRoundFast */
 
 "use strict";
 
@@ -10,11 +10,12 @@ papaya.viewer = papaya.viewer || {};
 
 
 /*** Constructor ***/
-papaya.viewer.ScreenVolume = papaya.viewer.ScreenVolume || function (vol, params, lutName, baseImage, parametric) {
+papaya.viewer.ScreenVolume = papaya.viewer.ScreenVolume || function (vol, params, lutName, baseImage, parametric,
+                                                                     currentCoord) {
     /*jslint sub: true */
     this.volume = vol;
     this.lutName = lutName;
-    this.colorTable = new papaya.viewer.ColorTable(this.lutName, baseImage, true);
+    this.colorTable = new papaya.viewer.ColorTable(this.lutName, baseImage);
     this.screenMin = this.volume.header.imageRange.displayMin;
     this.screenMax = this.volume.header.imageRange.displayMax;
     this.imageMin = this.volume.header.imageRange.imageMin;
@@ -23,9 +24,48 @@ papaya.viewer.ScreenVolume = papaya.viewer.ScreenVolume || function (vol, params
     this.currentTimepoint = 0;
     this.parametric = (parametric !== undefined) && parametric;
     this.negativeScreenVol = null;
+    this.dti = false;
+    this.dtiLines = false;
+    this.dtiColors = true;
+    this.dtiVolumeMod = null;
+    this.dtiAlphaFactor = 1.0;
+    this.rgb = (this.volume.header.imageType.datatype === papaya.volume.ImageType.DATATYPE_RGB);
+    this.hasCheckedImageRange = false;
+    this.interpolation = true;
+    this.error = null;
+    this.hidden = false;
+    this.rotationX = 0.5;
+    this.rotationY = 0.5;
+    this.rotationZ = 0.5;
+    this.rotationAbout = "Rotate About Center";
+    this.isHighResSlice = this.volume.header.imageDimensions.getNumVoxelsSlice() > (512 * 512);
+    this.currentCoord = currentCoord;
 
     var screenParams = params[this.volume.fileName];
     if (screenParams) {
+        if (screenParams.interpolation !== undefined) {
+            this.interpolation = screenParams.interpolation;
+        }
+
+        if (screenParams.dti !== undefined) {
+            this.dti = screenParams.dti;
+
+            if (this.dti && (this.volume.numTimepoints !== 3)) {
+                this.error = new Error("DTI vector series must have 3 series points!");
+            }
+
+            if (this.dti) {
+                this.dtiLines = screenParams.dtiLines;
+                this.dtiColors = screenParams.dtiColors;
+
+                if (!this.dtiLines && !this.dtiColors) {
+                    this.dtiColors = true;
+                }
+
+                this.initDTI();
+            }
+        }
+
         if ((screenParams.min !== undefined) && (screenParams.max !== undefined)) {
             if (parametric) {
                 this.screenMin = -1 * Math.abs(screenParams.min);
@@ -35,32 +75,89 @@ papaya.viewer.ScreenVolume = papaya.viewer.ScreenVolume || function (vol, params
                 this.screenMax = screenParams.max;
             }
         } else {
-            this.findDisplayRange(parametric, screenParams.symmetric);
+            this.findDisplayRange(parametric, screenParams);
         }
 
         if (parametric) {
             if (screenParams.negative_lut !== undefined) {
                 this.lutName = screenParams.negative_lut;
-                this.colorTable = new papaya.viewer.ColorTable(this.lutName, baseImage, true);
+                this.colorTable = new papaya.viewer.ColorTable(this.lutName, baseImage);
             }
         } else {
             if (screenParams.lut !== undefined) {
-                this.lutName = screenParams.lut;
-                this.colorTable = new papaya.viewer.ColorTable(this.lutName, baseImage, true);
+                if (typeof screenParams.lut === 'string' || screenParams.lut instanceof String) {
+                    this.lutName = screenParams.lut;
+                    this.colorTable = new papaya.viewer.ColorTable(this.lutName, baseImage);
+                } else {
+                    this.lutName = "Object";
+                    this.colorTable = screenParams.lut;
+                }
             }
         }
 
         if ((screenParams.alpha !== undefined) && !baseImage) {
             this.alpha = screenParams.alpha;
         }
+
+        if (baseImage) {
+            if ((screenParams.rotation !== undefined) && screenParams.rotation.length && (screenParams.rotation.length === 3)) {
+                this.rotationX = (Math.min(Math.max(screenParams.rotation[0], -90), 90) + 90) / 180;
+                this.rotationY = (Math.min(Math.max(screenParams.rotation[1], -90), 90) + 90) / 180;
+                this.rotationZ = (Math.min(Math.max(screenParams.rotation[2], -90), 90) + 90) / 180;
+            }
+
+            if (screenParams.rotationPoint) {
+                if (screenParams.rotationPoint.toLowerCase() === "origin") {
+                    this.rotationAbout = "Rotate About Origin";
+                } else if (screenParams.rotationPoint.toLowerCase() === "crosshairs") {
+                    this.rotationAbout = "Rotate About Crosshairs";
+                } else {
+                    this.rotationAbout = "Rotate About Center";
+                }
+            }
+
+            this.updateTransform();
+        }
     } else {
-        this.findDisplayRange(parametric, false);
+        this.findDisplayRange(parametric, {});
     }
 
-    this.negative = (this.screenMax < this.screenMin);
-
+    this.negative = false;
     this.updateScreenRange();
+
+    this.canvasIcon = document.createElement("canvas");
+    this.canvasIcon.width = papaya.viewer.ColorTable.ICON_SIZE;
+    this.canvasIcon.height = papaya.viewer.ColorTable.ICON_SIZE;
+    this.contextIcon = this.canvasIcon.getContext("2d");
+    this.imageDataIcon = this.contextIcon.createImageData(papaya.viewer.ColorTable.ICON_SIZE,
+        papaya.viewer.ColorTable.ICON_SIZE);
+    this.icon = null;
+
+    this.canvasBar = document.createElement("canvas");
+    this.canvasBar.width = papaya.viewer.ColorTable.COLOR_BAR_WIDTH;
+    this.canvasBar.height = papaya.viewer.ColorTable.COLOR_BAR_HEIGHT;
+    this.contextBar = this.canvasBar.getContext("2d");
+    this.imageDataBar = this.contextBar.createImageData(papaya.viewer.ColorTable.COLOR_BAR_WIDTH,
+        papaya.viewer.ColorTable.COLOR_BAR_HEIGHT);
+    this.colorBar = null;
+
+    this.updateIcon();
+    this.updateColorBar();
 };
+
+
+/*** Static Methods ***/
+
+papaya.viewer.ScreenVolume.makeSolidIcon = function (r, g, b) {
+    var canvasIcon = document.createElement("canvas");
+    canvasIcon.width = papaya.viewer.ColorTable.ICON_SIZE;
+    canvasIcon.height = papaya.viewer.ColorTable.ICON_SIZE;
+    var ctx = canvasIcon.getContext("2d");
+    ctx.fillStyle = "rgb(" + parseInt(r * 255, 10) + "," + parseInt(g * 255, 10) + "," + parseInt(b * 255, 10) + ")";
+    ctx.fillRect(0, 0, papaya.viewer.ColorTable.ICON_SIZE, papaya.viewer.ColorTable.ICON_SIZE);
+    return canvasIcon.toDataURL();
+};
+
 
 
 /*** Prototype Methods ***/
@@ -81,6 +178,7 @@ papaya.viewer.ScreenVolume.prototype.setScreenRangeNegatives = function (min, ma
 
 papaya.viewer.ScreenVolume.prototype.updateScreenRange = function () {
     this.screenRatio = (papaya.viewer.ScreenSlice.SCREEN_PIXEL_MAX / (this.screenMax - this.screenMin));
+    this.negative = (this.screenMax < this.screenMin);
 };
 
 
@@ -96,8 +194,8 @@ papaya.viewer.ScreenVolume.prototype.findImageRange = function () {
 
     hasImageRange = (this.volume.header.imageRange.imageMin !== this.volume.header.imageRange.imageMax);
 
-    if (!hasImageRange) {
-        console.log("scanning image range of " + this.volume.fileName + "...");
+    if (!hasImageRange && !this.hasCheckedImageRange) {
+        this.hasCheckedImageRange = true;
         min = Number.MAX_VALUE;
         max = Number.MIN_VALUE;
 
@@ -108,7 +206,7 @@ papaya.viewer.ScreenVolume.prototype.findImageRange = function () {
         for (ctrZ = 0; ctrZ < zDim; ctrZ += 1) {
             for (ctrY = 0; ctrY < yDim; ctrY += 1) {
                 for (ctrX = 0; ctrX < xDim; ctrX += 1) {
-                    value = this.volume.getVoxelAtIndex(ctrX, ctrY, ctrZ, 0, true);
+                    value = this.volume.getVoxelAtIndexNative(ctrX, ctrY, ctrZ, 0, true);
 
                     if (value > max) {
                         max = value;
@@ -128,7 +226,7 @@ papaya.viewer.ScreenVolume.prototype.findImageRange = function () {
 
 
 
-papaya.viewer.ScreenVolume.prototype.findDisplayRange = function (parametric, symmetric) {
+papaya.viewer.ScreenVolume.prototype.findDisplayRange = function (parametric, screenParams) {
     var hasImageRange, min, max, temp;
 
     hasImageRange = (this.volume.header.imageRange.imageMin !== this.volume.header.imageRange.imageMax);
@@ -144,13 +242,27 @@ papaya.viewer.ScreenVolume.prototype.findDisplayRange = function (parametric, sy
         }
     }
 
-    if (this.isOverlay()) {
+    if (!parametric && ((screenParams.minPercent !== undefined) || (screenParams.maxPercent !== undefined))) {
+        this.findImageRange();
+
+        if (screenParams.minPercent !== undefined) {
+            min = this.imageMax * screenParams.minPercent;
+        } else {
+            min = this.imageMin;
+        }
+
+        if (screenParams.maxPercent !== undefined) {
+            max = this.imageMax * screenParams.maxPercent;
+        } else {
+            max = this.imageMax;
+        }
+    } else if (this.isOverlay()) {
         if ((min === max) || ((min < 0) && (max > 0)) || ((min > 0) && (max < 0)) || (parametric && ((min > 0) ||
-            (max > 0))) || symmetric) {  // if not set or crosses zero
+            (max > 0))) || screenParams.symmetric) {  // if not set or crosses zero
             this.findImageRange();
 
             if (parametric) {
-                if (symmetric || (this.imageMin === 0)) {
+                if (screenParams.symmetric || (this.imageMin === 0)) {
                     min = -1 * (this.imageMax - (this.imageMax * 0.75));
                     max = -1 * (this.imageMax - (this.imageMax * 0.25));
                 } else {
@@ -208,9 +320,17 @@ papaya.viewer.ScreenVolume.prototype.isUsingColorTable = function (lutName) {
 
 
 
+papaya.viewer.ScreenVolume.prototype.isRotatingAbout = function (rotationAbout) {
+    return (this.rotationAbout === rotationAbout);
+};
+
+
+
 papaya.viewer.ScreenVolume.prototype.changeColorTable = function (viewer, lutName) {
-    this.colorTable = new papaya.viewer.ColorTable(lutName, !this.isOverlay(), true);
+    this.colorTable = new papaya.viewer.ColorTable(lutName, !this.isOverlay());
     this.lutName = lutName;
+    this.updateIcon();
+    this.updateColorBar();
     viewer.drawViewer(true);
 };
 
@@ -286,11 +406,18 @@ papaya.viewer.ScreenVolume.prototype.updateLUT = function (minLUTnew, maxLUTnew)
 
 
 
+papaya.viewer.ScreenVolume.prototype.supportsDynamicColorTable = function () {
+    return ((this.colorTable.updateMinLUT !== undefined) &&
+        (this.colorTable.updateMaxLUT !== undefined) && (this.colorTable.updateLUT !== undefined));
+};
+
+
+
 papaya.viewer.ScreenVolume.prototype.resetDynamicRange = function () {
     this.colorTable.minLUT = 0;
     this.colorTable.maxLUT = papaya.viewer.ColorTable.LUT_MAX;
     this.updateLUT(this.colorTable.minLUT, this.colorTable.maxLUT);
-    this.colorTable.updateColorBar();
+    this.updateColorBar();
 };
 
 
@@ -311,4 +438,131 @@ papaya.viewer.ScreenVolume.prototype.setCurrentTime = function (seconds) {
     } else {
         this.setTimepoint(parseInt(Math.round(seconds / secondsPerSeriesPoint), 10));
     }
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.hasError = function () {
+    return (this.error !== null);
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.initDTI = function () {
+    this.volume.numTimepoints = 1;
+    this.volume.header.imageDimensions.timepoints = 1;
+    this.colorTable = new papaya.viewer.ColorTable(this.lutName, false, papaya.viewer.ColorTable.TABLE_DTI_SPECTRUM);
+    this.volume.transform.voxelValue.forceABS = !this.dtiLines;
+    this.updateIcon();
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.isDTILines = function () {
+    return this.dtiLines && !this.dtiColors;
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.isDTIRGB = function () {
+    return !this.dtiLines && this.dtiColors;
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.isDTILinesAndRGB = function () {
+    return this.dtiLines && this.dtiColors;
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.getHiddenLabel = function () {
+    if (this.hidden) {
+        return "Show Overlay";
+    } else {
+        return "Hide Overlay";
+    }
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.updateIcon = function () {
+    var step, ctrY, ctrX, index, value;
+
+    if (this.imageDataIcon) {
+        step = papaya.viewer.ColorTable.LUT_MAX / papaya.viewer.ColorTable.ICON_SIZE;
+
+        for (ctrY = 0; ctrY < papaya.viewer.ColorTable.ICON_SIZE; ctrY += 1) {
+            for (ctrX = 0; ctrX < papaya.viewer.ColorTable.ICON_SIZE; ctrX += 1) {
+                index = ((ctrY * papaya.viewer.ColorTable.ICON_SIZE) + ctrX) * 4;
+                value = Math.round(ctrX * step);
+
+                this.imageDataIcon.data[index] = this.colorTable.lookupRed(value);
+                this.imageDataIcon.data[index + 1] = this.colorTable.lookupGreen(value);
+                this.imageDataIcon.data[index + 2] = this.colorTable.lookupBlue(value);
+                this.imageDataIcon.data[index + 3] = 255;
+            }
+        }
+
+        this.contextIcon.putImageData(this.imageDataIcon, 0, 0);
+        this.icon = this.canvasIcon.toDataURL();
+    }
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.updateColorBar = function () {
+    var step, ctrY, ctrX, index, value;
+
+    if (this.imageDataBar) {
+        step = papaya.viewer.ColorTable.LUT_MAX / papaya.viewer.ColorTable.COLOR_BAR_WIDTH;
+
+        for (ctrY = 0; ctrY < papaya.viewer.ColorTable.COLOR_BAR_HEIGHT; ctrY += 1) {
+            for (ctrX = 0; ctrX < papaya.viewer.ColorTable.COLOR_BAR_WIDTH; ctrX += 1) {
+                index = ((ctrY * papaya.viewer.ColorTable.COLOR_BAR_WIDTH) + ctrX) * 4;
+                value = Math.round(ctrX * step);
+
+                this.imageDataBar.data[index] = this.colorTable.lookupRed(value);
+                this.imageDataBar.data[index + 1] = this.colorTable.lookupGreen(value);
+                this.imageDataBar.data[index + 2] = this.colorTable.lookupBlue(value);
+                this.imageDataBar.data[index + 3] = 255;
+            }
+        }
+
+        this.contextBar.putImageData(this.imageDataBar, 0, 0);
+        this.colorBar = this.canvasBar.toDataURL();
+    }
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.updateTransform = function () {
+    var rotX = (this.rotationX - 0.5) * 180,
+        rotY = (this.rotationY - 0.5) * 180,
+        rotZ = (this.rotationZ - 0.5) * 180,
+        centerX, centerY, centerZ;
+
+    if (this.rotationAbout === "Rotate About Origin") {
+        centerX = this.volume.header.origin.x * this.volume.header.voxelDimensions.xSize;
+        centerY = this.volume.header.origin.y * this.volume.header.voxelDimensions.ySize;
+        centerZ = this.volume.header.origin.z * this.volume.header.voxelDimensions.zSize;
+    } else if (this.rotationAbout === "Rotate About Crosshairs") {
+        centerX = this.currentCoord.x * this.volume.header.voxelDimensions.xSize;
+        centerY = this.currentCoord.y * this.volume.header.voxelDimensions.ySize;
+        centerZ = this.currentCoord.z * this.volume.header.voxelDimensions.zSize;
+    } else {
+        centerX = (this.volume.header.imageDimensions.xDim / 2) * this.volume.header.voxelDimensions.xSize;
+        centerY = (this.volume.header.imageDimensions.yDim / 2) * this.volume.header.voxelDimensions.ySize;
+        centerZ = (this.volume.header.imageDimensions.zDim / 2) * this.volume.header.voxelDimensions.zSize;
+    }
+
+    this.volume.transform.updateImageMat(centerX, centerY, centerZ, rotX, rotY, rotZ);
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.resetTransform = function () {
+    this.rotationX = 0.5;
+    this.rotationY = 0.5;
+    this.rotationZ = 0.5;
 };

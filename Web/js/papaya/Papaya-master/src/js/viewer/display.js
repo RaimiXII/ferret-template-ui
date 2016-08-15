@@ -46,26 +46,26 @@ papaya.viewer.Display.FONT_COLOR_ORANGE = "rgb(182, 59, 0)";
 
 papaya.viewer.Display.FONT_SIZE_COORDINATE_LABEL = 12;
 papaya.viewer.Display.FONT_COLOR_COORDINATE_LABEL = papaya.viewer.Display.FONT_COLOR_WHITE;
-papaya.viewer.Display.FONT_TYPE_COORDINATE_LABEL = "Arial";
+papaya.viewer.Display.FONT_TYPE_COORDINATE_LABEL = "sans-serif";
 
 papaya.viewer.Display.FONT_SIZE_COORDINATE_VALUE = 18;
 papaya.viewer.Display.FONT_COLOR_COORDINATE_VALUE = papaya.viewer.Display.FONT_COLOR_ORANGE;
-papaya.viewer.Display.FONT_TYPE_COORDINATE_VALUE = "Arial";
+papaya.viewer.Display.FONT_TYPE_COORDINATE_VALUE = "sans-serif";
 papaya.viewer.Display.PRECISION_COORDINATE_VALUE = 5;
 papaya.viewer.Display.PRECISION_COORDINATE_MAX = 12;
 
 papaya.viewer.Display.FONT_SIZE_IMAGE_VALUE = 20;
 papaya.viewer.Display.FONT_COLOR_IMAGE_VALUE = papaya.viewer.Display.FONT_COLOR_WHITE;
-papaya.viewer.Display.FONT_TYPE_IMAGE_VALUE = "Arial";
+papaya.viewer.Display.FONT_TYPE_IMAGE_VALUE = "sans-serif";
 papaya.viewer.Display.PRECISION_IMAGE_VALUE = 9;
 papaya.viewer.Display.PRECISION_IMAGE_MAX = 14;
 
 papaya.viewer.Display.FONT_SIZE_ATLAS_MINI = 14;
 papaya.viewer.Display.FONT_SIZE_ATLAS = 20;
-papaya.viewer.Display.FONT_TYPE_ATLAS = "Arial";
+papaya.viewer.Display.FONT_TYPE_ATLAS = "sans-serif";
 
 papaya.viewer.Display.FONT_SIZE_MESSAGE_VALUE = 20;
-papaya.viewer.Display.FONT_TYPE_MESSAGE_VALUE = "Arial";
+papaya.viewer.Display.FONT_TYPE_MESSAGE_VALUE = "sans-serif";
 papaya.viewer.Display.FONT_COLOR_MESSAGE = "rgb(200, 75, 25)";
 
 papaya.viewer.Display.PROGRESS_LABEL_SUFFIX = ["...", "", ".", ".."];
@@ -117,7 +117,6 @@ papaya.viewer.Display.prototype.drawDisplay = function (xLoc, yLoc, zLoc) {
             zLoc = this.viewer.currentCoord.z;
         }
 
-
         // canvas background
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.fillStyle = "#000000";
@@ -164,19 +163,20 @@ papaya.viewer.Display.prototype.drawDisplay = function (xLoc, yLoc, zLoc) {
 
 
         // image value
-        val = this.viewer.getCurrentValueAt(xLoc, yLoc, zLoc);
-        this.canvas.currentval = val.toString();  // for unit testing
+        if (!this.viewer.currentScreenVolume.rgb && !this.viewer.currentScreenVolume.dti) {
+            val = this.viewer.getCurrentValueAt(xLoc, yLoc, zLoc);
+            this.canvas.currentval = val.toString();  // for unit testing
 
-        locY = (height / 2.0) + (papaya.viewer.Display.FONT_SIZE_IMAGE_VALUE / 2.0) -
-            (papaya.viewer.Display.PADDING / 2.0);
-        this.context.fillStyle = papaya.viewer.Display.FONT_COLOR_IMAGE_VALUE;
-        this.context.font = (papaya.viewer.Display.FONT_SIZE_IMAGE_VALUE - (smallViewer ? 2 : 0)) + "px " +
-            papaya.viewer.Display.FONT_TYPE_IMAGE_VALUE;
-        precision = Math.min(papaya.viewer.Display.PRECISION_IMAGE_MAX,
-            Math.round(papaya.viewer.Display.PRECISION_IMAGE_VALUE * sizeRatio));
-        this.context.fillText(parseFloat(val.toString().substr(0, precision)), (2 * papaya.viewer.Display.PADDING) +
-            (3 * coordinateItemWidth), locY);
-
+            locY = (height / 2.0) + (papaya.viewer.Display.FONT_SIZE_IMAGE_VALUE / 2.0) -
+                (papaya.viewer.Display.PADDING / 2.0);
+            this.context.fillStyle = papaya.viewer.Display.FONT_COLOR_IMAGE_VALUE;
+            this.context.font = (papaya.viewer.Display.FONT_SIZE_IMAGE_VALUE - (smallViewer ? 2 : 0)) + "px " +
+                papaya.viewer.Display.FONT_TYPE_IMAGE_VALUE;
+            precision = Math.min(papaya.viewer.Display.PRECISION_IMAGE_MAX,
+                Math.round(papaya.viewer.Display.PRECISION_IMAGE_VALUE * sizeRatio));
+            this.context.fillText(parseFloat(val.toString().substr(0, precision)), (2 * papaya.viewer.Display.PADDING) +
+                (3 * coordinateItemWidth), locY);
+        }
 
         // atlas labels
         if (this.viewer.atlas && this.viewer.atlas.volume.isLoaded) {

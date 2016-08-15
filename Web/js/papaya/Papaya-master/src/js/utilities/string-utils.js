@@ -13,7 +13,7 @@ papaya.utilities.StringUtils = papaya.utilities.StringUtils || {};
 /*** Static Methods ***/
 
 papaya.utilities.StringUtils.isStringBlank = function (str) {
-    if (str) {
+    if (str && (typeof str).toLowerCase() == 'string') {
         return (str.trim().length === 0);
     }
 
@@ -88,6 +88,11 @@ papaya.utilities.StringUtils.truncateMiddleString = function (fullStr, strLen) {
 };
 
 
+papaya.utilities.StringUtils.pad = function (num, size) {
+    return ('000000000' + num).substr(-size);
+};
+
+
 /*** String (Prototype Methods) ***/
 
 if (typeof String.prototype.startsWith !== 'function') {
@@ -96,7 +101,11 @@ if (typeof String.prototype.startsWith !== 'function') {
     };
 }
 
-
+if (typeof String.prototype.endsWith !== 'function') {
+    String.prototype.endsWith = function(suffix) {
+        return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+}
 
 if (typeof String.prototype.trim !== 'function') {
     String.prototype.trim = function(){return this.replace(/^\s+|\s+$/g, '');};

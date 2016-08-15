@@ -27,9 +27,13 @@
     <script type="text/javascript" src="../lib/base64-binary.js"></script>
     <script type="text/javascript" src="../lib/bowser.js"></script>
     <script type="text/javascript" src="../lib/daikon.js"></script>
+    <script type="text/javascript" src="../lib/nifti-reader.js"></script>
     <script type="text/javascript" src="../lib/jquery.js"></script>
     <script type="text/javascript" src="../lib/numerics.js"></script>
     <script type="text/javascript" src="../lib/pako-inflate.js"></script>
+    <script type="text/javascript" src="../lib/gl-matrix.js"></script>
+    <script type="text/javascript" src="../lib/gifti-reader.js"></script>
+    <script type="text/javascript" src="../lib/GLU.js"></script>
 
     <script type="text/javascript" src="../src/js/constants.js"></script>
 
@@ -51,12 +55,15 @@
     <script type="text/javascript" src="../src/js/volume/imagetype.js"></script>
     <script type="text/javascript" src="../src/js/volume/nifti/header-nifti.js"></script>
     <script type="text/javascript" src="../src/js/volume/dicom/header-dicom.js"></script>
-    <script type="text/javascript" src="../src/js/volume/nifti/nifti.js"></script>
     <script type="text/javascript" src="../src/js/volume/orientation.js"></script>
     <script type="text/javascript" src="../src/js/volume/transform.js"></script>
     <script type="text/javascript" src="../src/js/volume/volume.js"></script>
     <script type="text/javascript" src="../src/js/volume/voxeldimensions.js"></script>
     <script type="text/javascript" src="../src/js/volume/voxelvalue.js"></script>
+
+    <script type="text/javascript" src="../src/js/surface/surface.js"></script>
+    <script type="text/javascript" src="../src/js/surface/surface-gifti.js"></script>
+    <script type="text/javascript" src="../src/js/surface/surface-mango.js"></script>
 
     <script type="text/javascript" src="../src/js/ui/dialog.js"></script>
     <script type="text/javascript" src="../src/js/ui/menu.js"></script>
@@ -74,12 +81,11 @@
     <script type="text/javascript" src="../src/js/viewer/display.js"></script>
     <script type="text/javascript" src="../src/js/viewer/preferences.js"></script>
     <script type="text/javascript" src="../src/js/viewer/screenslice.js"></script>
+    <script type="text/javascript" src="../src/js/viewer/screensurface.js"></script>
     <script type="text/javascript" src="../src/js/viewer/screenvol.js"></script>
     <script type="text/javascript" src="../src/js/viewer/viewer.js"></script>
 
     <script type="text/javascript" src="../src/js/main.js"></script>
-
-    <script type="text/javascript" src="../src/js/license.js"></script>
     <!-- JS debug end -->
 
     <style>
@@ -110,13 +116,13 @@
     <script type="text/javascript">
         var params1 = [];
         params1["worldSpace"] = true;
-        params1["images"] = ["../data/sample_image.nii.gz"];
+        params1["images"] = ["data/sample_image.nii.gz"];
         params1["kioskMode"] = true;
         params1["showControlBar"] = true;
 
         var params2 = [];
         params2["worldSpace"] = true;
-        params2["images"] = ["../data/sample_image.nii.gz"];
+        params2["images"] = ["data/sample_image.nii.gz"];
         params2["expandable"] = true;
     </script>
 

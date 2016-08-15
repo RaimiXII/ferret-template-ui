@@ -50,9 +50,10 @@ papaya.volume.ImageRange.prototype.setGlobalDataScale = function (scale, interce
 papaya.volume.ImageRange.prototype.validateDataScale = function () {
     var ctr, previous, foundSliceWiseDataScale = false;
 
-    if ((this.globalDataScaleSlope !== 1) && (this.globalDataScaleIntercept !== 0)) {
+    if ((this.globalDataScaleSlope !== 1) || (this.globalDataScaleIntercept !== 0)) {
         this.dataScaleSlopes = [];
         this.dataScaleIntercepts = [];
+        this.usesGlobalDataScale = true;
     } else if ((this.dataScaleSlopes.length > 0) && (this.dataScaleIntercepts.length > 0)) {
         previous = this.dataScaleSlopes[0];
 
