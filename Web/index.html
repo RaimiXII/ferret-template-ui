@@ -5,9 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    
-    
-
+  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -96,39 +94,32 @@
     <!--     /home/jeff/Desktop/ferret-dti-ui/ferret-template-ui/Data/Templates             -->
   <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
-  
-    
-    
-
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery.min.js"></script> 
   <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
   <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css">
+
   <style type="text/css">
     html, body {
       margin: 0 auto;
       padding: 0;
     }
-
     * {
       box-sizing: border-box;
     }
-
     .slider {
         width: 50%;
         margin: 100px auto;
     }
-
     .slick-slide {
       margin: 0px 20px;
     }
-
     .slick-slide img {
       width: 100%;
     }
-
     .slick-prev:before,
     .slick-next:before {
         color: black;
@@ -143,7 +134,42 @@
     #sub-right {
        overflow: hidden;
        float: right;
+    }    
+    nav { background: #2ba0db; }
+    nav ul {
+      font-size: 0;
+      margin: 0;
+      padding: 0;
     }
+    nav ul li {
+      display: inline-block;
+      position: relative;
+    }
+    nav ul li a {
+      color: #fff;
+      display: block;
+      font-size: 14px;
+      padding: 15px 14px;
+      transition: 0.3s linear;
+    }
+    nav ul li:hover { background: #126d9b; }
+    nav ul li ul {
+      border-bottom: 5px solid #2ba0db;
+      display: none;
+      position: absolute;
+      width: 250px;
+    }
+    nav ul li ul li {
+      border-top: 1px solid #444;
+      display: block;
+    }
+    nav ul li ul li:first-child { border-top: none; }
+    nav ul li ul li a {
+      background: #373737;
+      display: block;
+      padding: 10px 14px;
+    }
+    nav ul li ul li a:hover { background: #126d9b; }
   </style>
 
 
@@ -183,11 +209,8 @@
             }
           ]
       });
-      
-      
     
-    var papaya_helper = function(param_array){    
-        console.log("YAAYAYYYAYYA");
+    var papaya_helper = function(param_array){
         console.log(param_array);    
     };
     
@@ -209,16 +232,71 @@
         papaya_helper(params);
         
         $(document).ready(function(){
-
-        $(".ex_vivo_dec").on('click', function(e) {  
-            console.log("CLICKED DEC");
-        });
-        $(".ex_vivo_tr").on('click', function(e) {  
-            console.log("CLICKED Trace");
-        });
-        $(".ex_vivo_fa").on('click', function(e) {  
-            console.log("CLICKED FA");
-        });
+            
+            $("#in_vivo_T2").hide();
+            $("#ex_vivo_T2").hide();
+            $("#in_vivo_dti").hide();
+            $("#ex_vivo_dti").hide();
+            
+            $("#ivt2").on('click', function(e) {  
+                console.log("CLICKED In-Vivo T2 Template");
+                $("#in_vivo_T2").show();
+                $("#in_vivo_dti").hide();
+                $("#ex_vivo_T2").hide();
+                $("#ex_vivo_dti").hide();
+            });
+            $("#ivdti").on('click', function(e) {  
+                console.log("CLICKED In-Vivo DTI Template");
+                 $("#in_vivo_dti").show();
+                 $("#in_vivo_T2").hide();
+                 $("#ex_vivo_T2").hide();
+                 $("#ex_vivo_dti").hide();
+            });
+            $("#evt2").on('click', function(e) {  
+                console.log("CLICKED Ex-Vivo T2 Template");
+                 $("#ex_vivo_T2").show();
+                 $("#in_vivo_dti").hide();
+                 $("#ex_vivo_dti").hide();
+                 $("#in_vivo_T2").hide();         
+            });
+            $("#evdti").on('click', function(e) {  
+                console.log("CLICKED Ex-Vivo DTI Template");
+                 $("#ex_vivo_dti").show();
+                 $("#in_vivo_dti").hide();
+                 $("#in_vivo_T2").hide();
+                 $("#ex_vivo_T2").hide();
+            });
+    
+            $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC");  });
+            $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  });
+            $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  });
+            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  });
+            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  });
+            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA");  });    //
+            $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10");  });
+            $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20");  });
+            $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30");  });
+            $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40");  });
+            $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50");  });
+            $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60");  });
+            $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70");  });
+            $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80");  });
+            $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90");  });
+            $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100");  });
+            $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12");  });
+            $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36");  });
+            $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60");  });
+            $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84");  });
+            $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108");  });
+            $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132");  });
+            $('nav li').hover(
+                function() {
+                $('ul', this).stop().slideDown(200);
+                },
+                function() {
+                $('ul', this).stop().slideUp(200);
+                }
+            );
       });
     </script>
 
@@ -226,25 +304,103 @@
 </head>
 
 <body>
-
-      <div id="P_container"  style="width:80%;">
-        
+<nav>
+  <div class="container">
+    <ul>      
+      <li> <a href="#">Templates </a>
+        <ul>
+          <li id="ivt2"><a href="#">In-Vivo T2</a></li>
+          <li id="ivdti"><a href="#">In-Vivo DTI</a></li>
+          <li id="evt2"><a href="#">Ex-Vivo T2</a></li>
+          <li id="evdti"><a href="#">Ex-Vivo DTI</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+        <br>
+      <div id="P_container"  style="width:60%;">        
           <div id="papaya" class="papaya" data-params="params" style="float: left;"></div>
-      
-
-            
       </div>
       
-      <div class="thumbnails" style="float: right;" >
-        
-                <div><img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map" height="100" width="100">TR</div>
-                <div><img class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map" height="100" width="100">FA</div>
-                <div><img class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map" height="100" width="100">DEC</div>
+    <div class="thumbnails" id="thumb_div" style="overflow-y:scroll;height:45%">
+        <div id="ex_vivo_dti">
+                <div id="ex_vivo_dti_tr">
+                <img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="100" width="100">TR
+                </div>
+                <div id="ex_vivo_dti_fa">
+                <img class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="100" width="100">FA
+                </div>
+                <div id="ex_vivo_dti_dec">
+                <img class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="100" width="100">DEC
+                </div>
         </div>
+        <div id="in_vivo_dti">
+                <div id="in_vivo_dti_tr">
+                <img class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="100" width="100">TR
+                </div>
+                <div id="in_vivo_dti_fa">
+                <img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="100" width="100">FA
+                </div>
+                <div id="in_vivo_dti_dec">
+                <img class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="100" width="100">DEC
+                </div>
+        </div>
+        <div id="ex_vivo_T2">
+                <div id="ex_vivo_T2_10">
+                <img class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="100" width="100">TE 10
+                </div>
+                <div id="ex_vivo_T2_20">
+                <img class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="100" width="100">TE 20
+                </div>
+                <div id="ex_vivo_T2_30">
+                <img class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="100" width="100">TE 30
+                </div>
+                <div id="ex_vivo_T2_40">
+                <img class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="100" width="100">TE 40
+                </div>
+                <div id="ex_vivo_T2_50">
+                <img class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="100" width="100">TE 50
+                </div>
+                <div id="ex_vivo_T2_60">
+                <img class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="100" width="100">TE 60
+                </div>
+                <div id="ex_vivo_T2_70">
+                <img class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="100" width="100">TE 70
+                </div>
+                <div id="ex_vivo_T2_80">
+                <img class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="100" width="100">TE 80
+                </div>
+                <div id="ex_vivo_T2_90">
+                <img class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="100" width="100">TE 90
+                </div>
+                <div id="ex_vivo_T2_100">
+                <img class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="100" width="100">TE 100
+                </div>
+        </div>
+        <div id="in_vivo_T2">
+                <div id="in_vivo_T2_12">
+                <img class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="100" width="100">TE 12
+                </div>
+                <div id="in_vivo_T2_36">
+                <img class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="100" width="100">TE 36
+                </div>
+                <div id="in_vivo_T2_60">
+                <img class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="100" width="100">TE 60
+                </div>
+                <div id="in_vivo_T2_84">
+                <img class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="100" width="100">TE 84
+                </div>
+                <div id="in_vivo_T2_108">
+                <img class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="100" width="100">TE 108
+                </div>
+                <div id="in_vivo_T2_132">
+                <img class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="100" width="100">TE 132
+                </div>
+    </div>
 
-
-  
-  
 </body>
 
 </html>
