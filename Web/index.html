@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 
+<!--        To run this avoiding the cross-origin file request nonsense, cd into THIS (/Web) directory and run the following:
+
+                            python -m http.server
+                            
+                    then browse to: 
+                            
+                            localhost:8000 
+                            
+                    to launch the page.
+-->
+
 <!-- Test: Typical fullscreen usage; autoload an image and overlay. -->
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -9,86 +20,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- CSS debug start -->
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/ui/toolbar.css" />
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/ui/menu.css" />
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/ui/dialog.css" />
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/utilities/nojs.css" />
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/utilities/unsupported.css" />
-    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/src/css/viewer/viewer.css" />
-    <!-- CSS debug end -->
-
-    <!-- JS debug start -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/data/sample-image.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/data/sample-image-surf.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/data/talairach-atlas-image.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/data/talairach-atlas.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/base64-binary.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/bowser.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/daikon.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/nifti-reader.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/jquery.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/numerics.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/pako-inflate.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/gl-matrix.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/gifti-reader.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/lib/GLU.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/constants.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/utilities/array-utils.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/utilities/math-utils.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/utilities/object-utils.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/utilities/platform-utils.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/utilities/string-utils.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/utilities/url-utils.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/core/coordinate.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/core/point.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/header.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/imagedata.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/imagedescription.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/imagedimensions.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/imagerange.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/imagetype.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/nifti/header-nifti.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/dicom/header-dicom.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/orientation.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/transform.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/volume.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/voxeldimensions.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/volume/voxelvalue.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/surface/surface.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/surface/surface-gifti.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/surface/surface-mango.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/dialog.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menu.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitem.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitemcheckbox.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitemradiobutton.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitemfilechooser.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitemrange.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitemslider.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/menuitemspacer.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/ui/toolbar.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/atlas.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/colortable.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/display.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/preferences.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/screenslice.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/screensurface.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/screenvol.js"></script>
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/viewer/viewer.js"></script>
-
-    <script type="text/javascript" src="js/papaya/Papaya-master/src/js/main.js"></script>
+<!-- iOS meta tags -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+    	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    	<link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675311" />
+    	<script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675311"></script>
+    
+    	<title>Papaya Viewer</title>
     <!-- JS debug end -->
 
     <!--     /home/jeff/Desktop/ferret-dti-ui/ferret-template-ui/Data/Templates             -->
@@ -213,26 +153,67 @@
     var papaya_helper = function(param_array){
         console.log(param_array);    
     };
+    var hide_image = function(index){            
+        papaya.Container.hideImage(0, index);
+    };        
+    var show_image = function(index){
+        papaya.Container.showImage(0, index);
+    };
+    var reset_viewer = function( ){
+        //  Exvivo DTI
+        hide_image(0); //   DEC
+        hide_image(1);//    FA
+        hide_image(2);//    TR
+    };
     
-    
-        /* DO NOT EDIT (start) -- papayaLoadableImages is generated by papaya-builder and is here for debugging purposes only */
-        var papayaLoadableImages = [
-            {nicename: "Sample Image", name: "sample_image", encode: "sample_image"},
-            {nicename: "Sample Image", name: "sample_image_surf", encode: "sample_image_surf", surface:true},
-            {nicename: "Atlas", name: "Talairach_labels_1mm", encode: "Talairach_labels_1mm", hide:true}
-        ];
-        /* DO NOT EDIT (end) */
+        var image_map = {};
+        image_map["ExVivo_DTI_DEC"] = 0;
+        image_map["ExVivo_DTI_FA"] = 1;
+        image_map["ExVivo_DTI_TR"] = 2;
 
         var params = [];
-        params["encodedImages"] = ["sample_image"];
-        params["encodedSurfaces"] = ["sample_image_surf"];
-        params["atlas"] = ["Talairach_labels_1mm"];
-        //params["kioskMode"] = true;
-        
+        params["kioskMode"] = true;
         papaya_helper(params);
         
+        var update_params = function(img){
+                console.log("This is our update key -> "+img);                
+                if ( img == "ev_dti_dec" ){
+                    console.log("EV_DTI_DEC");
+                        hide_image(0);
+                        hide_image(1);
+                        hide_image(2);
+                        show_image(0);
+                } else if ( img == "ev_dti_fa" ){
+                    console.log("EV_DTI_FA");
+                        hide_image(0);
+                        hide_image(1);
+                        hide_image(2);
+                        show_image(1);
+                } else if ( img == "ev_dti_tr" ){
+                    console.log("EV_DTI_TR");
+                        hide_image(0);
+                        hide_image(1);
+                        hide_image(2);
+                        show_image(2);
+                } else {
+                    console.log("SOMETHING ELSE!");
+                    params["images"] =  [
+                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
+                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                                        ];
+//                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255};            //  Don't really need to specify this.
+                    params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+                    params["ExVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 1000};    
+                    //hide_image(0);
+                    //hide_image(1);
+                    //hide_image(2);
+                }
+
+        };
+        
         $(document).ready(function(){
-            
+            update_params("Init");
             $("#in_vivo_T2").hide();
             $("#ex_vivo_T2").hide();
             $("#in_vivo_dti").hide();
@@ -257,8 +238,18 @@
                  $("#ex_vivo_T2").show();
                  $("#in_vivo_dti").hide();
                  $("#ex_vivo_dti").hide();
-                 $("#in_vivo_T2").hide();         
+                 $("#in_vivo_T2").hide();                          
             });
+            
+            $("#reset_view").on('click', function(e) {
+                console.log("Resetting Viewport.");
+                reset_viewer();
+            });
+            
+            $("#create_png").on('click', function(e) {
+                console.log("Create PNG selected.");
+            });
+            
             $("#evdti").on('click', function(e) {  
                 console.log("CLICKED Ex-Vivo DTI Template");
                  $("#ex_vivo_dti").show();
@@ -267,12 +258,24 @@
                  $("#ex_vivo_T2").hide();
             });
     
-            $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC");  });
-            $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  });
-            $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  });
-            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  });
-            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  });
-            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA");  });    //
+            $("#ex_vivo_dti_dec").on('click', function(e) {  
+                console.log("CLICKED Ex-vivo DEC"); 
+                reset_viewer();
+                update_params("ev_dti_dec"); 
+             });
+            $("#ex_vivo_dti_tr").on('click', function(e) {  
+                console.log("CLICKED Ex-vivo Trace");  
+                reset_viewer();
+                update_params("ev_dti_tr");                
+             });
+            $("#ex_vivo_dti_fa").on('click', function(e) {  
+                console.log("CLICKED Ex-vivo FA");  
+                reset_viewer();
+                update_params("ev_dti_fa");   
+            });
+            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");   });
+            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");    });
+            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA");  }); 
             $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10");  });
             $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20");  });
             $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30");  });
@@ -315,8 +318,12 @@
           <li id="evdti"><a href="#">Ex-Vivo DTI</a></li>
         </ul>
       </li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#">Image</a>
+        <ul>
+          <li id="reset_view"><a href="#">Reset View</a></li>
+          <li id="create_png"><a href="#">Create PNG</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
