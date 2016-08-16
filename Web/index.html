@@ -216,7 +216,7 @@
         image_map["ivT2_TE132"] = 21;        
 */
         var params = [];
-        params["kioskMode"] = true;
+        //params["kioskMode"] = true;
         papaya_helper(params);
         
         var update_params = function(img){
@@ -261,9 +261,10 @@
                                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii",
                                                             */
                                                         ];
-//                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255};            //  Don't really need to specify this.
+                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255};            //  Don't really need to specify this.
                     params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                     params["ExVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 1000};    
+                    params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                     params["InVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 5000};    
                     //hide_image(0);
