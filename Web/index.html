@@ -164,13 +164,57 @@
         hide_image(0); //   DEC
         hide_image(1);//    FA
         hide_image(2);//    TR
+        //  Invivo DTI
+        hide_image(3);//    DEC
+        hide_image(4);//    FA
+        hide_image(5);//    TR
+        /*
+        //  Exvivo T2
+        hide_image(6);//    TE 10
+        hide_image(7);//    TE 20
+        hide_image(8);//    TE 30
+        hide_image(9);//    TE 40
+        hide_image(10);//   TE 50
+        hide_image(11);//   TE 60
+        hide_image(12);//   TE 70
+        hide_image(13);//   TE 80
+        hide_image(14);//   TE 90
+        hide_image(15);//   TE 100
+        //  Invivo T2
+        hide_image(16);//   TE 12
+        hide_image(17);//   TE 36
+        hide_image(18);//   TE 60
+        hide_image(19);//   TE 84
+        hide_image(20);//   TE 108
+        hide_image(21);//   TE 132
+        */
     };
     
         var image_map = {};
         image_map["ExVivo_DTI_DEC"] = 0;
         image_map["ExVivo_DTI_FA"] = 1;
         image_map["ExVivo_DTI_TR"] = 2;
-
+        image_map["InVivo_DTI_DEC"] = 3;
+        image_map["InVivo_DTI_FA"] = 4;
+        image_map["InVivo_DTI_TR"] = 5;
+        /*
+        image_map["Template4D_TE010"] = 6;
+        image_map["Template4D_TE020"] = 7;
+        image_map["Template4D_TE030"] = 8;
+        image_map["Template4D_TE040"] = 9;
+        image_map["Template4D_TE050"] = 10;
+        image_map["Template4D_TE060"] = 11;
+        image_map["Template4D_TE070"] = 12;
+        image_map["Template4D_TE080"] = 13;
+        image_map["Template4D_TE090"] = 14;
+        image_map["Template4D_TE100"] = 15;
+        image_map["ivT2_TE012"] = 16;
+        image_map["ivT2_TE036"] = 17;
+        image_map["ivT2_TE060"] = 18;
+        image_map["ivT2_TE084"] = 19;
+        image_map["ivT2_TE108"] = 20;
+        image_map["ivT2_TE132"] = 21;        
+*/
         var params = [];
         params["kioskMode"] = true;
         papaya_helper(params);
@@ -179,32 +223,49 @@
                 console.log("This is our update key -> "+img);                
                 if ( img == "ev_dti_dec" ){
                     console.log("EV_DTI_DEC");
-                        hide_image(0);
-                        hide_image(1);
-                        hide_image(2);
+                        reset_viewer();
                         show_image(0);
                 } else if ( img == "ev_dti_fa" ){
                     console.log("EV_DTI_FA");
-                        hide_image(0);
-                        hide_image(1);
-                        hide_image(2);
+                        reset_viewer();
                         show_image(1);
                 } else if ( img == "ev_dti_tr" ){
                     console.log("EV_DTI_TR");
-                        hide_image(0);
-                        hide_image(1);
-                        hide_image(2);
+                        reset_viewer();
                         show_image(2);
                 } else {
                     console.log("SOMETHING ELSE!");
                     params["images"] =  [
                                                             "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
                                                             "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
+                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
+                                                            /*
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii",
+                                                            */
                                                         ];
 //                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255};            //  Don't really need to specify this.
                     params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                     params["ExVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 1000};    
+                    params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+                    params["InVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 5000};    
                     //hide_image(0);
                     //hide_image(1);
                     //hide_image(2);
@@ -273,25 +334,25 @@
                 reset_viewer();
                 update_params("ev_dti_fa");   
             });
-            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");   });
-            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");    });
-            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA");  }); 
-            $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10");  });
-            $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20");  });
-            $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30");  });
-            $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40");  });
-            $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50");  });
-            $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60");  });
-            $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70");  });
-            $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80");  });
-            $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90");  });
-            $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100");  });
-            $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12");  });
-            $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36");  });
-            $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60");  });
-            $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84");  });
-            $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108");  });
-            $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132");  });
+            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); show_image(image_map["InVivo_DTI_DEC"]); });
+            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); show_image(image_map["InVivo_DTI_TR"]);  });
+            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); show_image(image_map["InVivo_DTI_FA"]); }); 
+            $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); show_image(image_map["Template4D_TE010"]); });
+            $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); show_image(image_map["Template4D_TE020"]); });
+            $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); show_image(image_map["Template4D_TE030"]); });
+            $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); show_image(image_map["Template4D_TE040"]); });
+            $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); show_image(image_map["Template4D_TE050"]); });
+            $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); show_image(image_map["Template4D_TE060"]); });
+            $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); show_image(image_map["Template4D_TE070"]); });
+            $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); show_image(image_map["Template4D_TE080"]); });
+            $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); show_image(image_map["Template4D_TE090"]); });
+            $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); show_image(image_map["Template4D_TE100"]); });
+            $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); show_image(image_map["ivT2_TE012"]); });
+            $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); show_image(image_map["ivT2_TE036"]); });
+            $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); show_image(image_map["ivT2_TE060"]); });
+            $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); show_image(image_map["ivT2_TE084"]); });
+            $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); show_image(image_map["ivT2_TE108"]); });
+            $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); show_image(image_map["ivT2_TE132"]); });
             $('nav li').hover(
                 function() {
                 $('ul', this).stop().slideDown(200);
