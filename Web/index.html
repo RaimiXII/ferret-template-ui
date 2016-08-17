@@ -240,8 +240,7 @@
                                                             "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
                                                             "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
                                                             "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
-                                                            
+                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",                                                            
                                                             "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
                                                             "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
                                                             "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
@@ -257,15 +256,16 @@
                                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
                                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
                                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii",
-                                                            
+                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
                                                         ];
-                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255};            //  Don't really need to specify this.
+                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["ExVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 1000};    
+                    params["ExVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 1500};    
                     params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                     params["InVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 5000};    
+                    
+                    
                     //hide_image(0);
                     //hide_image(1);
                     //hide_image(2);
