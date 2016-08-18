@@ -235,56 +235,51 @@
                 } else {
                     console.log("SOMETHING ELSE!");
                     params["images"] =  [
-                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
-                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",                                                            
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
-                                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
-                                                        ];
+                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
+                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
+                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",                                                            
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                        ];
                     params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["ExVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 1500};    
+                    params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};    
                     params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["InVivo_DTI_TR.nii"] = {"lut": "Gray", "min": 0, "max": 5000};    
-                    params["Template4D_TE010.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE020.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE030.nii"] ={"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE040.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE050.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE060.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE070.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE080.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE090.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["Template4D_TE100.nii"] = {"lut": "Gray", "min": 0, "max": 10000000};
-                    params["ivT2_TE012.nii"] = {"lut": "Gray", "min": 0, "max": 50};
-                    params["ivT2_TE036.nii"] = {"lut": "Gray", "min": 0, "max": 50};
-                    params["ivT2_TE060.nii"] = {"lut": "Gray", "min": 0, "max": 50};
-                    params["ivT2_TE084.nii"] = {"lut": "Gray", "min": 0, "max": 50};
-                    params["ivT2_TE108.nii"] = {"lut": "Gray", "min": 0, "max": 50};
-                    params["ivT2_TE132.nii"] = {"lut": "Gray", "min": 0, "max": 50};   
-                    
-                    
-                    //hide_image(0);
-                    //hide_image(1);
-                    //hide_image(2);
+                    params["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};    
+                    params["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
+                    params["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                    params["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+                    params["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+                    params["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+                    params["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+                    params["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+                    params["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};   
                 }
 
         };
@@ -483,7 +478,7 @@
                 <div id="in_vivo_T2_132">
                 <img class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="100" width="100">TE 132
                 </div>
-    </div>
+        </div>
 
 </body>
 
