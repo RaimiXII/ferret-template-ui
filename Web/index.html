@@ -203,12 +203,12 @@
     };
     var reset_viewer = function( ){
         //  Exvivo DTI
-        hide_image(0); //   DEC
-        hide_image(1);//    FA
+        hide_image(0); //   FA
+        hide_image(1);//    DEC
         hide_image(2);//    TR
         //  Invivo DTI
-        hide_image(3);//    DEC
-        hide_image(4);//    FA
+        hide_image(3);//    FA
+        hide_image(4);//    DEC
         hide_image(5);//    TR
         //  Exvivo T2
         hide_image(6);//    TE 10
@@ -232,11 +232,11 @@
     };
     
         var image_map = {};
-        image_map["ExVivo_DTI_DEC"] = 0;
-        image_map["ExVivo_DTI_FA"] = 1;
+         image_map["ExVivo_DTI_FA"] = 0;
+        image_map["ExVivo_DTI_DEC"] = 1;       
         image_map["ExVivo_DTI_TR"] = 2;
-        image_map["InVivo_DTI_DEC"] = 3;
-        image_map["InVivo_DTI_FA"] = 4;
+        image_map["InVivo_DTI_FA"] = 3;
+        image_map["InVivo_DTI_DEC"] = 4;        
         image_map["InVivo_DTI_TR"] = 5;        
         image_map["Template4D_TE010"] = 6;
         image_map["Template4D_TE020"] = 7;
@@ -274,13 +274,19 @@
                         reset_viewer();
                         show_image(2);
                 } else {
+                    //          SO... weird observation about the problem with in-vivo DEC map size... Loading the dec FIRST in the list of images yields correct display size.
+                    //              It seems that when loading several volumes having heterogenous sizes, the center/origin is poorly defined overall.
+                    
+                    //                      This causes  issues to emerge when rendering surfaces like: un-centered surface rendering, un-centered tri-planar view of the volume
+                    //      A more sustainable solution would be to reset/load volume groups & the corresponding surface for a group when a template is selected from DD menu
+                    //          May way to investigate caching all volumes apriori because load/reset times will most likely not be negligable.
                     console.log("SOMETHING ELSE!");
-                    params["images"] =  [
-                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                    params["images"] =  [                                            
                                             "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
-                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",                                            
                                             "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
                                             "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",                                                            
                                             "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
                                             "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
@@ -297,13 +303,13 @@
                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                          "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
-                                        ];
-                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                        ];                    
                     params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};
-                    params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                    params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};                    
                     params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+                    params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};
                     params["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                     params["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
@@ -444,26 +450,26 @@
       
     <div class="thumbnails" id="thumb_div" style="overflow-y:scroll;height:45%">
         <div id="ex_vivo_dti">
-                <div id="ex_vivo_dti_tr">
-                <img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="100" width="100">TR
-                </div>
                 <div id="ex_vivo_dti_fa">
                 <img class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="100" width="100">FA
                 </div>
                 <div id="ex_vivo_dti_dec">
                 <img class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="100" width="100">DEC
                 </div>
+                <div id="ex_vivo_dti_tr">
+                <img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="100" width="100">TR
+                </div>
         </div>
         <div id="in_vivo_dti">
-                <div id="in_vivo_dti_tr">
-                <img class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="100" width="100">TR
-                </div>
                 <div id="in_vivo_dti_fa">
                 <img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="100" width="100">FA
                 </div>
                 <div id="in_vivo_dti_dec">
                 <img class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="100" width="100">DEC
                 </div>
+                <div id="in_vivo_dti_tr">
+                <img class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="100" width="100">TR
+                </div>                
         </div>
         <div id="ex_vivo_T2">
                 <div id="ex_vivo_T2_10">
