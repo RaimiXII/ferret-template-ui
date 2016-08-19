@@ -159,6 +159,15 @@ papaya.Container.removeImage = function (index, imageIndex) {
 };
 
 
+papaya.Container.hideSurface = function (index, surfaceIndex) {
+    papayaContainers[index].viewer.surfaces[surfaceIndex].hidden = true;
+    papayaContainers[index].viewer.drawViewer(true, false);
+};
+
+papaya.Container.showSurface = function (index, surfaceIndex) {
+    papayaContainers[index].viewer.surfaces[surfaceIndex].hidden = false;
+    papayaContainers[index].viewer.drawViewer(true, false);
+};
 
 papaya.Container.hideImage = function (index, imageIndex) {
     papayaContainers[index].viewer.screenVolumes[imageIndex].hidden = true;

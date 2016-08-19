@@ -159,6 +159,48 @@
     var show_image = function(index){
         papaya.Container.showImage(0, index);
     };
+    var hide_surfaces = function(index){
+        //papaya.Container.hideSurface(0, index);
+        //  0 - ev_dti
+        //  1 - iv_dti
+        //  2 - ev_T2
+        //  3 - iv_T2
+        //params["surfaces"] = [];
+        
+    };
+    var show_surface = function(index){
+        //papaya.Container.showSurface(0, index);
+        if(index == 0){
+            params["surfaces"] = [];
+            params["surfaces"] = ["img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"]
+            params["ev_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
+            //params["iv_dti_brain.surf.gii"].hidden = true;
+            //params["ev_t2_brain.surf.gii"].hidden = true;
+            //params["iv_t2_brain.surf.gii"].hidden = true;
+            console.log("INDEX WAS 0.........");
+            console.log("WE HAVE ->   " + params["surfaces"].length + " Surfaces.");
+            
+        }
+        else if(index == 1){
+            params["surfaces"] = [];
+            params["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"]
+            params["iv_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
+        }
+        else if(index == 2){
+            params["surfaces"] = [];
+            params["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"]
+            params["ev_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
+        }
+        else if(index == 3){
+            params["surfaces"] = [];
+            params["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"]
+            params["iv_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
+        }
+        else {
+            console.log("Strange surface request.");
+        }
+        //papaya.Container.showSurface(0, index);
+    };
     var reset_viewer = function( ){
         //  Exvivo DTI
         hide_image(0); //   DEC
@@ -168,7 +210,6 @@
         hide_image(3);//    DEC
         hide_image(4);//    FA
         hide_image(5);//    TR
-        
         //  Exvivo T2
         hide_image(6);//    TE 10
         hide_image(7);//    TE 20
@@ -187,7 +228,7 @@
         hide_image(19);//   TE 84
         hide_image(20);//   TE 108
         hide_image(21);//   TE 132
-        
+        hide_surfaces();
     };
     
         var image_map = {};
@@ -256,14 +297,14 @@
                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
                                             "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                          "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
                                         ];
                     params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};    
+                    params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};
                     params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                     params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};    
+                    params["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};
                     params["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                     params["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                     params["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
@@ -280,8 +321,17 @@
                     params["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
                     params["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
                     params["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};   
+                    /*
+                    params["surfaces"] = ["img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii",
+                                                               "img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii",
+                                                               "img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii",
+                                                               "img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
+                    params["ev_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
+                    params["iv_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
+                    params["ev_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
+                    params["iv_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
+                    */
                 }
-
         };
         
         $(document).ready(function(){
@@ -330,40 +380,28 @@
                  $("#ex_vivo_T2").hide();
             });
     
-            $("#ex_vivo_dti_dec").on('click', function(e) {  
-                console.log("CLICKED Ex-vivo DEC"); 
-                reset_viewer();
-                update_params("ev_dti_dec"); 
-             });
-            $("#ex_vivo_dti_tr").on('click', function(e) {  
-                console.log("CLICKED Ex-vivo Trace");  
-                reset_viewer();
-                update_params("ev_dti_tr");                
-             });
-            $("#ex_vivo_dti_fa").on('click', function(e) {  
-                console.log("CLICKED Ex-vivo FA");  
-                reset_viewer();
-                update_params("ev_dti_fa");   
-            });
-            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); show_image(image_map["InVivo_DTI_DEC"]); });
-            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); show_image(image_map["InVivo_DTI_TR"]);  });
-            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); show_image(image_map["InVivo_DTI_FA"]); }); 
-            $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); show_image(image_map["Template4D_TE010"]); });
-            $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); show_image(image_map["Template4D_TE020"]); });
-            $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); show_image(image_map["Template4D_TE030"]); });
-            $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); show_image(image_map["Template4D_TE040"]); });
-            $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); show_image(image_map["Template4D_TE050"]); });
-            $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); show_image(image_map["Template4D_TE060"]); });
-            $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); show_image(image_map["Template4D_TE070"]); });
-            $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); show_image(image_map["Template4D_TE080"]); });
-            $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); show_image(image_map["Template4D_TE090"]); });
-            $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); show_image(image_map["Template4D_TE100"]); });
-            $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); show_image(image_map["ivT2_TE012"]); });
-            $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); show_image(image_map["ivT2_TE036"]); });
-            $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); show_image(image_map["ivT2_TE060"]); });
-            $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); show_image(image_map["ivT2_TE084"]); });
-            $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); show_image(image_map["ivT2_TE108"]); });
-            $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); show_image(image_map["ivT2_TE132"]); });
+            $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec");  show_surface(0);});
+            $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr");  show_surface(0);});
+            $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa");  show_surface(0);});
+            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); show_image(image_map["InVivo_DTI_DEC"]); show_surface(1); });
+            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); show_image(image_map["InVivo_DTI_TR"]);  show_surface(1);});
+            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); show_image(image_map["InVivo_DTI_FA"]); show_surface(1); }); 
+            $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); show_image(image_map["Template4D_TE010"]); show_surface(2);});
+            $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); show_image(image_map["Template4D_TE020"]); show_surface(2);});
+            $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); show_image(image_map["Template4D_TE030"]); show_surface(2);});
+            $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); show_image(image_map["Template4D_TE040"]); show_surface(2);});
+            $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); show_image(image_map["Template4D_TE050"]); show_surface(2);});
+            $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); show_image(image_map["Template4D_TE060"]); show_surface(2);});
+            $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); show_image(image_map["Template4D_TE070"]); show_surface(2);});
+            $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); show_image(image_map["Template4D_TE080"]); show_surface(2);});
+            $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); show_image(image_map["Template4D_TE090"]); show_surface(2);});
+            $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); show_image(image_map["Template4D_TE100"]); show_surface(2);});
+            $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); show_image(image_map["ivT2_TE012"]); show_surface(3); });
+            $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); show_image(image_map["ivT2_TE036"]); show_surface(3); });
+            $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); show_image(image_map["ivT2_TE060"]); show_surface(3); });
+            $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); show_image(image_map["ivT2_TE084"]); show_surface(3); });
+            $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); show_image(image_map["ivT2_TE108"]); show_surface(3); });
+            $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); show_image(image_map["ivT2_TE132"]); show_surface(3); });
             $('nav li').hover(
                 function() {
                 $('ul', this).stop().slideDown(200);
