@@ -41,7 +41,7 @@
   <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
   <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css">
-
+  
   <style type="text/css">
     html, body {
       margin: 0 auto;
@@ -75,7 +75,7 @@
        overflow: hidden;
        float: right;
     }    
-    nav { background: #2ba0db; }
+    nav { background: #2ba0db; width: 60%; margin:0 auto;  }
     nav ul {
       font-size: 0;
       margin: 0;
@@ -110,304 +110,380 @@
       padding: 10px 14px;
     }
     nav ul li ul li a:hover { background: #126d9b; }
+    
+    .container2 {
+        display: flex;
+    }
+
+    .column {
+        flex: 1;
+        
+        /*for demo purposes only */
+        background: #f2f2f2;
+        border: 1px solid #e6e6e6;
+        /*box-sizing: border-box;*/
+    }
+
+    .column-one {
+        order: 1;
+        /*width: 0%;*/
+
+        /*margin:0 auto;*/
+    }
+    .column-two {
+        order: 2;
+        /*width: 66%;*/
+       /*margin:0 auto;*/
+    }
+    .column-three {
+        order: 3;
+       /* width: 33%;*/
+
+        /*margin:0 auto;*/
+    }
+    .smallViewer {
+        margin:20px;width:500px;height:415px;
+    }
+    
   </style>
 
-
-  </script>  
-  
     <script type="text/javascript">
+
+    var params  = [];           
+    var params1 = [];
+    var params2 = [];
+    var params3 = [];
+    var params4 = [];   
+    
+    var image_map = {}; 
+            image_map["ExVivo_DTI_FA"] =    [0,0];
+            image_map["ExVivo_DTI_DEC"] =   [0,1];       
+            image_map["ExVivo_DTI_TR"] =    [0,2];
+            image_map["InVivo_DTI_FA"] =    [1,0];
+            image_map["InVivo_DTI_DEC"] =   [1,1];        
+            image_map["InVivo_DTI_TR"] =    [1,2];        
+            image_map["Template4D_TE010"] = [2,0];
+            image_map["Template4D_TE020"] = [2,1];
+            image_map["Template4D_TE030"] = [2,2];
+            image_map["Template4D_TE040"] = [2,3];
+            image_map["Template4D_TE050"] = [2,4];
+            image_map["Template4D_TE060"] = [2,5];
+            image_map["Template4D_TE070"] = [2,6];
+            image_map["Template4D_TE080"] = [2,7];
+            image_map["Template4D_TE090"] = [2,8];
+            image_map["Template4D_TE100"] = [2,9];
+            image_map["ivT2_TE012"] =       [3,0];
+            image_map["ivT2_TE036"] =       [3,1];
+            image_map["ivT2_TE060"] =       [3,2];
+            image_map["ivT2_TE084"] =       [3,3];
+            image_map["ivT2_TE108"] =       [3,4];
+            image_map["ivT2_TE132"] =       [3,5];    
+            
+            params1["kioskMode"] = true;
+            
+            
+            params1["images"] =  [                                            
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                 ];
+            params1["surfaces"] = [];
+            params1["surfaces"] = [
+                                    "img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"                              
+                                  ];
+            params1["ev_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};
+            params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+            params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+            params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};  
+            
+            
+            params2["kioskMode"] = true;
+            
+            
+            params2["images"] =  [                                            
+                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii"
+                                 ];  
+            params2["surfaces"] = [];
+            params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
+            params2["iv_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};                                                    
+            params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+            params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+            params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};  
+            
+            
+            
+            //
+            params3["kioskMode"] = true;
+            
+            params3["images"] =  [  
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
+                                 ];    
+                                 
+            params3["surfaces"] = [];
+            params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
+            params3["ev_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};                                     
+            params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
+            params3["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            
+            
+            params4["kioskMode"] = true;
+            params4["images"] =  [
+                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
+                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
+                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                 ];  
+            params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+            params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+            params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+            params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+            params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+            params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
+        
+            params4["surfaces"] = [];
+            params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
+            params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};
+ 
+                console.log("ATTEMPTED TO LOAD params4 surface.")   
+    
+                
+                    
+            
+           
+            
+            
+            var papaya_helper = function(param_array){
+                console.log(param_array);    
+            };
+            
+            var hide_surfaces = function(index){
+                //papaya.Container.hideSurface(0, index);
+                //papaya.Container.hideSurface(0, 0);
+                console.log('done hiding papaya viewers.');        
+            };
+            
+            
+            
+            
+            
+        //});
+            //update_params("Init");
 
     
     //  # base path
     //       js/papaya/Papaya-master
     
-    $(".thumbnails").slick({
-          centerMode: true,
-          centerPadding: '25px',
-          slidesToShow: 2,
-          vertical: true,
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: '25px',
-                slidesToShow: 3,
-                vertical: true,
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: '25px',
-                slidesToShow: 1,
-                vertical: true,
-              }
-            }
-          ]
-      });
     
-    var papaya_helper = function(param_array){
-        console.log(param_array);    
-    };
-    var hide_image = function(index){            
-        papaya.Container.hideImage(0, index);
-    };        
-    var show_image = function(index){
-        papaya.Container.showImage(0, index);
-    };
-    var hide_surfaces = function(index){
-        //papaya.Container.hideSurface(0, index);
-        //  0 - ev_dti
-        //  1 - iv_dti
-        //  2 - ev_T2
-        //  3 - iv_T2
-        //params["surfaces"] = [];
-        
-    };
-    var show_surface = function(index){
-        //papaya.Container.showSurface(0, index);
-        if(index == 0){
-            params["surfaces"] = [];
-            params["surfaces"] = ["img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"]
-            params["ev_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
-            //params["iv_dti_brain.surf.gii"].hidden = true;
-            //params["ev_t2_brain.surf.gii"].hidden = true;
-            //params["iv_t2_brain.surf.gii"].hidden = true;
-            console.log("INDEX WAS 0.........");
-            console.log("WE HAVE ->   " + params["surfaces"].length + " Surfaces.");
             
-        }
-        else if(index == 1){
-            params["surfaces"] = [];
-            params["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"]
-            params["iv_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
-        }
-        else if(index == 2){
-            params["surfaces"] = [];
-            params["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"]
-            params["ev_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
-        }
-        else if(index == 3){
-            params["surfaces"] = [];
-            params["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"]
-            params["iv_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.75};
-        }
-        else {
-            console.log("Strange surface request.");
-        }
-        //papaya.Container.showSurface(0, index);
-    };
-    var reset_viewer = function( ){
-        //  Exvivo DTI
-        hide_image(0); //   FA
-        hide_image(1);//    DEC
-        hide_image(2);//    TR
-        //  Invivo DTI
-        hide_image(3);//    FA
-        hide_image(4);//    DEC
-        hide_image(5);//    TR
-        //  Exvivo T2
-        hide_image(6);//    TE 10
-        hide_image(7);//    TE 20
-        hide_image(8);//    TE 30
-        hide_image(9);//    TE 40
-        hide_image(10);//   TE 50
-        hide_image(11);//   TE 60
-        hide_image(12);//   TE 70
-        hide_image(13);//   TE 80
-        hide_image(14);//   TE 90
-        hide_image(15);//   TE 100
-        //  Invivo T2
-        hide_image(16);//   TE 12
-        hide_image(17);//   TE 36
-        hide_image(18);//   TE 60
-        hide_image(19);//   TE 84
-        hide_image(20);//   TE 108
-        hide_image(21);//   TE 132
-        hide_surfaces();
-    };
     
-        var image_map = {};
-         image_map["ExVivo_DTI_FA"] = 0;
-        image_map["ExVivo_DTI_DEC"] = 1;       
-        image_map["ExVivo_DTI_TR"] = 2;
-        image_map["InVivo_DTI_FA"] = 3;
-        image_map["InVivo_DTI_DEC"] = 4;        
-        image_map["InVivo_DTI_TR"] = 5;        
-        image_map["Template4D_TE010"] = 6;
-        image_map["Template4D_TE020"] = 7;
-        image_map["Template4D_TE030"] = 8;
-        image_map["Template4D_TE040"] = 9;
-        image_map["Template4D_TE050"] = 10;
-        image_map["Template4D_TE060"] = 11;
-        image_map["Template4D_TE070"] = 12;
-        image_map["Template4D_TE080"] = 13;
-        image_map["Template4D_TE090"] = 14;
-        image_map["Template4D_TE100"] = 15;
-        image_map["ivT2_TE012"] = 16;
-        image_map["ivT2_TE036"] = 17;
-        image_map["ivT2_TE060"] = 18;
-        image_map["ivT2_TE084"] = 19;
-        image_map["ivT2_TE108"] = 20;
-        image_map["ivT2_TE132"] = 21;        
-
-        var params = [];
-        params["kioskMode"] = true;
-        papaya_helper(params);
+    
         
-        var update_params = function(img){
-                console.log("This is our update key -> "+img);                
-                if ( img == "ev_dti_dec" ){
-                    console.log("EV_DTI_DEC");
-                        reset_viewer();
-                        show_image(1);
-                } else if ( img == "ev_dti_fa" ){
-                    console.log("EV_DTI_FA");
-                        reset_viewer();
-                        show_image(0);
-                } else if ( img == "ev_dti_tr" ){
-                    console.log("EV_DTI_TR");
-                        reset_viewer();
-                        show_image(2);
-                } else {
-                    //          SO... weird observation about the problem with in-vivo DEC map size... Loading the dec FIRST in the list of images yields correct display size.
-                    //              It seems that when loading several volumes having heterogenous sizes, the center/origin is poorly defined overall.
-                    
-                    //                      This causes  issues to emerge when rendering surfaces like: un-centered surface rendering, un-centered tri-planar view of the volume
-                    //      A more sustainable solution would be to reset/load volume groups & the corresponding surface for a group when a template is selected from DD menu
-                    //          May way to investigate caching all volumes apriori because load/reset times will most likely not be negligable.
-                    console.log("SOMETHING ELSE!");
-                    params["images"] =  [                                            
-                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                            "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",                                            
-                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                                            "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",                                                            
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
-                                            "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                            "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
-                                        ];                    
-                    params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                    params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};                    
-                    params["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                    params["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                    params["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};
-                    params["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
-                    params["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                    params["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
-                    params["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
-                    params["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
-                    params["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
-                    params["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};
-                    params["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 150};   
-                    
-                    params["surfaces"] = ["img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii",
-                                                               "img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii",
-                                                               "img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii",
-                                                               "img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
-                    params["ev_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
-                    params["iv_dti_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
-                    params["ev_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
-                    params["iv_t2_brain.surf.gii"] = {color:[.8,.8,.8], alpha: 0.5};
-                    
-                }
-        };
         
-        $(document).ready(function(){
-            update_params("Init");
+            
+            console.log("SOMETHING ELSE!");
+            
+            
+            
+                    
+                    
+            $(document).ready(function(){
+            
+                
+            
+            $("#ex_vivo_dti").hide();
+            $("#in_vivo_dti").hide();
             $("#in_vivo_T2").hide();
             $("#ex_vivo_T2").hide();
-            $("#in_vivo_dti").hide();
-            $("#ex_vivo_dti").hide();
             
-            $("#ivt2").on('click', function(e) {  
-                console.log("CLICKED In-Vivo T2 Template");
-                $("#in_vivo_T2").show();
-                $("#in_vivo_dti").hide();
-                $("#ex_vivo_T2").hide();
-                $("#ex_vivo_dti").hide();
-            });
-            $("#ivdti").on('click', function(e) {  
-                console.log("CLICKED In-Vivo DTI Template");
-                 $("#in_vivo_dti").show();
-                 $("#in_vivo_T2").hide();
-                 $("#ex_vivo_T2").hide();
-                 $("#ex_vivo_dti").hide();
-            });
-            $("#evt2").on('click', function(e) {  
-                console.log("CLICKED Ex-Vivo T2 Template");
-                 $("#ex_vivo_T2").show();
-                 $("#in_vivo_dti").hide();
-                 $("#ex_vivo_dti").hide();
-                 $("#in_vivo_T2").hide();                          
-            });
+            $("#papaya1").hide()
+            $("#papaya2").hide()
+            $("#papaya3").hide()
+            $("#papaya4").hide()
+            $("#papaya1").show()
             
-            $("#reset_view").on('click', function(e) {
-                console.log("Resetting Viewport.");
-                reset_viewer();
-            });
             
-            $("#create_png").on('click', function(e) {
-                console.log("Create PNG selected.");
-            });
             
-            $("#evdti").on('click', function(e) {  
-                console.log("CLICKED Ex-Vivo DTI Template");
-                 $("#ex_vivo_dti").show();
-                 $("#in_vivo_dti").hide();
-                 $("#in_vivo_T2").hide();
-                 $("#ex_vivo_T2").hide();
-            });
+        
+      });
+                
+    </script>
+
+  
+
+
+  
+    <script type="text/javascript">
+
+    $(document).ready(function(){
     
-            $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec");  show_surface(0);});
-            $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr");  show_surface(0);});
-            $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa");  show_surface(0);});
-            $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); show_image(image_map["InVivo_DTI_DEC"]); show_surface(1); });
-            $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); show_image(image_map["InVivo_DTI_TR"]);  show_surface(1);});
-            $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); show_image(image_map["InVivo_DTI_FA"]); show_surface(1); }); 
-            $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); show_image(image_map["Template4D_TE010"]); show_surface(2);});
-            $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); show_image(image_map["Template4D_TE020"]); show_surface(2);});
-            $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); show_image(image_map["Template4D_TE030"]); show_surface(2);});
-            $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); show_image(image_map["Template4D_TE040"]); show_surface(2);});
-            $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); show_image(image_map["Template4D_TE050"]); show_surface(2);});
-            $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); show_image(image_map["Template4D_TE060"]); show_surface(2);});
-            $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); show_image(image_map["Template4D_TE070"]); show_surface(2);});
-            $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); show_image(image_map["Template4D_TE080"]); show_surface(2);});
-            $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); show_image(image_map["Template4D_TE090"]); show_surface(2);});
-            $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); show_image(image_map["Template4D_TE100"]); show_surface(2);});
-            $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); show_image(image_map["ivT2_TE012"]); show_surface(3); });
-            $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); show_image(image_map["ivT2_TE036"]); show_surface(3); });
-            $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); show_image(image_map["ivT2_TE060"]); show_surface(3); });
-            $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); show_image(image_map["ivT2_TE084"]); show_surface(3); });
-            $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); show_image(image_map["ivT2_TE108"]); show_surface(3); });
-            $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); show_image(image_map["ivT2_TE132"]); show_surface(3); });
+        var hide_image = function(index){            
+                        papaya.Container.hideImage(index[0], index[1]);
+                    };        
+                    var show_image = function(index){
+                        papaya.Container.showImage(index[0], index[1]);
+                    };
+                    var reset_viewer = function( ){
+                        var keys = [];
+                        for (var key in image_map) {
+                          if (image_map.hasOwnProperty(key)) {
+                            keys.push(key);
+                          }
+                        }
+                        for(var i = 0; i < keys.length; i++){
+                            console.log("A  KEY  FOR RESET ->  " + keys[i])
+                            hide_image(image_map[keys[i]]);
+                        }
+                    };
+                    var update_params = function(img){
+                        console.log("This is our update key -> "+img);             
+                        reset_viewer();   
+                        if ( img == "ev_dti_dec" ){                           
+                            show_image(image_map["ExVivo_DTI_DEC"]);
+                        } else if ( img == "ev_dti_fa" ){
+                            show_image(image_map["ExVivo_DTI_FA"]);
+                        } else if ( img == "ev_dti_tr" ){
+                            show_image(image_map["ExVivo_DTI_TR"]);
+                        } else if ( img == "iv_dti_tr" ){
+                            show_image(image_map["InVivo_DTI_TR"]);
+                        } else if ( img == "iv_dti_fa" ){
+                            show_image(image_map["InVivo_DTI_FA"]);
+                        } else if ( img == "iv_dti_dec" ){
+                            show_image(image_map["InVivo_DTI_DEC"]);
+                        } else if ( img == "ev_t2_10" ){
+                            show_image(image_map["Template4D_TE010"]);
+                        } else if ( img == "ev_t2_20" ){
+                            show_image(image_map["Template4D_TE020"]);
+                        } else if ( img == "ev_t2_30" ){
+                            show_image(image_map["Template4D_TE030"]);
+                        } else if ( img == "ev_t2_40" ){
+                            show_image(image_map["Template4D_TE040"]);
+                        } else if ( img == "ev_t2_50" ){
+                            show_image(image_map["Template4D_TE050"]);
+                        } else if ( img == "ev_t2_60" ){
+                            show_image(image_map["Template4D_TE060"]);
+                        } else if ( img == "ev_t2_70" ){
+                            show_image(image_map["Template4D_TE070"]);
+                        } else if ( img == "ev_t2_80" ){
+                            show_image(image_map["Template4D_TE080"]);
+                        } else if ( img == "ev_t2_90" ){
+                            show_image(image_map["Template4D_TE090"]);
+                        } else if ( img == "ev_t2_100" ){
+                            show_image(image_map["Template4D_TE100"]);
+                        } else if ( img == "iv_t2_012" ){
+                            show_image(image_map["ivT2_TE012"]);
+                        } else if ( img == "iv_t2_036" ){
+                            show_image(image_map["ivT2_TE036"]);
+                        } else if ( img == "iv_t2_060" ){
+                            show_image(image_map["ivT2_TE060"]);
+                        } else if ( img == "iv_t2_084" ){
+                            show_image(image_map["ivT2_TE084"]);
+                        } else if ( img == "iv_t2_108" ){
+                            show_image(image_map["ivT2_TE108"]);
+                        } else if ( img == "iv_t2_132" ){
+                            show_image(image_map["ivT2_TE132"]);
+                        } 
+                        
+                        
+                        
+                        
+                        
+                        
+                        /*
+                        
+                                       $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); show_image(image_map["InVivo_DTI_DEC"]); show_surface(1); });
+                    $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); show_image(image_map["InVivo_DTI_TR"]);show_surface(1);});
+                    $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); show_image(image_map["InVivo_DTI_FA"]);show_surface(1); }); 
+                    $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); show_image(image_map["Template4D_TE010"]);show_surface(2);});
+                    $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); show_image(image_map["Template4D_TE020"]);show_surface(2);});
+                    $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); show_image(image_map["Template4D_TE030"]);show_surface(2);});
+                    $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); show_image(image_map["Template4D_TE040"]);show_surface(2);});
+                    $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); show_image(image_map["Template4D_TE050"]);show_surface(2);});
+                    $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); show_image(image_map["Template4D_TE060"]);show_surface(2);});
+                    $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); show_image(image_map["Template4D_TE070"]);show_surface(2);});
+                    $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); show_image(image_map["Template4D_TE080"]);show_surface(2);});
+                    $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); show_image(image_map["Template4D_TE090"]);show_surface(2);});
+                    $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); show_image(image_map["Template4D_TE100"]);show_surface(2);});
+                    $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); show_image(image_map["ivT2_TE012"]);show_surface(3); });
+                    $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); show_image(image_map["ivT2_TE036"]);show_surface(3); });
+                    $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); show_image(image_map["ivT2_TE060"]);show_surface(3); });
+                    $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); show_image(image_map["ivT2_TE084"]);show_surface(3); });
+                    $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); show_image(image_map["ivT2_TE108"]);show_surface(3); });
+                    $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); show_image(image_map["ivT2_TE132"]);show_surface(3); });
+                        
+                        
+                        */
+                        
+                        
+                        
+                        
+                        
+                        
+                        else {
+                            //          SO... weird observation about the problem with in-vivo DEC map size... Loading the dec FIRST in the list of images yields correct display size.
+                            //              It seems that when loading several volumes having heterogenous sizes, the center/origin is poorly defined overall.
+                            
+                            //                      This causes  issues to emerge when rendering surfaces like: un-centered surface rendering, un-centered tri-planar view of the volume
+                            //      A more sustainable solution would be to reset/load volume groups & the corresponding surface for a group when a template is selected from DD menu
+                            //          May way to investigate caching all volumes apriori because load/reset times will most likely not be negligable.
+                            console.log("SOMETHING ELSEadsfasdfasdfasdf!");
+                            
+                            
+                        }
+                    };
+    
+        var show_surface = function(index){
+                        console.log("SHOW SURFACE CALLED   WITH INDEX ->   " + index)
+                        if(index == 0){            
+                            $("#papaya2").hide()     
+                            $("#papaya3").hide()     
+                            $("#papaya4").hide()     
+                            $("#papaya1").show()                     
+                        }
+                        else if(index == 1){
+                            $("#papaya1").hide()     
+                            $("#papaya3").hide()     
+                            $("#papaya4").hide()     
+                            $("#papaya2").show()  
+                        }
+                        else if(index == 2){
+                            $("#papaya1").hide()     
+                            $("#papaya2").hide()     
+                            $("#papaya4").hide()     
+                            $("#papaya3").show()  
+                        }
+                        else if(index == 3){
+                            $("#papaya1").hide()     
+                            $("#papaya2").hide()     
+                            $("#papaya3").hide()     
+                            $("#papaya4").show()  
+                            
+                        }
+                        else {
+                            console.log("Strange surface request.");
+                        }                        
+                    };
+    
             $('nav li').hover(
                 function() {
                 $('ul', this).stop().slideDown(200);
@@ -416,7 +492,71 @@
                 $('ul', this).stop().slideUp(200);
                 }
             );
-      });
+       
+       console.log("INITIATED HOVER CODE.")     
+                    $("#ivt2").on('click', function(e) {  
+                        console.log("CLICKED In-Vivo T2 Template");                
+                        $("#in_vivo_dti").hide();
+                        $("#ex_vivo_T2").hide();
+                        $("#ex_vivo_dti").hide();
+                        $("#in_vivo_T2").show();
+                    });
+                    $("#ivdti").on('click', function(e) {  
+                        console.log("CLICKED In-Vivo DTI Template");                 
+                         $("#in_vivo_T2").hide();
+                         $("#ex_vivo_T2").hide();
+                         $("#ex_vivo_dti").hide();
+                         $("#in_vivo_dti").show();
+                    });
+                    $("#evt2").on('click', function(e) {  
+                        console.log("CLICKED Ex-Vivo T2 Template");                 
+                         $("#in_vivo_dti").hide();
+                         $("#ex_vivo_dti").hide();
+                         $("#in_vivo_T2").hide();                    
+                         $("#ex_vivo_T2").show();      
+                    });
+                    
+                    $("#reset_view").on('click', function(e) {
+                        console.log("Resetting Viewport.");
+                        reset_viewer();
+                    });
+                    
+                    $("#create_png").on('click', function(e) {
+                        console.log("Create PNG selected.");
+                    });
+                    
+                    $("#evdti").on('click', function(e) {  
+                        console.log("CLICKED Ex-Vivo DTI Template");
+                         $("#ex_vivo_dti").show();
+                         $("#in_vivo_dti").hide();
+                         $("#in_vivo_T2").hide();
+                         $("#ex_vivo_T2").hide();
+                    });
+                    $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec"); show_surface(0);});
+                    $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr"); show_surface(0);});
+                    $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa"); show_surface(0);});
+                    $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); update_params("iv_dti_dec"); show_surface(1); });
+                    $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); update_params("iv_dti_tr");show_surface(1);});
+                    $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); update_params("iv_dti_fa");show_surface(1); }); 
+                    $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); update_params("ev_t2_10");show_surface(2);});
+                    $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); update_params("ev_t2_20");show_surface(2);});
+                    $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); update_params("ev_t2_30");show_surface(2);});
+                    $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); update_params("ev_t2_40");show_surface(2);});
+                    $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); update_params("ev_t2_50");show_surface(2);});
+                    $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); update_params("ev_t2_60");show_surface(2);});
+                    $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); update_params("ev_t2_70");show_surface(2);});
+                    $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); update_params("ev_t2_80");show_surface(2);});
+                    $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); update_params("ev_t2_90");show_surface(2);});
+                    $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); update_params("ev_t2_100");show_surface(2);});
+                    $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); update_params("iv_t2_012");show_surface(3); });
+                    $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); update_params("iv_t2_036");show_surface(3); });
+                    $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); update_params("iv_t2_060");show_surface(3); });
+                    $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); update_params("iv_t2_084");show_surface(3); });
+                    $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); update_params("iv_t2_108");show_surface(3); });
+                    $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); update_params("iv_t2_132");show_surface(3); });
+                    
+                    
+    });
     </script>
 
     <title>Debug Local</title>
@@ -444,86 +584,114 @@
   </div>
 </nav>
         <br>
-      <div id="P_container"  style="width:60%;">        
-          <div id="papaya" class="papaya" data-params="params" style="float: left;"></div>
+    
+<div class="container"> 
+    <div class="container2">
+      <div class="column column-one"></div>
+        <div class="column column-two">
+            <div id="papaya1" class="smallViewer" style="margin:0 auto;">            
+                <div class="papaya" data-params="params1" ></div>
+            </div>
+            <div id="papaya2" class="smallViewer" style="margin:0 auto;">
+                <div class="papaya" data-params="params2" ></div>
+            </div>
+            <div id="papaya3" class="smallViewer" style="margin:0 auto;">
+                <div class="papaya" data-params="params3" ></div>
+            </div>
+            <div id="papaya4" class="smallViewer" style="margin:0 auto;">
+                <div class="papaya" data-params="params4" ></div>
+            </div>
+                
+        </div>
+    <!--  </div> -->
       </div>
+    </div>
+    <div class="column column-three">
       
-    <div class="thumbnails" id="thumb_div" style="overflow-y:scroll;height:45%">
-        <div id="ex_vivo_dti">
-                <div id="ex_vivo_dti_fa">
-                <img class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="100" width="100">FA
-                </div>
-                <div id="ex_vivo_dti_dec">
-                <img class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="100" width="100">DEC
-                </div>
-                <div id="ex_vivo_dti_tr">
-                <img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="100" width="100">TR
-                </div>
+        <div class="thumbnails" id="thumb_div" style="overflow-y:scroll;height:45%;margin:0 auto;">
+            <div id="ex_vivo_dti">
+                    <div id="ex_vivo_dti_fa">
+                    <img class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="100" width="100">FA
+                    </div>
+                    <div id="ex_vivo_dti_dec">
+                    <img class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="100" width="100">DEC
+                    </div>
+                    <div id="ex_vivo_dti_tr">
+                    <img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="100" width="100">TR
+                    </div>
+            </div>
+            <div id="in_vivo_dti">
+                    <div id="in_vivo_dti_fa">
+                    <img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="100" width="100">FA
+                    </div>
+                    <div id="in_vivo_dti_dec">
+                    <img class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="100" width="100">DEC
+                    </div>
+                    <div id="in_vivo_dti_tr">
+                    <img class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="100" width="100">TR
+                    </div>                
+            </div>
+            <div id="ex_vivo_T2">
+                    <div id="ex_vivo_T2_10">
+                    <img class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="100" width="100">TE 10
+                    </div>
+                    <div id="ex_vivo_T2_20">
+                    <img class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="100" width="100">TE 20
+                    </div>
+                    <div id="ex_vivo_T2_30">
+                    <img class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="100" width="100">TE 30
+                    </div>
+                    <div id="ex_vivo_T2_40">
+                    <img class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="100" width="100">TE 40
+                    </div>
+                    <div id="ex_vivo_T2_50">
+                    <img class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="100" width="100">TE 50
+                    </div>
+                    <div id="ex_vivo_T2_60">
+                    <img class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="100" width="100">TE 60
+                    </div>
+                    <div id="ex_vivo_T2_70">
+                    <img class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="100" width="100">TE 70
+                    </div>
+                    <div id="ex_vivo_T2_80">
+                    <img class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="100" width="100">TE 80
+                    </div>
+                    <div id="ex_vivo_T2_90">
+                    <img class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="100" width="100">TE 90
+                    </div>
+                    <div id="ex_vivo_T2_100">
+                    <img class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="100" width="100">TE 100
+                    </div>
+            </div>
+            <div id="in_vivo_T2">
+                    <div id="in_vivo_T2_12">
+                    <img class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="100" width="100">TE 12
+                    </div>
+                    <div id="in_vivo_T2_36">
+                    <img class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="100" width="100">TE 36
+                    </div>
+                    <div id="in_vivo_T2_60">
+                    <img class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="100" width="100">TE 60
+                    </div>
+                    <div id="in_vivo_T2_84">
+                    <img class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="100" width="100">TE 84
+                    </div>
+                    <div id="in_vivo_T2_108">
+                    <img class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="100" width="100">TE 108
+                    </div>
+                    <div id="in_vivo_T2_132">
+                    <img class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="100" width="100">TE 132
+                    </div>
+            </div>
+            
         </div>
-        <div id="in_vivo_dti">
-                <div id="in_vivo_dti_fa">
-                <img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="100" width="100">FA
-                </div>
-                <div id="in_vivo_dti_dec">
-                <img class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="100" width="100">DEC
-                </div>
-                <div id="in_vivo_dti_tr">
-                <img class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="100" width="100">TR
-                </div>                
-        </div>
-        <div id="ex_vivo_T2">
-                <div id="ex_vivo_T2_10">
-                <img class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="100" width="100">TE 10
-                </div>
-                <div id="ex_vivo_T2_20">
-                <img class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="100" width="100">TE 20
-                </div>
-                <div id="ex_vivo_T2_30">
-                <img class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="100" width="100">TE 30
-                </div>
-                <div id="ex_vivo_T2_40">
-                <img class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="100" width="100">TE 40
-                </div>
-                <div id="ex_vivo_T2_50">
-                <img class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="100" width="100">TE 50
-                </div>
-                <div id="ex_vivo_T2_60">
-                <img class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="100" width="100">TE 60
-                </div>
-                <div id="ex_vivo_T2_70">
-                <img class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="100" width="100">TE 70
-                </div>
-                <div id="ex_vivo_T2_80">
-                <img class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="100" width="100">TE 80
-                </div>
-                <div id="ex_vivo_T2_90">
-                <img class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="100" width="100">TE 90
-                </div>
-                <div id="ex_vivo_T2_100">
-                <img class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="100" width="100">TE 100
-                </div>
-        </div>
-        <div id="in_vivo_T2">
-                <div id="in_vivo_T2_12">
-                <img class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="100" width="100">TE 12
-                </div>
-                <div id="in_vivo_T2_36">
-                <img class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="100" width="100">TE 36
-                </div>
-                <div id="in_vivo_T2_60">
-                <img class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="100" width="100">TE 60
-                </div>
-                <div id="in_vivo_T2_84">
-                <img class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="100" width="100">TE 84
-                </div>
-                <div id="in_vivo_T2_108">
-                <img class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="100" width="100">TE 108
-                </div>
-                <div id="in_vivo_T2_132">
-                <img class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="100" width="100">TE 132
-                </div>
-        </div>
+      </div>
 
+    </div>
+  </div>
+    
 </body>
+
+
 
 </html>
