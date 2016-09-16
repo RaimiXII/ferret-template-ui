@@ -16,7 +16,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -41,6 +45,8 @@
   <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
   <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css">
+  <!-- Latest compiled and minified JavaScript -->
+
   
   <style type="text/css">
     html, body {
@@ -75,7 +81,7 @@
        overflow: hidden;
        float: right;
     }    
-    nav { background: #2ba0db; width: 60%; margin:0 auto;  }
+    nav { background: #2ba0db; width: 80%; margin:0 auto;  }
     nav ul {
       font-size: 0;
       margin: 0;
@@ -116,33 +122,42 @@
     }
 
     .column {
-        flex: 1;
-        
+        flex: 1;        
         /*for demo purposes only */
         background: #f2f2f2;
         border: 1px solid #e6e6e6;
-        /*box-sizing: border-box;*/
     }
 
     .column-one {
         order: 1;
-        /*width: 0%;*/
-
-        /*margin:0 auto;*/
     }
     .column-two {
         order: 2;
-        /*width: 66%;*/
-       /*margin:0 auto;*/
     }
     .column-three {
         order: 3;
-       /* width: 33%;*/
-
-        /*margin:0 auto;*/
     }
     .smallViewer {
         margin:20px;width:500px;height:415px;
+    }
+    
+    .midViewer {
+        margin:3px;width:800px;height:725px;
+    }
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+    
+    .float_center {
+        float: right;
+        position: relative;
+        right: 20%; /* or right 50% */
+        text-align: left;
     }
     
   </style>
@@ -195,6 +210,7 @@
             params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
             params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};  
+            params1.showControls = false
             
             
             params2["kioskMode"] = true;
@@ -211,7 +227,7 @@
             params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
             params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 4500};  
-            
+            params2.showControls = false
             
             
             //
@@ -243,6 +259,7 @@
             params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+            params3.showControls = false
             
             
             params4["kioskMode"] = true;
@@ -263,69 +280,22 @@
         
             params4["surfaces"] = [];
             params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
-            params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};
- 
-                console.log("ATTEMPTED TO LOAD params4 surface.")   
-    
-                
-                    
-            
-           
-            
-            
-            var papaya_helper = function(param_array){
-                console.log(param_array);    
-            };
-            
-            var hide_surfaces = function(index){
-                //papaya.Container.hideSurface(0, index);
-                //papaya.Container.hideSurface(0, 0);
-                console.log('done hiding papaya viewers.');        
-            };
-            
-            
-            
-            
-            
-        //});
-            //update_params("Init");
-
-    
-    //  # base path
-    //       js/papaya/Papaya-master
-    
-    
-            
-    
-    
-        
-        
-            
-            console.log("SOMETHING ELSE!");
-            
-            
-            
-                    
+            params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};                                                               
+            params4.showControls = false
                     
             $(document).ready(function(){
             
+                $("#ex_vivo_dti").hide();
+                $("#in_vivo_dti").hide();
+                $("#in_vivo_T2").hide();
+                $("#ex_vivo_T2").hide();
                 
-            
-            $("#ex_vivo_dti").hide();
-            $("#in_vivo_dti").hide();
-            $("#in_vivo_T2").hide();
-            $("#ex_vivo_T2").hide();
-            
-            $("#papaya1").hide()
-            $("#papaya2").hide()
-            $("#papaya3").hide()
-            $("#papaya4").hide()
-            $("#papaya1").show()
-            
-            
-            
+                $("#papaya1").hide()
+                $("#papaya2").hide()
+                $("#papaya3").hide()
+                $("#papaya4").hide()                      
         
-      });
+            });
                 
     </script>
 
@@ -402,53 +372,8 @@
                             show_image(image_map["ivT2_TE108"]);
                         } else if ( img == "iv_t2_132" ){
                             show_image(image_map["ivT2_TE132"]);
-                        } 
-                        
-                        
-                        
-                        
-                        
-                        
-                        /*
-                        
-                                       $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); show_image(image_map["InVivo_DTI_DEC"]); show_surface(1); });
-                    $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); show_image(image_map["InVivo_DTI_TR"]);show_surface(1);});
-                    $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); show_image(image_map["InVivo_DTI_FA"]);show_surface(1); }); 
-                    $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); show_image(image_map["Template4D_TE010"]);show_surface(2);});
-                    $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); show_image(image_map["Template4D_TE020"]);show_surface(2);});
-                    $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); show_image(image_map["Template4D_TE030"]);show_surface(2);});
-                    $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); show_image(image_map["Template4D_TE040"]);show_surface(2);});
-                    $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); show_image(image_map["Template4D_TE050"]);show_surface(2);});
-                    $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); show_image(image_map["Template4D_TE060"]);show_surface(2);});
-                    $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); show_image(image_map["Template4D_TE070"]);show_surface(2);});
-                    $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); show_image(image_map["Template4D_TE080"]);show_surface(2);});
-                    $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); show_image(image_map["Template4D_TE090"]);show_surface(2);});
-                    $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); show_image(image_map["Template4D_TE100"]);show_surface(2);});
-                    $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); show_image(image_map["ivT2_TE012"]);show_surface(3); });
-                    $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); show_image(image_map["ivT2_TE036"]);show_surface(3); });
-                    $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); show_image(image_map["ivT2_TE060"]);show_surface(3); });
-                    $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); show_image(image_map["ivT2_TE084"]);show_surface(3); });
-                    $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); show_image(image_map["ivT2_TE108"]);show_surface(3); });
-                    $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); show_image(image_map["ivT2_TE132"]);show_surface(3); });
-                        
-                        
-                        */
-                        
-                        
-                        
-                        
-                        
-                        
-                        else {
-                            //          SO... weird observation about the problem with in-vivo DEC map size... Loading the dec FIRST in the list of images yields correct display size.
-                            //              It seems that when loading several volumes having heterogenous sizes, the center/origin is poorly defined overall.
-                            
-                            //                      This causes  issues to emerge when rendering surfaces like: un-centered surface rendering, un-centered tri-planar view of the volume
-                            //      A more sustainable solution would be to reset/load volume groups & the corresponding surface for a group when a template is selected from DD menu
-                            //          May way to investigate caching all volumes apriori because load/reset times will most likely not be negligable.
-                            console.log("SOMETHING ELSEadsfasdfasdfasdf!");
-                            
-                            
+                        } else {
+                            console.log("SOMETHING ELSEadsfasdfasdfasdf!");                                                       
                         }
                     };
     
@@ -486,7 +411,7 @@
     
             $('nav li').hover(
                 function() {
-                $('ul', this).stop().slideDown(200);
+                $('ul', this).stop().slideDown(200);                
                 },
                 function() {
                 $('ul', this).stop().slideUp(200);
@@ -521,6 +446,18 @@
                         reset_viewer();
                     });
                     
+                    $("#minimize_all").on('click', function(e) { 
+                        reset_viewer();
+                        $("#ex_vivo_dti").hide();
+                        $("#in_vivo_dti").hide();
+                        $("#in_vivo_T2").hide();
+                        $("#ex_vivo_T2").hide();
+                        $("#papaya1").hide()     
+                        $("#papaya2").hide()     
+                        $("#papaya3").hide()     
+                        $("#papaya4").hide()  
+                    });
+                    
                     $("#create_png").on('click', function(e) {
                         console.log("Create PNG selected.");
                     });
@@ -532,6 +469,8 @@
                          $("#in_vivo_T2").hide();
                          $("#ex_vivo_T2").hide();
                     });
+                    
+                    
                     $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec"); show_surface(0);});
                     $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr"); show_surface(0);});
                     $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa"); show_surface(0);});
@@ -563,132 +502,204 @@
 </head>
 
 <body>
-<nav>
-  <div class="container">
-    <ul>      
-      <li> <a href="#">Templates </a>
-        <ul>
+
+      
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Templates<span class="caret"></span></a>
+        <ul class="dropdown-menu">
           <li id="ivt2"><a href="#">In-Vivo T2</a></li>
-          <li id="ivdti"><a href="#">In-Vivo DTI</a></li>
+          <li id="ivdti"><a href="#">In-Vivo DTI</a></li>          
           <li id="evt2"><a href="#">Ex-Vivo T2</a></li>
           <li id="evdti"><a href="#">Ex-Vivo DTI</a></li>
         </ul>
       </li>
-      <li><a href="#">Image</a>
-        <ul>
-          <li id="reset_view"><a href="#">Reset View</a></li>
-          <li id="create_png"><a href="#">Create PNG</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Actions<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li id="reset_view"><a href="#">Reset View</a></li>
+            <li id="minimize_all"><a href="#">Minimize All</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
-        <br>
-    
-<div class="container"> 
-    <div class="container2">
-      <div class="column column-one"></div>
-        <div class="column column-two">
-            <div id="papaya1" class="smallViewer" style="margin:0 auto;">            
-                <div class="papaya" data-params="params1" ></div>
-            </div>
-            <div id="papaya2" class="smallViewer" style="margin:0 auto;">
-                <div class="papaya" data-params="params2" ></div>
-            </div>
-            <div id="papaya3" class="smallViewer" style="margin:0 auto;">
-                <div class="papaya" data-params="params3" ></div>
-            </div>
-            <div id="papaya4" class="smallViewer" style="margin:0 auto;">
-                <div class="papaya" data-params="params4" ></div>
-            </div>
-                
-        </div>
-    <!--  </div> -->
-      </div>
-    </div>
-    <div class="column column-three">
-      
-        <div class="thumbnails" id="thumb_div" style="overflow-y:scroll;height:45%;margin:0 auto;">
-            <div id="ex_vivo_dti">
-                    <div id="ex_vivo_dti_fa">
-                    <img class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="100" width="100">FA
-                    </div>
-                    <div id="ex_vivo_dti_dec">
-                    <img class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="100" width="100">DEC
-                    </div>
-                    <div id="ex_vivo_dti_tr">
-                    <img class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="100" width="100">TR
-                    </div>
-            </div>
-            <div id="in_vivo_dti">
-                    <div id="in_vivo_dti_fa">
-                    <img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="100" width="100">FA
-                    </div>
-                    <div id="in_vivo_dti_dec">
-                    <img class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="100" width="100">DEC
-                    </div>
-                    <div id="in_vivo_dti_tr">
-                    <img class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="100" width="100">TR
-                    </div>                
-            </div>
-            <div id="ex_vivo_T2">
-                    <div id="ex_vivo_T2_10">
-                    <img class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="100" width="100">TE 10
-                    </div>
-                    <div id="ex_vivo_T2_20">
-                    <img class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="100" width="100">TE 20
-                    </div>
-                    <div id="ex_vivo_T2_30">
-                    <img class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="100" width="100">TE 30
-                    </div>
-                    <div id="ex_vivo_T2_40">
-                    <img class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="100" width="100">TE 40
-                    </div>
-                    <div id="ex_vivo_T2_50">
-                    <img class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="100" width="100">TE 50
-                    </div>
-                    <div id="ex_vivo_T2_60">
-                    <img class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="100" width="100">TE 60
-                    </div>
-                    <div id="ex_vivo_T2_70">
-                    <img class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="100" width="100">TE 70
-                    </div>
-                    <div id="ex_vivo_T2_80">
-                    <img class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="100" width="100">TE 80
-                    </div>
-                    <div id="ex_vivo_T2_90">
-                    <img class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="100" width="100">TE 90
-                    </div>
-                    <div id="ex_vivo_T2_100">
-                    <img class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="100" width="100">TE 100
-                    </div>
-            </div>
-            <div id="in_vivo_T2">
-                    <div id="in_vivo_T2_12">
-                    <img class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="100" width="100">TE 12
-                    </div>
-                    <div id="in_vivo_T2_36">
-                    <img class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="100" width="100">TE 36
-                    </div>
-                    <div id="in_vivo_T2_60">
-                    <img class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="100" width="100">TE 60
-                    </div>
-                    <div id="in_vivo_T2_84">
-                    <img class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="100" width="100">TE 84
-                    </div>
-                    <div id="in_vivo_T2_108">
-                    <img class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="100" width="100">TE 108
-                    </div>
-                    <div id="in_vivo_T2_132">
-                    <img class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="100" width="100">TE 132
-                    </div>
-            </div>
-            
-        </div>
-      </div>
+
+<div class="row">
+
+    <div class="row" id="ex_vivo_dti">    
+        <ul class="pager">        
+            <li id="ex_vivo_dti_fa">
+            <a href="#">
+                <img id="ex_vivo_dti_fa" class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="85" width="85"> 
+                    <p style="margin:0 auto;">FA</p>
+            </a>
+            </li>              
+            <li id="ex_vivo_dti_dec">
+            <a href="#">
+                <img id="ex_vivo_dti_dec" class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="85" width="85"> 
+                    <p style="margin:0 auto;">DEC</p>
+            </a>
+            </li>               
+            <li id="ex_vivo_dti_tr">
+            <a href="#">
+                <img id="ex_vivo_dti_tr" class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="85" width="85">
+                    <p style="margin:0 auto;">TR</p> 
+            </a>
+            </li>
+        </ul>
+    </div>      
+
+    <div class="row" id="in_vivo_dti">
+        <ul class="pager">
+          <li id="in_vivo_dti_fa"><a href="#"><img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="85" width="85">FA</a></li>
+          <li id="in_vivo_dti_dec" ><a href="#"><img id="in_vivo_dti_dec" class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="85" width="85">DEC</a></li>
+          <li id="in_vivo_dti_tr"><a href="#"><img id="in_vivo_dti_tr"class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="85" width="85">TR</a></li>
+        </ul>   
+         
 
     </div>
+    
+    <div class="row" id="ex_vivo_T2" >
+        <ul class="pager">
+            <li id="ex_vivo_T2_10">
+            <a href="#">
+                <img id="ex_vivo_T2_10" class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="85" width="85">TE 10
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_20">
+            <a href="#">
+                <img id="ex_vivo_T2_20" class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="85" width="85">TE 20
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_30">
+            <a href="#">
+                <img id="ex_vivo_T2_30" class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="85" width="85">TE 30
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_40">
+            <a href="#">
+                <img id="ex_vivo_T2_40" class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="85" width="85">TE 40
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_50">
+            <a href="#">
+                <img id="ex_vivo_T2_50" class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="85" width="85">TE 50
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_60">
+            <a href="#">
+                <img id="ex_vivo_T2_60" class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="85" width="85">TE 60
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_70">
+            <a href="#">
+                <img id="ex_vivo_T2_70" class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="85" width="85">TE 70
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_80">
+            <a href="#">
+                <img id="ex_vivo_T2_80" class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="85" width="85">TE 80
+            </a>
+            </li>            
+            <li id="ex_vivo_T2_90">
+            <a href="#">
+                <img id="ex_vivo_T2_90" class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="85" width="85">TE 100
+            </a>
+            </li>
+            
+            <li id="ex_vivo_T2_100">
+            <a href="#">
+                <img id="ex_vivo_T2_100" class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="85" width="85">TE 100
+            </a>
+            </li>
+        </ul>
+
+    </div>
+    
+    <div class="row" id="in_vivo_T2" >
+        <ul class="pager">
+            <li id="in_vivo_T2_12">
+            <a href="#">
+                <img id="in_vivo_T2_12" class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="85" width="85">TE 12
+            </a>
+            </li>            
+            <li id="in_vivo_T2_36">
+            <a href="#">
+                <img id="in_vivo_T2_36" class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="85" width="85">TE 36
+            </a>
+            </li>            
+            <li id="in_vivo_T2_60">
+            <a href="#">
+                <img id="in_vivo_T2_60" class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="85" width="85">TE 60
+            </a>
+            </li>            
+            <li id="in_vivo_T2_84">
+            <a href="#">
+                <img id="in_vivo_T2_84" class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="85" width="85">TE 84
+            </a>
+            </li>            
+            <li id="in_vivo_T2_108">
+            <a href="#">
+                <img id="in_vivo_T2_108" class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="85" width="85">TE 108
+            </a>
+            </li>            
+            <li id="in_vivo_T2_132">
+            <a href="#">
+                <img id="in_vivo_T2_132" class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="85" width="85">TE 132
+            </a>
+            </li>
+       </ul>
+    </div>            
+</div>
+<div class="container">
+    <div class="row">
+        <ul class="pager">
+            <li>
+                <div id="papaya1" class="midViewer float_center">            
+                    <div class="papaya" data-params="params1" ></div>
+                </div>
+                <div id="papaya2" class="midViewer float_center">
+                    <div class="papaya" data-params="params2" ></div>
+                </div>
+                <div id="papaya3" class="midViewer float_center">
+                    <div class="papaya" data-params="params3" ></div>
+                </div>
+                <div id="papaya4" class="midViewer float_center">
+                    <div class="papaya" data-params="params4" ></div>
+                </div>     
+            </li>
+        </ul>          
+    </div>
+</div>
+
+  
+  
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Column 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 3</h3>        
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
   </div>
+</div>  
+-->
     
 </body>
 
