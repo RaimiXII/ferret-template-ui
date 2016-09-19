@@ -52,24 +52,9 @@
     html, body {
       margin: 0 auto;
       padding: 0;
+      background: #000;
     }
-    * {
-      box-sizing: border-box;
-    }
-    .slider {
-        width: 50%;
-        margin: 100px auto;
-    }
-    .slick-slide {
-      margin: 0px 20px;
-    }
-    .slick-slide img {
-      width: 100%;
-    }
-    .slick-prev:before,
-    .slick-next:before {
-        color: black;
-    }
+
     .clear-both {
        clear: both;
     }
@@ -81,7 +66,7 @@
        overflow: hidden;
        float: right;
     }    
-    nav { background: #2ba0db; width: 80%; margin:0 auto;  }
+    nav { background: #2ba0db; width: 97%; margin:0 auto;  }
     nav ul {
       font-size: 0;
       margin: 0;
@@ -95,6 +80,7 @@
       color: #fff;
       display: block;
       font-size: 14px;
+      font-color: #fff
       padding: 15px 14px;
       transition: 0.3s linear;
     }
@@ -111,7 +97,7 @@
     }
     nav ul li ul li:first-child { border-top: none; }
     nav ul li ul li a {
-      background: #373737;
+      background: #126d9b;
       display: block;
       padding: 10px 14px;
     }
@@ -120,6 +106,35 @@
     .container2 {
         display: flex;
     }
+    #view_and_info1 {
+      list-style-type: none; display: inline; }
+      
+    #view_and_info1 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }
+    #view_and_info2 {
+      list-style-type: none; display: inline; }
+      
+    #view_and_info2 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }
+    #view_and_info3 {
+      list-style-type: none; display: inline; }
+      
+    #view_and_info3 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }
+    #view_and_info4 {
+      list-style-type: none; display: inline; }
+      
+    #view_and_info4 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }    
+
 
     .column {
         flex: 1;        
@@ -142,7 +157,11 @@
     }
     
     .midViewer {
-        margin:3px;width:800px;height:725px;
+        margin:1px;width:950px;height:790px;margin:0 auto; 
+    }
+    
+    .roiViewer {
+        margin:1px;width:650px;height:790px; margin:0 auto; 
     }
 
     .left {
@@ -156,8 +175,23 @@
     .float_center {
         float: right;
         position: relative;
-        right: 20%; /* or right 50% */
+        right: 42%; /* or right 50% */
         text-align: left;
+    }
+    
+    .rcorners1 {
+        border-radius: 25px;
+        background: #444;
+        position: relative;
+        padding: 15px;         
+    }
+    
+    .rcorners2 {
+        border-radius: 10px;
+        background: #e6e6e6;
+        padding: 3px;  
+        position: relative;
+        left: -2%;        
     }
     
   </style>
@@ -284,16 +318,19 @@
             params4.showControls = false
                     
             $(document).ready(function(){
+
             
                 $("#ex_vivo_dti").hide();
                 $("#in_vivo_dti").hide();
                 $("#in_vivo_T2").hide();
-                $("#ex_vivo_T2").hide();
+                $("#ex_vivo_T2").hide();                   
                 
-                $("#papaya1").hide()
-                $("#papaya2").hide()
-                $("#papaya3").hide()
-                $("#papaya4").hide()                      
+                
+                $("#view_and_info1").hide()                    
+                $("#view_and_info2").hide()                    
+                $("#view_and_info3").hide()                    
+                $("#view_and_info4").hide()                    
+                
         
             });
                 
@@ -308,208 +345,561 @@
     $(document).ready(function(){
     
         var hide_image = function(index){            
-                        papaya.Container.hideImage(index[0], index[1]);
-                    };        
-                    var show_image = function(index){
-                        papaya.Container.showImage(index[0], index[1]);
-                    };
-                    var reset_viewer = function( ){
-                        var keys = [];
-                        for (var key in image_map) {
-                          if (image_map.hasOwnProperty(key)) {
-                            keys.push(key);
-                          }
-                        }
-                        for(var i = 0; i < keys.length; i++){
-                            console.log("A  KEY  FOR RESET ->  " + keys[i])
-                            hide_image(image_map[keys[i]]);
-                        }
-                    };
-                    var update_params = function(img){
-                        console.log("This is our update key -> "+img);             
-                        reset_viewer();   
-                        if ( img == "ev_dti_dec" ){                           
-                            show_image(image_map["ExVivo_DTI_DEC"]);
-                        } else if ( img == "ev_dti_fa" ){
-                            show_image(image_map["ExVivo_DTI_FA"]);
-                        } else if ( img == "ev_dti_tr" ){
-                            show_image(image_map["ExVivo_DTI_TR"]);
-                        } else if ( img == "iv_dti_tr" ){
-                            show_image(image_map["InVivo_DTI_TR"]);
-                        } else if ( img == "iv_dti_fa" ){
-                            show_image(image_map["InVivo_DTI_FA"]);
-                        } else if ( img == "iv_dti_dec" ){
-                            show_image(image_map["InVivo_DTI_DEC"]);
-                        } else if ( img == "ev_t2_10" ){
-                            show_image(image_map["Template4D_TE010"]);
-                        } else if ( img == "ev_t2_20" ){
-                            show_image(image_map["Template4D_TE020"]);
-                        } else if ( img == "ev_t2_30" ){
-                            show_image(image_map["Template4D_TE030"]);
-                        } else if ( img == "ev_t2_40" ){
-                            show_image(image_map["Template4D_TE040"]);
-                        } else if ( img == "ev_t2_50" ){
-                            show_image(image_map["Template4D_TE050"]);
-                        } else if ( img == "ev_t2_60" ){
-                            show_image(image_map["Template4D_TE060"]);
-                        } else if ( img == "ev_t2_70" ){
-                            show_image(image_map["Template4D_TE070"]);
-                        } else if ( img == "ev_t2_80" ){
-                            show_image(image_map["Template4D_TE080"]);
-                        } else if ( img == "ev_t2_90" ){
-                            show_image(image_map["Template4D_TE090"]);
-                        } else if ( img == "ev_t2_100" ){
-                            show_image(image_map["Template4D_TE100"]);
-                        } else if ( img == "iv_t2_012" ){
-                            show_image(image_map["ivT2_TE012"]);
-                        } else if ( img == "iv_t2_036" ){
-                            show_image(image_map["ivT2_TE036"]);
-                        } else if ( img == "iv_t2_060" ){
-                            show_image(image_map["ivT2_TE060"]);
-                        } else if ( img == "iv_t2_084" ){
-                            show_image(image_map["ivT2_TE084"]);
-                        } else if ( img == "iv_t2_108" ){
-                            show_image(image_map["ivT2_TE108"]);
-                        } else if ( img == "iv_t2_132" ){
-                            show_image(image_map["ivT2_TE132"]);
-                        } else {
-                            console.log("SOMETHING ELSEadsfasdfasdfasdf!");                                                       
-                        }
-                    };
+            papaya.Container.hideImage(index[0], index[1]);
+        };        
+        var show_image = function(index){
+            papaya.Container.showImage(index[0], index[1]);
+        };
+        var reset_viewer = function( ){
+            var keys = [];
+            for (var key in image_map) {
+              if (image_map.hasOwnProperty(key)) {
+                keys.push(key);
+              }
+            }
+            for(var i = 0; i < keys.length; i++){
+                hide_image(image_map[keys[i]]);
+            }
+        };
+        var reset_roi_info = function( ){
+            $("#ROI_area1").hide()
+            $("#ROI_area2").hide()
+            $("#ROI_area3").hide()
+            $("#ROI_area4").hide()
+        };     
+        
+        
+        var set_background_color_for_list = function( list, color ){
+        
+            for( i in list){
+                $(list[i]).css('background', color);
+            }
+        };
+           
+        var update_params = function(img){           
+            reset_viewer();   
+            if ( img == "ev_dti_dec" ){                           
+                show_image(image_map["ExVivo_DTI_DEC"]);
+                set_background_color_for_list(["#ev_dec_txt"], '#126d9b');
+                set_background_color_for_list(["#ev_tr_txt","#ev_fa_txt"], '#fff');
+                $("#img_description1").html( "<i>Directionally Encoded Map</i>" )
+                $("#template1_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description1"),
+                    ])
+                )                                
+            } else if ( img == "ev_dti_fa" ){
+                show_image(image_map["ExVivo_DTI_FA"]);
+                set_background_color_for_list(["#ev_fa_txt"], '#126d9b');
+                set_background_color_for_list(["#ev_tr_txt","#ev_dec_txt"], '#fff');
+                $("#img_description1").html( "<i>Fractional Anisotropy</i>" )
+                $("#template1_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description1"),
+                    ])
+                ) 
+            } else if ( img == "ev_dti_tr" ){
+                show_image(image_map["ExVivo_DTI_TR"]);
+                set_background_color_for_list(["#ev_tr_txt"], '#126d9b');
+                set_background_color_for_list(["#ev_dec_txt","#ev_fa_txt"], '#fff');
+                $("#img_description1").html( "<i>Trace</i>" )
+                $("#template1_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description1"),
+                    ])
+                ) 
+            } else if ( img == "iv_dti_tr" ){
+                show_image(image_map["InVivo_DTI_TR"]);
+                set_background_color_for_list(["#iv_tr_txt"], '#126d9b');
+                set_background_color_for_list(["#iv_dec_txt","#iv_fa_txt"], '#fff');
+                $("#img_description2").html( "<i>Trace</i>" )
+                $("#template2_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description2"),
+                    ])
+                ) 
+            } else if ( img == "iv_dti_fa" ){
+                show_image(image_map["InVivo_DTI_FA"]);
+                set_background_color_for_list(["#iv_fa_txt"], '#126d9b');
+                set_background_color_for_list(["#iv_tr_txt","#iv_dec_txt"], '#fff');
+                $("#img_description2").html( "<i>Fractional Anisotropy</i>" )
+                $("#template2_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description2"),
+                    ])
+                ) 
+            } else if ( img == "iv_dti_dec" ){
+                show_image(image_map["InVivo_DTI_DEC"]);
+                set_background_color_for_list(["#iv_dec_txt"], '#126d9b');
+                set_background_color_for_list(["#iv_tr_txt","#iv_fa_txt"], '#fff');
+                $("#img_description2").html( "<i>Directionally Encoded Map</i>" )
+                $("#template2_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description2"),
+                    ])
+                ) 
+            } else if ( img == "ev_t2_10" ){
+                show_image(image_map["Template4D_TE010"]);
+                set_background_color_for_list(["#ev_T2_10"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 10 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_20" ){
+                show_image(image_map["Template4D_TE020"]);
+                set_background_color_for_list(["#ev_T2_20"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 20 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_30" ){
+                show_image(image_map["Template4D_TE030"]);
+                set_background_color_for_list(["#ev_T2_30"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 30 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_40" ){
+                show_image(image_map["Template4D_TE040"]);
+                set_background_color_for_list(["#ev_T2_40"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 40 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_50" ){
+                show_image(image_map["Template4D_TE050"]);
+                set_background_color_for_list(["#ev_T2_50"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 50 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_60" ){
+                show_image(image_map["Template4D_TE060"]);
+                set_background_color_for_list(["#ev_T2_60"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 60 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_70" ){
+                show_image(image_map["Template4D_TE070"]);
+                set_background_color_for_list(["#ev_T2_70"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 70 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_80" ){
+                show_image(image_map["Template4D_TE080"]);
+                set_background_color_for_list(["#ev_T2_80"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 80 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_90" ){
+                show_image(image_map["Template4D_TE090"]);
+                set_background_color_for_list(["#ev_T2_90"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 90 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_100" ){
+                show_image(image_map["Template4D_TE100"]);
+                set_background_color_for_list(["#ev_T2_100"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 100 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "iv_t2_012" ){
+                show_image(image_map["ivT2_TE012"]);
+                set_background_color_for_list(["#iv_T2_12"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 12 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_036" ){
+                show_image(image_map["ivT2_TE036"]);
+                set_background_color_for_list(["#iv_T2_36"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_60","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 36 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_060" ){
+                show_image(image_map["ivT2_TE060"]);
+                set_background_color_for_list(["#iv_T2_60"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 60 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_084" ){
+                show_image(image_map["ivT2_TE084"]);
+                set_background_color_for_list(["#iv_T2_84"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 84 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_108" ){
+                show_image(image_map["ivT2_TE108"]);
+                set_background_color_for_list(["#iv_T2_108"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 108 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_132" ){
+                show_image(image_map["ivT2_TE132"]);
+                set_background_color_for_list(["#iv_T2_132"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_108"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 132 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else {
+                console.log("SOMETHING ELSEadsfasdfasdfasdf!");                                                       
+            }
+        };
     
         var show_surface = function(index){
-                        console.log("SHOW SURFACE CALLED   WITH INDEX ->   " + index)
-                        if(index == 0){            
-                            $("#papaya2").hide()     
-                            $("#papaya3").hide()     
-                            $("#papaya4").hide()     
-                            $("#papaya1").show()                     
-                        }
-                        else if(index == 1){
-                            $("#papaya1").hide()     
-                            $("#papaya3").hide()     
-                            $("#papaya4").hide()     
-                            $("#papaya2").show()  
-                        }
-                        else if(index == 2){
-                            $("#papaya1").hide()     
-                            $("#papaya2").hide()     
-                            $("#papaya4").hide()     
-                            $("#papaya3").show()  
-                        }
-                        else if(index == 3){
-                            $("#papaya1").hide()     
-                            $("#papaya2").hide()     
-                            $("#papaya3").hide()     
-                            $("#papaya4").show()  
-                            
-                        }
-                        else {
-                            console.log("Strange surface request.");
-                        }                        
-                    };
+            console.log("SURFACE INDEX ->  " + index)
+            if(index == 0){            
+                $("#papaya1").show()     
+                $("#ROI_area1").show()
+                $("#papaya2").hide()   
+                $("#ROI_area2").hide()  
+                $("#papaya3").hide()     
+                $("#ROI_area3").hide()
+                $("#papaya4").hide()       
+                $("#ROI_area4").hide()              
+                $("#view_and_info1").show()
+                $("#view_and_info2").hide()
+                $("#view_and_info3").hide()
+                $("#view_and_info4").hide()  
+            }
+            else if(index == 1){
+                $("#papaya1").hide()     
+                $("#ROI_area1").hide()
+                $("#papaya2").show()   
+                $("#ROI_area2").show()  
+                $("#papaya3").hide()     
+                $("#ROI_area3").hide()
+                $("#papaya4").hide()       
+                $("#ROI_area4").hide()   
+                $("#view_and_info1").hide()
+                $("#view_and_info2").show()
+                $("#view_and_info3").hide()
+                $("#view_and_info4").hide()  
+            }
+            else if(index == 2){
+                $("#papaya1").hide()     
+                $("#ROI_area1").hide()
+                $("#papaya2").hide()   
+                $("#ROI_area2").hide()  
+                $("#papaya3").show()     
+                $("#ROI_area3").show()
+                $("#papaya4").hide()       
+                $("#ROI_area4").hide()     
+                $("#view_and_info1").hide()
+                $("#view_and_info2").hide()
+                $("#view_and_info3").show()
+                $("#view_and_info4").hide()  
+            }
+            else if(index == 3){
+                $("#papaya1").hide()     
+                $("#ROI_area1").hide()
+                $("#papaya2").hide()   
+                $("#ROI_area2").hide()  
+                $("#papaya3").hide()     
+                $("#ROI_area3").hide()
+                $("#papaya4").show()       
+                $("#ROI_area4").show()         
+                $("#view_and_info1").hide()
+                $("#view_and_info2").hide()
+                $("#view_and_info3").hide()
+                $("#view_and_info4").show()                    
+            }
+            else {
+                console.log("Unknown surface request index: "+index);
+            }                        
+        };    
     
-            $('nav li').hover(
-                function() {
-                $('ul', this).stop().slideDown(200);                
-                },
-                function() {
-                $('ul', this).stop().slideUp(200);
-                }
-            );
-       
-       console.log("INITIATED HOVER CODE.")     
-                    $("#ivt2").on('click', function(e) {  
-                        console.log("CLICKED In-Vivo T2 Template");                
-                        $("#in_vivo_dti").hide();
-                        $("#ex_vivo_T2").hide();
-                        $("#ex_vivo_dti").hide();
-                        $("#in_vivo_T2").show();
-                    });
-                    $("#ivdti").on('click', function(e) {  
-                        console.log("CLICKED In-Vivo DTI Template");                 
-                         $("#in_vivo_T2").hide();
-                         $("#ex_vivo_T2").hide();
-                         $("#ex_vivo_dti").hide();
-                         $("#in_vivo_dti").show();
-                    });
-                    $("#evt2").on('click', function(e) {  
-                        console.log("CLICKED Ex-Vivo T2 Template");                 
-                         $("#in_vivo_dti").hide();
-                         $("#ex_vivo_dti").hide();
-                         $("#in_vivo_T2").hide();                    
-                         $("#ex_vivo_T2").show();      
-                    });
-                    
-                    $("#reset_view").on('click', function(e) {
-                        console.log("Resetting Viewport.");
-                        reset_viewer();
-                    });
-                    
-                    $("#minimize_all").on('click', function(e) { 
-                        reset_viewer();
-                        $("#ex_vivo_dti").hide();
-                        $("#in_vivo_dti").hide();
-                        $("#in_vivo_T2").hide();
-                        $("#ex_vivo_T2").hide();
-                        $("#papaya1").hide()     
-                        $("#papaya2").hide()     
-                        $("#papaya3").hide()     
-                        $("#papaya4").hide()  
-                    });
-                    
-                    $("#create_png").on('click', function(e) {
-                        console.log("Create PNG selected.");
-                    });
-                    
-                    $("#evdti").on('click', function(e) {  
-                        console.log("CLICKED Ex-Vivo DTI Template");
-                         $("#ex_vivo_dti").show();
-                         $("#in_vivo_dti").hide();
-                         $("#in_vivo_T2").hide();
-                         $("#ex_vivo_T2").hide();
-                    });
-                    
-                    
-                    $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec"); show_surface(0);});
-                    $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr"); show_surface(0);});
-                    $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa"); show_surface(0);});
-                    $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); update_params("iv_dti_dec"); show_surface(1); });
-                    $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); update_params("iv_dti_tr");show_surface(1);});
-                    $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); update_params("iv_dti_fa");show_surface(1); }); 
-                    $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); update_params("ev_t2_10");show_surface(2);});
-                    $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); update_params("ev_t2_20");show_surface(2);});
-                    $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); update_params("ev_t2_30");show_surface(2);});
-                    $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); update_params("ev_t2_40");show_surface(2);});
-                    $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); update_params("ev_t2_50");show_surface(2);});
-                    $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); update_params("ev_t2_60");show_surface(2);});
-                    $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); update_params("ev_t2_70");show_surface(2);});
-                    $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); update_params("ev_t2_80");show_surface(2);});
-                    $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); update_params("ev_t2_90");show_surface(2);});
-                    $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); update_params("ev_t2_100");show_surface(2);});
-                    $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); update_params("iv_t2_012");show_surface(3); });
-                    $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); update_params("iv_t2_036");show_surface(3); });
-                    $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); update_params("iv_t2_060");show_surface(3); });
-                    $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); update_params("iv_t2_084");show_surface(3); });
-                    $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); update_params("iv_t2_108");show_surface(3); });
-                    $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); update_params("iv_t2_132");show_surface(3); });
-                    
+        $('nav li').hover(
+            function() {
+            $('ul', this).stop().slideDown(200);                
+            },
+            function() {
+            $('ul', this).stop().slideUp(200);
+            }
+        );        
+         
+        $("#ivt2").on('click', function(e) {  
+            console.log("CLICKED In-Vivo T2 Template");                
+            $("#in_vivo_dti").hide();
+            $("#ex_vivo_T2").hide();
+            $("#ex_vivo_dti").hide();        
+            $("#in_vivo_T2").show();                
+            $("#view_and_info1").hide();
+            $("#view_and_info2").hide();
+            $("#view_and_info3").hide();            
+            $("#view_and_info4").show();
+
+        });
+        $("#ivdti").on('click', function(e) {  
+            console.log("CLICKED In-Vivo DTI Template");                                      
+             $("#ex_vivo_dti").hide();
+             $("#ex_vivo_T2").hide();        
+             $("#in_vivo_dti").show();     
+             $("#in_vivo_T2").hide();    
+             $("#view_and_info1").hide();
+             $("#view_and_info2").hide();        
+             $("#view_and_info3").show();     
+             $("#view_and_info4").hide();  
+        });
+        $("#evt2").on('click', function(e) {  
+            console.log("CLICKED Ex-Vivo T2 Template");
+             $("#ex_vivo_dti").hide();  
+             $("#ex_vivo_T2").show();                 
+             $("#in_vivo_dti").hide();             
+             $("#in_vivo_T2").hide();                                    
+             $("#view_and_info1").hide();
+             $("#view_and_info2").show();
+             $("#view_and_info3").hide();
+             $("#view_and_info4").hide();
+
+        });
+        $("#evdti").on('click', function(e) {  
+            console.log("CLICKED Ex-Vivo DTI Template");
+        
+             $("#ex_vivo_dti").show();
+             $("#ex_vivo_T2").hide();
+             $("#in_vivo_dti").hide();
+             $("#in_vivo_T2").hide();            
+             $("#view_and_info1").show();
+             $("#view_and_info2").hide();
+             $("#view_and_info3").hide();
+             $("#view_and_info4").hide();             
+        });
+        
+
+        $("#reset_view").on('click', function(e) {
+            console.log("Resetting Viewport.");
+            reset_viewer();
+        });
+        
+        $("#show_roi_content").on('click', function(e) {
+            console.log("Showing ROI content.")
+            reset_roi_info();
+        });
+
+        $("#minimize_all").on('click', function(e) { 
+            reset_viewer();
+            $("#ex_vivo_dti").hide();
+            $("#in_vivo_dti").hide();
+            $("#in_vivo_T2").hide();
+            $("#ex_vivo_T2").hide();
+  
+            $("#view_and_info1").hide();
+            $("#view_and_info2").hide();
+            $("#view_and_info3").hide();
+            $("#view_and_info4").hide();
+        });
+
+        $("#create_png").on('click', function(e) {
+            console.log("Create PNG selected.");
+        });
+
+        $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec"); show_surface(0);});
+        $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr"); show_surface(0);});
+        $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa"); show_surface(0);});
+        $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); update_params("iv_dti_dec"); show_surface(1); });
+        $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); update_params("iv_dti_tr");show_surface(1);});
+        $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); update_params("iv_dti_fa");show_surface(1); }); 
+        $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); update_params("ev_t2_10");show_surface(2);});
+        $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); update_params("ev_t2_20");show_surface(2);});
+        $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); update_params("ev_t2_30");show_surface(2);});
+        $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); update_params("ev_t2_40");show_surface(2);});
+        $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); update_params("ev_t2_50");show_surface(2);});
+        $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); update_params("ev_t2_60");show_surface(2);});
+        $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); update_params("ev_t2_70");show_surface(2);});
+        $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); update_params("ev_t2_80");show_surface(2);});
+        $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); update_params("ev_t2_90");show_surface(2);});
+        $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); update_params("ev_t2_100");show_surface(2);});
+        $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); update_params("iv_t2_012");show_surface(3); });
+        $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); update_params("iv_t2_036");show_surface(3); });
+        $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); update_params("iv_t2_060");show_surface(3); });
+        $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); update_params("iv_t2_084");show_surface(3); });
+        $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); update_params("iv_t2_108");show_surface(3); });
+        $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); update_params("iv_t2_132");show_surface(3); });
+        
+        
+        var current_h = null;
+        var current_w = null;
+
+        $("#ex_vivo_dti").hover(
+            function(){
+                current_h = $("#ex_vivo_dti_dec_img").height();
+                current_w = $("#ex_vivo_dti_dec_img").width();
+                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.9), height: (current_h * 1.9)}, 250);
+                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.9), height: (current_h * 1.9)}, 250);
+                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.9), height: (current_h * 1.9)}, 250);
+            },
+            function(){
+                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );
+        
+        $("#ex_vivo_T2").hover(
+            function(){
+                current_h = $("#ex_vivo_T2_10_img").height();
+                current_w = $("#ex_vivo_T2_10_img").width();
+                $("#ex_vivo_T2_10_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_20_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_30_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_40_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_50_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_60_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_70_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_80_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_90_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#ex_vivo_T2_100_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+            },
+            function(){
+                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_10_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_20_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_30_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_40_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_50_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_60_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_70_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_80_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_90_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_100_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );
+        
+        $("#in_vivo_dti").hover(
+            function(){
+                current_h = $("#in_vivo_dti_dec_img").height();
+                current_w = $("#in_vivo_dti_dec_img").width();
+                $("#in_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+            },
+            function(){
+                $("#in_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );
+
+        $("#in_vivo_T2").hover(
+            function(){
+                current_h = $("#in_vivo_T2_12_img").height();
+                current_w = $("#in_vivo_T2_12_img").width();
+                $("#in_vivo_T2_12_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_T2_36_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_T2_60_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_T2_84_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_T2_108_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+                $("#in_vivo_T2_132_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 250);
+            },
+            function(){
+                $("#in_vivo_T2_12_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_36_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_60_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_84_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_108_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_132_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );
+
+
                     
     });
     </script>
 
-    <title>Debug Local</title>
+    <title>Template Web Viewer</title>
 </head>
 
 <body>
 
       
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+<nav class="navbar navbar-inverse" >
+  <div class="container-fluid"  >
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Visualization Services</a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav navbar-inverse">
       <li class="active"><a href="#">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Templates<span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -521,6 +911,7 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Actions<span class="caret"></span></a>
         <ul class="dropdown-menu">
+            <li id="show_roi_content"><a href="#">Show ROI info</a></li>
             <li id="reset_view"><a href="#">Reset View</a></li>
             <li id="minimize_all"><a href="#">Minimize All</a></li>
         </ul>
@@ -529,153 +920,254 @@
   </div>
 </nav>
 
-<div class="row">
-
-    <div class="row" id="ex_vivo_dti">    
-        <ul class="pager">        
-            <li id="ex_vivo_dti_fa">
-            <a href="#">
-                <img id="ex_vivo_dti_fa" class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="85" width="85"> 
-                    <p style="margin:0 auto;">FA</p>
-            </a>
-            </li>              
-            <li id="ex_vivo_dti_dec">
-            <a href="#">
-                <img id="ex_vivo_dti_dec" class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="85" width="85"> 
-                    <p style="margin:0 auto;">DEC</p>
-            </a>
-            </li>               
-            <li id="ex_vivo_dti_tr">
-            <a href="#">
-                <img id="ex_vivo_dti_tr" class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="85" width="85">
-                    <p style="margin:0 auto;">TR</p> 
-            </a>
-            </li>
-        </ul>
-    </div>      
-
-    <div class="row" id="in_vivo_dti">
-        <ul class="pager">
-          <li id="in_vivo_dti_fa"><a href="#"><img class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="85" width="85">FA</a></li>
-          <li id="in_vivo_dti_dec" ><a href="#"><img id="in_vivo_dti_dec" class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="85" width="85">DEC</a></li>
-          <li id="in_vivo_dti_tr"><a href="#"><img id="in_vivo_dti_tr"class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="85" width="85">TR</a></li>
-        </ul>   
-         
-
+<div class="container-fluid" >
+    <div class="row" height="80">
+        <div class="row" id="ex_vivo_dti">    
+            <ul class="pager">        
+                <li id="ex_vivo_dti_fa">
+                <a href="#">
+                    <img id="ex_vivo_dti_fa_img" class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="65" width="65"> 
+                    <p id="ev_fa_txt" style="margin:0 auto;">FA</p>
+                </a>
+                </li>              
+                <li id="ex_vivo_dti_dec">
+                <a href="#">
+                    <img id="ex_vivo_dti_dec_img" class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="65" width="65"> 
+                    <p id="ev_dec_txt" style="margin:0 auto;">DEC</p>
+                </a>
+                </li>               
+                <li id="ex_vivo_dti_tr">
+                <a href="#">
+                    <img id="ex_vivo_dti_tr_img" class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="65" width="65">
+                    <p id="ev_tr_txt" style="margin:0 auto;">TR</p> 
+                </a>
+                </li>
+            </ul>
+        </div>      
     </div>
-    
-    <div class="row" id="ex_vivo_T2" >
-        <ul class="pager">
-            <li id="ex_vivo_T2_10">
-            <a href="#">
-                <img id="ex_vivo_T2_10" class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="85" width="85">TE 10
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_20">
-            <a href="#">
-                <img id="ex_vivo_T2_20" class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="85" width="85">TE 20
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_30">
-            <a href="#">
-                <img id="ex_vivo_T2_30" class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="85" width="85">TE 30
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_40">
-            <a href="#">
-                <img id="ex_vivo_T2_40" class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="85" width="85">TE 40
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_50">
-            <a href="#">
-                <img id="ex_vivo_T2_50" class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="85" width="85">TE 50
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_60">
-            <a href="#">
-                <img id="ex_vivo_T2_60" class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="85" width="85">TE 60
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_70">
-            <a href="#">
-                <img id="ex_vivo_T2_70" class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="85" width="85">TE 70
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_80">
-            <a href="#">
-                <img id="ex_vivo_T2_80" class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="85" width="85">TE 80
-            </a>
-            </li>            
-            <li id="ex_vivo_T2_90">
-            <a href="#">
-                <img id="ex_vivo_T2_90" class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="85" width="85">TE 100
-            </a>
-            </li>
+
+    <div class="row" height="80">
+          <div class="row" id="in_vivo_dti">
+            <ul class="pager">
+              <li id="in_vivo_dti_fa">
+              <a href="#">
+                <img id="in_vivo_dti_fa_img" class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="65" width="65">
+                <p id="iv_fa_txt" style="margin:0 auto;">FA</p>
+              </a>
+              </li>
+              <li id="in_vivo_dti_dec" >
+              <a href="#">
+                  <img id="in_vivo_dti_dec_img" class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="65" width="65">
+                  <p id="iv_dec_txt" style="margin:0 auto;">DEC</p>
+              </a>
+              </li>
+              <li id="in_vivo_dti_tr">
+              <a href="#">
+                <img id="in_vivo_dti_tr_img" class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="65" width="65">
+                <p id="iv_tr_txt" style="margin:0 auto;">TR</p> 
+              </a>
+              </li>
+            </ul>            
+        </div>
+    </div>
+
+    <div class="row" height="80">    
+        <div class="row" id="ex_vivo_T2" >
+            <ul class="pager">
+                <li id="ex_vivo_T2_10">
+                <a href="#">
+                    <img id="ex_vivo_T2_10_img" class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="65" width="65">
+                    <p id="ev_T2_10" style="margin:0 auto;">TE 10</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_20">
+                <a href="#">
+                    <img id="ex_vivo_T2_20_img" class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="65" width="65">
+                    <p id="ev_T2_20" style="margin:0 auto;">TE 20</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_30">
+                <a href="#">
+                    <img id="ex_vivo_T2_30_img" class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="65" width="65">
+                    <p id="ev_T2_30" style="margin:0 auto;">TE 30</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_40">
+                <a href="#">
+                    <img id="ex_vivo_T2_40_img" class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="65" width="65">
+                    <p id="ev_T2_40" style="margin:0 auto;">TE 40</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_50">
+                <a href="#">
+                    <img id="ex_vivo_T2_50_img" class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="65" width="65">
+                    <p id="ev_T2_50" style="margin:0 auto;">TE 50</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_60">
+                <a href="#">
+                    <img id="ex_vivo_T2_60_img" class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="65" width="65">
+                    <p id="ev_T2_60" style="margin:0 auto;">TE 60</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_70">
+                <a href="#">
+                    <img id="ex_vivo_T2_70_img" class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="65" width="65">
+                    <p id="ev_T2_70" style="margin:0 auto;">TE 70</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_80">
+                <a href="#">
+                    <img id="ex_vivo_T2_80_img" class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="65" width="65">
+                    <p id="ev_T2_80" style="margin:0 auto;">TE 80</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_90">
+                <a href="#">
+                    <img id="ex_vivo_T2_90_img" class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="65" width="65">
+                    <p id="ev_T2_90" style="margin:0 auto;">TE 90</p>
+                </a>
+                </li>            
+                <li id="ex_vivo_T2_100">
+                <a href="#">
+                    <img id="ex_vivo_T2_100_img" class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="65" width="65">
+                    <p id="ev_T2_100" style="margin:0 auto;">TE 100</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+        
+    <div class="row" height="80">
+        <div class="row" id="in_vivo_T2" >
+            <ul class="pager">
+                <li id="in_vivo_T2_12">
+                <a href="#">
+                    <img id="in_vivo_T2_12_img" class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="65" width="65">
+                    <p id="iv_T2_12" style="margin:0 auto;">TE 12</p>
+                </a>
+                </li>            
+                <li id="in_vivo_T2_36">
+                <a href="#">
+                    <img id="in_vivo_T2_36_img" class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="65" width="65">
+                    <p id="iv_T2_36" style="margin:0 auto;">TE 36</p>
+                </a>
+                </li>            
+                <li id="in_vivo_T2_60">
+                <a href="#">
+                    <img id="in_vivo_T2_60_img" class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="65" width="65">
+                    <p id="iv_T2_60" style="margin:0 auto;">TE 60</p>
+                </a>
+                </li>            
+                <li id="in_vivo_T2_84">
+                <a href="#">
+                    <img id="in_vivo_T2_84_img" class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="65" width="65">
+                    <p id="iv_T2_84" style="margin:0 auto;">TE 84</p>
+                </a>
+                </li>            
+                <li id="in_vivo_T2_108">
+                <a href="#">
+                    <img id="in_vivo_T2_108_img" class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="65" width="65">
+                    <p id="iv_T2_108" style="margin:0 auto;">TE 108</p>
+                </a>
+                </li>            
+                <li id="in_vivo_T2_132">
+                <a href="#">
+                    <img id="in_vivo_T2_132_img" class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="65" width="65">
+                    <p id="iv_T2_132" style="margin:0 auto;">TE 132</p>
+                </a>
+                </li>
+           </ul>
+        </div>            
+    </div>
+</div>
+
+
+
+           <div class="container-fluid" id="view_and_info1">
+               <ul>
+               <li>
+                    <div id="ROI_area1" class="roiViewer rcorners2 right">
+                        <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
+                        
+                            <div id="template1_info">
+                                Image description: <div id="img_description1"></div>
+                            </div>
+                            
+                    </div>       
+               </li>   
+               <li>
+                    <div id="papaya1" class="midViewer rcorners1 left">                 
+                        <div class="papaya" data-params="params1" ></div>                             
+                    </div> 
+               </li>
+               </ul>       
+           </div>                                                
             
-            <li id="ex_vivo_T2_100">
-            <a href="#">
-                <img id="ex_vivo_T2_100" class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="85" width="85">TE 100
-            </a>
-            </li>
-        </ul>
+            
+            <div class="container-fluid" id="view_and_info2">      
+                <ul>
+                    <li>
+                        <div id="ROI_area2" class="roiViewer rcorners2 right">
+                            <p style="margin:0 auto"><b><h1>In-Vivo DTI</h1></b></p>
+                            
+                            <div id="template2_info">
+                                Image description: <div id="img_description2"></div>
+                            </div>
+                            
+                        </div>       
+                    </li>   
+                    <li>                                          
+                        <div id="papaya2" class="midViewer rcorners1 left">
+                            <div class="papaya" data-params="params2" ></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            
+            <div class="container-fluid" id="view_and_info3">  
+                <ul>
+                    <li>
+                      <div id="ROI_area3" class="roiViewer rcorners2 right">
+                            <p style="margin:0 auto"><b><h1>Ex-Vivo T2</h1></b></p>
+                            
+                            <div id="template3_info">
+                                Image description: <div id="img_description3"></div>
+                            </div>
+                            
+                      </div>       
+                    </li>   
+                    <li> 
+                        <div id="papaya3" class="midViewer rcorners1 left">
+                            <div class="papaya" data-params="params3" ></div>
+                        </div>
+                    </li> 
+                </ul>
+            </div>
 
-    </div>
-    
-    <div class="row" id="in_vivo_T2" >
-        <ul class="pager">
-            <li id="in_vivo_T2_12">
-            <a href="#">
-                <img id="in_vivo_T2_12" class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="85" width="85">TE 12
-            </a>
-            </li>            
-            <li id="in_vivo_T2_36">
-            <a href="#">
-                <img id="in_vivo_T2_36" class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="85" width="85">TE 36
-            </a>
-            </li>            
-            <li id="in_vivo_T2_60">
-            <a href="#">
-                <img id="in_vivo_T2_60" class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="85" width="85">TE 60
-            </a>
-            </li>            
-            <li id="in_vivo_T2_84">
-            <a href="#">
-                <img id="in_vivo_T2_84" class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="85" width="85">TE 84
-            </a>
-            </li>            
-            <li id="in_vivo_T2_108">
-            <a href="#">
-                <img id="in_vivo_T2_108" class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="85" width="85">TE 108
-            </a>
-            </li>            
-            <li id="in_vivo_T2_132">
-            <a href="#">
-                <img id="in_vivo_T2_132" class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="85" width="85">TE 132
-            </a>
-            </li>
-       </ul>
-    </div>            
-</div>
-<div class="container">
-    <div class="row">
-        <ul class="pager">
-            <li>
-                <div id="papaya1" class="midViewer float_center">            
-                    <div class="papaya" data-params="params1" ></div>
-                </div>
-                <div id="papaya2" class="midViewer float_center">
-                    <div class="papaya" data-params="params2" ></div>
-                </div>
-                <div id="papaya3" class="midViewer float_center">
-                    <div class="papaya" data-params="params3" ></div>
-                </div>
-                <div id="papaya4" class="midViewer float_center">
-                    <div class="papaya" data-params="params4" ></div>
-                </div>     
-            </li>
-        </ul>          
-    </div>
-</div>
+
+            <div class="container-fluid" id="view_and_info4">
+                <ul>
+                    <li>
+                        <div id="ROI_area4" class="roiViewer rcorners2 right">
+                            <p style="margin:0 auto"><b><h1>In-Vivo T2</h1></b></p>
+                            
+                            <div id="template4_info">
+                                Image description: <div id="img_description4"></div>
+                            </div>
+                            
+                        </div>       
+                    </li>   
+                    <li> 
+                        <div id="papaya4" class="midViewer rcorners1 left">
+                            <div class="papaya" data-params="params4" ></div>
+                        </div>                       
+                    </li>                     
+                </ul>  
+            </div>
+
+      
 
   
   
