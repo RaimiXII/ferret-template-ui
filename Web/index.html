@@ -229,6 +229,8 @@
             image_map["ivT2_TE108"] =       [3,4];
             image_map["ivT2_TE132"] =       [3,5];    
             
+            var current_image = "";
+            
             params1["kioskMode"] = true;
             
             
@@ -358,6 +360,10 @@
         var show_image = function(index){
             papaya.Container.showImage(index[0], index[1]);
         };
+        var get_cursor_location = function(index){
+            var loc = papaya.Container.GetCursorLocation(index[1], index[0]);
+            console.log("LOCATION ->  " + loc)
+        }
         var reset_viewer = function( ){
             var keys = [];
             for (var key in image_map) {
@@ -386,7 +392,8 @@
            
         var update_params = function(img){           
             reset_viewer();   
-            if ( img == "ev_dti_dec" ){                           
+            if ( img == "ev_dti_dec" ){             
+             current_image = "ExVivo_DTI_FA"
                 show_image(image_map["ExVivo_DTI_DEC"]);
                 set_background_color_for_list(["#ev_dec_txt"], '#126d9b');
                 set_background_color_for_list(["#ev_tr_txt","#ev_fa_txt"], '#fff');
@@ -398,6 +405,7 @@
                     ])
                 )                                
             } else if ( img == "ev_dti_fa" ){
+             current_image = "ExVivo_DTI_FA"
                 show_image(image_map["ExVivo_DTI_FA"]);
                 set_background_color_for_list(["#ev_fa_txt"], '#126d9b');
                 set_background_color_for_list(["#ev_tr_txt","#ev_dec_txt"], '#fff');
@@ -409,6 +417,7 @@
                     ])
                 ) 
             } else if ( img == "ev_dti_tr" ){
+                 current_image = "ExVivo_DTI_FA"
                 show_image(image_map["ExVivo_DTI_TR"]);
                 set_background_color_for_list(["#ev_tr_txt"], '#126d9b');
                 set_background_color_for_list(["#ev_dec_txt","#ev_fa_txt"], '#fff');
@@ -420,6 +429,7 @@
                     ])
                 ) 
             } else if ( img == "iv_dti_tr" ){
+                 current_image = "InVivo_DTI_FA"
                 show_image(image_map["InVivo_DTI_TR"]);
                 set_background_color_for_list(["#iv_tr_txt"], '#126d9b');
                 set_background_color_for_list(["#iv_dec_txt","#iv_fa_txt"], '#fff');
@@ -431,6 +441,7 @@
                     ])
                 ) 
             } else if ( img == "iv_dti_fa" ){
+                 current_image = "InVivo_DTI_FA"
                 show_image(image_map["InVivo_DTI_FA"]);
                 set_background_color_for_list(["#iv_fa_txt"], '#126d9b');
                 set_background_color_for_list(["#iv_tr_txt","#iv_dec_txt"], '#fff');
@@ -442,6 +453,7 @@
                     ])
                 ) 
             } else if ( img == "iv_dti_dec" ){
+                 current_image = "InVivo_DTI_FA"
                 show_image(image_map["InVivo_DTI_DEC"]);
                 set_background_color_for_list(["#iv_dec_txt"], '#126d9b');
                 set_background_color_for_list(["#iv_tr_txt","#iv_fa_txt"], '#fff');
@@ -453,6 +465,7 @@
                     ])
                 ) 
             } else if ( img == "ev_t2_10" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE010"]);
                 set_background_color_for_list(["#ev_T2_10"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -464,6 +477,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_20" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE020"]);
                 set_background_color_for_list(["#ev_T2_20"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -475,6 +489,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_30" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE030"]);
                 set_background_color_for_list(["#ev_T2_30"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -486,6 +501,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_40" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE040"]);
                 set_background_color_for_list(["#ev_T2_40"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -497,6 +513,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_50" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE050"]);
                 set_background_color_for_list(["#ev_T2_50"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -508,6 +525,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_60" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE060"]);
                 set_background_color_for_list(["#ev_T2_60"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -519,6 +537,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_70" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE070"]);
                 set_background_color_for_list(["#ev_T2_70"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -530,6 +549,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_80" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE080"]);
                 set_background_color_for_list(["#ev_T2_80"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_90","#ev_T2_100"], '#fff');
@@ -541,6 +561,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_90" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE090"]);
                 set_background_color_for_list(["#ev_T2_90"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_100"], '#fff');
@@ -552,6 +573,7 @@
                     ])
                 )
             } else if ( img == "ev_t2_100" ){
+                 current_image = "Template4D_TE010"
                 show_image(image_map["Template4D_TE100"]);
                 set_background_color_for_list(["#ev_T2_100"], '#126d9b');
                 set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90"], '#fff');
@@ -563,6 +585,7 @@
                     ])
                 )
             } else if ( img == "iv_t2_012" ){
+                current_image = "ivT2_TE012"
                 show_image(image_map["ivT2_TE012"]);
                 set_background_color_for_list(["#iv_T2_12"], '#126d9b');
                 set_background_color_for_list(["#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
@@ -574,6 +597,7 @@
                     ])
                 )
             } else if ( img == "iv_t2_036" ){
+                current_image = "ivT2_TE012"
                 show_image(image_map["ivT2_TE036"]);
                 set_background_color_for_list(["#iv_T2_36"], '#126d9b');
                 set_background_color_for_list(["#iv_T2_12","#iv_T2_60","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
@@ -585,6 +609,7 @@
                     ])
                 )
             } else if ( img == "iv_t2_060" ){
+                current_image = "ivT2_TE012"
                 show_image(image_map["ivT2_TE060"]);
                 set_background_color_for_list(["#iv_T2_60"], '#126d9b');
                 set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
@@ -596,6 +621,7 @@
                     ])
                 )
             } else if ( img == "iv_t2_084" ){
+                current_image = "ivT2_TE012"
                 show_image(image_map["ivT2_TE084"]);
                 set_background_color_for_list(["#iv_T2_84"], '#126d9b');
                 set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_108","#iv_T2_132"], '#fff');
@@ -607,6 +633,7 @@
                     ])
                 )
             } else if ( img == "iv_t2_108" ){
+                 current_image = "ivT2_TE012"
                 show_image(image_map["ivT2_TE108"]);
                 set_background_color_for_list(["#iv_T2_108"], '#126d9b');
                 set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_132"], '#fff');
@@ -618,6 +645,7 @@
                     ])
                 )
             } else if ( img == "iv_t2_132" ){
+                current_image = "ivT2_TE012"
                 show_image(image_map["ivT2_TE132"]);
                 set_background_color_for_list(["#iv_T2_132"], '#126d9b');
                 set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_108"], '#fff');
@@ -704,6 +732,25 @@
             $('ul', this).stop().slideUp(200);
             }
         );        
+        
+        $("#papaya1").on('click', function(e) {        
+            console.log("From papaya 1.")
+            console.log("CURRENT IMAGE ->  " +current_image)
+            get_cursor_location(image_map[current_image]);            
+        });
+        $("#papaya2").on('click', function(e) {        
+            console.log("From papaya 2.")
+            get_cursor_location(image_map[current_image]);            
+        });
+        $("#papaya3").on('click', function(e) {        
+            console.log("From papaya 3.")
+            get_cursor_location(image_map[current_image]);            
+        });
+        $("#papaya4").on('click', function(e) {        
+            console.log("From papaya 4.")
+            get_cursor_location(image_map[current_image]);            
+        });
+        
          
         $("#ivt2").on('click', function(e) {  
             console.log("CLICKED In-Vivo T2 Template");                
@@ -715,6 +762,7 @@
             $("#view_and_info2").hide();
             $("#view_and_info3").hide();            
             $("#view_and_info4").show();
+            reset_viewer();
 
         });
         $("#ivdti").on('click', function(e) {  
@@ -724,9 +772,10 @@
              $("#in_vivo_dti").show();     
              $("#in_vivo_T2").hide();    
              $("#view_and_info1").hide();
-             $("#view_and_info2").hide();        
-             $("#view_and_info3").show();     
+             $("#view_and_info2").hide();                        
              $("#view_and_info4").hide();  
+             $("#view_and_info3").show();  
+             reset_viewer();
         });
         $("#evt2").on('click', function(e) {  
             console.log("CLICKED Ex-Vivo T2 Template");
@@ -734,11 +783,11 @@
              $("#ex_vivo_T2").show();                 
              $("#in_vivo_dti").hide();             
              $("#in_vivo_T2").hide();                                    
-             $("#view_and_info1").hide();
-             $("#view_and_info2").show();
+             $("#view_and_info1").hide();             
              $("#view_and_info3").hide();
              $("#view_and_info4").hide();
-
+             $("#view_and_info2").show();
+            reset_viewer();
         });
         $("#evdti").on('click', function(e) {  
             console.log("CLICKED Ex-Vivo DTI Template");
@@ -746,11 +795,12 @@
              $("#ex_vivo_dti").show();
              $("#ex_vivo_T2").hide();
              $("#in_vivo_dti").hide();
-             $("#in_vivo_T2").hide();            
-             $("#view_and_info1").show();
+             $("#in_vivo_T2").hide();                         
              $("#view_and_info2").hide();
              $("#view_and_info3").hide();
              $("#view_and_info4").hide();             
+             $("#view_and_info1").show();
+             reset_viewer();
         });
         
 
