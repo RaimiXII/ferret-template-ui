@@ -10,7 +10,6 @@
                             
                     to launch the page.
 -->
-
 <!-- Test: Typical fullscreen usage; autoload an image and overlay. -->
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -44,7 +43,10 @@
   <script src="https://code.jquery.com/jquery.min.js"></script> 
   <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
-  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css">
+  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
+  <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
+  <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
+  
   <!-- Latest compiled and minified JavaScript -->
 
   
@@ -135,8 +137,7 @@
       list-style-type: none;
       border-right: 1px solid #ffffff; width:250; 
     }    
-
-
+    
     .column {
         flex: 1;        
         /*for demo purposes only */
@@ -194,7 +195,30 @@
         position: relative;
         left: -2%;        
     }
-    
+        
+    #ex1Slider .slider-selection {
+	    background: #BABABA;
+	     position: relative;
+	     width:200px;height:15px; 
+    }
+    #ex2Slider .slider-selection {
+	    background: #8ABABA;
+	     position: relative;
+	     width:200px;height:15px; 
+    }
+    #ex3Slider .slider-selection {
+	    background: #6ABABA;
+	     position: relative;
+	     width:200px;height:15px; 
+    }
+    #ex4Slider .slider-selection {
+	    background: #2ABABA;
+        position: relative;
+        width:200px;height:15px; 
+    }
+    .roi-viz-tools {
+        background: #ffffff;
+    }         
   </style>
 
     <script type="text/javascript">
@@ -243,7 +267,7 @@
             params1["surfaces"] = [
                                     "img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"                              
                                   ];
-            params1["ev_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};
+            params1["ev_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};
             params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
             params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};  
@@ -262,7 +286,7 @@
                                  ];  
             params2["surfaces"] = [];
             params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
-            params2["iv_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};                                                    
+            params2["iv_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                    
             params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0.1, "max": 0.87};
             params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};  
@@ -271,7 +295,6 @@
             params2.showControls = false
             
             
-            //
             params3["kioskMode"] = true;
             
             params3["images"] =  [  
@@ -289,7 +312,7 @@
                                  
             params3["surfaces"] = [];
             params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
-            params3["ev_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};                                     
+            params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                     
             params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
@@ -323,12 +346,17 @@
         
             params4["surfaces"] = [];
             params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
-            params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.5};                  
+            params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                  
             params4["showSurfacePlanes"] = false;                                                        
             params4["surfaceBackground"] = "Black";
             params4.showControls = false
                     
             $(document).ready(function(){
+            $("#roi-viz-tools").show();
+            $("#ex1Slider").show();
+            $("#ex2Slider").show();
+            $("#ex3Slider").show();
+            $("#ex4Slider").show();
             
                 $("#ex_vivo_dti").hide();
                 $("#in_vivo_dti").hide();
@@ -342,14 +370,12 @@
                 
                 $("#visualization_templates").hide()
                 $("#image_actions").hide()
+
             });
                 
     </script>
 
-  
 
-
-  
     <script type="text/javascript">
 
     $(document).ready(function(){
@@ -357,13 +383,22 @@
         var hide_image = function(index){            
             papaya.Container.hideImage(index[0], index[1]);
         };        
+        
         var show_image = function(index){
             papaya.Container.showImage(index[0], index[1]);
         };
+        
         var get_cursor_location = function(index){
             var loc = papaya.Container.GetCursorLocation(index[1], index[0]);
             console.log("LOCATION ->  " + loc)
-        }
+        };
+        
+        var set_surface_alpha = function(index, val){
+            papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
+            papaya.Container.showImage(index[0], index[1]);
+            console.log("Setting surface alpha to "+val)
+        };
+        
         var reset_viewer = function( ){
             var keys = [];
             for (var key in image_map) {
@@ -375,16 +410,15 @@
                 hide_image(image_map[keys[i]]);
             }
         };
+        
         var reset_roi_info = function( ){
             $("#ROI_area1").hide()
             $("#ROI_area2").hide()
             $("#ROI_area3").hide()
             $("#ROI_area4").hide()
-        };     
+        };
         
-        
-        var set_background_color_for_list = function( list, color ){
-        
+        var set_background_color_for_list = function( list, color ){        
             for( i in list){
                 $(list[i]).css('background', color);
             }
@@ -605,7 +639,7 @@
                 $("#template4_info").html(
                      $("<div></div>").append([
                         $("<u>Type of Image:  </u>"),                        
-                        $("#img_description4"),
+                        $("#img_description4")
                     ])
                 )
             } else if ( img == "iv_t2_060" ){
@@ -756,50 +790,64 @@
             console.log("CLICKED In-Vivo T2 Template");                
             $("#in_vivo_dti").hide();
             $("#ex_vivo_T2").hide();
-            $("#ex_vivo_dti").hide();        
-            $("#in_vivo_T2").show();                
+            $("#ex_vivo_dti").hide();                                  
             $("#view_and_info1").hide();
             $("#view_and_info2").hide();
-            $("#view_and_info3").hide();            
+            $("#view_and_info3").hide();                    
+            $("#in_vivo_T2").show();  
             $("#view_and_info4").show();
+            $("#ex1Slider").hide();          
+            $("#ex2Slider").hide();          
+            $("#ex3Slider").hide();         
+            $("#ex4Slider").show();
             reset_viewer();
-
         });
         $("#ivdti").on('click', function(e) {  
             console.log("CLICKED In-Vivo DTI Template");                                      
              $("#ex_vivo_dti").hide();
-             $("#ex_vivo_T2").hide();        
-             $("#in_vivo_dti").show();     
+             $("#ex_vivo_T2").hide();                      
              $("#in_vivo_T2").hide();    
              $("#view_and_info1").hide();
-             $("#view_and_info2").hide();         
-             $("#view_and_info3").show();                 
-             $("#view_and_info4").hide();               
+             $("#view_and_info2").hide();                                   
+             $("#view_and_info4").hide();                           
+             $("#in_vivo_dti").show();    
+             $("#view_and_info3").show();         
+             $("#ex1Slider").hide();          
+             $("#ex2Slider").hide();          
+             $("#ex4Slider").hide();     
+             $("#ex3Slider").show();
              reset_viewer();
         });
         $("#evt2").on('click', function(e) {  
             console.log("CLICKED Ex-Vivo T2 Template");
-             $("#ex_vivo_dti").hide();  
-             $("#ex_vivo_T2").show();                 
+             $("#ex_vivo_dti").hide();                            
              $("#in_vivo_dti").hide();             
              $("#in_vivo_T2").hide();                                    
-             $("#view_and_info1").hide();             
-             $("#view_and_info2").show();
+             $("#view_and_info1").hide();                          
              $("#view_and_info3").hide();
-             $("#view_and_info4").hide();             
+             $("#view_and_info4").hide();                         
+             $("#ex_vivo_T2").show();             
+             $("#view_and_info2").show();
+             $("#ex1Slider").hide();          
+             $("#ex3Slider").hide();          
+             $("#ex4Slider").hide();       
+             $("#ex2Slider").show();
             reset_viewer();
         });
         $("#evdti").on('click', function(e) {  
             console.log("CLICKED Ex-Vivo DTI Template");
-        
-             $("#ex_vivo_dti").show();
              $("#ex_vivo_T2").hide();
              $("#in_vivo_dti").hide();
-             $("#in_vivo_T2").hide();                         
-             $("#view_and_info1").show();
+             $("#in_vivo_T2").hide();                                      
              $("#view_and_info2").hide();
              $("#view_and_info3").hide();
-             $("#view_and_info4").hide();                         
+             $("#view_and_info4").hide();                     
+             $("#ex_vivo_dti").show();           
+             $("#view_and_info1").show();
+             $("#ex2Slider").hide();          
+             $("#ex3Slider").hide();          
+             $("#ex4Slider").hide();      
+             $("#ex1Slider").show();
              reset_viewer();
         });
         
@@ -825,11 +873,49 @@
             $("#view_and_info2").hide();
             $("#view_and_info3").hide();
             $("#view_and_info4").hide();
+            $("#roi-viz-tools").hide();
         });
 
         $("#create_png").on('click', function(e) {
             console.log("Create PNG selected.");
         });
+        		
+		var ex4Change = function() { 
+		    console.log("In-vivo T2 Slider value :   " + parseFloat((parseFloat($("#ex4").val()) / 20.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex4").val()) / 20.0)));
+		};		
+		var ex3Change = function() { console.log("In-vivo DTI Slider value :   " + $("#ex3").val());	};		
+		var ex2Change = function() { console.log("Ex-vivo T2 Slider value :   " + $("#ex2").val()); };		
+		var ex1Change = function() { console.log("Ex-vivo DTI Slider value :   " + $("#ex1").val()); };
+
+        // With JQuery
+        $('#ex1').slider({
+	        formatter: function(value) {
+		        return 'Current s1 value: ' + value;
+	        }
+        }).on('slide', ex1Change)
+		.data('slider');
+				
+        $('#ex2').slider({
+	        formatter: function(value) {
+		        return 'Current s2 value: ' + value;
+	        }
+        }).on('slide', ex2Change)
+		.data('slider');
+		
+        $('#ex3').slider({
+	        formatter: function(value) {
+		        return 'Current s3 value: ' + value;
+	        }
+        }).on('slide', ex3Change)
+		.data('slider');
+		
+        $('#ex4').slider({
+	        formatter: function(value) {
+		        return 'Current s4 value: ' + value;
+	        }
+        }).on('slide', ex4Change)
+		.data('slider');
 
         $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec"); show_surface(0);});
         $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr"); show_surface(0);});
@@ -982,9 +1068,13 @@
             }
         );
 
-
+   
+        
+        
                     
     });
+    
+     
     </script>
 
     <title>Template Web Viewer</title>
@@ -992,7 +1082,7 @@
 
 <body>
 
-      
+
 <nav class="navbar navbar-inverse" >
   <div class="container-fluid"  >
     <div class="navbar-header">    
@@ -1192,19 +1282,22 @@
     </div>
 </div>
 
-
-
+<div id="roi-viz-tools" class="pager">
+    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
+    <input id="ex2" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
+    <input id="ex3" data-slider-id='ex3Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
+    <input id="ex4" data-slider-id='ex4Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
+</div>
            <div class="container-fluid" id="view_and_info1">
                <ul>
                <li>
                     <div id="ROI_area1" class="roiViewer rcorners2 right">
                       <div class="jumbotron">
-                        <p><b><h1>Ex-Vivo DTI</h1></b></p>
+                        <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
                       </div>
                             <div id="template1_info">
-                                Image description: <div id="img_description1"></div>
-                            </div>
-                            
+                                Image description: <div id="img_description1"></div>                                
+                            </div>                            
                     </div>       
                </li>   
                <li>
@@ -1213,19 +1306,18 @@
                     </div> 
                </li>
                </ul>       
-           </div>                                                
-            
+           </div>                      
             
             <div class="container-fluid" id="view_and_info2">      
                 <ul>
                     <li>
                         <div id="ROI_area2" class="roiViewer rcorners2 right">
-                            <p style="margin:0 auto"><b><h1>In-Vivo DTI</h1></b></p>
-                            
+                          <div class="jumbotron">
+                            <p style="margin:0 auto"><b><h1>Ex-Vivo T2</h1></b></p>                            
+                          </div>
                             <div id="template2_info">
                                 Image description: <div id="img_description2"></div>
-                            </div>
-                            
+                            </div>                 
                         </div>       
                     </li>   
                     <li>                                          
@@ -1235,18 +1327,17 @@
                     </li>
                 </ul>
             </div>
-            
-            
+                                    
             <div class="container-fluid" id="view_and_info3">  
                 <ul>
                     <li>
                       <div id="ROI_area3" class="roiViewer rcorners2 right">
-                            <p style="margin:0 auto"><b><h1>Ex-Vivo T2</h1></b></p>
-                            
+                        <div class="jumbotron">
+                            <p style="margin:0 auto"><b><h1>In-Vivo DTI</h1></b></p>
+                        </div>
                             <div id="template3_info">
                                 Image description: <div id="img_description3"></div>
                             </div>
-                            
                       </div>       
                     </li>   
                     <li> 
@@ -1257,18 +1348,17 @@
                 </ul>
             </div>
 
-
             <div class="container-fluid" id="view_and_info4">
                 <ul>
                     <li>
                         <div id="ROI_area4" class="roiViewer rcorners2 right">
-                            <p style="margin:0 auto"><b><h1>In-Vivo T2</h1></b></p>
-                            
+                          <div class="jumbotron">
+                            <p style="margin:0 auto"><b><h1>In-Vivo T2</h1></b></p>                            
+                          </div> 
                             <div id="template4_info">
                                 Image description: <div id="img_description4"></div>
-                            </div>
-                            
-                        </div>       
+                            </div>                          
+                      </div>
                     </li>   
                     <li> 
                         <div id="papaya4" class="midViewer rcorners1 left">
@@ -1276,32 +1366,7 @@
                         </div>                       
                     </li>                     
                 </ul>  
-            </div>
-  
-<!--
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-  </div>
-</div>  
--->
-    
+            </div>            
 </body>
-
-
 
 </html>
