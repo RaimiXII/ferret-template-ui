@@ -27,9 +27,12 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     	<meta name="apple-mobile-web-app-capable" content="yes">
     	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+    <!--
     	<link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675311" />
     	<script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675311"></script>
+    -->
+    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675327" />
+    	<script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675327"></script>
     
     	<title>Papaya Viewer</title>
     <!-- JS debug end -->
@@ -222,12 +225,29 @@
   </style>
 
     <script type="text/javascript">
+    
+    
+    var GetRegionDataByName = function(name){    
+        var roi_list = brain_region_struct["rois"];
+        var description = ""
+        for(var i=0; i < roi_list.length; i++){
+            if(name == roi_list[i]["data"]["name"]){
+                console.log("Name is matched!")
+                console.log("Description ->  " + roi_list[i]["data"]["description"])
+                description = roi_list[i]["data"]["description"];
+            }
+        }
+        return description;
+    };
+    
 
     var params  = [];           
     var params1 = [];
     var params2 = [];
     var params3 = [];
     var params4 = [];   
+    
+    var brain_region_struct = {};
     
     var image_map = {}; 
             image_map["ExVivo_DTI_FA"] =    [0,0];
@@ -253,106 +273,148 @@
             image_map["ivT2_TE108"] =       [3,4];
             image_map["ivT2_TE132"] =       [3,5];    
             
-            var current_image = "";
+            //  Load in the ROI json file
+            var rois={};
+            $.getJSON('ext/Brain_Regions.json', function(data) { 
+            /*
+                var set_surface_rgb = function(index, r, g, b){
+                    papaya.Container.SetSurfaceRGB(index[0], index[1], r,g,b);
+                    papaya.Container.showImage(index[0], index[1]);
+                    console.log("Setting surface rgb to   {"+r+", " + g+ ", " + b + "}.")
+                };
+                */
+                console.log("PRINTING ROI OBJECT........"+data)                
+                
+                
+                brain_region_struct = data;
+                var surfs = [];
+                var fnames = [];
+                //surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
+                //fnames.push("ev_dti_brain.surf.gii")
+                
+                var current_image = "";            
+                params1["surfaces"] = [];
+                params1["images"] =  [                                            
+                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
+                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                     ];
+                
+                params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+                params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};  
+                
+                
+                //for(var i=0; i < data["rois"].length; i++){ 
+                for(var i=3; i < 5; i++){
+                    var datapath = data["rois"][i]["data"]["path"];
+                    var fname       = data["rois"][i]["data"]["filename"];
+                    var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) ));
+                    var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) ));
+                    var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) ));                    
+                    console.log("Processing .... " + data["rois"][i]["data"]["path"] + data["rois"][i]["data"]["filename"] + "   with color:  ("+red+", "+green+", "+blue+")");                    
+                    surfs.push(datapath+fname)
+                    fnames.push(fname)
+                }
+                params1["surfaces"] = surfs
+                for(var j=0;j<fnames.length;j++){     
+                    console.log("THE SHORT FILENAME :  " + String(fnames[j]));               
+                    params1[String(fnames[j])] = {color: [255,0,0], alpha: 0.75};
+                }                
+                params1["showSurfacePlanes"] = false;
+                params1["surfaceBackground"] = "Black";                  
+                params1.showControls = false;   
+                params1["kioskMode"] = true;
+                
+            });    
+              
+                
+                                
+                params2["kioskMode"] = true;            
+                
+                params2["images"] =  [                                            
+                                        "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                                        "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                                        "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii"
+                                     ];  
+                params2["surfaces"] = [];
+                params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
+                params2["iv_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                    
+                params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0.1, "max": 0.87};
+                params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};  
+                
+                params2["showSurfacePlanes"] = false;
+                params2["surfaceBackground"] = "Black";
+                params2.showControls = false
+                
+                
+                params3["kioskMode"] = true;
+                
+                params3["images"] =  [  
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
+                                     ];    
+                                     
+                params3["surfaces"] = [];
+                
+                params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
+                params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                     
+                params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
+                params3["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                
+                params3["showSurfacePlanes"] = false;
+                params3["surfaceBackground"] = "Black";
+                params3.showControls = false
+                
+                
+                params4["kioskMode"] = true;
+                
+                params4["images"] =  [
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                     ];  
+                params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             
-            params1["kioskMode"] = true;
-            
-            
-            params1["images"] =  [                                            
-                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
-                                 ];
-            params1["surfaces"] = [];
-            params1["surfaces"] = [
-                                    "img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"                              
-                                  ];
-            params1["ev_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};
-            params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-            params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-            params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1000};  
-            params1["showSurfacePlanes"] = false;
-            params1["surfaceBackground"] = "Black";
-            params1.showControls = false
-            
-            
-            params2["kioskMode"] = true;
-            
-            
-            params2["images"] =  [                                            
-                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii"
-                                 ];  
-            params2["surfaces"] = [];
-            params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
-            params2["iv_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                    
-            params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0.1, "max": 0.87};
-            params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-            params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};  
-            params2["showSurfacePlanes"] = false;
-            params2["surfaceBackground"] = "Black";
-            params2.showControls = false
-            
-            
-            params3["kioskMode"] = true;
-            
-            params3["images"] =  [  
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
-                                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
-                                 ];    
-                                 
-            params3["surfaces"] = [];
-            params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
-            params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                     
-            params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
-            params3["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-            params3["showSurfacePlanes"] = false;
-            params3["surfaceBackground"] = "Black";
-            params3.showControls = false
-            
-            
-            params4["kioskMode"] = true;
-            params4["images"] =  [
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
-                                 ];  
-            params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-        
-            params4["surfaces"] = [];
-            params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
-            params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                  
-            params4["showSurfacePlanes"] = false;                                                        
-            params4["surfaceBackground"] = "Black";
-            params4.showControls = false
-                    
-            $(document).ready(function(){
-            $("#roi-viz-tools").show();
+                params4["surfaces"] = [];
+                params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
+                params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                  
+                
+                params4["showSurfacePlanes"] = false;                                                        
+                params4["surfaceBackground"] = "Black";
+                params4.showControls = false
+    </script>
+
+
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#roi-viz-tools").show();
             $("#ex1Slider").show();
             $("#ex2Slider").show();
             $("#ex3Slider").show();
@@ -370,16 +432,6 @@
                 
                 $("#visualization_templates").hide()
                 $("#image_actions").hide()
-
-            });
-                
-    </script>
-
-
-    <script type="text/javascript">
-
-    $(document).ready(function(){
-    
         var hide_image = function(index){            
             papaya.Container.hideImage(index[0], index[1]);
         };        
@@ -389,8 +441,19 @@
         };
         
         var get_cursor_location = function(index){
-            var loc = papaya.Container.GetCursorLocation(index[1], index[0]);
-            console.log("LOCATION ->  " + loc)
+            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+            var loc = res[0];
+            console.log("LOCATION ->  " + loc)                      
+        };
+        
+        var get_roi_label = function(index){
+            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+            var lbl = res[1];            
+            var desc = GetRegionDataByName(lbl);
+            var r_str = "<h3>"+lbl+"</h3>";
+            var d_str = "<h3>"+desc+"</h3>";
+            $("#current_roi").html(r_str);
+            $("#roi_description").html(d_str);
         };
         
         var set_surface_alpha = function(index, val){
@@ -398,6 +461,8 @@
             papaya.Container.showImage(index[0], index[1]);
             console.log("Setting surface alpha to "+val)
         };
+        
+        
         
         var reset_viewer = function( ){
             var keys = [];
@@ -770,19 +835,23 @@
         $("#papaya1").on('click', function(e) {        
             console.log("From papaya 1.")
             console.log("CURRENT IMAGE ->  " +current_image)
-            get_cursor_location(image_map[current_image]);            
+            get_cursor_location(image_map[current_image]);          
+            get_roi_label(image_map[current_image]);  
         });
         $("#papaya2").on('click', function(e) {        
             console.log("From papaya 2.")
             get_cursor_location(image_map[current_image]);            
+            get_roi_label(image_map[current_image]);
         });
         $("#papaya3").on('click', function(e) {        
             console.log("From papaya 3.")
             get_cursor_location(image_map[current_image]);            
+            get_roi_label(image_map[current_image]);
         });
         $("#papaya4").on('click', function(e) {        
             console.log("From papaya 4.")
             get_cursor_location(image_map[current_image]);            
+            get_roi_label(image_map[current_image]);
         });
         
          
@@ -881,12 +950,21 @@
         });
         		
 		var ex4Change = function() { 
-		    console.log("In-vivo T2 Slider value :   " + parseFloat((parseFloat($("#ex4").val()) / 20.0)));	
-		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex4").val()) / 20.0)));
+		    console.log("In-vivo T2 Slider value :   " + parseFloat((parseFloat($("#ex4").val()) / 100.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex4").val()) / 100.0)));
 		};		
-		var ex3Change = function() { console.log("In-vivo DTI Slider value :   " + $("#ex3").val());	};		
-		var ex2Change = function() { console.log("Ex-vivo T2 Slider value :   " + $("#ex2").val()); };		
-		var ex1Change = function() { console.log("Ex-vivo DTI Slider value :   " + $("#ex1").val()); };
+		var ex3Change = function() { 
+		    console.log("In-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex3").val()) / 100.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex3").val()) / 100.0)));
+    	};		
+		var ex2Change = function() { 
+		    console.log("Ex-vivo T2 Slider value :   " + parseFloat((parseFloat($("#ex2").val()) / 100.0)));	
+	        set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex2").val()) / 100.0)));
+        };		
+		var ex1Change = function() { 
+		    console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
+	    };
 
         // With JQuery
         $('#ex1').slider({
@@ -939,7 +1017,6 @@
         $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); update_params("iv_t2_084");show_surface(3); });
         $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); update_params("iv_t2_108");show_surface(3); });
         $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); update_params("iv_t2_132");show_surface(3); });
-        
         
         $("#tortoise_tools").on('click', function(e) {          
                     console.log("CLICKED tortoise tools"); 
@@ -1283,10 +1360,10 @@
 </div>
 
 <div id="roi-viz-tools" class="pager">
-    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
-    <input id="ex2" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
-    <input id="ex3" data-slider-id='ex3Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
-    <input id="ex4" data-slider-id='ex4Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14">
+    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+    <input id="ex2" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+    <input id="ex3" data-slider-id='ex3Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+    <input id="ex4" data-slider-id='ex4Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
 </div>
            <div class="container-fluid" id="view_and_info1">
                <ul>
@@ -1296,7 +1373,11 @@
                         <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
                       </div>
                             <div id="template1_info">
-                                Image description: <div id="img_description1"></div>                                
+                                Image description: <div id="img_description1"></div>
+                                <br>
+                                ROI name: <div id="current_roi"></div>
+                                <br>
+                                ROI description: <div id="roi_description"></div>
                             </div>                            
                     </div>       
                </li>   

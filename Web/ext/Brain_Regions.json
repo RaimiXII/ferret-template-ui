@@ -1,0 +1,655 @@
+{
+    "rois":
+    [
+     {
+       "index": 1,
+       "data": {
+           "red": 243,
+           "green": 243,
+           "blue": 243,
+           "alpha": 1,
+           "name": "White Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "1_White_Matter.surf.gii",
+           "description": "White matter refers to axon tracts and commissures. Long thought to be passive tissue, it actively affects learning and brain functions, modulating the distribution of action potentials, acting as a relay and coordinating communication between different brain regions."
+       }
+     },
+     {
+       "index": 2,
+       "data": {
+           "red": 188,
+           "green": 188,
+           "blue": 188,
+           "alpha": 1,
+           "name": "Gray Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "2_Gray_Matter.surf.gii",
+           "description": "Grey matter (or gray matter) is a major component of the central nervous system, consisting of neuronal cell bodies, neuropil (dendrites and myelinated as well as unmyelinated axons), glial cells (astroglia and oligodendrocytes), synapses, and capillaries."
+       }
+     },
+     {
+       "index": 3,
+        "data": {
+           "red": 51,
+           "green": 255,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Corpus Callosum",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "3_Corpus_Callosum.surf.gii",
+           "description": "The corpus callosum (/ˈkɔːrpəs kəˈloʊsəm/; Latin for 'tough body'), also known as the callosal commissure, is a wide, flat bundle of neural fibers about 10 cm long beneath the cortex in the eutherian brain at the longitudinal fissure."
+       }   
+     },
+     {
+       "index": 4,
+       "data": {
+           "red": 255,
+           "green": 255,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Cingulum",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "4_Cingulum.surf.gii",
+           "description": "The cingulum is a collection of white matter fibers projecting from the cingulate gyrus to the entorhinal cortex in the brain, allowing for communication between components of the limbic system."
+       }
+     },
+     {
+       "index": 5,
+       "data": {
+           "red": 102,
+           "green": 0,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Fornix",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "5_Fornix.surf.gii",
+           "description": "The fornix (Latin: arch) is a C-shaped bundle of nerve fibers in the brain that carries signals from the hippocampus to the mammillary bodies and then to the anterior nuclei of thalamus."
+       }
+     },
+     {
+       "index": 6,
+       "data": {
+           "red": 255,
+           "green": 0,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Anterior Commisure",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "6_Anterior_Commisure.surf.gii",
+           "description": "The anterior commissure (also known as the precommissure) is a bundle of nerve fibers (white matter), connecting the two temporal lobes of the cerebral hemispheres across the midline, and placed in front of the columns of the fornix."
+       }
+     },
+     {
+       "index": 7,
+        "data": {
+           "red": 102,
+           "green": 255,
+           "blue": 51,
+           "alpha": 1,
+           "name": "Optic Tract",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "7_Optic_Tract.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 8,
+       "data": {
+           "red": 0,
+           "green": 0,
+           "blue": 205,
+           "alpha": 1,
+           "name": "Corticospinal Tract",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "8_Corticospinal_Tract.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 9,
+       "data": {
+           "red": 244,
+           "green": 93,
+           "blue": 244,
+           "alpha": 1,
+           "name": "Cortex White Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "9_Cortex_White_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 10,
+       "data": {
+           "red": 255,
+           "green": 85,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Lateral Olfactory Tract",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "10_Lateral_Olfactory_Tract.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 11,
+       "data": {
+           "red": 218,
+           "green": 112,
+           "blue": 214,
+           "alpha": 1,
+           "name": "Brainstem White Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "11_Brainstem_White_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 12,
+       "data": {
+           "red": 0,
+           "green": 0,
+           "blue": 128,
+           "alpha": 1,
+           "name": "Cerebellum White Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "12_Cerebellum_White_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 13,
+       "data": {
+           "red": 255,
+           "green": 170,
+           "blue": 127,
+           "alpha": 1,
+           "name": "Midbrain White Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "13_Midbrain_White_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 21,
+       "data": {
+           "red": 255,
+           "green": 255,
+           "blue": 153,
+           "alpha": 0.25,
+           "name": "Olfactory Bulb",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "21_Olfactory_Bulb.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 22,
+       "data": {
+           "red": 0,
+           "green": 102,
+           "blue": 0,
+           "alpha": 0.24,
+           "name": "Cerebellum Gray Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "22_Cerebellum_Gray_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 23,
+       "data": {
+           "red": 0,
+           "green": 255,
+           "blue": 204,
+           "alpha": 1,
+           "name": "Brainstem Gray Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "23_Brainstem_Gray_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 24,
+       "data": {
+           "red": 0,
+           "green": 153,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Inferior Colliculus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "24_Inferior_Colliculus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 25,
+       "data": {
+           "red": 0,
+           "green": 51,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Superior Colliculus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "25_Superior_Colliculus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 26,
+       "data": {
+           "red": 204,
+           "green": 204,
+           "blue": 204,
+           "alpha": 1,
+           "name": "Periaqueductal Gray Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "26_Periaqueductal_Gray_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 27,
+       "data": {
+           "red": 153,
+           "green": 153,
+           "blue": 102,
+           "alpha": 1,
+           "name": "Midbrain Gray Matter",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "27_Midbrain_Gray_Matter.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 28,
+       "data": {
+           "red": 153,
+           "green": 102,
+           "blue": 102,
+           "alpha": 1,
+           "name": "Thalamus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "28_Thalamus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 29,
+       "data": {
+           "red": 102,
+           "green": 102,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Hippocampus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "29_Hippocampus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 30,
+       "data": {
+           "red": 204,
+           "green": 204,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Hypothalamus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "30_Hypothalamus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 31,
+       "data": {
+           "red": 51,
+           "green": 0,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Globus Pallidus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "31_Globus_Pallidus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 32,
+       "data": {
+           "red": 0,
+           "green": 153,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Putamen",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "32_Putamen.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 33,
+       "data": {
+           "red": 204,
+           "green": 51,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Caudate",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "33_Caudate.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 34,
+       "data": {
+           "red": 204,
+           "green": 153,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Septum",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "34_Septum.surf.gii",
+           "description": "The Septum separates the anterior horns of the left and right lateral ventricles of the brain."
+       }
+     },
+     {
+       "index": 35,
+       "data": {
+           "red": 153,
+           "green": 102,
+           "blue": 51,
+           "alpha": 1,
+           "name": "Amygdala",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "35_Amygdala.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 40,
+       "data": {
+           "red": 255,
+           "green": 255,
+           "blue": 204,
+           "alpha": 1,
+           "name": "Orbital Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "40_Orbital_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 41,
+       "data": {
+           "red": 255,
+           "green": 204,
+           "blue": 204,
+           "alpha": 1,
+           "name": "Anterior Sigmoid Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "41_Anterior_Sigmoid_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 42,
+       "data": {
+           "red": 255,
+           "green": 153,
+           "blue": 102,
+           "alpha": 1,
+           "name": "Posterior Sigmoid Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "42_Posterior_Sigmoid_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 43,
+       "data": {
+           "red": 204,
+           "green": 204,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Coronal Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "43_Coronal_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 44,
+       "data": {
+           "red": 204,
+           "green": 255,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Anterior Ectosylvian Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "44_Anterior_Ectosylvian_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 45,
+       "data": {
+           "red": 204,
+           "green": 204,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Posterior Ectosylvian Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "45_Posterior_Ectosylvian_Gyrus.surf.gii",
+           "description": "The Posterior Ectosylvian Gyrus contains a broad band of association cortex that is bounded anteriorly by tonotopic auditory areas and posteriorly by retinotopic visual areas. - TBD"
+       }
+     },
+     {
+       "index": 46,
+       "data": {
+           "red": 255,
+           "green": 204,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Lateral Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "46_Lateral_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }
+     },
+     {
+       "index": 47,
+       "data": {
+           "red": 204,
+           "green": 153,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Suprasylvian Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "47_Suprasylvian_Gyrus.surf.gii",
+           "description": "NEED A DESCRIPTION HERE - TBD"
+       }       
+     },
+     {
+       "index": 48,
+       "data": {
+           "red": 204,
+           "green": 255,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Piriform Lobe",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "48_Piriform_Lobe.surf.gii",
+           "description": "The Piriform Lobe consists of the cortical amygdala, uncus, and anterior parahippocampal gyrus."
+       }     
+     },
+     {
+       "index": 49,
+       "data": {
+           "red": 255,
+           "green": 255,
+           "blue": 127,
+           "alpha": 1,
+           "name": "Gyrus Rectus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "49_Gyrus_Rectus.surf.gii",
+           "description": "The Gyrus Rectus is a portion of the frontal lobe medial to the medial orbital gyrus and olfactory tract, and is continuous with the superior frontal gyrus on the medial surface."
+       }            
+     },
+     {
+       "index": 50,
+       "data": {
+           "red": 248,
+           "green": 248,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Olfactory Tubercle",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "50_Olfactory_Tubercle.surf.gii",
+           "description": "The Olfactory Tubercle is a multi-sensory processing center in the olfactory cortex that plays a role in reward behaviors."
+       }     
+     },
+     {
+       "index": 51,
+       "data": {
+           "red": 204,
+           "green": 255,
+           "blue": 51,
+           "alpha": 1,
+           "name": "Cingulate Gyrus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "51_Cingulate_Gyrus.surf.gii",
+           "description": "The cingulate gyrus is a part of the Limbic system which helps regulate emotions and pain. It is also involved in predicting and avoiding negative consequences."
+       }     
+     },
+     {
+       "index": 60,
+       "data": {
+           "red": 255,
+           "green": 102,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Presylvian Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "60_Presylvian_Sulcus.surf.gii",
+           "description": "The anterior branch of the Sylvian Sulcus - TBD"
+       }     
+     },
+     {
+       "index": 61,
+       "data": {
+           "red": 255,
+           "green": 0,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Cruciate Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "61_Cruciate_Sulcus.surf.gii",
+           "description": "The Cruciate Sulcus is a deep groove which runs transversely across the rostro-dorsal surface of the cerebrum and which is one of the landmarks on the cerebral cortex."
+       }
+     },
+     {
+       "index": 62,
+       "data": {
+           "red": 204,
+           "green": 0,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Splenial Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "62_Splenial_Sulcus.surf.gii",
+           "description": "The Splenium is the posterior end of the corpus callosum, and the thickest part. - TBD"
+       }
+     },
+     {
+       "index": 63,
+       "data": {
+           "red": 153,
+           "green": 51,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Longitudinal Fissure",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "63_Longitudinal_Fissure.surf.gii",
+           "description": "The Longitudinal fissure is the deep groove that separates the two hemispheres of the vertebrate brain."
+       }
+     },
+     {
+       "index": 64,
+       "data": {
+           "red": 255,
+           "green": 0,
+           "blue": 255,
+           "alpha": 1,
+           "name": "Coronal Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "64_Coronal_Sulcus.surf.gii",
+           "description": "Need a description - TBD"
+       }
+     },
+     {
+       "index": 65,
+       "data": {
+           "red": 255,
+           "green": 0,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Ansinate Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "65_Ansinate_Sulcus.surf.gii",
+           "description": "The Ansate Sulcus is responsible for the separation of frontal lobe and parietal lobes. Also separates the primary motor cortex from the primary somatosensory cortex."
+       }
+     },
+     {
+       "index": 66,
+       "data": {
+           "red": 204,
+           "green": 51,
+           "blue": 153,
+           "alpha": 1,
+           "name": "Lateral Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "66_Lateral_Sulcus.surf.gii",
+           "description": "The lateral sulcus divides both the frontal lobe and parietal lobe above from the temporal lobe below."
+       }
+     },
+     {
+       "index": 67,
+       "data": {
+           "red": 255,
+           "green": 51,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Suprasylvian Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "67_Suprasylvian_Sulcus.surf.gii",
+           "description": "The Suprasylvian Sulcus helps bound Parietal Lobe with Pseudosylvian Sulcus/Lateral Sulcus and Ansate sulcus."
+       }
+     },
+     {
+       "index": 68,
+       "data": {
+           "red": 255,
+           "green": 51,
+           "blue": 102,
+           "alpha": 1,
+           "name": "Pseudosylvian Sulcus",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "68_Pseudosylvian_Sulcus.surf.gii",
+           "description": "The Pseudosylvian Sulcus bounds the Frontal Lobe with Ansate sulcus; bounds Temporal Lobe with the help of Suprasylvian Sulcus; holds occipital Lobe."
+       }
+     },
+     {
+       "index": 69,
+       "data": {
+           "red": 204,
+           "green": 51,
+           "blue": 0,
+           "alpha": 1,
+           "name": "Rhinal Fissure",
+           "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
+           "filename": "69_Rhinal_Fissure.surf.gii",
+           "description": "The Rhinal Fissure defines one boundary of the limbic system."
+       }
+     }
+    ]
+}
