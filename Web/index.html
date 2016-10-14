@@ -289,8 +289,9 @@
                 brain_region_struct = data;
                 var surfs = [];
                 var fnames = [];
-                //surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
-                //fnames.push("ev_dti_brain.surf.gii")
+                var rgbs = [];
+                surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
+                fnames.push("ev_dti_brain.surf.gii")
                 
                 var current_image = "";            
                 params1["surfaces"] = [];
@@ -306,20 +307,25 @@
                 
                 
                 //for(var i=0; i < data["rois"].length; i++){ 
-                for(var i=3; i < 5; i++){
+                for(var i=3; i < 8; i++){
                     var datapath = data["rois"][i]["data"]["path"];
                     var fname       = data["rois"][i]["data"]["filename"];
-                    var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) ));
-                    var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) ));
-                    var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) ));                    
+                    var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) )/255);
+                    var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) )/255);
+                    var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) )/255);                    
                     console.log("Processing .... " + data["rois"][i]["data"]["path"] + data["rois"][i]["data"]["filename"] + "   with color:  ("+red+", "+green+", "+blue+")");                    
                     surfs.push(datapath+fname)
                     fnames.push(fname)
+                    rgbs.push([red,green,blue]);
                 }
-                params1["surfaces"] = surfs
+                params1["surfaces"] = surfs;
                 for(var j=0;j<fnames.length;j++){     
                     console.log("THE SHORT FILENAME :  " + String(fnames[j]));               
-                    params1[String(fnames[j])] = {color: [255,0,0], alpha: 0.75};
+                    if(String(fnames[j]) == "ev_dti_brain.surf.gii"){
+                        params[String(fnames[j])] = {color: [0.8,0.8,0.8], alpha: 0.75};
+                    } else {
+                        params[String(fnames[j])] = {color: rgbs[j], alpha: 1};
+                    }
                 }                
                 params1["showSurfacePlanes"] = false;
                 params1["surfaceBackground"] = "Black";                  
@@ -501,6 +507,10 @@
                      $("<div></div>").append([
                         $("<u>Type of Image:  </u>"),                        
                         $("#img_description1"),
+                        $("<br>"),
+                        $("ROI name: ").append($("#current_roi")),
+                        $("<br>"),
+                        $("ROI description: ").append($("#roi_description"))
                     ])
                 )                                
             } else if ( img == "ev_dti_fa" ){
@@ -513,6 +523,10 @@
                      $("<div></div>").append([
                         $("<u>Type of Image:  </u>"),                        
                         $("#img_description1"),
+                        $("<br>"),
+                        $("ROI name: ").append($("#current_roi")),
+                        $("<br>"),
+                        $("ROI description: ").append($("#roi_description"))
                     ])
                 ) 
             } else if ( img == "ev_dti_tr" ){
@@ -525,6 +539,10 @@
                      $("<div></div>").append([
                         $("<u>Type of Image:  </u>"),                        
                         $("#img_description1"),
+                        $("<br>"),
+                        $("ROI name: ").append($("#current_roi")),
+                        $("<br>"),
+                        $("ROI description: ").append($("#roi_description"))
                     ])
                 ) 
             } else if ( img == "iv_dti_tr" ){
