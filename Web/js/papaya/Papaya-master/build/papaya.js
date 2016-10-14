@@ -2029,7 +2029,8 @@ papaya.Container.showSurface=function(c,a){papayaContainers[c].viewer.surfaces[a
 
 papaya.Container.GetCursorLocation=function(c,a){
     var pos = papayaContainers[a].viewer.cursorPosition; 
-    console.log("LABEL ->  " + current_label)
+    console.log("LABEL ->  " + current_label)    
+    console.log(papayaContainers[a].viewer.surfaces[c])
     return [pos, current_label];
 };
 papaya.Container.SetSurfaceAlpha=function(c,a,al){console.log("NUMBER OF SURFACES....." + papayaContainers[c].viewer.surfaces.length); papayaContainers[c].viewer.surfaces[a].alpha = al;}
