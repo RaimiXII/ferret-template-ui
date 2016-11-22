@@ -89,7 +89,7 @@
            "name": "Optic Tract",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "7_Optic_Tract.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The Optic Tract is a part of the visual system in the brain. It is a continuation of the optic nerve that relays information from the optic chiasm to the ipsilateral lateral geniculate nucleus (LGN), pretectal nuclei, and superior colliculus."
        }
      },
      {
@@ -102,7 +102,7 @@
            "name": "Corticospinal Tract",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "8_Corticospinal_Tract.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The corticospinal tract is a descending tract of the spinal cord which contains bundles of axons which originate in the cerebral cortex and descend to synapse within the brainstem or spinal cord.."
        }
      },
      {
@@ -115,7 +115,7 @@
            "name": "Cortex White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "9_Cortex_White_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "White matter is the underlying tissue component of the cerebral cortex consisting mainly of the white myelinated sheaths of neuronal axons."
        }
      },
      {
@@ -128,7 +128,7 @@
            "name": "Lateral Olfactory Tract",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "10_Lateral_Olfactory_Tract.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The olfactory tract is a bundle of axons connecting the mitral and tufted cells of the olfactory bulb to several target regions in the brain, including piriform cortex, amygdala, and entorhinal cortex. It is a narrow white band, triangular on coronal section, the apex being directed upward."
        }
      },
      {
@@ -141,7 +141,7 @@
            "name": "Brainstem White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "11_Brainstem_White_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "White matter forms the bulk of the deep parts of the brain and the superficial parts of the spinal cord. Aggregates of gray matter such as the basal ganglia (caudate nucleus, putamen, globus pallidus, subthalamic nucleus, nucleus accumbens) and brain stem nuclei (red nucleus, substantia nigra, cranial nerve nuclei) are spread within the cerebral white matter.."
        }
      },
      {
@@ -154,7 +154,7 @@
            "name": "Cerebellum White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "12_Cerebellum_White_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Underneath the gray matter of the cortex lies white matter, made up largely of myelinated nerve fibers running to and from the cortex. Embedded within the white matter—which is sometimes called the arbor vitae (tree of life) because of its branched, tree-like appearance in cross-section—are four deep cerebellar nuclei, composed of gray matter."
        }
      },
      {
@@ -167,7 +167,7 @@
            "name": "Midbrain White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "13_Midbrain_White_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The midbrain or mesencephalon (from the Greek mesos, middle, and enkephalos, brain[1]) is a portion of the central nervous system associated with vision, hearing, motor control, sleep/wake, arousal (alertness), and temperature regulation."
        }
      },
      {
@@ -180,7 +180,7 @@
            "name": "Olfactory Bulb",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "21_Olfactory_Bulb.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The olfactory bulb (bulbus olfactorius) is a neural structure of the vertebrate forebrain involved in olfaction, or the sense of smell."
        }
      },
      {
@@ -193,7 +193,7 @@
            "name": "Cerebellum Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "22_Cerebellum_Gray_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Most of the Cerebellum volume is made up of a very tightly folded layer of gray matter: the cerebellar cortex. "
        }
      },
      {
@@ -206,7 +206,7 @@
            "name": "Brainstem Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "23_Brainstem_Gray_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Some brainstem gray matter structures include the substantia nigra, red nucleus, olivary nuclei, and cranial nerve nuclei."
        }
      },
      {
@@ -219,7 +219,7 @@
            "name": "Inferior Colliculus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "24_Inferior_Colliculus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The inferior colliculus (IC) (Latin, lower hill) is the principal midbrain nucleus of the auditory pathway and receives input from several peripheral brainstem nuclei in the auditory pathway, as well as inputs from the auditory cortex."
        }
      },
      {
@@ -232,7 +232,7 @@
            "name": "Superior Colliculus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "25_Superior_Colliculus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The two superior colliculi sit below the thalamus and surround the pineal gland in the vertebrate midbrain. It comprises the dorsal aspect of the midbrain, posterior to the periaqueductal gray and immediately superior to the inferior colliculus."
        }
      },
      {
@@ -245,7 +245,7 @@
            "name": "Periaqueductal Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "26_Periaqueductal_Gray_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The periaqueductal grey matter is the grey matter located around the cerebral aqueduct within the tegmentum of the midbrain. It projects to the nucleus raphe magnus, and also contains descending autonomic tracts."
        }
      },
      {
@@ -258,7 +258,7 @@
            "name": "Midbrain Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "27_Midbrain_Gray_Matter.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The gray matter of the midbrain includes regions such as the mesencephalic nuclei, left periaqueductal gray matter (PAG) and adjacent reticular nuclei."
        }
      },
      {
@@ -271,7 +271,7 @@
            "name": "Thalamus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "28_Thalamus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The thalamus is located in the forebrain which is superior to the midbrain, near the center of the brain, with nerve fibers projecting out to the cerebral cortex in all directions. The medial surface of the thalamus constitutes the upper part of the lateral wall of the third ventricle, and is connected to the corresponding surface of the opposite thalamus by a flattened gray band, the interthalamic adhesion."
        }
      },
      {
@@ -284,7 +284,7 @@
            "name": "Hippocampus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "29_Hippocampus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The hippocampus belongs to the limbic system and plays important roles in the consolidation of information from short-term memory to long-term memory, and in spatial navigation. The hippocampus is located under the cerebral cortex (sub-cortical)[1] and in primates in the medial temporal lobe. "
        }
      },
      {
@@ -297,7 +297,7 @@
            "name": "Hypothalamus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "30_Hypothalamus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The Hypothalamus is a region of the forebrain below the thalamus that coordinates both the autonomic nervous system and the activity of the pituitary, controlling body temperature, thirst, hunger, and other homeostatic systems, and involved in sleep and emotional activity."
        }
      },
      {
@@ -310,7 +310,7 @@
            "name": "Globus Pallidus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "31_Globus_Pallidus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The globus pallidus is a major component of the basal ganglia core along with the striatum and its direct target, the substantia nigra."
        }
      },
      {
@@ -323,7 +323,7 @@
            "name": "Putamen",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "32_Putamen.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The putamen is a structure in the forebrain. Along with the caudate nucleus it forms the dorsal striatum."
        }
      },
      {
@@ -336,7 +336,7 @@
            "name": "Caudate",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "33_Caudate.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Together with the putamen, the caudate forms the dorsal striatum, which is considered a single functional structure; anatomically, it is separated by a large white matter tract, the internal capsule, so it is sometimes also referred to as two structures: the medial dorsal striatum (the caudate) and the lateral dorsal striatum (the putamen)."
        }
      },
      {
@@ -362,7 +362,7 @@
            "name": "Amygdala",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "35_Amygdala.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The Amygdalae are two almond-shaped groups of nuclei located deep and medially within the temporal lobes of the brain in complex vertebrates, including humans."
        }
      },
      {
@@ -375,7 +375,7 @@
            "name": "Orbital Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "40_Orbital_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The inferior or orbital surface of the frontal lobe is concave, and rests on the orbital plate of the frontal bone. It is divided into four orbital gyri by a well-marked H-shaped orbital sulcus."
        }
      },
      {
@@ -388,7 +388,7 @@
            "name": "Anterior Sigmoid Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "41_Anterior_Sigmoid_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Oriented in a lateral-to-medial direction and separated by the cruciate sulcus."
        }
      },
      {
@@ -401,7 +401,7 @@
            "name": "Posterior Sigmoid Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "42_Posterior_Sigmoid_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Oriented in a lateral-to-medial direction and separated by the cruciate sulcus."
        }
      },
      {
@@ -414,7 +414,7 @@
            "name": "Coronal Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "43_Coronal_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The Coronal Gyrus is the anterior part of the insular cortex."
        }
      },
      {
@@ -427,7 +427,7 @@
            "name": "Anterior Ectosylvian Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "44_Anterior_Ectosylvian_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "Cells in this gyrus fall into two classes, 'modality-place-specific' and 'unspecific' due to their behavior when mechanically stimulated. "
        }
      },
      {
@@ -453,7 +453,7 @@
            "name": "Lateral Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "46_Lateral_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The Lateral Gyrus is the convolution lying lateral to the Lateral Sulcus."
        }
      },
      {
@@ -466,7 +466,7 @@
            "name": "Suprasylvian Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "47_Suprasylvian_Gyrus.surf.gii",
-           "description": "NEED A DESCRIPTION HERE - TBD"
+           "description": "The Suprasylvian Gyrus is the  - TBD"
        }       
      },
      {
@@ -583,7 +583,7 @@
            "name": "Coronal Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "64_Coronal_Sulcus.surf.gii",
-           "description": "Need a description - TBD"
+           "description": "The Coronal Gyrus is the posterior part of the insular cortex."
        }
      },
      {

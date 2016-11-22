@@ -1782,7 +1782,7 @@ papaya.viewer.Viewer.prototype.drawEmptyViewer=function(){var c,a,d;this.context
 a="Supported formats: NIFTI"+(papaya.Container.DICOM_SUPPORT?", DICOM":""),this.context.fillText(a,20,c),this.context.font="14px sans-serif",c=this.canvas.height-20,a="Papaya (Build "+PAPAYA_BUILD_NUM+")",d=this.context.measureText(a),d=d.width,this.context.fillText(a,this.canvas.width-d-20,c))};
 papaya.viewer.Viewer.prototype.drawViewer=function(c,a){var d="Yes"===this.container.preferences.radiological,f="Yes"===this.container.preferences.showOrientation;this.initialized?(this.context.save(),a?(this.axialSlice.repaint(this.currentCoord.z,c,this.worldSpace),this.coronalSlice.repaint(this.currentCoord.y,c,this.worldSpace),this.sagittalSlice.repaint(this.currentCoord.x,c,this.worldSpace)):((c||this.draggingSliceDir!==papaya.viewer.ScreenSlice.DIRECTION_AXIAL)&&this.axialSlice.updateSlice(this.currentCoord.z,
 c,this.worldSpace),(c||this.draggingSliceDir!==papaya.viewer.ScreenSlice.DIRECTION_CORONAL)&&this.coronalSlice.updateSlice(this.currentCoord.y,c,this.worldSpace),(c||this.draggingSliceDir!==papaya.viewer.ScreenSlice.DIRECTION_SAGITTAL)&&this.sagittalSlice.updateSlice(this.currentCoord.x,c,this.worldSpace)),!this.hasSurface()||papaya.utilities.PlatformUtils.smallScreen&&!c&&this.selectedSlice!==this.surfaceView||this.surfaceView.draw(),"No"===this.container.preferences.smoothDisplay?(this.context.imageSmoothingEnabled=
-!1,this.context.webkitImageSmoothingEnabled=!1,this.context.mozImageSmoothingEnabled=!1,this.context.msImageSmoothingEnabled=!1):(this.context.imageSmoothingEnabled=!0,this.context.webkitImageSmoothingEnabled=!0,this.context.mozImageSmoothingEnabled=!0,this.context.msImageSmoothingEnabled=!0),this.drawScreenSlice(this.mainImage),this.container.orthogonal&&(this.drawScreenSlice(this.lowerImageTop),this.drawScreenSlice(this.lowerImageBot),this.hasSurface()&&this.drawScreenSlice(this.lowerImageBot2)),
+!1,this.context.imageSmoothingEnabled=!1,this.context.mozImageSmoothingEnabled=!1,this.context.msImageSmoothingEnabled=!1):(this.context.imageSmoothingEnabled=!0,this.context.imageSmoothingEnabled=!0,this.context.mozImageSmoothingEnabled=!0,this.context.msImageSmoothingEnabled=!0),this.drawScreenSlice(this.mainImage),this.container.orthogonal&&(this.drawScreenSlice(this.lowerImageTop),this.drawScreenSlice(this.lowerImageBot),this.hasSurface()&&this.drawScreenSlice(this.lowerImageBot2)),
 (f||d)&&this.drawOrientation(),"Yes"===this.container.preferences.showCrosshairs&&this.drawCrosshairs(),"Yes"===this.container.preferences.showRuler&&this.drawRuler(),this.container.display&&this.container.display.drawDisplay(this.currentCoord.x,this.currentCoord.y,this.currentCoord.z,this.getCurrentValueAt(this.currentCoord.x,this.currentCoord.y,this.currentCoord.z)),this.container.contextManager&&this.container.contextManager.drawToViewer&&this.container.contextManager.drawToViewer(this.context)):
 this.drawEmptyViewer()};papaya.viewer.Viewer.prototype.hasSurface=function(){return this.container.hasSurface()&&this.surfaceView&&this.surfaceView.initialized};
 papaya.viewer.Viewer.prototype.drawScreenSlice=function(c){var a,d;c===this.surfaceView?(this.context.fillStyle=this.surfaceView.getBackgroundColor(),this.context.fillRect(c.screenOffsetX,c.screenOffsetY,c.screenDim,c.screenDim),this.context.drawImage(c.canvas,c.screenOffsetX,c.screenOffsetY),"Yes"===this.container.preferences.showRuler&&this.surfaceView===this.mainImage&&(this.context.font=papaya.viewer.Viewer.ORIENTATION_MARKER_SIZE+"px sans-serif",a=this.context.measureText("Ruler Length: ").width,
@@ -1935,8 +1935,34 @@ papaya.viewer.ScreenSurface.initShaders(this.context);for(c=0;c<this.surfaces.le
 console.log("This browser does not support OES_element_index_uint extension!");this.updateBackgroundColor()};papaya.viewer.ScreenSurface.prototype.calculateScaleFactor=function(){var c=this.ySize*this.yDim,a=this.zSize*this.zDim,d=this.xSize*this.xDim;c>d&&(d=c);a>d&&(d=a);this.scaleFactor=d/256};
 papaya.viewer.ScreenSurface.prototype.resize=function(c){this.initialized||this.initialize();this.screenDim=c;this.canvas.width=this.screenDim;this.canvas.height=this.screenDim;this.context.viewportWidth=this.canvas.width;this.context.viewportHeight=this.canvas.height};
 papaya.viewer.ScreenSurface.prototype.applyMatrixUniforms=function(c){c.uniformMatrix4fv(this.shaderProgram.pMatrixUniform,!1,this.pMatrix);c.uniformMatrix4fv(this.shaderProgram.mvMatrixUniform,!1,this.mvMatrix);var a=mat3.create();mat4.toInverseMat3(this.mvMatrix,a);mat3.transpose(a);c.uniformMatrix3fv(this.shaderProgram.nMatrixUniform,!1,a)};papaya.viewer.ScreenSurface.prototype.draw=function(){0<this.surfaces.length&&(this.initialized||this.initialize(),this.drawScene(this.context))};
-papaya.viewer.ScreenSurface.prototype.initBuffers=function(c,a){a.pointsBuffer=c.createBuffer();c.bindBuffer(c.ARRAY_BUFFER,a.pointsBuffer);c.bufferData(c.ARRAY_BUFFER,a.pointData,c.STATIC_DRAW);a.pointsBuffer.itemSize=3;a.pointsBuffer.numItems=a.numPoints;a.normalsBuffer=c.createBuffer();c.bindBuffer(c.ARRAY_BUFFER,a.normalsBuffer);c.bufferData(c.ARRAY_BUFFER,a.normalsData,c.STATIC_DRAW);a.normalsBuffer.itemSize=3;a.normalsBuffer.numItems=a.numPoints;a.colorsData&&(a.colorsBuffer=c.createBuffer(),
-c.bindBuffer(c.ARRAY_BUFFER,a.colorsBuffer),c.bufferData(c.ARRAY_BUFFER,a.colorsData,c.STATIC_DRAW),a.colorsBuffer.itemSize=4,a.colorsBuffer.numItems=a.numPoints);a.trianglesBuffer=c.createBuffer();c.bindBuffer(c.ELEMENT_ARRAY_BUFFER,a.trianglesBuffer);c.bufferData(c.ELEMENT_ARRAY_BUFFER,a.triangleData,c.STATIC_DRAW);a.trianglesBuffer.itemSize=1;a.trianglesBuffer.numItems=3*a.numTriangles};
+
+papaya.viewer.ScreenSurface.prototype.initBuffers=function(c,a)
+{
+    a.pointsBuffer=c.createBuffer();
+    c.bindBuffer(c.ARRAY_BUFFER,a.pointsBuffer);
+    c.bufferData(c.ARRAY_BUFFER,a.pointData,c.STATIC_DRAW);
+    if(a.pointsBuffer)
+    {
+        a.pointsBuffer.itemSize=3;
+        a.pointsBuffer.numItems=a.numPoints;
+        a.normalsBuffer=c.createBuffer();
+        c.bindBuffer(c.ARRAY_BUFFER,a.normalsBuffer);
+        c.bufferData(c.ARRAY_BUFFER,a.normalsData,c.STATIC_DRAW);
+        a.normalsBuffer.itemSize=3;
+        a.normalsBuffer.numItems=a.numPoints;
+        a.colorsData&&(a.colorsBuffer=c.createBuffer(), c.bindBuffer(c.ARRAY_BUFFER, a.colorsBuffer), c.bufferData(c.ARRAY_BUFFER, a.colorsData, c.STATIC_DRAW), a.colorsBuffer.itemSize=4, a.colorsBuffer.numItems=a.numPoints);
+        a.trianglesBuffer=c.createBuffer();
+        c.bindBuffer(c.ELEMENT_ARRAY_BUFFER,a.trianglesBuffer);
+        c.bufferData(c.ELEMENT_ARRAY_BUFFER,a.triangleData,c.STATIC_DRAW);
+        a.trianglesBuffer.itemSize=1;
+        a.trianglesBuffer.numItems=3*a.numTriangles;
+    }
+    else
+    {
+        //this.initBuffers(c,a);
+        console.log("Having trouble initializing buffers...")
+    }
+};
 papaya.viewer.ScreenSurface.prototype.initOrientationBuffers=function(c){this.makeOrientedTextSquare();this.orientationBuffer=c.createBuffer();this.orientationBuffer.itemSize=3;this.orientationBuffer.numItems=4;this.orientationTextureCoordBuffer=c.createBuffer();c.bindBuffer(c.ARRAY_BUFFER,this.orientationTextureCoordBuffer);this.orientationTextureCoords=[0,1,0,0,1,1,1,0];c.bufferData(c.ARRAY_BUFFER,new Float32Array(this.orientationTextureCoords),c.STATIC_DRAW);this.orientationTextureCoordBuffer.itemSize=
 2;this.orientationTextureCoordBuffer.numItems=4};
 papaya.viewer.ScreenSurface.prototype.initActivePlaneBuffers=function(c){this.updateActivePlanes();this.activePlaneAxialBuffer=c.createBuffer();this.activePlaneAxialBuffer.itemSize=3;this.activePlaneAxialBuffer.numItems=4;this.activePlaneCoronalBuffer=c.createBuffer();this.activePlaneCoronalBuffer.itemSize=3;this.activePlaneCoronalBuffer.numItems=4;this.activePlaneSagittalBuffer=c.createBuffer();this.activePlaneSagittalBuffer.itemSize=3;this.activePlaneSagittalBuffer.numItems=4;this.activePlaneAxialEdgesBuffer=
@@ -1961,11 +1987,23 @@ d=this.yDim-this.currentCoord.y-(this.yDim/2-this.volume.header.origin.y),f=this
 -this.zHalf-papaya.viewer.ScreenSurface.ORIENTATION_SIZE*this.scaleFactor-(this.zDim/2-this.volume.header.origin.z)*this.zSize]),this.drawOrientedText(c,"P",papaya.viewer.ScreenSurface.TEXT_SIZE,[a*this.xSize-this.xHalf,-this.yHalf-papaya.viewer.ScreenSurface.ORIENTATION_SIZE*this.scaleFactor-(this.yDim/2-this.volume.header.origin.y)*this.ySize,f*this.zSize-this.zHalf]),this.drawOrientedText(c,"A",papaya.viewer.ScreenSurface.TEXT_SIZE,[a*this.xSize-this.xHalf,this.yHalf+papaya.viewer.ScreenSurface.ORIENTATION_SIZE*
 this.scaleFactor-(this.yDim/2-this.volume.header.origin.y)*this.ySize,f*this.zSize-this.zHalf]),this.drawOrientedText(c,"L",papaya.viewer.ScreenSurface.TEXT_SIZE,[-this.xHalf-papaya.viewer.ScreenSurface.ORIENTATION_SIZE*this.scaleFactor+(this.xDim/2-this.volume.header.origin.x)*this.xSize,d*this.ySize-this.yHalf,f*this.zSize-this.zHalf]),this.drawOrientedText(c,"R",papaya.viewer.ScreenSurface.TEXT_SIZE,[this.xHalf+papaya.viewer.ScreenSurface.ORIENTATION_SIZE*this.scaleFactor+(this.xDim/2-this.volume.header.origin.x)*
 this.xSize,d*this.ySize-this.yHalf,f*this.zSize-this.zHalf]));"Yes"===this.viewer.container.preferences.showRuler?this.isMainView()&&this.drawRuler(c):this.rulerPoints=null}c.disable(c.DEPTH_TEST)};
-papaya.viewer.ScreenSurface.prototype.renderSurface=function(c,a,d,f,b){c.uniform1f(this.shaderProgram.alphaVal,this.surfaces[a].alpha);d?f?(c.enable(c.BLEND),c.enable(c.CULL_FACE),c.blendFunc(c.SRC_ALPHA,c.ONE_MINUS_SRC_ALPHA),c.frontFace(c.CCW),c.cullFace(c.FRONT),c.uniform3f(this.shaderProgram.ambientColorUniform,0,0,0),c.uniform3f(this.shaderProgram.pointLightingLocationUniform,0,0,-300*this.scaleFactor)):b&&(c.enable(c.BLEND),c.enable(c.CULL_FACE),c.blendFunc(c.SRC_ALPHA,c.ONE_MINUS_SRC_ALPHA),
-c.frontFace(c.CCW),c.cullFace(c.BACK),c.uniform3f(this.shaderProgram.ambientColorUniform,.2,.2,.2),c.uniform3f(this.shaderProgram.pointLightingLocationUniform,0,0,300*this.scaleFactor)):(c.uniform3f(this.shaderProgram.ambientColorUniform,.2,.2,.2),c.uniform3f(this.shaderProgram.pointLightingLocationUniform,0,0,300*this.scaleFactor));c.uniform1i(this.shaderProgram.hasSolidColor,0);c.uniform1i(this.shaderProgram.hasColors,0);this.surfaces[a].solidColor&&(c.uniform1i(this.shaderProgram.hasSolidColor,
-1),c.uniform4f(this.shaderProgram.solidColor,this.surfaces[a].solidColor[0],this.surfaces[a].solidColor[1],this.surfaces[a].solidColor[2],1));c.bindBuffer(c.ARRAY_BUFFER,this.surfaces[a].pointsBuffer);c.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute,this.surfaces[a].pointsBuffer.itemSize,c.FLOAT,!1,0,0);c.bindBuffer(c.ARRAY_BUFFER,this.surfaces[a].normalsBuffer);c.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute,this.surfaces[a].normalsBuffer.itemSize,c.FLOAT,!1,0,0);this.surfaces[a].colorsData?
-(c.uniform1i(this.shaderProgram.hasColors,1),c.bindBuffer(c.ARRAY_BUFFER,this.surfaces[a].colorsBuffer),c.enableVertexAttribArray(this.shaderProgram.vertexColorAttribute),c.vertexAttribPointer(this.shaderProgram.vertexColorAttribute,this.surfaces[a].colorsBuffer.itemSize,c.FLOAT,!1,0,0)):c.disableVertexAttribArray(this.shaderProgram.vertexColorAttribute);c.bindBuffer(c.ELEMENT_ARRAY_BUFFER,this.surfaces[a].trianglesBuffer);c.drawElements(c.TRIANGLES,this.surfaces[a].trianglesBuffer.numItems,c.UNSIGNED_INT,
-0);d&&(f||b)&&(c.disable(c.BLEND),c.disable(c.CULL_FACE))};
+papaya.viewer.ScreenSurface.prototype.renderSurface=function(c,a,d,f,b)
+{
+    c.uniform1f(this.shaderProgram.alphaVal,this.surfaces[a].alpha);
+    d?f?(c.enable(c.BLEND),c.enable(c.CULL_FACE),c.blendFunc(c.SRC_ALPHA,c.ONE_MINUS_SRC_ALPHA),c.frontFace(c.CCW),c.cullFace(c.FRONT),c.uniform3f(this.shaderProgram.ambientColorUniform,0,0,0),c.uniform3f(this.shaderProgram.pointLightingLocationUniform,0,0,-300*this.scaleFactor)):b&&(c.enable(c.BLEND),c.enable(c.CULL_FACE),c.blendFunc(c.SRC_ALPHA,c.ONE_MINUS_SRC_ALPHA),
+    c.frontFace(c.CCW),c.cullFace(c.BACK),c.uniform3f(this.shaderProgram.ambientColorUniform,.2,.2,.2),c.uniform3f(this.shaderProgram.pointLightingLocationUniform,0,0,300*this.scaleFactor)):(c.uniform3f(this.shaderProgram.ambientColorUniform,.2,.2,.2),c.uniform3f(this.shaderProgram.pointLightingLocationUniform,0,0,300*this.scaleFactor));
+    c.uniform1i(this.shaderProgram.hasSolidColor,0);
+    c.uniform1i(this.shaderProgram.hasColors,0);
+    this.surfaces[a].solidColor&&(c.uniform1i(this.shaderProgram.hasSolidColor,1),c.uniform4f(this.shaderProgram.solidColor,this.surfaces[a].solidColor[0],this.surfaces[a].solidColor[1],this.surfaces[a].solidColor[2],1));
+    c.bindBuffer(c.ARRAY_BUFFER,this.surfaces[a].pointsBuffer);
+    c.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute,this.surfaces[a].pointsBuffer.itemSize,c.FLOAT,!1,0,0);
+    c.bindBuffer(c.ARRAY_BUFFER,this.surfaces[a].normalsBuffer);
+    c.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute,this.surfaces[a].normalsBuffer.itemSize,c.FLOAT,!1,0,0);
+    this.surfaces[a].colorsData?(c.uniform1i(this.shaderProgram.hasColors,1),c.bindBuffer(c.ARRAY_BUFFER,this.surfaces[a].colorsBuffer),c.enableVertexAttribArray(this.shaderProgram.vertexColorAttribute),c.vertexAttribPointer(this.shaderProgram.vertexColorAttribute,this.surfaces[a].colorsBuffer.itemSize,c.FLOAT,!1,0,0)):c.disableVertexAttribArray(this.shaderProgram.vertexColorAttribute);
+    c.bindBuffer(c.ELEMENT_ARRAY_BUFFER,this.surfaces[a].trianglesBuffer);
+    c.drawElements(c.TRIANGLES,this.surfaces[a].trianglesBuffer.numItems,c.UNSIGNED_INT,0);
+    d&&(f||b)&&(c.disable(c.BLEND),c.disable(c.CULL_FACE));
+};
 papaya.viewer.ScreenSurface.prototype.drawRuler=function(c){var a=!0;null===this.rulerPoints&&(this.rulerPoints=new Float32Array(6),a=this.findInitialRulerPoints(c),this.drawScene(c));a&&(c.uniform1i(this.shaderProgram.ruler,1),this.drawRulerPoint(c,this.rulerPoints[0],this.rulerPoints[1],this.rulerPoints[2]),this.drawRulerPoint(c,this.rulerPoints[3],this.rulerPoints[4],this.rulerPoints[5]),c.bindBuffer(c.ARRAY_BUFFER,this.rulerLineBuffer),c.bufferData(c.ARRAY_BUFFER,this.rulerPoints,c.DYNAMIC_DRAW),
 c.bindBuffer(c.ARRAY_BUFFER,this.rulerLineBuffer),c.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute,this.rulerLineBuffer.itemSize,c.FLOAT,!1,0,0),c.drawArrays(c.LINES,0,2),c.uniform1i(this.shaderProgram.ruler,0))};
 papaya.viewer.ScreenSurface.prototype.drawRulerPoint=function(c,a,d,f){this.sphereVertexPositionBuffer.numItems=this.rulerPointData.vertices.length/3;c.bindBuffer(c.ARRAY_BUFFER,this.sphereVertexPositionBuffer);c.bufferData(c.ARRAY_BUFFER,new Float32Array(this.rulerPointData.vertices),c.STATIC_DRAW);this.sphereNormalsPositionBuffer.numItems=this.rulerPointData.normals.length/3;c.bindBuffer(c.ARRAY_BUFFER,this.sphereNormalsPositionBuffer);c.bufferData(c.ARRAY_BUFFER,new Float32Array(this.rulerPointData.normals),
@@ -1973,7 +2011,7 @@ c.STATIC_DRAW);this.sphereVertexIndexBuffer.numItems=this.rulerPointData.indices
 c.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute,this.sphereVertexPositionBuffer.itemSize,c.FLOAT,!1,0,0);c.bindBuffer(c.ARRAY_BUFFER,this.sphereNormalsPositionBuffer);c.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute,this.sphereNormalsPositionBuffer.itemSize,c.FLOAT,!1,0,0);mat4.set(this.mvMatrix,this.tempMat);mat4.translate(this.mvMatrix,[a,d,f]);this.applyMatrixUniforms(c);c.bindBuffer(c.ELEMENT_ARRAY_BUFFER,this.sphereVertexIndexBuffer);c.drawElements(c.TRIANGLES,
 this.sphereVertexIndexBuffer.numItems,c.UNSIGNED_SHORT,0);mat4.set(this.tempMat,this.mvMatrix);this.applyMatrixUniforms(c)};
 papaya.viewer.ScreenSurface.prototype.drawOrientedText=function(c,a,d,f){null===this.orientationCanvas&&this.initOrientationBuffers(this.context);this.updateOrientedTextSquare(d,a);null===this.orientationTexture&&(this.orientationTexture=c.createTexture());this.bindOrientation(c);c.enableVertexAttribArray(this.shaderProgram.textureCoordAttribute);c.uniform1i(this.shaderProgram.orientationText,1);c.enable(c.BLEND);c.blendFunc(c.SRC_ALPHA,c.ONE_MINUS_SRC_ALPHA);this.orientationContext.imageSmoothingEnabled=
-!0;this.orientationContext.webkitImageSmoothingEnabled=!0;this.orientationContext.mozImageSmoothingEnabled=!0;this.orientationContext.msImageSmoothingEnabled=!0;this.orientationContext.textAlign="center";this.orientationContext.textBaseline="middle";this.orientationContext.font=d+"px sans-serif";this.orientationContext.clearRect(0,0,this.orientationCanvas.width,this.orientationCanvas.height);this.orientationContext.fillStyle="#FFFFFF";this.orientationContext.fillText(a,this.orientationCanvas.width/
+!0;this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.mozImageSmoothingEnabled=!0;this.orientationContext.msImageSmoothingEnabled=!0;this.orientationContext.textAlign="center";this.orientationContext.textBaseline="middle";this.orientationContext.font=d+"px sans-serif";this.orientationContext.clearRect(0,0,this.orientationCanvas.width,this.orientationCanvas.height);this.orientationContext.fillStyle="#FFFFFF";this.orientationContext.fillText(a,this.orientationCanvas.width/
 2,this.orientationCanvas.height/2);mat4.set(this.mvMatrix,this.tempMat);mat4.multiplyVec3(this.mvMatrix,f);mat4.identity(this.mvMatrix);c.bindBuffer(c.ARRAY_BUFFER,this.orientationBuffer);c.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute,this.orientationBuffer.itemSize,c.FLOAT,!1,0,0);c.pixelStorei(c.UNPACK_FLIP_Y_WEBGL,1);c.bindTexture(c.TEXTURE_2D,this.orientationTexture);c.texParameteri(c.TEXTURE_2D,c.TEXTURE_WRAP_S,c.CLAMP_TO_EDGE);c.texParameteri(c.TEXTURE_2D,c.TEXTURE_WRAP_T,
 c.CLAMP_TO_EDGE);c.texImage2D(c.TEXTURE_2D,0,c.RGBA,c.RGBA,c.UNSIGNED_BYTE,this.orientationCanvas);c.texParameteri(c.TEXTURE_2D,c.TEXTURE_MAG_FILTER,c.LINEAR);c.texParameteri(c.TEXTURE_2D,c.TEXTURE_MIN_FILTER,c.LINEAR_MIPMAP_NEAREST);c.generateMipmap(c.TEXTURE_2D);c.bindTexture(c.TEXTURE_2D,null);c.bindBuffer(c.ARRAY_BUFFER,this.orientationTextureCoordBuffer);c.vertexAttribPointer(this.shaderProgram.textureCoordAttribute,this.orientationTextureCoordBuffer.itemSize,c.FLOAT,!1,0,0);c.activeTexture(c.TEXTURE0);
 c.bindTexture(c.TEXTURE_2D,this.orientationTexture);c.uniform1i(this.shaderProgram.samplerUniform,0);mat4.translate(this.mvMatrix,f);this.applyMatrixUniforms(c);c.drawArrays(c.TRIANGLE_STRIP,0,4);mat4.set(this.tempMat,this.mvMatrix);this.applyMatrixUniforms(c);c.disable(c.BLEND);c.uniform1i(this.shaderProgram.orientationText,0);c.disableVertexAttribArray(this.shaderProgram.textureCoordAttribute)};
@@ -1987,8 +2025,8 @@ papaya.viewer.ScreenSurface.prototype.updateDynamic=function(c,a,d){a=(a-this.dy
 mat4.multiply(this.tempMat2,this.centerMatInv,this.mouseRotDrag)};papaya.viewer.ScreenSurface.prototype.updateTranslateDynamic=function(c,a,d){c=(c-this.dynamicStartX)*papaya.viewer.ScreenSurface.MOUSE_SENSITIVITY*d;a=(a-this.dynamicStartY)*papaya.viewer.ScreenSurface.MOUSE_SENSITIVITY*d*-1;mat4.identity(this.mouseTransDrag);mat4.translate(this.mouseTransDrag,[c,a,0])};
 papaya.viewer.ScreenSurface.prototype.updateCurrent=function(){var c=mat4.multiply(this.mouseRotDrag,this.mouseRotCurrent);mat4.set(c,this.mouseRotCurrent);c=mat4.multiply(this.mouseTransDrag,this.mouseTransCurrent);mat4.set(c,this.mouseTransCurrent);mat4.identity(this.mouseTransDrag);mat4.identity(this.mouseRotDragX);mat4.identity(this.mouseRotDragY);mat4.identity(this.mouseRotDrag)};papaya.viewer.ScreenSurface.prototype.clearTransform=function(c){mat4.identity(c);return c};
 papaya.viewer.ScreenSurface.prototype.makeOrientedTextSquare=function(){var c=papaya.viewer.ScreenSurface.ORIENTATION_SIZE*this.scaleFactor;this.orientationVerts[0]=-c;this.orientationVerts[1]=c;this.orientationVerts[2]=0;this.orientationVerts[3]=-c;this.orientationVerts[4]=-c;this.orientationVerts[5]=0;this.orientationVerts[6]=c;this.orientationVerts[7]=c;this.orientationVerts[8]=0;this.orientationVerts[9]=c;this.orientationVerts[10]=-c;this.orientationVerts[11]=0;this.orientationCanvas=document.createElement("canvas");
-this.orientationContext=this.orientationCanvas.getContext("2d");this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.webkitImageSmoothingEnabled=!0;this.orientationContext.mozImageSmoothingEnabled=!0;this.orientationContext.msImageSmoothingEnabled=!0;this.orientationContext.fillStyle="#FFFFFF";this.orientationContext.textAlign="center";this.orientationContext.textBaseline="middle"};
-papaya.viewer.ScreenSurface.prototype.updateOrientedTextSquare=function(c,a){var d;this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.webkitImageSmoothingEnabled=!0;this.orientationContext.mozImageSmoothingEnabled=!0;this.orientationContext.msImageSmoothingEnabled=!0;this.orientationContext.fillStyle="#FFFFFF";this.orientationContext.textAlign="center";this.orientationContext.textBaseline="middle";this.orientationContext.font=c+"px sans-serif";d=this.orientationContext.measureText(a).width;
+this.orientationContext=this.orientationCanvas.getContext("2d");this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.mozImageSmoothingEnabled=!0;this.orientationContext.msImageSmoothingEnabled=!0;this.orientationContext.fillStyle="#FFFFFF";this.orientationContext.textAlign="center";this.orientationContext.textBaseline="middle"};
+papaya.viewer.ScreenSurface.prototype.updateOrientedTextSquare=function(c,a){var d;this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.imageSmoothingEnabled=!0;this.orientationContext.mozImageSmoothingEnabled=!0;this.orientationContext.msImageSmoothingEnabled=!0;this.orientationContext.fillStyle="#FFFFFF";this.orientationContext.textAlign="center";this.orientationContext.textBaseline="middle";this.orientationContext.font=c+"px sans-serif";d=this.orientationContext.measureText(a).width;
 d=Math.max(d,c);this.orientationCanvas.width=papaya.utilities.MathUtils.getPowerOfTwo(d);this.orientationCanvas.height=papaya.utilities.MathUtils.getPowerOfTwo(d)};
 papaya.viewer.ScreenSurface.prototype.updateActivePlanes=function(){var c,a,d;if(this.showSurfacePlanes||this.viewer.isShowingCrosshairs())c=this.currentCoord.x+(this.xDim/2-this.volume.header.origin.x),a=this.yDim-this.currentCoord.y-(this.yDim/2-this.volume.header.origin.y),d=this.zDim-this.currentCoord.z-(this.zDim/2-this.volume.header.origin.z),this.activePlaneVertsAxial[0]=-this.xHalf+this.centerWorld.x,this.activePlaneVertsAxial[1]=this.yHalf+this.centerWorld.y,this.activePlaneVertsAxial[2]=
 d*this.zSize-this.zHalf,this.activePlaneVertsAxial[3]=-this.xHalf+this.centerWorld.x,this.activePlaneVertsAxial[4]=-this.yHalf+this.centerWorld.y,this.activePlaneVertsAxial[5]=d*this.zSize-this.zHalf,this.activePlaneVertsAxial[6]=this.xHalf+this.centerWorld.x,this.activePlaneVertsAxial[7]=this.yHalf+this.centerWorld.y,this.activePlaneVertsAxial[8]=d*this.zSize-this.zHalf,this.activePlaneVertsAxial[9]=this.xHalf+this.centerWorld.x,this.activePlaneVertsAxial[10]=-this.yHalf+this.centerWorld.y,this.activePlaneVertsAxial[11]=
@@ -2033,7 +2071,43 @@ papaya.Container.GetCursorLocation=function(c,a){
     console.log(papayaContainers[a].viewer.surfaces[c])
     return [pos, current_label];
 };
-papaya.Container.SetSurfaceAlpha=function(c,a,al){console.log("NUMBER OF SURFACES....." + papayaContainers[c].viewer.surfaces.length); papayaContainers[c].viewer.surfaces[a].alpha = al;}
+papaya.Container.SetSurfaceAlpha=function(c,a,al){
+    console.log("NUMBER OF SURFACES....." + papayaContainers[c].viewer.surfaces.length); 
+    papayaContainers[c].viewer.surfaces[a].alpha = al;
+}
+papaya.Container.GetNumberOfSurfaces=function(c)
+{
+    return papayaContainers[c].viewer.surfaces.length;
+}
+papaya.Container.GetSurfaceIndexByName=function(c,name){
+    var surface_index = 0;
+    for(var i = 0; i < papayaContainers[c].viewer.surfaces.length; i++)
+    {
+        var usc_seps = papayaContainers[c].viewer.surfaces[i]["filename"].split('.')[0].split('_');
+        var act_name = "";
+        // skip the first one, its a #
+        for(var j = 0; j < usc_seps.length; j++)
+        {
+            // if not a number
+            if( ! isNaN(usc_seps[j]) )
+            {
+                var nothing=0;
+            }
+            // first idx is a number
+            else
+            {
+                act_name = act_name + usc_seps[j] + " ";       
+            }                 
+        }        
+        var s_name = act_name.replace(/ +$/, "");
+        if(s_name.trim() == name.trim())
+        {
+            surface_index = i;
+            return surface_index;
+        }       
+    }
+    return -1;
+}
 papaya.Container.showSurface=function(c,a){papayaContainers[c].viewer.surfaces[a].hidden=!1;papayaContainers[c].viewer.drawViewer(!0,!1)};papaya.Container.hideImage=function(c,a){papayaContainers[c].viewer.screenVolumes[a].hidden=!0;papayaContainers[c].viewer.drawViewer(!0,!1)};papaya.Container.showImage=function(c,a){papayaContainers[c].viewer.screenVolumes[a].hidden=!1;papayaContainers[c].viewer.drawViewer(!0,!1)};
 papaya.Container.addImage=function(c,a,d){d&&(papayaContainers[c].params=$.extend({},papayaContainers[c].params,d));a instanceof Array?d=a:(d=[],d[0]=a);papayaContainers[c].params.images?papayaContainers[c].viewer.loadImage(d,!0,!1):papayaContainers[c].params.encodedImages&&papayaContainers[c].viewer.loadImage(d,!1,!0)};
 papaya.Container.findParameters=function(c){var a,d=null;a=c.data("params");a||(c=c.find("."+PAPAYA_VIEWER_CSS))&&(a=c.data("params"));a&&("object"===typeof a?d=a:window[a]&&(d=window[a]));d&&papaya.utilities.UrlUtils.getQueryParams(d);return d};

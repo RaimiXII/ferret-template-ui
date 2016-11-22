@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<!--        To run this avoiding the cross-origin file request nonsense, cd into THIS (/Web) directory and run the following:
+                            python -m http.server                            
+                    then browse to:                             
+                            localhost:8000                             
+                    to launch the page.
+-->
+<!-- Test: Typical fullscreen usage; autoload an image and overlay. -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- iOS meta tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675327" />
+  <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675327"></script>
+  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery.min.js"></script> 
+  <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
+  <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
+  <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
+  <style type="text/css">
+    html, body {
+      margin: 0 auto;
+      padding: 0;
+      background: #3F3F3F;
+      background-image: url('img/turtle_shell.jpg');
+    }
+    .clear-both {
+       clear: both;
+    }
+    #sub-left {
+       overflow: hidden;
+       float: left;
+    }
+    #sub-right {
+       overflow: hidden;
+       float: right;
+    }    
+    nav { background: #2ba0db; width: 97%; margin:0 auto;  }
+    nav ul {
+      font-size: 0;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline-block;
+      position: relative;
+    }
+    nav ul li a {
+      color: #fff;
+      display: block;
+      font-size: 14px;
+      font-color: #fff
+      padding: 15px 14px;
+      transition: 0.3s linear;
+    }
+    nav ul li:hover { background: #c5c5c5; }
+    nav ul li ul {
+      border-bottom: 5px solid #2ba0db;
+      display: none;
+      position: absolute;
+      width: 250px;
+    }
+    nav ul li ul li {
+      border-top: 1px solid #444;
+      display: block;
+    }
+    nav ul li ul li:first-child { border-top: none; }
+    nav ul li ul li a {
+      background: #F5F5DC;
+      display: block;
+      padding: 10px 14px;
+    }
+    nav ul li ul li a:hover { background: #c5c5c5; }    
+    .container2 {
+        display: flex;
+    }
+    #view_and_info1 {
+      list-style-type: none; display: inline; 
+      }      
+    #view_and_info1 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }
+    #view_and_info2 {
+      list-style-type: none; display: inline; 
+    }      
+    #view_and_info2 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }
+    #view_and_info3 {
+      list-style-type: none; display: inline; 
+    }      
+    #view_and_info3 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }
+    #view_and_info4 {
+      list-style-type: none; display: inline; 
+    }      
+    #view_and_info4 li{
+      list-style-type: none;
+      border-right: 1px solid #ffffff; width:250; 
+    }        
+    .column {
+        flex: 1;        
+        background: #f2f2f2;
+        border: 1px solid #e6e6e6;
+    }
+    .column-one {
+        order: 1;
+    }
+    .column-two {
+        order: 2;
+    }
+    .column-three {
+        order: 3;
+    }
+    .smallViewer {
+        margin:20px;width:500px;height:415px;
+    }    
+    .midViewer {
+        margin:1px;width:950px;height:790px;margin:0 auto; 
+    }    
+    .roiViewer {
+        margin:1px;width:775px;height:790px; margin:0 auto; 
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }    
+    .float_center {
+        float: right;
+        position: relative;
+        right: 42%; /* or right 50% */
+        text-align: left;
+    }    
+    .rcorners1 {
+        border-radius: 25px;
+        background: #f1f1f1;
+        position: relative;
+        padding: 15px;         
+    }    
+    .rcorners2 {
+        border-radius: 10px;
+        background: #f1f1f1;
+        padding: 3px;  
+        position: relative;
+        left: -2%;        
+    }        
+    #ex1Slider .slider-selection {
+	    background: #BABABA;
+	     position: relative;
+	     width:200px;height:15px; 
+    }
+    #ex2Slider .slider-selection {
+	    background: #8ABABA;
+	     position: relative;
+	     width:200px;height:15px; 
+    }
+    #ex3Slider .slider-selection {
+	    background: #6ABABA;
+	     position: relative;
+	     width:200px;height:15px; 
+    }
+    #ex4Slider .slider-selection {
+	    background: #2ABABA;
+        position: relative;
+        width:200px;height:15px; 
+    }
+    .roi-viz-tools {
+        background: #ffffff;
+    }         
+  </style>
+    <script type="text/javascript">
+    
+    var LoadNewSurfaces = function(index){
+        var surfs = [];
+        var rgbs = [];
+        var fnames = [];
+        var data = brain_region_struct;
+        params = [];
+        params1 = []
+        for(var i=21; i < 25; i++){
+            var datapath = data["rois"][i]["data"]["path"];
+            var fname       = data["rois"][i]["data"]["filename"];
+            var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) )/255);
+            var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) )/255);
+            var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) )/255);                    
+            console.log("Processing .... " + data["rois"][i]["data"]["path"] + data["rois"][i]["data"]["filename"] + "   with color:  ("+red+", "+green+", "+blue+")");                    
+            surfs.push(datapath+fname)
+            fnames.push(fname)
+            rgbs.push([red,green,blue]);
+        }
+        params["surfaces"] = surfs;
+        params1["surfaces"] = surfs;
+        for(var j=0;j<fnames.length;j++){     
+            console.log("THE SHORT FILENAME :  " + String(fnames[j]));               
+            if(String(fnames[j]) == "ev_dti_brain.surf.gii"){
+                params[String(fnames[j])] = {color: [0.8,0.8,0.8], alpha: 0.75};
+            } else {
+                params[String(fnames[j])] = {color: rgbs[j], alpha: 1};
+            }
+        }                
+        params1["showSurfacePlanes"] = false;
+        params1["surfaceBackground"] = "Black";                  
+        params1.showControls = false;   
+        params1["kioskMode"] = true;    
+        papaya.Container.showImage(index[0], index[1]);
+    };
+    
+    var GetRegionDataByName = function(name){    
+        var roi_list = brain_region_struct["rois"];
+        var description = ""
+        for(var i=0; i < roi_list.length; i++){
+            if(name == roi_list[i]["data"]["name"]){
+                console.log("Name is matched!")
+                console.log("Description ->  " + roi_list[i]["data"]["description"])
+                description = roi_list[i]["data"]["description"];
+            }
+        }
+        return description;
+    };
+    var params  = [];           
+    var params1 = [];
+    var params2 = [];
+    var params3 = [];
+    var params4 = [];       
+    var brain_region_struct = {};    
+    var image_map = {}; 
+            image_map["ExVivo_DTI_FA"] =    [0,0];
+            image_map["ExVivo_DTI_DEC"] =   [0,1];       
+            image_map["ExVivo_DTI_TR"] =    [0,2];
+            image_map["InVivo_DTI_FA"] =    [1,0];
+            image_map["InVivo_DTI_DEC"] =   [1,1];        
+            image_map["InVivo_DTI_TR"] =    [1,2];        
+            image_map["Template4D_TE010"] = [2,0];
+            image_map["Template4D_TE020"] = [2,1];
+            image_map["Template4D_TE030"] = [2,2];
+            image_map["Template4D_TE040"] = [2,3];
+            image_map["Template4D_TE050"] = [2,4];
+            image_map["Template4D_TE060"] = [2,5];
+            image_map["Template4D_TE070"] = [2,6];
+            image_map["Template4D_TE080"] = [2,7];
+            image_map["Template4D_TE090"] = [2,8];
+            image_map["Template4D_TE100"] = [2,9];
+            image_map["ivT2_TE012"] =       [3,0];
+            image_map["ivT2_TE036"] =       [3,1];
+            image_map["ivT2_TE060"] =       [3,2];
+            image_map["ivT2_TE084"] =       [3,3];
+            image_map["ivT2_TE108"] =       [3,4];
+            image_map["ivT2_TE132"] =       [3,5];                            
+            var rois={};    //  Load in the ROI json file
+            $.getJSON('ext/Brain_Regions.json', function(data) { 
+                console.log("PRINTING ROI OBJECT........"+data)                                
+                brain_region_struct = data;
+                var surfs = [];
+                var fnames = [];
+                var rgbs = [];
+                surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
+                fnames.push("ev_dti_brain.surf.gii")                
+                var current_image = "";            
+                params1["surfaces"] = [];
+                params1["images"] =  [                                            
+                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
+                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                     ];                
+                params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+                params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                                  
+                //for(var i=0; i < data["rois"].length; i++){ 
+                //for(var i=3; i < 8; i++){
+                for(var i=3; i < 8; i++){
+                    var datapath = data["rois"][i]["data"]["path"];
+                    var fname       = data["rois"][i]["data"]["filename"];
+                    var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) )/255);
+                    var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) )/255);
+                    var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) )/255);                    
+                    console.log("Processing .... " + data["rois"][i]["data"]["path"] + data["rois"][i]["data"]["filename"] + "   with color:  ("+red+", "+green+", "+blue+")");                    
+                    surfs.push(datapath+fname)
+                    fnames.push(fname)
+                    rgbs.push([red,green,blue]);
+                }
+                params1["surfaces"] = surfs;
+                for(var j=0;j<fnames.length;j++){     
+                    console.log("THE SHORT FILENAME :  " + String(fnames[j]));               
+                    if(String(fnames[j]) == "ev_dti_brain.surf.gii"){
+                        params[String(fnames[j])] = {color: [0.8,0.8,0.8], alpha: 0.75};
+                    } else {
+                        params[String(fnames[j])] = {color: rgbs[j], alpha: 1};
+                    }
+                }                
+                params1["showSurfacePlanes"] = false;
+                params1["surfaceBackground"] = "Black";                  
+                params1.showControls = false;   
+                params1["kioskMode"] = true;
+            });                  
+                params2["kioskMode"] = true;                            
+                params2["images"] =  [                                            
+                                        "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                                        "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                                        "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii"
+                                     ];  
+                params2["surfaces"] = [];
+                params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
+                params2["iv_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                    
+                params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0.1, "max": 0.87};
+                params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
+                params2["showSurfacePlanes"] = false;
+                params2["surfaceBackground"] = "Black";
+                params2.showControls = false;                                
+                params3["kioskMode"] = true;                
+                params3["images"] =  [  
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                                        "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
+                                     ];                    
+                params3["surfaces"] = [];                
+                params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
+                params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                     
+                params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
+                params3["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
+                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
+                params3["showSurfacePlanes"] = false;
+                params3["surfaceBackground"] = "Black";
+                params3.showControls = false
+                params4["kioskMode"] = true;                
+                params4["images"] =  [
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                     ];  
+                params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};            
+                params4["surfaces"] = [];
+                params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
+                params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                 
+                params4["showSurfacePlanes"] = false;                                                        
+                params4["surfaceBackground"] = "Black";
+                params4.showControls = false
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#roi-viz-tools").show();
+        $("#ex1Slider").show();
+        $("#ex2Slider").show();
+        $("#ex3Slider").show();
+        $("#ex4Slider").show();        
+        $("#ex_vivo_dti").hide();
+        $("#in_vivo_dti").hide();
+        $("#in_vivo_T2").hide();
+        $("#ex_vivo_T2").hide();                                         
+        $("#view_and_info1").hide()                    
+        $("#view_and_info2").hide()                    
+        $("#view_and_info3").hide()                    
+        $("#view_and_info4").hide()        
+        $("#visualization_templates").hide()
+        $("#image_actions").hide()
+        var hide_image = function(index){            
+            papaya.Container.hideImage(index[0], index[1]);
+        };
+        var show_image = function(index){
+            papaya.Container.showImage(index[0], index[1]);
+        };
+        var get_cursor_location = function(index){
+            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+            var loc = res[0];
+            console.log("LOCATION ->  " + loc)                      
+        };
+        var get_roi_label = function(index){
+            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+            var lbl = res[1];            
+            var desc = GetRegionDataByName(lbl);
+            var r_str = "<h3>"+lbl+"</h3>";
+            var d_str = "<h3>"+desc+"</h3>";
+            $("#current_roi").html(r_str);
+            $("#roi_description").html(d_str);
+        };
+        var set_surface_alpha = function(index, val){
+            papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
+            papaya.Container.showImage(index[0], index[1]);
+            console.log("Setting surface alpha to "+val)
+        };
+        var reset_viewer = function( ){
+            var keys = [];
+            for (var key in image_map) {
+              if (image_map.hasOwnProperty(key)) {
+                keys.push(key);
+              }
+            }
+            for(var i = 0; i < keys.length; i++){
+                hide_image(image_map[keys[i]]);
+            }
+        };
+        var reset_roi_info = function( ){
+            $("#ROI_area1").hide()
+            $("#ROI_area2").hide()
+            $("#ROI_area3").hide()
+            $("#ROI_area4").hide()
+        };
+        var set_background_color_for_list = function( list, color ){        
+            for( i in list){
+                $(list[i]).css('background', color);
+            }
+        };
+        var update_params = function(img){           
+            reset_viewer();   
+            if ( img == "ev_dti_dec" ){             
+             current_image = "ExVivo_DTI_FA"
+                show_image(image_map["ExVivo_DTI_DEC"]);
+                set_background_color_for_list(["#ev_dec_txt"], '#126d9b');
+                set_background_color_for_list(["#ev_tr_txt","#ev_fa_txt"], '#fff');
+                $("#img_description1").html( "<i>Directionally Encoded Map</i>" )
+                $("#template1_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description1"),
+                        $("<br>"),
+                        $("ROI name: ").append($("#current_roi")),
+                        $("<br>"),
+                        $("ROI description: ").append($("#roi_description"))
+                    ])
+                )                                
+            } else if ( img == "ev_dti_fa" ){
+             current_image = "ExVivo_DTI_FA"
+                show_image(image_map["ExVivo_DTI_FA"]);
+                set_background_color_for_list(["#ev_fa_txt"], '#126d9b');
+                set_background_color_for_list(["#ev_tr_txt","#ev_dec_txt"], '#fff');
+                $("#img_description1").html( "<i>Fractional Anisotropy</i>" )
+                $("#template1_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description1"),
+                        $("<br>"),
+                        $("ROI name: ").append($("#current_roi")),
+                        $("<br>"),
+                        $("ROI description: ").append($("#roi_description"))
+                    ])
+                ) 
+            } else if ( img == "ev_dti_tr" ){
+                 current_image = "ExVivo_DTI_FA"
+                show_image(image_map["ExVivo_DTI_TR"]);
+                set_background_color_for_list(["#ev_tr_txt"], '#126d9b');
+                set_background_color_for_list(["#ev_dec_txt","#ev_fa_txt"], '#fff');
+                $("#img_description1").html( "<i>Trace</i>" )
+                $("#template1_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description1"),
+                        $("<br>"),
+                        $("<p>ROI name: </p>").append($("#current_roi")),
+                        $("<br>"),
+                        $("<p>ROI description: </p>").append($("#roi_description"))
+                    ])
+                ) 
+            } else if ( img == "iv_dti_tr" ){
+                 current_image = "InVivo_DTI_FA"
+                show_image(image_map["InVivo_DTI_TR"]);
+                set_background_color_for_list(["#iv_tr_txt"], '#126d9b');
+                set_background_color_for_list(["#iv_dec_txt","#iv_fa_txt"], '#fff');
+                $("#img_description2").html( "<i>Trace</i>" )
+                $("#template2_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description2"),
+                    ])
+                ) 
+            } else if ( img == "iv_dti_fa" ){
+                 current_image = "InVivo_DTI_FA"
+                show_image(image_map["InVivo_DTI_FA"]);
+                set_background_color_for_list(["#iv_fa_txt"], '#126d9b');
+                set_background_color_for_list(["#iv_tr_txt","#iv_dec_txt"], '#fff');
+                $("#img_description2").html( "<i>Fractional Anisotropy</i>" )
+                $("#template2_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description2"),
+                    ])
+                ) 
+            } else if ( img == "iv_dti_dec" ){
+                 current_image = "InVivo_DTI_FA"
+                show_image(image_map["InVivo_DTI_DEC"]);
+                set_background_color_for_list(["#iv_dec_txt"], '#126d9b');
+                set_background_color_for_list(["#iv_tr_txt","#iv_fa_txt"], '#fff');
+                $("#img_description2").html( "<i>Directionally Encoded Map</i>" )
+                $("#template2_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description2"),
+                    ])
+                ) 
+            } else if ( img == "ev_t2_10" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE010"]);
+                set_background_color_for_list(["#ev_T2_10"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 10 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_20" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE020"]);
+                set_background_color_for_list(["#ev_T2_20"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 20 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_30" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE030"]);
+                set_background_color_for_list(["#ev_T2_30"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 30 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_40" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE040"]);
+                set_background_color_for_list(["#ev_T2_40"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 40 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_50" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE050"]);
+                set_background_color_for_list(["#ev_T2_50"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 50 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_60" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE060"]);
+                set_background_color_for_list(["#ev_T2_60"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_70","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 60 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_70" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE070"]);
+                set_background_color_for_list(["#ev_T2_70"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_80","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 70 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_80" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE080"]);
+                set_background_color_for_list(["#ev_T2_80"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_90","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 80 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_90" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE090"]);
+                set_background_color_for_list(["#ev_T2_90"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_100"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 90 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "ev_t2_100" ){
+                 current_image = "Template4D_TE010"
+                show_image(image_map["Template4D_TE100"]);
+                set_background_color_for_list(["#ev_T2_100"], '#126d9b');
+                set_background_color_for_list(["#ev_T2_10","#ev_T2_20","#ev_T2_30","#ev_T2_40","#ev_T2_50","#ev_T2_60","#ev_T2_70","#ev_T2_80","#ev_T2_90"], '#fff');
+                $("#img_description3").html( "<i>T2 @ 100 mm/s^2</i>" )
+                $("#template3_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description3"),
+                    ])
+                )
+            } else if ( img == "iv_t2_012" ){
+                current_image = "ivT2_TE012"
+                show_image(image_map["ivT2_TE012"]);
+                set_background_color_for_list(["#iv_T2_12"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 12 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_036" ){
+                current_image = "ivT2_TE012"
+                show_image(image_map["ivT2_TE036"]);
+                set_background_color_for_list(["#iv_T2_36"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_60","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 36 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4")
+                    ])
+                )
+            } else if ( img == "iv_t2_060" ){
+                current_image = "ivT2_TE012"
+                show_image(image_map["ivT2_TE060"]);
+                set_background_color_for_list(["#iv_T2_60"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_84","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 60 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_084" ){
+                current_image = "ivT2_TE012"
+                show_image(image_map["ivT2_TE084"]);
+                set_background_color_for_list(["#iv_T2_84"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_108","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 84 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_108" ){
+                 current_image = "ivT2_TE012"
+                show_image(image_map["ivT2_TE108"]);
+                set_background_color_for_list(["#iv_T2_108"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_132"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 108 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else if ( img == "iv_t2_132" ){
+                current_image = "ivT2_TE012"
+                show_image(image_map["ivT2_TE132"]);
+                set_background_color_for_list(["#iv_T2_132"], '#126d9b');
+                set_background_color_for_list(["#iv_T2_12","#iv_T2_36","#iv_T2_60","#iv_T2_84","#iv_T2_108"], '#fff');
+                $("#img_description4").html( "<i>T2 @ 132 mm/s^2</i>" )
+                $("#template4_info").html(
+                     $("<div></div>").append([
+                        $("<u>Type of Image:  </u>"),                        
+                        $("#img_description4"),
+                    ])
+                )
+            } else {
+                console.log("SOMETHING ELSEadsfasdfasdfasdf!");                                                       
+            }
+        };    
+        var show_surface = function(index){
+            console.log("SURFACE INDEX ->  " + index)
+            if(index == 0){            
+                $("#papaya1").show()     
+                $("#ROI_area1").show()
+                $("#papaya2").hide()   
+                $("#ROI_area2").hide()  
+                $("#papaya3").hide()     
+                $("#ROI_area3").hide()
+                $("#papaya4").hide()       
+                $("#ROI_area4").hide()              
+                $("#view_and_info1").show()
+                $("#view_and_info2").hide()
+                $("#view_and_info3").hide()
+                $("#view_and_info4").hide()  
+            }
+            else if(index == 1){
+                $("#papaya1").hide()     
+                $("#ROI_area1").hide()
+                $("#papaya2").show()   
+                $("#ROI_area2").show()  
+                $("#papaya3").hide()     
+                $("#ROI_area3").hide()
+                $("#papaya4").hide()       
+                $("#ROI_area4").hide()   
+                $("#view_and_info1").hide()
+                $("#view_and_info2").show()
+                $("#view_and_info3").hide()
+                $("#view_and_info4").hide()  
+            }
+            else if(index == 2){
+                $("#papaya1").hide()     
+                $("#ROI_area1").hide()
+                $("#papaya2").hide()   
+                $("#ROI_area2").hide()  
+                $("#papaya3").show()     
+                $("#ROI_area3").show()
+                $("#papaya4").hide()       
+                $("#ROI_area4").hide()     
+                $("#view_and_info1").hide()
+                $("#view_and_info2").hide()
+                $("#view_and_info3").show()
+                $("#view_and_info4").hide()  
+            }
+            else if(index == 3){
+                $("#papaya1").hide()     
+                $("#ROI_area1").hide()
+                $("#papaya2").hide()   
+                $("#ROI_area2").hide()  
+                $("#papaya3").hide()     
+                $("#ROI_area3").hide()
+                $("#papaya4").show()       
+                $("#ROI_area4").show()         
+                $("#view_and_info1").hide()
+                $("#view_and_info2").hide()
+                $("#view_and_info3").hide()
+                $("#view_and_info4").show()                    
+            }
+            else {
+                console.log("Unknown surface request index: "+index);
+            }                        
+        };        
+        $('nav li').hover(
+            function() {
+            $('ul', this).stop().slideDown(200);                
+            },
+            function() {
+            $('ul', this).stop().slideUp(200);
+            }
+        );                
+        $("#papaya1").on('click', function(e) {        
+            console.log("From papaya 1.")
+            console.log("CURRENT IMAGE ->  " +current_image)
+            get_cursor_location(image_map[current_image]);          
+            get_roi_label(image_map[current_image]);  
+        });
+        $("#papaya2").on('click', function(e) {        
+            console.log("From papaya 2.")
+            get_cursor_location(image_map[current_image]);            
+            get_roi_label(image_map[current_image]);
+        });
+        $("#papaya3").on('click', function(e) {        
+            console.log("From papaya 3.")
+            get_cursor_location(image_map[current_image]);            
+            get_roi_label(image_map[current_image]);
+        });
+        $("#papaya4").on('click', function(e) {        
+            console.log("From papaya 4.")
+            get_cursor_location(image_map[current_image]);            
+            get_roi_label(image_map[current_image]);
+        }); 
+        $("#ivt2").on('click', function(e) {  
+            console.log("CLICKED In-Vivo T2 Template");                
+            $("#in_vivo_dti").hide();
+            $("#ex_vivo_T2").hide();
+            $("#ex_vivo_dti").hide();                                  
+            $("#view_and_info1").hide();
+            $("#view_and_info2").hide();
+            $("#view_and_info3").hide();                    
+            $("#in_vivo_T2").show();  
+            $("#view_and_info4").show();
+            $("#ex1Slider").hide();          
+            $("#ex2Slider").hide();          
+            $("#ex3Slider").hide();         
+            $("#ex4Slider").show();
+            reset_viewer();
+        });
+        $("#ivdti").on('click', function(e) {  
+            console.log("CLICKED In-Vivo DTI Template");                                      
+             $("#ex_vivo_dti").hide();
+             $("#ex_vivo_T2").hide();                      
+             $("#in_vivo_T2").hide();    
+             $("#view_and_info1").hide();
+             $("#view_and_info2").hide();                                   
+             $("#view_and_info4").hide();                           
+             $("#in_vivo_dti").show();    
+             $("#view_and_info3").show();         
+             $("#ex1Slider").hide();          
+             $("#ex2Slider").hide();          
+             $("#ex4Slider").hide();     
+             $("#ex3Slider").show();
+             reset_viewer();
+        });
+        $("#evt2").on('click', function(e) {  
+            console.log("CLICKED Ex-Vivo T2 Template");
+             $("#ex_vivo_dti").hide();                            
+             $("#in_vivo_dti").hide();             
+             $("#in_vivo_T2").hide();                                    
+             $("#view_and_info1").hide();                          
+             $("#view_and_info3").hide();
+             $("#view_and_info4").hide();                         
+             $("#ex_vivo_T2").show();             
+             $("#view_and_info2").show();
+             $("#ex1Slider").hide();          
+             $("#ex3Slider").hide();          
+             $("#ex4Slider").hide();       
+             $("#ex2Slider").show();
+            reset_viewer();
+        });
+        $("#evdti").on('click', function(e) {  
+            console.log("CLICKED Ex-Vivo DTI Template");
+             $("#ex_vivo_T2").hide();
+             $("#in_vivo_dti").hide();
+             $("#in_vivo_T2").hide();                                      
+             $("#view_and_info2").hide();
+             $("#view_and_info3").hide();
+             $("#view_and_info4").hide();                     
+             $("#ex_vivo_dti").show();           
+             $("#view_and_info1").show();
+             $("#ex2Slider").hide();          
+             $("#ex3Slider").hide();          
+             $("#ex4Slider").hide();      
+             $("#ex1Slider").show();
+             reset_viewer();
+        });
+        $("#reset_view").on('click', function(e) {
+            console.log("Resetting Viewport.");
+            reset_viewer();
+        });        
+        $("#show_roi_content").on('click', function(e) {
+            console.log("Showing ROI content.")
+            reset_roi_info();
+        });
+        $("#minimize_all").on('click', function(e) { 
+            reset_viewer();
+            $("#ex_vivo_dti").hide();
+            $("#in_vivo_dti").hide();
+            $("#in_vivo_T2").hide();
+            $("#ex_vivo_T2").hide();  
+            $("#view_and_info1").hide();
+            $("#view_and_info2").hide();
+            $("#view_and_info3").hide();
+            $("#view_and_info4").hide();
+            $("#roi-viz-tools").hide();
+        });
+        $("#create_png").on('click', function(e) {
+            console.log("Create PNG selected.");
+        });        		
+		var ex4Change = function() { 
+		    console.log("In-vivo T2 Slider value :   " + parseFloat((parseFloat($("#ex4").val()) / 100.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex4").val()) / 100.0)));
+		};		
+		var ex3Change = function() { 
+		    console.log("In-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex3").val()) / 100.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex3").val()) / 100.0)));
+    	};		
+		var ex2Change = function() { 
+		    console.log("Ex-vivo T2 Slider value :   " + parseFloat((parseFloat($("#ex2").val()) / 100.0)));	
+	        set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex2").val()) / 100.0)));
+        };		
+		var ex1Change = function() { 
+		    console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
+		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
+	    };
+        // With JQuery
+        $('#ex1').slider({
+	        formatter: function(value) {
+		        return 'Current s1 value: ' + value;
+	        }
+        }).on('slide', ex1Change)
+		.data('slider');				
+        $('#ex2').slider({
+	        formatter: function(value) {
+		        return 'Current s2 value: ' + value;
+	        }
+        }).on('slide', ex2Change)
+		.data('slider');		
+        $('#ex3').slider({
+	        formatter: function(value) {
+		        return 'Current s3 value: ' + value;
+	        }
+        }).on('slide', ex3Change)
+		.data('slider');		
+        $('#ex4').slider({
+	        formatter: function(value) {
+		        return 'Current s4 value: ' + value;
+	        }
+        }).on('slide', ex4Change)
+		.data('slider');
+        $("#ex_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED Ex-vivo DEC"); reset_viewer(); update_params("ev_dti_dec"); show_surface(0);});
+        $("#ex_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED Ex-vivo Trace");  reset_viewer();update_params("ev_dti_tr"); show_surface(0);});
+        $("#ex_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED Ex-vivo FA");  reset_viewer(); update_params("ev_dti_fa"); show_surface(0);});
+        $("#in_vivo_dti_dec").on('click', function(e) {  console.log("CLICKED In-vivo DEC");  reset_viewer(); update_params("iv_dti_dec"); show_surface(1); });
+        $("#in_vivo_dti_tr").on('click', function(e) {  console.log("CLICKED In-vivo Trace");  reset_viewer(); update_params("iv_dti_tr");show_surface(1);});
+        $("#in_vivo_dti_fa").on('click', function(e) {  console.log("CLICKED In-vivo FA"); reset_viewer(); update_params("iv_dti_fa");show_surface(1); }); 
+        $("#ex_vivo_T2_10").on('click', function(e) {  console.log("CLICKED ex-vivo  10"); reset_viewer(); update_params("ev_t2_10");show_surface(2);});
+        $("#ex_vivo_T2_20").on('click', function(e) {  console.log("CLICKED ex-vivo  20"); reset_viewer(); update_params("ev_t2_20");show_surface(2);});
+        $("#ex_vivo_T2_30").on('click', function(e) {  console.log("CLICKED ex-vivo  30"); reset_viewer(); update_params("ev_t2_30");show_surface(2);});
+        $("#ex_vivo_T2_40").on('click', function(e) {  console.log("CLICKED ex-vivo  40"); reset_viewer(); update_params("ev_t2_40");show_surface(2);});
+        $("#ex_vivo_T2_50").on('click', function(e) {  console.log("CLICKED ex-vivo  50"); reset_viewer(); update_params("ev_t2_50");show_surface(2);});
+        $("#ex_vivo_T2_60").on('click', function(e) {  console.log("CLICKED ex-vivo  60"); reset_viewer(); update_params("ev_t2_60");show_surface(2);});
+        $("#ex_vivo_T2_70").on('click', function(e) {  console.log("CLICKED ex-vivo  70"); reset_viewer(); update_params("ev_t2_70");show_surface(2);});
+        $("#ex_vivo_T2_80").on('click', function(e) {  console.log("CLICKED ex-vivo  80"); reset_viewer(); update_params("ev_t2_80");show_surface(2);});
+        $("#ex_vivo_T2_90").on('click', function(e) {  console.log("CLICKED ex-vivo  90"); reset_viewer(); update_params("ev_t2_90");show_surface(2);});
+        $("#ex_vivo_T2_100").on('click', function(e) {  console.log("CLICKED ex-vivo  100"); reset_viewer(); update_params("ev_t2_100");show_surface(2);});
+        $("#in_vivo_T2_12").on('click', function(e) {  console.log("CLICKED in-vivo 12"); reset_viewer(); update_params("iv_t2_012");show_surface(3); });
+        $("#in_vivo_T2_36").on('click', function(e) {  console.log("CLICKED in-vivo 36"); reset_viewer(); update_params("iv_t2_036");show_surface(3); });
+        $("#in_vivo_T2_60").on('click', function(e) {  console.log("CLICKED in-vivo 60"); reset_viewer(); update_params("iv_t2_060");show_surface(3); });
+        $("#in_vivo_T2_84").on('click', function(e) {  console.log("CLICKED in-vivo 84"); reset_viewer(); update_params("iv_t2_084");show_surface(3); });
+        $("#in_vivo_T2_108").on('click', function(e) {  console.log("CLICKED in-vivo 108"); reset_viewer(); update_params("iv_t2_108");show_surface(3); });
+        $("#in_vivo_T2_132").on('click', function(e) {  console.log("CLICKED in-vivo 132"); reset_viewer(); update_params("iv_t2_132");show_surface(3); });        
+        $("#tortoise_tools").on('click', function(e) {          
+                    console.log("CLICKED tortoise tools"); 
+                    $("#current_service").html("Tools");             
+                    $("#image_actions").hide()          
+                    $("#visualization_templates").hide()
+        });        
+        $("#workflow_modeling").on('click', function(e) {          
+                    console.log("CLICKED workflow modeling"); 
+                    $("#current_service").html("Workflow Composition");    
+                    $("#image_actions").hide()         
+                    $("#visualization_templates").hide()          
+        });        
+        $("#process_management").on('click', function(e) {          
+                    console.log("CLICKED process management"); 
+                    $("#current_service").html("Process Management");       
+                    $("#image_actions").hide()     
+                    $("#visualization_templates").hide()         
+        });        
+        $("#visualization_analysis").on('click', function(e) { 
+                    console.log("CLICKED visualization analysis"); 
+                    $("#current_service").html("Visualization");             
+                    $("#image_actions").show()
+                    $("#visualization_templates").show()
+        });
+        $("#secure_data_portal").on('click', function(e) { 
+                    console.log("CLICKED secure data portal"); 
+                    $("#current_service").html("Data Portal");            
+                    $("#image_actions").hide()    
+                    $("#visualization_templates").hide()       
+        });
+        $("#deployment").on('click', function(e) { 
+                    console.log("CLICKED deployment"); 
+                    $("#current_service").html("Deployment");                     
+                    $("#image_actions").hide()  
+                    $("#visualization_templates").hide()
+        });                
+        $("#NewSurfaces").on('click', function(e) {
+            console.log("Loading new surfaces...")
+            LoadNewSurfaces(image_map[current_image])
+        });
+        var current_h = null;
+        var current_w = null;
+        $("#ex_vivo_dti").hover(
+            function(){
+                current_h = $("#ex_vivo_dti_dec_img").height();
+                current_w = $("#ex_vivo_dti_dec_img").width();
+                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+            },
+            function(){
+                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );        
+        $("#ex_vivo_T2").hover(
+            function(){
+                current_h = $("#ex_vivo_T2_10_img").height();
+                current_w = $("#ex_vivo_T2_10_img").width();
+                $("#ex_vivo_T2_10_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_20_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_30_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_40_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_50_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_60_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_70_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_80_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_90_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#ex_vivo_T2_100_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+            },
+            function(){
+                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_10_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_20_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_30_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_40_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_50_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_60_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_70_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_80_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_90_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#ex_vivo_T2_100_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );        
+        $("#in_vivo_dti").hover(
+            function(){
+                current_h = $("#in_vivo_dti_dec_img").height();
+                current_w = $("#in_vivo_dti_dec_img").width();
+                $("#in_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+            },
+            function(){
+                $("#in_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );
+
+        $("#in_vivo_T2").hover(
+            function(){
+                current_h = $("#in_vivo_T2_12_img").height();
+                current_w = $("#in_vivo_T2_12_img").width();
+                $("#in_vivo_T2_12_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_T2_36_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_T2_60_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_T2_84_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_T2_108_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                $("#in_vivo_T2_132_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+            },
+            function(){
+                $("#in_vivo_T2_12_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_36_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_60_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_84_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_108_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                $("#in_vivo_T2_132_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+            }
+        );      
+    });    
+    </script>
+    <title>Template Web Viewer</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" >
+      <div class="container-fluid"  >
+        <div class="navbar-header">    
+          <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">TORTOISE Services<span class="caret"></span></a>      
+            <ul class="dropdown-menu">
+             <li class="dropdown">
+              <li id="tortoise_tools"><a href="#">TORTOISE Tools</a></li>
+              <li id="workflow_modeling"><a href="#">Workflow Modeling</a></li>
+              <li id="process_management"><a href="#">Process Management</a></li>                    
+              <li id="visualization_analysis"><a href="#">Visualization and Image Analysis</a></li>
+<!--              <li id="secure_data_portal"><a href="#">Data and  Portal</a></li>
+              <li id="deployment"><a href="#">Deployment</a></li>
+-->
+            </ul>
+          </li>
+        </div>
+        <ul class="nav navbar-nav navbar-inverse">
+          <li class="active"><a href="#"><div id="current_service"><----</div></a></li>
+          <li id="visualization_templates" class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Templates<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li id="ivt2"><a href="#">In-Vivo T2</a></li>
+              <li id="ivdti"><a href="#">In-Vivo DTI</a></li>          
+              <li id="evt2"><a href="#">Ex-Vivo T2</a></li>
+              <li id="evdti"><a href="#">Ex-Vivo DTI</a></li>
+            </ul>
+          </li>
+          <li id="image_actions" class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Actions<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li id="show_roi_content"><a href="#">Show ROI info</a></li>
+                <li id="reset_view"><a href="#">Reset View</a></li>
+                <li id="minimize_all"><a href="#">Minimize All</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid" >
+        <div class="row" height="50">
+            <div class="row" id="ex_vivo_dti">    
+                <ul class="pager">        
+                    <li id="ex_vivo_dti_fa">
+                    <a href="#">
+                        <img id="ex_vivo_dti_fa_img" class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="50" width="50"> 
+                        <p id="ev_fa_txt" style="margin:0 auto;">FA</p>
+                    </a>
+                    </li>              
+                    <li id="ex_vivo_dti_dec">
+                    <a href="#">
+                        <img id="ex_vivo_dti_dec_img" class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="50" width="50"> 
+                        <p id="ev_dec_txt" style="margin:0 auto;">DEC</p>
+                    </a>
+                    </li>               
+                    <li id="ex_vivo_dti_tr">
+                    <a href="#">
+                        <img id="ex_vivo_dti_tr_img" class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="50" width="50">
+                        <p id="ev_tr_txt" style="margin:0 auto;">TR</p> 
+                    </a>
+                    </li>
+                </ul>
+            </div>      
+        </div>
+        <div class="row" height="50">
+              <div class="row" id="in_vivo_dti">
+                <ul class="pager">
+                  <li id="in_vivo_dti_fa">
+                  <a href="#">
+                    <img id="in_vivo_dti_fa_img" class="in_vivo_fa" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_FA.png" alt="Fractional Anisotropy Map (in-vivo)" height="50" width="50">
+                    <p id="iv_fa_txt" style="margin:0 auto;">FA</p>
+                  </a>
+                  </li>
+                  <li id="in_vivo_dti_dec" >
+                  <a href="#">
+                      <img id="in_vivo_dti_dec_img" class="in_vivo_dec" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (in-vivo)" height="50" width="50">
+                      <p id="iv_dec_txt" style="margin:0 auto;">DEC</p>
+                  </a>
+                  </li>
+                  <li id="in_vivo_dti_tr">
+                  <a href="#">
+                    <img id="in_vivo_dti_tr_img" class="in_vivo_tr" src="img/linked_content/Templates/DTI_invivo/Thumbnails/InVivo_DTI_TR.png" alt="Trace Map (in-vivo)" height="50" width="50">
+                    <p id="iv_tr_txt" style="margin:0 auto;">TR</p> 
+                  </a>
+                  </li>
+                </ul>            
+            </div>
+        </div>
+        <div class="row" height="50">    
+            <div class="row" id="ex_vivo_T2" >
+                <ul class="pager">
+                    <li id="ex_vivo_T2_10">
+                    <a href="#">
+                        <img id="ex_vivo_T2_10_img" class="ex_vivo_t2_10" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE010.png" alt="eTE010" height="50" width="50">
+                        <p id="ev_T2_10" style="margin:0 auto;">TE 10</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_20">
+                    <a href="#">
+                        <img id="ex_vivo_T2_20_img" class="ex_vivo_t2_20" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE020.png" alt="eTE020" height="50" width="50">
+                        <p id="ev_T2_20" style="margin:0 auto;">TE 20</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_30">
+                    <a href="#">
+                        <img id="ex_vivo_T2_30_img" class="ex_vivo_t2_30" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE030.png" alt="eTE030" height="50" width="50">
+                        <p id="ev_T2_30" style="margin:0 auto;">TE 30</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_40">
+                    <a href="#">
+                        <img id="ex_vivo_T2_40_img" class="ex_vivo_t2_40" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE040.png" alt="eTE040" height="50" width="50">
+                        <p id="ev_T2_40" style="margin:0 auto;">TE 40</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_50">
+                    <a href="#">
+                        <img id="ex_vivo_T2_50_img" class="ex_vivo_t2_50" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE050.png" alt="eTE050" height="50" width="50">
+                        <p id="ev_T2_50" style="margin:0 auto;">TE 50</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_60">
+                    <a href="#">
+                        <img id="ex_vivo_T2_60_img" class="ex_vivo_t2_60" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE060.png" alt="eTE060" height="50" width="50">
+                        <p id="ev_T2_60" style="margin:0 auto;">TE 60</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_70">
+                    <a href="#">
+                        <img id="ex_vivo_T2_70_img" class="ex_vivo_t2_70" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE070.png" alt="eTE070" height="50" width="50">
+                        <p id="ev_T2_70" style="margin:0 auto;">TE 70</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_80">
+                    <a href="#">
+                        <img id="ex_vivo_T2_80_img" class="ex_vivo_t2_80" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE080.png" alt="eTE080" height="50" width="50">
+                        <p id="ev_T2_80" style="margin:0 auto;">TE 80</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_90">
+                    <a href="#">
+                        <img id="ex_vivo_T2_90_img" class="ex_vivo_t2_90" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE090.png" alt="eTE090" height="50" width="50">
+                        <p id="ev_T2_90" style="margin:0 auto;">TE 90</p>
+                    </a>
+                    </li>            
+                    <li id="ex_vivo_T2_100">
+                    <a href="#">
+                        <img id="ex_vivo_T2_100_img" class="ex_vivo_t2_100" src="img/linked_content/Templates/T2_exvivo/Thumbnails/Template4D_TE100.png" alt="eTE100" height="50" width="50">
+                        <p id="ev_T2_100" style="margin:0 auto;">TE 100</p>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>        
+        <div class="row" height="50">
+            <div class="row" id="in_vivo_T2" height="50">
+                <ul class="pager">
+                    <li id="in_vivo_T2_12">
+                    <a href="#">
+                        <img id="in_vivo_T2_12_img" class="in_vivo_t2_12" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE012.png" alt="iTE012" height="50" width="50">
+                        <p id="iv_T2_12" style="margin:0 auto;">TE 12</p>
+                    </a>
+                    </li>            
+                    <li id="in_vivo_T2_36">
+                    <a href="#">
+                        <img id="in_vivo_T2_36_img" class="in_vivo_t2_36" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE036.png" alt="iTE036" height="50" width="50">
+                        <p id="iv_T2_36" style="margin:0 auto;">TE 36</p>
+                    </a>
+                    </li>            
+                    <li id="in_vivo_T2_60">
+                    <a href="#">
+                        <img id="in_vivo_T2_60_img" class="in_vivo_t2_60" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE060.png" alt="iTE060" height="50" width="50">
+                        <p id="iv_T2_60" style="margin:0 auto;">TE 60</p>
+                    </a>
+                    </li>            
+                    <li id="in_vivo_T2_84">
+                    <a href="#">
+                        <img id="in_vivo_T2_84_img" class="in_vivo_t2_84" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE084.png" alt="iTE084" height="50" width="50">
+                        <p id="iv_T2_84" style="margin:0 auto;">TE 84</p>
+                    </a>
+                    </li>            
+                    <li id="in_vivo_T2_108">
+                    <a href="#">
+                        <img id="in_vivo_T2_108_img" class="in_vivo_t2_108" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE108.png" alt="iTE108" height="50" width="50">
+                        <p id="iv_T2_108" style="margin:0 auto;">TE 108</p>
+                    </a>
+                    </li>            
+                    <li id="in_vivo_T2_132">
+                    <a href="#">
+                        <img id="in_vivo_T2_132_img" class="in_vivo_t2_132" src="img/linked_content/Templates/T2_invivo/Thumbnails/ivT2_TE132.png" alt="iTE132" height="50" width="50">
+                        <p id="iv_T2_132" style="margin:0 auto;">TE 132</p>
+                    </a>
+                    </li>
+               </ul>
+            </div>            
+        </div>
+    </div>
+    <div id="roi-viz-tools" class="pager">
+        <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+        <input id="ex2" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+        <input id="ex3" data-slider-id='ex3Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+        <input id="ex4" data-slider-id='ex4Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+        <div id="NewSurfaces">NEW SURFS</div>
+    </div>
+    <div class="container-fluid" id="view_and_info1">
+       <ul>
+       <li>
+            <div id="ROI_area1" class="roiViewer rcorners2 right">
+              <div class="jumbotron">
+                <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
+              </div>
+                    <div id="template1_info">
+                        Image description: <div id="img_description1"></div>
+                        <br>
+                        ROI name: <div id="current_roi"></div>
+                        <br>
+                        ROI description: <div id="roi_description"></div>
+                    </div>                            
+            </div>       
+       </li>   
+       <li>
+            <div id="papaya1" class="midViewer rcorners1 left">                 
+                <div class="papaya" data-params="params1" ></div>                             
+            </div> 
+       </li>
+       </ul>       
+    </div>                     
+    <div class="container-fluid" id="view_and_info2">      
+        <ul>
+            <li>
+                <div id="ROI_area2" class="roiViewer rcorners2 right">
+                  <div class="jumbotron">
+                    <p style="margin:0 auto"><b><h1>Ex-Vivo T2</h1></b></p>                            
+                  </div>
+                    <div id="template2_info">
+                        Image description: <div id="img_description2"></div>
+                    </div>                 
+                </div>       
+            </li>   
+            <li>                                          
+                <div id="papaya2" class="midViewer rcorners1 left">
+                    <div class="papaya" data-params="params2" ></div>
+                </div>
+            </li>
+        </ul>
+    </div>                            
+    <div class="container-fluid" id="view_and_info3">  
+        <ul>
+            <li>
+              <div id="ROI_area3" class="roiViewer rcorners2 right">
+                <div class="jumbotron">
+                    <p style="margin:0 auto"><b><h1>In-Vivo DTI</h1></b></p>
+                </div>
+                    <div id="template3_info">
+                        Image description: <div id="img_description3"></div>
+                    </div>
+              </div>       
+            </li>   
+            <li> 
+                <div id="papaya3" class="midViewer rcorners1 left">
+                    <div class="papaya" data-params="params3" ></div>
+                </div>
+            </li> 
+        </ul>
+    </div>
+    <div class="container-fluid" id="view_and_info4">
+        <ul>
+            <li>
+                <div id="ROI_area4" class="roiViewer rcorners2 right">
+                  <div class="jumbotron">
+                    <p style="margin:0 auto"><b><h1>In-Vivo T2</h1></b></p>                            
+                  </div> 
+                    <div id="template4_info">
+                        Image description: <div id="img_description4"></div>
+                    </div>                          
+              </div>
+            </li>   
+            <li> 
+                <div id="papaya4" class="midViewer rcorners1 left">
+                    <div class="papaya" data-params="params4" ></div>
+                </div>                       
+            </li>                     
+        </ul>  
+    </div>            
+</body>
+</html>
