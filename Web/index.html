@@ -33,6 +33,9 @@
   <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
   <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
   <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
+  
+  <script type="text/javascript" src="js/UIManager.js"></script>
+  
   <style type="text/css">
     html, body {
       margin: 0 auto;
@@ -153,343 +156,416 @@
     .roi-viz-tools {
         background: #ffffff;
     }         
+    @keyframes loading {
+   0% {
+        transform: rotate(0deg);
+   }
+   25%{
+     transform: rotate(160deg);
+   }
+   50%{
+    transform: rotate(0deg);
+   }
+   75%{
+    transform: rotate(160deg);
+   }
+   100% {
+    transform: rotate(0deg);
+   };
+}
+
+.loading { 
+  background-color: transparent;
+  border-radius: 50%;
+  margin: 5px auto;
+  animation: loading 5s infinite linear;
+}
+
+.spin-1{
+  border: 5px solid #c00353 ;
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  width: 120px;
+  height: 120px; 
+}
+.spin-2{
+  border: 5px solid #05bbc3 ;
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  width: 100px;
+  height: 100px;
+  animation-delay: 1s;
+}
+.spin-3{
+  border: 5px solid #d2d947 ;
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  width: 80px;
+  height: 80px; 
+  animation-delay: 1s;
+}
+.spin-4{
+  border: 5px solid #f2a342 ;
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  width: 60px;
+  height: 60px; 
+  animation-delay: 1s;
+}
+.spin-5{
+  border: 5px solid #f34d51 ;
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  width: 40px;
+  height: 40px; 
+  animation-delay: 1s;
+}
+.spin-6{
+  border: 5px solid #fff ;
+  width: 20px;
+  height: 20px; 
+  animation-delay: 1s;
+}
+
   </style>
     <script type="text/javascript">
-    
-    var LoadNewSurfaces = function(index, opt){
-        var surfs = [];
-        var rgbs = [];
-        var fnames = [];
-        var data = brain_region_struct;
-        surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
-        fnames.push("ev_dti_brain.surf.gii")              
-        for(var i=13; i < 21; i++){
+        var ui = new UIManager();
         
-            if(!data["rois"][i]["data"]["path"])
+        var LoadNewSurfaces = function(index, opt){
+            var surfs = [];
+            var rgbs = [];
+            var fnames = [];
+            var data = brain_region_struct;
+            surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
+            fnames.push("ev_dti_brain.surf.gii")              
+            for(var i=13; i < 20; i++){        
+                if(!data["rois"][i]["data"]["path"])
+                {
+                    console.log("Skipping index # -> "+i);
+                }
+                else
+                {
+                    var datapath = data["rois"][i]["data"]["path"];
+                    var fname       = data["rois"][i]["data"]["filename"];
+                    var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) )/255);
+                    var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) )/255);
+                    var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) )/255);                    
+                    console.log("Processing .... " + data["rois"][i]["data"]["path"] + data["rois"][i]["data"]["filename"] + "   with color:  ("+red+", "+green+", "+blue+")");                    
+                    surfs.push(datapath+fname);
+                    fnames.push(fname);
+                    rgbs.push([red,green,blue]);
+                }
+            }        
+            params["surfaces"] = surfs;
+            for(var j=0;j<fnames.length;j++){     
+                console.log("THE SHORT FILENAME :  " + String(fnames[j]));               
+                if(String(fnames[j]) == "ev_dti_brain.surf.gii"){
+                    params[String(fnames[j])] = {color: [0.8,0.8,0.8], alpha: 0.75};
+                } else {
+                    params[String(fnames[j])] = {color: rgbs[j], alpha: 1};
+                }
+            }                
+            params["showSurfacePlanes"] = false;
+            params["surfaceBackground"] = "Black";                  
+            params.showControls = false;   
+            params["kioskMode"] = true;    
+            if(opt == 1)
             {
-                console.log("Skipping index # -> "+i);
+                papaya.Container.showImage([0,0]);
             }
             else
             {
-                var datapath = data["rois"][i]["data"]["path"];
-                var fname       = data["rois"][i]["data"]["filename"];
-                var red             = parseFloat((parseFloat(data["rois"][i]["data"]["red"]) )/255);
-                var green        = parseFloat((parseFloat(data["rois"][i]["data"]["green"]) )/255);
-                var blue          = parseFloat((parseFloat(data["rois"][i]["data"]["blue"]) )/255);                    
-                console.log("Processing .... " + data["rois"][i]["data"]["path"] + data["rois"][i]["data"]["filename"] + "   with color:  ("+red+", "+green+", "+blue+")");                    
-                surfs.push(datapath+fname);
-                fnames.push(fname);
-                rgbs.push([red,green,blue]);
+                console.log("Not showing the image.");
             }
-        }        
-        params["surfaces"] = surfs;
-        for(var j=0;j<fnames.length;j++){     
-            console.log("THE SHORT FILENAME :  " + String(fnames[j]));               
-            if(String(fnames[j]) == "ev_dti_brain.surf.gii"){
-                params[String(fnames[j])] = {color: [0.8,0.8,0.8], alpha: 0.75};
-            } else {
-                params[String(fnames[j])] = {color: rgbs[j], alpha: 1};
-            }
-        }                
-        params["showSurfacePlanes"] = false;
-        params["surfaceBackground"] = "Black";                  
-        params.showControls = false;   
-        params["kioskMode"] = true;    
-        if(opt == 1)
-        {
-            papaya.Container.showImage([0,0]);
-        }
-        else
-        {
-            console.log("Not showing the image.");
-        }
-    };
-    
-    var GetRegionDataByName = function(name){    
-        var roi_list = brain_region_struct["rois"];
-        var description = ""
-        for(var i=0; i < roi_list.length; i++){
-            if(name == roi_list[i]["data"]["name"]){
-                description = roi_list[i]["data"]["description"];
-            }
-        }
-        return description;
-    };
-    var params  = [];           
-    var brain_region_struct = {};    
-    var image_map = {}; 
-            image_map["ExVivo_DTI_FA"] =    [0,0];
-            image_map["ExVivo_DTI_DEC"] =   [0,1];       
-            image_map["ExVivo_DTI_TR"] =    [0,2];
-            var rois={}; 
             
-            $.getJSON('ext/Brain_Regions.json', function(data) { 
-                console.log("PRINTING ROI OBJECT........"+data)                                
-                brain_region_struct = data;
-                var surfs = [];
-                var fnames = [];
-                var rgbs = [];
-                surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
-                fnames.push("ev_dti_brain.surf.gii")                
-                var current_image = "";            
-                params["images"] =  [                                            
-                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
-                                     ];                
-                params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
-                LoadNewSurfaces(image_map[current_image],0);
-            });                                  
+        };
+        
+        var GetRegionDataByName = function(name){    
+            var roi_list = brain_region_struct["rois"];
+            var description = ""
+            for(var i=0; i < roi_list.length; i++){
+                if(name == roi_list[i]["data"]["name"]){
+                    description = roi_list[i]["data"]["description"];
+                }
+            }
+            return description;
+        };
+        var params  = [];           
+        var brain_region_struct = {};    
+        var image_map = {
+            "ExVivo_DTI_FA" : [0,0],
+            "ExVivo_DTI_DEC" : [0,1],
+            "ExVivo_DTI_TR" : [0,2]    
+        }; 
+
+        $.getJSON('ext/Brain_Regions.json', function(data) { 
+            ui.showDivs(["#loading"]);
+            console.log("PRINTING ROI OBJECT........"+data)                                
+            brain_region_struct = data;
+            var surfs = [];
+            var fnames = [];
+            var rgbs = [];
+            surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
+            fnames.push("ev_dti_brain.surf.gii")                
+            var current_image = "";            
+            params["images"] =  [                                            
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                 ];                
+            params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
+            params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
+            params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
+            LoadNewSurfaces(image_map[current_image],0);
+        });                                  
     </script>
     <script type="text/javascript">
-    $(document).ready(function(){
-        $("#roi-viz-tools").show();
-        $("#ex1Slider").show();
-        $("#ex_vivo_dti").hide();       
-        $("#view_and_info1").hide()                    
-        $("#visualization_templates").hide()
-        $("#image_actions").hide()
-        var hide_image = function(index){            
-            papaya.Container.hideImage(index[0], index[1]);
-        };
-        var show_image = function(index){
-            papaya.Container.showImage(index[0], index[1]);
-        };
-        var get_cursor_location = function(index){
-            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
-            var loc = res[0];
-            console.log("LOCATION ->  " + loc)                      
-        };
-        var get_roi_label = function(index){
-            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
-            var lbl = res[1];            
-            var desc = GetRegionDataByName(lbl);
-            var r_str = "<h3>"+lbl+"</h3>";
-            var d_str = "<h3>"+desc+"</h3>";
-            $("#current_roi").html(r_str);
-            $("#roi_description").html(d_str);
-            set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
-        };
-        var set_surface_alpha = function(index, val){
-            papaya.Container.SetSurfaceAlpha(0,0, val);
-            papaya.Container.showImage(0,0);
-            console.log("Setting surface alpha to "+val);
-        };
-        var set_roi_alpha_val = function(idx, val){                     
-            console.log("Setting roi alpha to "+val);
-            papaya.Container.SetSurfaceAlpha(0, idx, val);
-            papaya.Container.showImage(0, idx);
-        };
-        var set_roi_alpha = function(roi, val){
-            var surface_idx = papaya.Container.GetSurfaceIndexByName(0, $("#current_roi")[0].innerText);
-            console.log("The current ROI is ->  " + roi + " with index ->       " + surface_idx);            
-            if(parseInt(surface_idx) >= 0)
-            {            
-                for(var i = 0; i < papaya.Container.GetNumberOfSurfaces(0); i++)
-                {
-                    if(i == parseInt(surface_idx))
+        
+        
+        $(document).ready(function(){      
+          
+            setTimeout(function(){
+                ui.hideDivs(["#loading"]);
+            }, 3000);
+            
+            ui.showDivs([   "#roi-viz-tools", "#ex1Slider"  ]);
+            ui.hideDivs([     "#ex_vivo_dti", "#view_and_info1", "#visualization_templates", "#image_actions"       ]);
+            
+            var hide_image = function(index){            
+                papaya.Container.hideImage(index[0], index[1]);
+            };
+            var show_image = function(index){
+                papaya.Container.showImage(index[0], index[1]);
+            };
+            var get_cursor_location = function(index){
+                var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+                var loc = res[0];
+                console.log("LOCATION ->  " + loc)                      
+            };
+            var get_roi_label = function(index){
+                var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+                var lbl = res[1];            
+                var desc = GetRegionDataByName(lbl);
+                var r_str = "<h3>"+lbl+"</h3>";
+                var d_str = "<h3>"+desc+"</h3>";
+                $("#current_roi").html(r_str);
+                $("#roi_description").html(d_str);
+                set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
+            };
+            var set_surface_alpha = function(index, val){
+                papaya.Container.SetSurfaceAlpha(0,0, val);
+                papaya.Container.showImage(0,0);
+                console.log("Setting surface alpha to "+val);
+            };
+            var set_roi_alpha_val = function(idx, val){                     
+                console.log("Setting roi alpha to "+val);
+                papaya.Container.SetSurfaceAlpha(0, idx, val);
+                papaya.Container.showImage(0, idx);
+            };
+            var set_roi_alpha = function(roi, val){
+                var surface_idx = papaya.Container.GetSurfaceIndexByName(0, $("#current_roi")[0].innerText);
+                console.log("The current ROI is ->  " + roi + " with index ->       " + surface_idx);            
+                if(parseInt(surface_idx) >= 0)
+                {            
+                    for(var i = 0; i < papaya.Container.GetNumberOfSurfaces(0); i++)
                     {
-                        console.log("FOUND THE RIGHT INDEX.")
-                        set_roi_alpha_val(parseInt(surface_idx), 0.95);
-                    }
-                    else
-                    {
-                        console.log("FOUND THE wrong INDEX.")
-                        if(i>0)
+                        if(i == parseInt(surface_idx))
                         {
-                            set_roi_alpha_val(i, 0.0);
+                            console.log("FOUND THE RIGHT INDEX.")
+                            set_roi_alpha_val(parseInt(surface_idx), 0.95);
+                        }
+                        else
+                        {
+                            console.log("FOUND THE wrong INDEX.")
+                            if(i>0)
+                            {
+                                set_roi_alpha_val(i, 0.0);
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                console.log("Empty result.");
-            }
-            //set_surface_alpha(0,0, 0.75);  
-        };
-        var reset_viewer = function( ){
-            var keys = [];
-            for (var key in image_map) {
-              if (image_map.hasOwnProperty(key)) {
-                keys.push(key);
-              }
-            }
-            for(var i = 0; i < keys.length; i++){
-                hide_image(image_map[keys[i]]);
-            }
-        };
-        var reset_roi_info = function( ){
-            $("#ROI_area1").hide()
-        };
-        var set_background_color_for_list = function( list, color ){        
-            for( i in list){
-                $(list[i]).css('background', color);
-            }
-        };
-        var update_params = function(img){           
-            reset_viewer();   
-            if ( img == "ev_dti_dec" ){             
-                current_image = "ExVivo_DTI_DEC"
-                show_image(image_map[current_image]);
-                set_background_color_for_list(["#ev_dec_txt"], '#126d9b');
-                set_background_color_for_list(["#ev_tr_txt","#ev_fa_txt"], '#fff');
-                $("#img_description1").html( "<i>Directionally Encoded Map</i>" )
-                $("#template1_info").html(
-                     $("<div></div>").append([
-                        $("<u>Type of Image:  </u>"),                        
-                        $("#img_description1"),
-                        $("<br>"),
-                        $("<p>ROI name: </p>").append($("#current_roi")),
-                        $("<br>"),
-                        $("<p>ROI description: </p>").append($("#roi_description"))
-                    ])
-                )                                
-            } else if ( img == "ev_dti_fa" ){
-                current_image = "ExVivo_DTI_FA";
-                show_image(image_map[current_image]);
-                set_background_color_for_list(["#ev_fa_txt"], '#126d9b');
-                set_background_color_for_list(["#ev_tr_txt","#ev_dec_txt"], '#fff');
-                $("#img_description1").html( "<i>Fractional Anisotropy</i>" )
-                $("#template1_info").html(
-                     $("<div></div>").append([
-                        $("<u>Type of Image:  </u>"),                        
-                        $("#img_description1"),
-                        $("<br>"),
-                        $("<p>ROI name: </p>").append($("#current_roi")),
-                        $("<br>"),
-                        $("<p>ROI description: </p>").append($("#roi_description"))
-                    ])
-                ) 
-            } else if ( img == "ev_dti_tr" ){
-                current_image = "ExVivo_DTI_TR"
-                show_image(image_map[current_image]);
-                set_background_color_for_list(["#ev_tr_txt"], '#126d9b');
-                set_background_color_for_list(["#ev_dec_txt","#ev_fa_txt"], '#fff');
-                $("#img_description1").html( "<i>Trace</i>" )
-                $("#template1_info").html(
-                     $("<div></div>").append([
-                        $("<u>Type of Image:  </u>"),                        
-                        $("#img_description1"),
-                        $("<br>"),
-                        $("<p>ROI name: </p>").append($("#current_roi")),
-                        $("<br>"),
-                        $("<p>ROI description: </p>").append($("#roi_description"))
-                    ])
-                )
-            } else {
-                console.log("SOMETHING ELSE!");                                                       
-            }
-        };    
-        var show_surface = function(index){
-            console.log("SURFACE INDEX ->  " + index)
-            if(index == 0){            
-                $("#papaya1").show()     
-                $("#ROI_area1").show()        
-                $("#view_and_info1").show()
-            } else {
-                console.log("Unknown surface request index: "+index);
-            }                        
-        };        
-        $('nav li').hover(
-            function() {
-            $('ul', this).stop().slideDown(200);                
-            },
-            function() {
-            $('ul', this).stop().slideUp(200);
-            }
-        );                
-        $("#papaya1").on('click', function(e) {        
-            console.log("From papaya 1.")
-            console.log("CURRENT IMAGE ->  " +current_image)
-            get_cursor_location(image_map[current_image]);          
-            get_roi_label(image_map[current_image]);  
+                else
+                {
+                    console.log("Empty result.");
+                }
+                //set_surface_alpha(0,0, 0.75);  
+            };
+            var reset_viewer = function( ){
+                var keys = [];
+                for (var key in image_map) {
+                  if (image_map.hasOwnProperty(key)) {
+                    keys.push(key);
+                  }
+                }
+                for(var i = 0; i < keys.length; i++){
+                    hide_image(image_map[keys[i]]);
+                }
+            };
+            var reset_roi_info = function( ){
+                $("#ROI_area1").hide()
+            };
+            var set_background_color_for_list = function( list, color ){        
+                for( i in list){
+                    $(list[i]).css('background', color);
+                }
+            };
+            var update_params = function(img){           
+                reset_viewer();   
+                if ( img == "ev_dti_dec" ){             
+                    current_image = "ExVivo_DTI_DEC"
+                    show_image(image_map[current_image]);
+                    set_background_color_for_list(["#ev_dec_txt"], '#126d9b');
+                    set_background_color_for_list(["#ev_tr_txt","#ev_fa_txt"], '#fff');
+                    $("#img_description1").html( "<i>Directionally Encoded Map</i>" )
+                    $("#template1_info").html(
+                         $("<div></div>").append([
+                            $("<u>Type of Image:  </u>"),                        
+                            $("#img_description1"),
+                            $("<br>"),
+                            $("<p>ROI name: </p>").append($("#current_roi")),
+                            $("<br>"),
+                            $("<p>ROI description: </p>").append($("#roi_description"))
+                        ])
+                    )                                
+                } else if ( img == "ev_dti_fa" ){
+                    current_image = "ExVivo_DTI_FA";
+                    show_image(image_map[current_image]);
+                    set_background_color_for_list(["#ev_fa_txt"], '#126d9b');
+                    set_background_color_for_list(["#ev_tr_txt","#ev_dec_txt"], '#fff');
+                    $("#img_description1").html( "<i>Fractional Anisotropy</i>" )
+                    $("#template1_info").html(
+                         $("<div></div>").append([
+                            $("<u>Type of Image:  </u>"),                        
+                            $("#img_description1"),
+                            $("<br>"),
+                            $("<p>ROI name: </p>").append($("#current_roi")),
+                            $("<br>"),
+                            $("<p>ROI description: </p>").append($("#roi_description"))
+                        ])
+                    ) 
+                } else if ( img == "ev_dti_tr" ){
+                    current_image = "ExVivo_DTI_TR"
+                    show_image(image_map[current_image]);
+                    set_background_color_for_list(["#ev_tr_txt"], '#126d9b');
+                    set_background_color_for_list(["#ev_dec_txt","#ev_fa_txt"], '#fff');
+                    $("#img_description1").html( "<i>Trace</i>" )
+                    $("#template1_info").html(
+                         $("<div></div>").append([
+                            $("<u>Type of Image:  </u>"),                        
+                            $("#img_description1"),
+                            $("<br>"),
+                            $("<p>ROI name: </p>").append($("#current_roi")),
+                            $("<br>"),
+                            $("<p>ROI description: </p>").append($("#roi_description"))
+                        ])
+                    )
+                } else {
+                    console.log("SOMETHING ELSE!");                                                       
+                }
+            };    
+            var show_surface = function(index){
+                console.log("SURFACE INDEX ->  " + index)
+                if(index == 0){            
+                    ui.showDivs(    ["#papaya", "#ROI_area1", "#view_and_info1"] );
+                } else {
+                    console.log("Unknown surface request index: "+index);
+                }                        
+            };        
+            $('nav li').hover(
+                function() {
+                $('ul', this).stop().slideDown(200);                
+                },
+                function() {
+                $('ul', this).stop().slideUp(200);
+                }
+            );                
+            $("#papaya").on('click', function(e) {        
+                console.log("From papaya 1.")
+                console.log("CURRENT IMAGE ->  " +current_image)
+                get_cursor_location(image_map[current_image]);          
+                get_roi_label(image_map[current_image]);  
+            });
+            $("#evdti").on('click', function(e) {  
+                console.log("CLICKED Ex-Vivo DTI Template");                               
+                 $("#ex_vivo_dti").show();           
+                 $("#view_and_info1").show();             
+                 $("#ex1Slider").show();
+                 reset_viewer();
+            });
+            $("#reset_view").on('click', function(e) {
+                console.log("Resetting Viewport.");
+                reset_viewer();
+            });        
+            $("#show_roi_content").on('click', function(e) {
+                console.log("Showing ROI content.")
+                reset_roi_info();
+            });
+            $("#minimize_all").on('click', function(e) { 
+                reset_viewer();
+                $("#ex_vivo_dti").hide();            
+                $("#view_and_info1").hide();
+                $("#roi-viz-tools").hide();
+            });
+            $("#create_png").on('click', function(e) {
+                console.log("Create PNG selected.");
+            });			
+		    var ex1Change = function() { 
+		        console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
+		        set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
+	        };
+            $('#ex1').slider({
+	            formatter: function(value) {
+		            return 'Current s1 value: ' + value;
+	            }
+            }).on('slide', ex1Change).data('slider');		        
+            
+            $("#ex_vivo_dti_dec").on('click', function(e) {  
+                console.log("CLICKED Ex-vivo DEC"); 
+                current_image="ExVivo_DTI_DEC"; 
+                reset_viewer(); 
+                update_params("ev_dti_dec"); 
+                show_surface(0);
+            });
+            $("#ex_vivo_dti_tr").on('click', function(e) {  
+                console.log("CLICKED Ex-vivo Trace");  
+                current_image="ExVivo_DTI_TR"; 
+                reset_viewer();
+                update_params("ev_dti_tr"); 
+                show_surface(0);
+            });
+            $("#ex_vivo_dti_fa").on('click', function(e) {  
+                console.log("CLICKED Ex-vivo FA");  
+                current_image="ExVivo_DTI_FA"; 
+                reset_viewer(); 
+                update_params("ev_dti_fa"); 
+                show_surface(0);
+            });
+            $("#visualization_analysis").on('click', function(e) { 
+                        console.log("CLICKED visualization analysis"); 
+                        $("#current_service").html("Visualization");             
+                        ui.showDivs(    ["#image_actions", "#visualization_templates"]  );
+            });        
+            $("#NewSurfaces").on('click', function(e) {
+                console.log("Loading new surfaces...");
+                LoadNewSurfaces(image_map[current_image],1);
+            });
+            var current_h = null;
+            var current_w = null;
+            $("#ex_vivo_dti").hover(
+                function(){
+                    current_h = $("#ex_vivo_dti_dec_img").height();
+                    current_w = $("#ex_vivo_dti_dec_img").width();
+                    $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                    $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                    $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
+                },
+                function(){
+                    $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                    $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                    $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
+                }
+            );                
         });
-        $("#evdti").on('click', function(e) {  
-            console.log("CLICKED Ex-Vivo DTI Template");                               
-             $("#ex_vivo_dti").show();           
-             $("#view_and_info1").show();             
-             $("#ex1Slider").show();
-             reset_viewer();
-        });
-        $("#reset_view").on('click', function(e) {
-            console.log("Resetting Viewport.");
-            reset_viewer();
-        });        
-        $("#show_roi_content").on('click', function(e) {
-            console.log("Showing ROI content.")
-            reset_roi_info();
-        });
-        $("#minimize_all").on('click', function(e) { 
-            reset_viewer();
-            $("#ex_vivo_dti").hide();            
-            $("#view_and_info1").hide();
-            $("#roi-viz-tools").hide();
-        });
-        $("#create_png").on('click', function(e) {
-            console.log("Create PNG selected.");
-        });			
-		var ex1Change = function() { 
-		    console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
-		    set_surface_alpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
-	    };
-        $('#ex1').slider({
-	        formatter: function(value) {
-		        return 'Current s1 value: ' + value;
-	        }
-        }).on('slide', ex1Change).data('slider');		        
-        
-        $("#ex_vivo_dti_dec").on('click', function(e) {  
-            console.log("CLICKED Ex-vivo DEC"); 
-            current_image="ExVivo_DTI_DEC"; 
-            reset_viewer(); 
-            update_params("ev_dti_dec"); 
-            show_surface(0);
-        });
-        $("#ex_vivo_dti_tr").on('click', function(e) {  
-            console.log("CLICKED Ex-vivo Trace");  
-            current_image="ExVivo_DTI_TR"; 
-            reset_viewer();
-            update_params("ev_dti_tr"); 
-            show_surface(0);
-        });
-        $("#ex_vivo_dti_fa").on('click', function(e) {  
-            console.log("CLICKED Ex-vivo FA");  
-            current_image="ExVivo_DTI_FA"; 
-            reset_viewer(); 
-            update_params("ev_dti_fa"); 
-            show_surface(0);
-        });
-        $("#visualization_analysis").on('click', function(e) { 
-                    console.log("CLICKED visualization analysis"); 
-                    $("#current_service").html("Visualization");             
-                    $("#image_actions").show()
-                    $("#visualization_templates").show()
-        });        
-        $("#NewSurfaces").on('click', function(e) {
-            console.log("Loading new surfaces...");
-            LoadNewSurfaces(image_map[current_image],1);
-        });
-        var current_h = null;
-        var current_w = null;
-        $("#ex_vivo_dti").hover(
-            function(){
-                current_h = $("#ex_vivo_dti_dec_img").height();
-                current_w = $("#ex_vivo_dti_dec_img").width();
-                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
-                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
-                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 200);
-            },
-            function(){
-                $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
-                $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
-                $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 150);
-            }
-        );        
-          
-    });    
     </script>
     <title>Template Web Viewer</title>
 </head>
@@ -568,11 +644,20 @@
             </div>       
        </li>   
        <li>
-            <div id="papaya1" class="midViewer rcorners1 left">                 
+            <div id="papaya" class="midViewer rcorners1 left">                 
                 <div class="papaya" data-params="params" ></div>                             
             </div> 
        </li>
        </ul>       
     </div>
+    
+<div id="loading">
+    <div class="loading spin-1"/>
+    <div class="loading spin-2"/>
+    <div class="loading spin-3"/>
+    <div class="loading spin-4"/>
+    <div class="loading spin-5"/>
+    <div class="loading spin-6"/>
+</div>
 </body>
 </html>
