@@ -341,10 +341,9 @@
             var res = papaya.Container.GetCursorLocation(index[1], index[0]);
             var loc = res[0];
             console.log("LOCATION ->  " + loc)                      
-            return loc;
         };
         var get_roi_label = function(index){
-            var res = get_cursor_location(index);
+            var res = papaya.Container.GetCursorLocation(index[1], index[0]);
             var lbl = res[1];            
             var desc = GetRegionDataByName(lbl);
             var r_str = "<h3>"+lbl+"</h3>";
