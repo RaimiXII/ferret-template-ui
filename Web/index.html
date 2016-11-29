@@ -8,228 +8,37 @@
 <!-- Test: Typical fullscreen usage; autoload an image and overlay. -->
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<!-- iOS meta tags -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675327" />
-  <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675327"></script>
-  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script src="https://code.jquery.com/jquery.min.js"></script> 
-  <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
-<link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
-  <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
-  <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
-  <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
-  
-  <script type="text/javascript" src="js/UIManager.js"></script>
-  
-  <style type="text/css">
-    html, body {
-      margin: 0 auto;
-      padding: 0;
-      background: #3F3F3F;
-      background-image: url('img/turtle_shell.jpg');
-    }
-    .clear-both {
-       clear: both;
-    }
-    #sub-left {
-       overflow: hidden;
-       float: left;
-    }
-    #sub-right {
-       overflow: hidden;
-       float: right;
-    }    
-    nav { background: #2ba0db; width: 97%; margin:0 auto;  }
-    nav ul {
-      font-size: 0;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li {
-      display: inline-block;
-      position: relative;
-    }
-    nav ul li a {
-      color: #fff;
-      display: block;
-      font-size: 14px;
-      font-color: #fff
-      padding: 15px 14px;
-      transition: 0.3s linear;
-    }
-    nav ul li:hover { background: #c5c5c5; }
-    nav ul li ul {
-      border-bottom: 5px solid #2ba0db;
-      display: none;
-      position: absolute;
-      width: 250px;
-    }
-    nav ul li ul li {
-      border-top: 1px solid #444;
-      display: block;
-    }
-    nav ul li ul li:first-child { border-top: none; }
-    nav ul li ul li a {
-      background: #F5F5DC;
-      display: block;
-      padding: 10px 14px;
-    }
-    nav ul li ul li a:hover { background: #c5c5c5; }    
-    .container2 {
-        display: flex;
-    }
-    #view_and_info1 {
-      list-style-type: none; display: inline; 
-      }      
-    #view_and_info1 li{
-      list-style-type: none;
-      border-right: 1px solid #ffffff; width:250; 
-    }    
-    .column {
-        flex: 1;        
-        background: #f2f2f2;
-        border: 1px solid #e6e6e6;
-    }
-    .column-one {
-        order: 1;
-    }
-    .column-two {
-        order: 2;
-    }
-    .column-three {
-        order: 3;
-    }
-    .smallViewer {
-        margin:20px;width:500px;height:415px;
-    }    
-    .midViewer {
-        margin:1px;width:950px;height:790px;margin:0 auto; 
-    }    
-    .roiViewer {
-        margin:1px;width:775px;height:790px; margin:0 auto; 
-    }
-    .left {
-        float: left;
-    }
-    .right {
-        float: right;
-    }    
-    .float_center {
-        float: right;
-        position: relative;
-        right: 42%; /* or right 50% */
-        text-align: left;
-    }    
-    .rcorners1 {
-        border-radius: 25px;
-        background: #f1f1f1;
-        position: relative;
-        padding: 15px;         
-    }    
-    .rcorners2 {
-        border-radius: 10px;
-        background: #f1f1f1;
-        padding: 3px;  
-        position: relative;
-        left: -2%;        
-    }        
-    #ex1Slider .slider-selection {
-	    background: #BABABA;
-	     position: relative;
-	     width:200px;height:15px; 
-    }    
-    .roi-viz-tools {
-        background: #ffffff;
-    }         
-    @keyframes loading {
-       0% {
-            transform: rotate(0deg);
-       }
-       25%{
-         transform: rotate(160deg);
-       }
-       50%{
-        transform: rotate(0deg);
-       }
-       75%{
-        transform: rotate(160deg);
-       }
-       100% {
-        transform: rotate(0deg);
-       };
-    }
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/mriatlases_layout.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- iOS meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675327" />
+    <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675327"></script>
+    <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script> 
+    <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
+    <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>  
+    <script type="text/javascript" src="js/UIManager.js"></script>
 
-    .loading { 
-      background-color: transparent;
-      border-radius: 50%;
-      margin: 5px auto;
-      animation: loading 5s infinite linear;
-    }
-
-    .spin-1{
-      border: 5px solid #c00353 ;
-      border-top: 5px solid transparent;
-      border-left: 5px solid transparent;
-      width: 120px;
-      height: 120px; 
-    }
-    .spin-2{
-      border: 5px solid #05bbc3 ;
-      border-top: 5px solid transparent;
-      border-left: 5px solid transparent;
-      width: 100px;
-      height: 100px;
-      animation-delay: 1s;
-    }
-    .spin-3{
-      border: 5px solid #d2d947 ;
-      border-top: 5px solid transparent;
-      border-left: 5px solid transparent;
-      width: 80px;
-      height: 80px; 
-      animation-delay: 1s;
-    }
-    .spin-4{
-      border: 5px solid #f2a342 ;
-      border-top: 5px solid transparent;
-      border-left: 5px solid transparent;
-      width: 60px;
-      height: 60px; 
-      animation-delay: 1s;
-    }
-    .spin-5{
-      border: 5px solid #f34d51 ;
-      border-top: 5px solid transparent;
-      border-left: 5px solid transparent;
-      width: 40px;
-      height: 40px; 
-      animation-delay: 1s;
-    }
-    .spin-6{
-      border: 5px solid #fff ;
-      width: 20px;
-      height: 20px; 
-      animation-delay: 1s;
-    }
-
-</style>
 <script type="text/javascript">
-    var ui = new UIManager();
+
+    var ui = new UIManager();    
     
     var LoadNewSurfaces = function(index, opt){
         var surfs = [];
@@ -601,21 +410,36 @@
             <div class="row" height="50">
                 <div class="row" id="ex_vivo_dti">    
                     <ul class="pager">        
-                        <li id="ex_vivo_dti_fa">
+                        <li id="ex_vivo_dti_fa">                        
                         <a href="#">
-                            <img id="ex_vivo_dti_fa_img" class="ex_vivo_fa" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" alt="Fractional Anisotropy Map (ex-vivo)" height="50" width="50"> 
+                            <img id="ex_vivo_dti_fa_img" 
+                                      class="ex_vivo_fa" 
+                                      src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" 
+                                      alt="Fractional Anisotropy Map (ex-vivo)" 
+                                      height="50" 
+                                      width="50"> 
                             <p id="ev_fa_txt" style="margin:0 auto;">FA</p>
                         </a>
                         </li>              
                         <li id="ex_vivo_dti_dec">
                         <a href="#">
-                            <img id="ex_vivo_dti_dec_img" class="ex_vivo_dec" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" alt="Directionally Encoded Color Map (ex-vivo)" height="50" width="50"> 
+                            <img id="ex_vivo_dti_dec_img" 
+                                      class="ex_vivo_dec" 
+                                      src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_DEC.png" 
+                                      alt="Directionally Encoded Color Map (ex-vivo)" 
+                                      height="50" 
+                                      width="50"> 
                             <p id="ev_dec_txt" style="margin:0 auto;">DEC</p>
                         </a>
                         </li>               
                         <li id="ex_vivo_dti_tr">
                         <a href="#">
-                            <img id="ex_vivo_dti_tr_img" class="ex_vivo_tr" src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" alt="Trace Map (ex-vivo)" height="50" width="50">
+                            <img id="ex_vivo_dti_tr_img" 
+                                      class="ex_vivo_tr" 
+                                      src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_TR.png" 
+                                      alt="Trace Map (ex-vivo)" 
+                                      height="50" 
+                                      width="50">
                             <p id="ev_tr_txt" style="margin:0 auto;">TR</p> 
                         </a>
                         </li>
