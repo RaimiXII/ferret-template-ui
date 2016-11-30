@@ -1,8 +1,9 @@
 html, body {
   margin: 0 auto;
   padding: 0;
-  background: #3F3F3F;
-  background-image: url('../img/turtle_shell.jpg');
+  
+/*  background: #3F3F3F;*/
+/*  background-image: url('../img/turtle_shell.jpg');*/
 }
 .clear-both {
    clear: both;
@@ -187,3 +188,11 @@ nav ul li ul li a:hover { background: #c5c5c5; }
   height: 20px; 
   animation-delay: 1s;
 }
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
