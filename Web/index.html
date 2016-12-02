@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/mriatlases_layout.css" />
-        <script src="https://code.jquery.com/jquery.min.js"></script> 
+        <script src="https://code.jquery.com/jquery.min.js"></script>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,25 +16,24 @@
         <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css?build=8675327" />
         <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
-        <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css">
-        <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
         <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
-        <title>Template Web Viewer</title>
+        <title>National Institutes of Health - MRI Atlases</title>
     </head>
 
     <body>
         <nav id="navi" class="navbar navbar-inverse" >
           <div class="container-fluid"  >
-            <div class="navbar-header">    
-              <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">NIH MRI Viewer<span class="caret"></span></a>      
+            <div class="navbar-header">
+              <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">NIH MRI Viewer<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                  <li class="dropdown">
+                  <li id="home_screen"><a href="#">Home</a></li>
                   <li id="visualization_analysis"><a href="#">View Templates</a></li>
                 </ul>
               </li>
             </div>
             <ul class="nav navbar-nav navbar-inverse">
-              <li class="active"><a href="#"><div id="current_service"><----</div></a></li>
+              <li class="active"><a href="#"><div id="current_service">Home</div></a></li>
               <li id="visualization_templates" class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Templates<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li id="evdti"><a href="#">Ex-Vivo DTI</a></li>
@@ -43,21 +42,22 @@
             </ul>
           </div>
         </nav>
+        
         <div class="container-fluid" >
             <div class="row" height="50">
-                <div class="row" id="ex_vivo_dti">    
-                    <ul class="pager">        
-                        <li id="ex_vivo_dti_fa">                        
+                <div class="row" id="ex_vivo_dti">
+                    <ul class="pager">
+                        <li id="ex_vivo_dti_fa">
                         <a href="#">
                             <img id="ex_vivo_dti_fa_img" 
                                       class="ex_vivo_fa" 
                                       src="img/linked_content/Templates/DTI_exvivo/Thumbnails/ExVivo_DTI_FA.png" 
                                       alt="Fractional Anisotropy Map (ex-vivo)" 
                                       height="50" 
-                                      width="50"> 
+                                      width="50">
                             <p id="ev_fa_txt" style="margin:0 auto;">FA</p>
                         </a>
-                        </li>              
+                        </li>
                         <li id="ex_vivo_dti_dec">
                         <a href="#">
                             <img id="ex_vivo_dti_dec_img" 
@@ -77,40 +77,42 @@
                                       alt="Trace Map (ex-vivo)" 
                                       height="50" 
                                       width="50">
-                            <p id="ev_tr_txt" style="margin:0 auto;">TR</p> 
+                            <p id="ev_tr_txt" style="margin:0 auto;">TR</p>
                         </a>
                         </li>
                     </ul>
-                </div>      
+                </div>
             </div>
         </div>
+        
         <div id="roi-viz-tools" class="pager">
             <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75">
         </div>
+        
         <div class="container-fluid" id="view_and_info1">
            <ul>
-           <li>
-                <div id="ROI_area1" class="roiViewer rcorners2 right">
-                  <div class="jumbotron">
-                    <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
-                  </div>
-                        <div id="template1_info">
-                            Image description: <div id="img_description1"></div>
-                            <br>
-                            ROI name: <div id="current_roi"></div>
-                            <br>
-                            ROI description: <div id="roi_description"></div>
-                        </div>                            
-                </div>       
-           </li>   
-           <li>
-                <div id="papaya" class="midViewer rcorners1 left">                 
-                    <div class="papaya" data-params="params" ></div>                             
-                </div> 
-           </li>
-           </ul>       
-        </div>     
-           
+               <li>
+                    <div id="ROI_area1" class="roiViewer rcorners2 right">
+                      <div class="jumbotron">
+                        <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
+                      </div>
+                            <div id="template1_info">
+                                Image description: <div id="img_description1"></div>
+                                <br>
+                                ROI name: <div id="current_roi"></div>
+                                <br>
+                                ROI description: <div id="roi_description"></div>
+                            </div>
+                    </div>
+               </li>
+               <li>
+                    <div id="papaya" class="midViewer rcorners1 left">
+                        <div class="papaya" data-params="params" ></div>
+                    </div>
+               </li>
+           </ul>
+        </div>
+
         <div id="loading" class="centered">
             <div class="loading spin-1"/>
             <div class="loading spin-2"/>
@@ -118,38 +120,40 @@
             <div class="loading spin-4"/>
             <div class="loading spin-5"/>
             <div class="loading spin-6"/>
-        </div>        
-        
+        </div>
+
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675327"></script>
         <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
-        <script src="https://code.jquery.com/jquery.min.js"></script> 
+        <script src="https://code.jquery.com/jquery.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>  
+        <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
         <script type="text/javascript" src="js/UIManager.js"></script>
+        
         <script type="text/javascript">
-            var ui = new UIManager();            
+            var ui = new UIManager();
             ui.FetchBrainRegionData();
             var params  = [];
             var brain_region_struct = {};
             var image_map = {
                 "ExVivo_DTI_FA" : [0,0],
                 "ExVivo_DTI_DEC" : [0,1],
-                "ExVivo_DTI_TR" : [0,2]    
-            };            
-            var imageUrl = 'img/test_bkg.jpg'; //  Thanks to - http://combiboilersleeds.com/image.php?pic=/images/background/background-1.jpg for the image
+                "ExVivo_DTI_TR" : [0,2]
+            };
+            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com
             $(document).ready(function(){
                     ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#view_and_info1", "#visualization_templates", /*"#image_actions" */      ]);
                     $('body').css('background-image', 'url(' + imageUrl + ')');
-                    setTimeout(function(){                                                          
+                    setTimeout(function(){
                         ui.swapDivs(
-                            ["#loading"], 
-                            [   "#roi-viz-tools", "#navi"  ] 
+                            ["#loading"],
+                            [   "#roi-viz-tools", "#navi"  ]
                         );
-                    }, 3000);            
-            });        
+                    }, 3000);
+            });
         </script>
+        
     </body>
 </html>

@@ -1,5 +1,4 @@
 // UI Manager
-
 var UIManager = function()
 {
     var SetSurfaceAlpha = function(index, val){
@@ -39,11 +38,8 @@ var UIManager = function()
                 GetCursorLocation(image_map[current_image]);          
                 ui.get_roi_label(image_map[current_image]);  
             });
-            $("#evdti").on('click', function(e) {  
-                 console.log("CLICKED Ex-Vivo DTI Template");                               
-                 $("#ex_vivo_dti").show();           
-                 $("#view_and_info1").show();             
-                 $("#ex1Slider").show();
+            $("#evdti").on('click', function(e) {           
+                 fade_divs_in( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
                  ResetViewer();
             });
             $("#reset_view").on('click', function(e) {
@@ -54,20 +50,25 @@ var UIManager = function()
                 console.log("Showing ROI content.")
                 ui.reset_roi_info();
             });
-            $("#minimize_all").on('click', function(e) { 
+            $("#minimize_all").on('click', function(e) {
+                fade_divs_out( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
                 ResetViewer();
-                $("#ex_vivo_dti").hide();            
-                $("#view_and_info1").hide();
-                $("#roi-viz-tools").hide();
             });
             $("#create_png").on('click', function(e) {
                 console.log("Create PNG selected.");
             });			
+            
+            $("#home_screen").on('click', function(e) {
+                console.log("CLICKED home screen");
+                $("#current_service").html("Home");
+                ui.hideDivs(    ["#image_actions", "#visualization_templates"]  );
+                fade_divs_out(["#ex_vivo_dti", "#view_and_info1", "#ex1Slider"]);
+            });
 
             $("#visualization_analysis").on('click', function(e) { 
-                        console.log("CLICKED visualization analysis"); 
-                        $("#current_service").html("Visualization");             
-                        ui.showDivs(    ["#image_actions", "#visualization_templates"]  );
+                console.log("CLICKED visualization analysis"); 
+                $("#current_service").html("Visualization");             
+                ui.showDivs(    ["#image_actions", "#visualization_templates"]  );
             });
 
     var current_h = null;
@@ -91,10 +92,10 @@ var UIManager = function()
         formatter: function(value) {
             return 'Current s1 value: ' + value;
         }
-    }).on('slide', function() { 
+    }).on('slide', function() {
         console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
         SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
-    }).data('slider');		 
+    }).data('slider');
     
     var HideDivs = function(divs) {
         for(var i in divs)
@@ -184,7 +185,7 @@ var UIManager = function()
         } else {
             console.log("Unknown surface request index: "+index);
         }                        
-    }
+    };
     
     var HideImage = function(index){            
         papaya.Container.hideImage(index[0], index[1]);
@@ -223,6 +224,7 @@ var UIManager = function()
         UpdateParams("ev_dti_dec"); 
         ShowSurface(0);
     });
+
     $("#ex_vivo_dti_tr").on('click', function(e) {  
         console.log("CLICKED Ex-vivo Trace");  
         current_image="ExVivo_DTI_TR"; 
@@ -230,6 +232,7 @@ var UIManager = function()
         UpdateParams("ev_dti_tr"); 
         ShowSurface(0);
     });
+
     $("#ex_vivo_dti_fa").on('click', function(e) {  
         console.log("CLICKED Ex-vivo FA");  
         current_image="ExVivo_DTI_FA"; 
@@ -237,14 +240,12 @@ var UIManager = function()
         UpdateParams("ev_dti_fa"); 
         ShowSurface(0);
     });
-    
+
     var SwapDivs = function(goingOut, goingIn){
         for(i in goingIn){
           $( goingIn[i] ).fadeIn( "slow", function() {
-            // Animation complete
             for(j in goingOut){
                   $( goingOut[j] ).fadeOut( "slow", function() {
-                // Animation complete
                   });
               }
           });
@@ -388,8 +389,8 @@ var UIManager = function()
                 params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                 params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
                 ui.LoadNewSurfaces(image_map[current_image],0);
-            });                    
-        },    
+            });
+        },
         FadeDivsIn : fade_divs_in,
         FadeDivsOut : fade_divs_out,
   };
