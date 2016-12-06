@@ -25,54 +25,57 @@ var UIManager = function()
     };
     
     $('nav li').hover(
-                function() {
-                $('ul', this).stop().slideDown(200);                
-                },
-                function() {
-                $('ul', this).stop().slideUp(200);
-                }
-            );                
-            $("#papaya").on('click', function(e) {        
-                console.log("From papaya 1.")
-                console.log("CURRENT IMAGE ->  " +current_image)
-                GetCursorLocation(image_map[current_image]);          
-                ui.get_roi_label(image_map[current_image]);  
-            });
-            $("#evdti").on('click', function(e) {           
-                 fade_divs_in( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
-                 ResetViewer();
-            });
-            $("#reset_view").on('click', function(e) {
-                console.log("Resetting Viewport.");
-                ResetViewer();
-            });        
-            $("#show_roi_content").on('click', function(e) {
-                console.log("Showing ROI content.")
-                ui.reset_roi_info();
-            });
-            $("#minimize_all").on('click', function(e) {
-                fade_divs_out( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
-                ResetViewer();
-            });
-            $("#create_png").on('click', function(e) {
-                console.log("Create PNG selected.");
-            });			
-            
-            $("#home_screen").on('click', function(e) {
-                console.log("CLICKED home screen");
-                $("#current_service").html("Home");
-                ui.hideDivs(    ["#image_actions", "#visualization_templates"]  );
-                fade_divs_out(["#ex_vivo_dti", "#view_and_info1", "#ex1Slider"]);
-            });
+        function() {
+        $('ul', this).stop().slideDown(200);                
+        },
+        function() {
+        $('ul', this).stop().slideUp(200);
+        }
+    );                
+    $("#papaya").on('click', function(e) {        
+        console.log("From papaya 1.")
+        console.log("CURRENT IMAGE ->  " +current_image)
+        GetCursorLocation(image_map[current_image]);          
+        ui.get_roi_label(image_map[current_image]);  
+    });
+    $("#evdti").on('click', function(e) {           
+         fade_divs_in( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
+         ResetViewer();
+    });
+    $("#reset_view").on('click', function(e) {
+        console.log("Resetting Viewport.");
+        ResetViewer();
+    });        
+    $("#show_roi_content").on('click', function(e) {
+        console.log("Showing ROI content.")
+        ui.reset_roi_info();
+    });
+    $("#minimize_all").on('click', function(e) {
+        fade_divs_out( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
+        ResetViewer();
+    });
+    $("#create_png").on('click', function(e) {
+        console.log("Create PNG selected.");
+    });			
+    
+    $("#home_screen").on('click', function(e) {
+        console.log("CLICKED home screen");
+        $("#current_service").html("Home");
+        ui.hideDivs(    ["#image_actions", "#visualization_templates"]  );
+        fade_divs_out(["#ex_vivo_dti", "#view_and_info1", "#ex1Slider"]);
+    });
 
-            $("#visualization_analysis").on('click', function(e) { 
-                console.log("CLICKED visualization analysis"); 
-                $("#current_service").html("Visualization");             
-                ui.showDivs(    ["#image_actions", "#visualization_templates"]  );
-            });
+    $("#visualization_analysis").on('click', function(e) { 
+        console.log("CLICKED visualization analysis"); 
+        $("#current_service").html("Visualization");             
+        ui.showDivs(    ["#image_actions", "#visualization_templates"]  );
+    });
 
+
+    //  Below is the grow / shrink functionality for the 
+    /*
     var current_h = null;
-    var current_w = null;
+    var current_w = null;    
     $("#ex_vivo_dti").hover(
         function(){
             current_h = $("#ex_vivo_dti_dec_img").height();
@@ -87,7 +90,7 @@ var UIManager = function()
             $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 50);
         }
     ); 
-
+    */
     $('#ex1').slider({
         formatter: function(value) {
             return 'Current s1 value: ' + value;
@@ -96,7 +99,24 @@ var UIManager = function()
         console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
         SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
     }).data('slider');
-    
+    /*
+    var SetupHoverAnimation = function(divs) {    
+        var current_h=0;
+        var current_w=0;
+        for(var i in divs)
+        {
+            $(divs[i]).hover(
+                function(){
+                    current_h = $(divs[i]).height();
+                    current_w = $(divs[i]).width();
+                    $(divs[i]).stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 100);
+                },
+                function(){
+                    $(divs[i]).stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 50);
+                }
+            );
+    };
+    */
     var HideDivs = function(divs) {
         for(var i in divs)
         {
@@ -204,7 +224,6 @@ var UIManager = function()
     var fade_divs_in = function(divs) {
         for(i in divs){
           $( divs[i] ).fadeIn( "slow", function() {
-        // Animation complete
           });
       }    
     };
@@ -212,7 +231,6 @@ var UIManager = function()
     var fade_divs_out = function(divs) {
         for(i in divs){
           $( divs[i] ).fadeOut( "slow", function() {
-        // Animation complete
           });
       }    
     };
