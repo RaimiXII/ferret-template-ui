@@ -24,7 +24,7 @@
         <nav id="navi" class="navbar navbar-inverse" >
           <div class="container-fluid"  >
             <div class="navbar-header">
-              <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">NIH MRI Viewer<span class="caret"></span></a>
+              <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">Ferret Template Viewer<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                  <li class="dropdown">
                   <li id="home_screen"><a href="#">Home</a></li>
@@ -42,6 +42,20 @@
             </ul>
           </div>
         </nav>
+        
+        <div id="bannerBox" class="pager" style="width:100%;margin:0">
+            <img src="img/banner_full.png" style="width:100%;" />
+            <div id="attentionMessage" class="list-group">
+              <a href="#" class="list-group-item active-inverse">
+                <h4 class="list-group-item-heading">Welcome!</h4>
+                <p class="list-group-item-text">Click 'Ferret Template Viewer' in the top left to begin browsing!</p>
+              </a>
+            </div>
+        </div>
+
+        
+        
+        
         
         <div class="container-fluid" >
             <div class="row" height="50">
@@ -144,12 +158,12 @@
             };
             var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com
             $(document).ready(function(){
-                    ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#view_and_info1", "#visualization_templates", /*"#image_actions" */      ]);
+                    ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#view_and_info1", "#visualization_templates", "#bannerBox",  "#ex1"/*"#image_actions" */      ]);
                     $('body').css('background-image', 'url(' + imageUrl + ')');
                     setTimeout(function(){
                         ui.swapDivs(
                             ["#loading"],
-                            [   "#roi-viz-tools", "#navi"  ]
+                            [   "#navi", "#bannerBox" ]
                         );
                     }, 3000);
             });

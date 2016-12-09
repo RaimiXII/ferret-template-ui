@@ -16,7 +16,7 @@ html, body {
    overflow: hidden;
    float: right;
 }    
-nav { background: #2ba0db; width: 97%; margin:0 auto;  }
+nav { background: #2ba0db; width: 100%; margin:0 auto;  }
 nav ul {
   font-size: 0;
   margin: 0;

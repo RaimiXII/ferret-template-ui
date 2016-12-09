@@ -39,7 +39,8 @@ var UIManager = function()
         ui.get_roi_label(image_map[current_image]);  
     });
     $("#evdti").on('click', function(e) {           
-         fade_divs_in( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
+         fade_divs_in( [ "#ex_vivo_dti", "#view_and_info1", "#roi-viz-tools" ] );
+         fade_divs_out(["#bannerBox"]);
          ResetViewer();
     });
     $("#reset_view").on('click', function(e) {
@@ -51,7 +52,7 @@ var UIManager = function()
         ui.reset_roi_info();
     });
     $("#minimize_all").on('click', function(e) {
-        fade_divs_out( [ "#ex_vivo_dti", "#view_and_info1", "#ex1Slider" ] );
+        fade_divs_out( [ "#ex_vivo_dti", "#view_and_info1", "#roi-viz-tools" ] );
         ResetViewer();
     });
     $("#create_png").on('click', function(e) {
@@ -63,6 +64,7 @@ var UIManager = function()
         $("#current_service").html("Home");
         ui.hideDivs(    ["#image_actions", "#visualization_templates"]  );
         fade_divs_out(["#ex_vivo_dti", "#view_and_info1", "#ex1Slider"]);
+        fade_divs_in(["#bannerBox"])
     });
 
     $("#visualization_analysis").on('click', function(e) { 
@@ -99,24 +101,7 @@ var UIManager = function()
         console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
         SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
     }).data('slider');
-    /*
-    var SetupHoverAnimation = function(divs) {    
-        var current_h=0;
-        var current_w=0;
-        for(var i in divs)
-        {
-            $(divs[i]).hover(
-                function(){
-                    current_h = $(divs[i]).height();
-                    current_w = $(divs[i]).width();
-                    $(divs[i]).stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 100);
-                },
-                function(){
-                    $(divs[i]).stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 50);
-                }
-            );
-    };
-    */
+
     var HideDivs = function(divs) {
         for(var i in divs)
         {
