@@ -131,7 +131,7 @@ papaya.ui.Toolbar.MENU_DATA = {
                 {"label": "Show License", "action": "License"}
             ]
         },
-        {"label": "", "icons": null, "titleBar": "true" },
+        {"label": "TITLE", "icons": null, "titleBar": "true" },
         {"label": "EXPAND", "icons": [papaya.ui.Toolbar.ICON_EXPAND, papaya.ui.Toolbar.ICON_COLLAPSE], "items": [],
             "method": "isCollapsable", "required": "isExpandable" },
         {"label": "SPACE", "icons": [papaya.ui.Toolbar.ICON_IMAGESPACE, papaya.ui.Toolbar.ICON_WORLDSPACE],
@@ -340,7 +340,11 @@ papaya.ui.Toolbar.prototype.buildToolbar = function () {
         if ((this.container.viewer.screenVolumes.length > 0) && this.container.viewer.screenVolumes[0].rgb) {
             papaya.ui.Toolbar.MENU_DATA.menus[0] = papaya.ui.Toolbar.RGB_FILE_MENU_DATA;
         } else {
-            papaya.ui.Toolbar.MENU_DATA.menus[0] = papaya.ui.Toolbar.FILE_MENU_DATA;
+            if (this.container.noNewFiles) {
+                papaya.ui.Toolbar.MENU_DATA.menus[0] = papaya.ui.Toolbar.RGB_FILE_MENU_DATA;
+            } else {
+                papaya.ui.Toolbar.MENU_DATA.menus[0] = papaya.ui.Toolbar.FILE_MENU_DATA;
+            }
             this.buildOpenMenuItems(papaya.ui.Toolbar.MENU_DATA);
         }
 
@@ -683,7 +687,7 @@ papaya.ui.Toolbar.prototype.isShowingMenus = function () {
 
 
 papaya.ui.Toolbar.prototype.doAction = function (action, file, keepopen) {
-    var imageIndex, colorTableName, dialog, atlasName, imageName, folder, ctr;
+    var imageIndex, colorTableName, dialog, atlasName, imageName, folder, ctr, ctrI, ignored;
 
     if (!keepopen) {
         this.closeAllMenus();
@@ -713,7 +717,15 @@ papaya.ui.Toolbar.prototype.doAction = function (action, file, keepopen) {
         } else if (action === "OpenFolder") {
             folder = [];
             for (ctr = 0; ctr < file.length; ctr += 1) {
-                if (file[ctr].name.startsWith('.')) {
+                ignored = false;
+
+                for (ctrI = 0; ctrI < papaya.Container.ignorePatterns.length; ctrI += 1) {
+                    if (papaya.Container.ignorePatterns[ctrI].test(file[ctr].name)) {
+                        ignored = true;
+                    }
+                }
+
+                if (ignored) {
                     console.log("Ignoring file " + file[ctr].name);
                 } else {
                     folder.push(file[ctr]);
@@ -944,7 +956,7 @@ papaya.ui.Toolbar.prototype.updateTitleBar = function (title) {
         elem.innerHTML = title;
     }
 
-    this.container.titlebarHtml.css({top: (this.container.viewerHtml.position().top - 1.25 * papaya.ui.Toolbar.SIZE)});
+    this.container.titlebarHtml.css({top: (0)});
 };
 
 

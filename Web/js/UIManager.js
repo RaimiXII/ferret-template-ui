@@ -39,7 +39,7 @@ var UIManager = function()
         ui.get_roi_label(image_map[current_image]);  
     });
     $("#evdti").on('click', function(e) {           
-         fade_divs_in( [ "#ex_vivo_dti", "#view_and_info1", "#roi-viz-tools" ] );
+         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools" ] );
          fade_divs_out(["#bannerBox"]);
          ResetViewer();
     });
@@ -52,7 +52,7 @@ var UIManager = function()
         ui.reset_roi_info();
     });
     $("#minimize_all").on('click', function(e) {
-        fade_divs_out( [ "#ex_vivo_dti", "#view_and_info1", "#roi-viz-tools" ] );
+        fade_divs_out( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools" ] );
         ResetViewer();
     });
     $("#create_png").on('click', function(e) {
@@ -63,7 +63,7 @@ var UIManager = function()
         console.log("CLICKED home screen");
         $("#current_service").html("Home");
         ui.hideDivs(    ["#image_actions", "#visualization_templates"]  );
-        fade_divs_out(["#ex_vivo_dti", "#view_and_info1", "#ex1Slider"]);
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#ex1Slider"]);
         fade_divs_in(["#bannerBox"])
     });
 
@@ -186,7 +186,7 @@ var UIManager = function()
     var ShowSurface = function(index){
         console.log("SURFACE INDEX ->  " + index)
         if(index == 0){            
-            ShowDivs(    ["#papaya", "#ROI_area1", "#view_and_info1"] );
+            ShowDivs(    ["#papaya", "#ROI_area1", "#MRI_area1"] );
         } else {
             console.log("Unknown surface request index: "+index);
         }                        
@@ -396,5 +396,6 @@ var UIManager = function()
         },
         FadeDivsIn : fade_divs_in,
         FadeDivsOut : fade_divs_out,
+        
   };
 };

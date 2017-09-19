@@ -20,23 +20,16 @@
         <title>National Institutes of Health - MRI Atlases</title>
     </head>
 
-    <body>
-    
-        
-        <nav id="navi" class="navbar navbar-inverse" >
-        
+    <body>       
+        <nav id="navi" class="navbar navbar-inverse" >        
           <div class="container-fluid"  >
-
-            <div class="navbar-header">
-              
-              <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">Ferret Template Viewer<span class="caret"></span></a>
+            <div class="navbar-header">              
+              <a class="navbar-brand dropdown-toggle" href="#" data-toggle="dropdown">Ferret MRI Template Viewer<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                  <li class="dropdown">
-
                   <li id="home_screen"><a href="#">Home</a></li>
                   <li id="visualization_analysis"><a href="#">View Templates</a></li>                
-              </li>
-              
+              </li>              
               </ul>
             </div>
             <ul class="nav navbar-nav navbar-inverse">
@@ -49,23 +42,21 @@
               <li>
                   <img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" height=50 width=100% />
               </li>
-            </ul>
-            
-          </div>
-          
-        </nav>
-        
+            </ul>            
+          </div>          
+        </nav>        
         <div id="bannerBox" class="pager" style="width:100%;margin:0">
             <img src="img/banner_full.png" alt="This is the banner." style="width:100%;" />
             <div id="attentionMessage" class="list-group">
               <a href="#" class="list-group-item active-inverse">
                 <h4 class="list-group-item-heading">Welcome!</h4>
-                <p class="list-group-item-text">Click 'Ferret Template Viewer' in the top left to begin browsing!</p>
-                
+                <p class="list-group-item-text">Click 'Ferret Template Viewer' in the top left to begin browsing!</p>                
               </a>
             </div>
         </div>
-
+        
+        
+        
         <div class="container-fluid" >
             <div class="row" height="50">
                 <div class="row" id="ex_vivo_dti">
@@ -112,6 +103,11 @@
             <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75" aria-hidden="true">
         </div>
         
+
+        
+        
+        
+        
         <div class="container-fluid" id="view_and_info1">
            <ul>
                <li>
@@ -135,6 +131,9 @@
                </li>
            </ul>
         </div>
+        
+        
+        
 
         <div id="loading" class="centered">
             <div class="loading spin-1"/>
@@ -147,7 +146,7 @@
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=8675327"></script>
+        <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js?build=1432"></script>
         <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -166,6 +165,10 @@
                 "ExVivo_DTI_TR" : [0,2]
             };
             var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com
+            
+            
+            
+            
             $(document).ready(function(){
                     ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#view_and_info1", "#visualization_templates", "#bannerBox",  "#ex1"/*"#image_actions" */      ]);
                     $('body').css('background-image', 'url(' + imageUrl + ')');

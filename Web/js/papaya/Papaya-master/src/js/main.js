@@ -16,7 +16,16 @@
 "use strict";
 
 /*** Imports ***/
-var papaya = papaya || {};
+//var papaya = papaya || {};
+
+var current_label="";
+//var papaya=papaya||{};papaya.data=papaya.data||{};papaya.data.Atlas=papaya.data.Atlas||{};
+var current_label="";var papaya=papaya||{};papaya.data=papaya.data||{};papaya.data.Atlas=papaya.data.Atlas||{};
+papaya.data.Atlas.labels={atlas:{data:{label:[":",{index:1,content:"White Matter"},{index:2,content:"Gray Matter"},{index:3,content:"Corpus Callosum"},{index:4,content:"Cingulum"},{index:5,content:"Fornix"},{index:6,content:"Anterior Commisure"},{index:7,content:"Optic Tract"},{index:8,content:"Corticospinal Tract"},{index:9,content:"Cortex White Matter"},{index:10,content:"Lateral Olfactory Tract"},{index:11,content:"Brainstem White Matter"},{index:12,content:"Cerebellum White Matter"},{index:13,
+content:"Midbrain White Matter"},{index:21,content:"Olfactory Bulb"},{index:22,content:"Cerebellum Gray Matter"},{index:23,content:"Brainstem Gray Matter"},{index:24,content:"Inferior Colliculus"},{index:25,content:"Cerebellum Gray Matter"},{index:26,content:"Periaqueductal Gray Matter"},{index:27,content:"Midbrain Gray Matter"},{index:28,content:"Thalamus"},{index:29,content:"Hippocampus"},{index:30,content:"Hypothalamus"},{index:31,content:"Globus Pallidus"},{index:32,content:"Putamen"},{index:33,
+content:"Caudate"},{index:34,content:"Septum"},{index:35,content:"Amygdala"},{index:40,content:"Orbital Gyrus"},{index:41,content:"Anterior Sigmoid Gyrus"},{index:42,content:"Posterior Sigmoid Gyrus"},{index:43,content:"Coronal Gyrus"},{index:44,content:"Anterior Ectosylvian Gyrus"},{index:45,content:"Posterior Ectosylvian Gyrus"},{index:46,content:"Lateral Gyrus"},{index:47,content:"Suprasylvian Gyrus"},{index:48,content:"Piriform Lobe"},{index:49,content:"Gyrus Rectus"},{index:50,content:"Olfactory Tubercle"},
+{index:51,content:"Cingulate Gyrus"},{index:60,content:"Presylvian Sulcus"},{index:61,content:"Cruciate Sulcus"},{index:62,content:"Splenial Sulcus"},{index:63,content:"Longitudinal Fissure"},{index:64,content:"Coronal Sulcus"},{index:65,content:"Ansinate Sulcus"},{index:66,content:"Lateral Sulcus"},{index:67,content:"Suprasylvian Sulcus"},{index:68,content:"Pseudosylvian Sulcus"},{index:69,content:"Rhinal Fissure"}]},header:{images:{summaryimagefile:"evDTI_SEGMENTATION"},display:"*.",name:"Ferret Atlas",
+type:"Label"},version:1}};var papayaLoadableImages=[{hide:!0,name:"evDTI_SEGMENTATION",nicename:"Atlas",url:"data/evDTI_SEGMENTATION.nii.gz"}];
 
 
 /*** Global Fields ***/
@@ -47,6 +56,7 @@ papaya.Container = papaya.Container || function (containerHtml) {
     this.orthogonalTall = false;
     this.orthogonalDynamic = false;
     this.kioskMode = false;
+    this.noNewFiles = false;
     this.showControls = true;
     this.showControlBar = false;
     this.showImageButtons = true;
@@ -104,12 +114,13 @@ papaya.Container.syncViewers = false;
 papaya.Container.syncViewersWorld = false;
 papaya.Container.allowPropagation = false;
 papaya.Container.papayaLastHoveredViewer = null;
+papaya.Container.ignorePatterns = [/^[.]/];
 
 
 /*** Static Methods ***/
 
-papaya.Container.restartViewer = function (index, refs, forceUrl, forceEncode) {
-    papayaContainers[index].viewer.restart(refs, forceUrl, forceEncode);
+papaya.Container.restartViewer = function (index, refs, forceUrl, forceEncode, forceBinary) {
+    papayaContainers[index].viewer.restart(refs, forceUrl, forceEncode, forceBinary);
 };
 
 
@@ -125,6 +136,11 @@ papaya.Container.resetViewer = function (index, params) {
         if (params.loadedEncodedImages) {
             params.encodedImages = params.loadedEncodedImages;
         }
+
+        if (params.loadedBinaryImages) {
+            params.binaryImages = params.loadedBinaryImages;
+        }
+
 
         if (params.loadedSurfaces) {
             params.surfaces = params.loadedSurfaces;
@@ -159,29 +175,76 @@ papaya.Container.removeImage = function (index, imageIndex) {
 };
 
 
-papaya.Container.hideSurface = function (index, surfaceIndex) {
-    papayaContainers[index].viewer.surfaces[surfaceIndex].hidden = true;
-    papayaContainers[index].viewer.drawViewer(true, false);
-};
-
-papaya.Container.showSurface = function (index, surfaceIndex) {
-    papayaContainers[index].viewer.surfaces[surfaceIndex].hidden = false;
-    papayaContainers[index].viewer.drawViewer(true, false);
-};
-
+/*
 papaya.Container.hideImage = function (index, imageIndex) {
     papayaContainers[index].viewer.screenVolumes[imageIndex].hidden = true;
     papayaContainers[index].viewer.drawViewer(true, false);
 };
-
-
-
 papaya.Container.showImage = function (index, imageIndex) {
     papayaContainers[index].viewer.screenVolumes[imageIndex].hidden = false;
     papayaContainers[index].viewer.drawViewer(true, false);
 };
 
-
+*/
+papaya.Container.GetCursorLocation=function(c,a){
+    var pos = papayaContainers[a].viewer.cursorPosition; 
+    console.log("LABEL ->  " + current_label)    
+    console.log(papayaContainers[a].viewer.surfaces[c])
+    return [pos, current_label];
+};
+papaya.Container.SetSurfaceAlpha=function(c,a,al){
+    console.log("NUMBER OF SURFACES....." + papayaContainers[c].viewer.surfaces.length); 
+    papayaContainers[c].viewer.surfaces[a].alpha = al;
+}
+papaya.Container.GetNumberOfSurfaces=function(c)
+{
+    return papayaContainers[c].viewer.surfaces.length;
+}
+papaya.Container.GetSurfaceIndexByName=function(c,name){
+    var surface_index = 0;
+    for(var i = 0; i < papayaContainers[c].viewer.surfaces.length; i++)
+    {
+        var usc_seps = papayaContainers[c].viewer.surfaces[i]["filename"].split('.')[0].split('_');
+        var act_name = "";
+        // skip the first one, its a #
+        for(var j = 0; j < usc_seps.length; j++)
+        {
+            // if not a number
+            if( ! isNaN(usc_seps[j]) )
+            {
+                var nothing=0;
+            }
+            // first idx is a number
+            else
+            {
+                act_name = act_name + usc_seps[j] + " ";       
+            }                 
+        }        
+        var s_name = act_name.replace(/ +$/, "");
+        if(s_name.trim() == name.trim())
+        {
+            surface_index = i;
+            return surface_index;
+        }       
+    }
+    return -1;
+}
+/*
+papaya.Container.showSurface = function(c,a){
+    papayaContainers[c].viewer.surfaces[a].hidden=!1;
+    papayaContainers[c].viewer.drawViewer(!0,!1)
+};
+*/
+/*
+papaya.Container.hideImage = function(c,a){
+    papayaContainers[c].viewer.screenVolumes[a].hidden=!0;
+    papayaContainers[c].viewer.drawViewer(!0,!1)
+};
+papaya.Container.showImage=function(c,a){
+    papayaContainers[c].viewer.screenVolumes[a].hidden=!1;
+    papayaContainers[c].viewer.drawViewer(!0,!1)
+};
+*/
 
 papaya.Container.addImage = function (index, imageRef, imageParams) {
     var imageRefs;
@@ -198,9 +261,11 @@ papaya.Container.addImage = function (index, imageRef, imageParams) {
     }
 
     if (papayaContainers[index].params.images) {
-        papayaContainers[index].viewer.loadImage(imageRefs, true, false);
+        papayaContainers[index].viewer.loadImage(imageRefs, true, false, false);
+    } else if(papayaContainers[index].params.binaryImages) {
+        papayaContainers[index].viewer.loadImage(imageRefs, false, false, true);
     } else if (papayaContainers[index].params.encodedImages) {
-        papayaContainers[index].viewer.loadImage(imageRefs, false, true);
+        papayaContainers[index].viewer.loadImage(imageRefs, false, true, false);
     }
 };
 
@@ -346,6 +411,7 @@ papaya.Container.fillContainerHTML = function (containerHTML, isDefault, params,
 
 
 papaya.Container.buildContainer = function (containerHTML, params, replaceIndex) {
+
     var container, message, viewerHtml, loadUrl, index, imageRefs = null;
 
     message = papaya.utilities.PlatformUtils.checkForBrowserCompatibility();
@@ -399,7 +465,7 @@ papaya.Container.buildContainer = function (containerHTML, params, replaceIndex)
                 imageRefs[0] = loadUrl;
             }
 
-            container.viewer.loadImage(imageRefs, true, false);
+            container.viewer.loadImage(imageRefs, true, false, false);
         } else if (container.params.images) {
             imageRefs = container.params.images[0];
             if (!(imageRefs instanceof Array)) {
@@ -407,7 +473,7 @@ papaya.Container.buildContainer = function (containerHTML, params, replaceIndex)
                 imageRefs[0] = container.params.images[0];
             }
 
-            container.viewer.loadImage(imageRefs, true, false);
+            container.viewer.loadImage(imageRefs, true, false, false);
         } else if (container.params.encodedImages) {
             imageRefs = container.params.encodedImages[0];
             if (!(imageRefs instanceof Array)) {
@@ -415,7 +481,10 @@ papaya.Container.buildContainer = function (containerHTML, params, replaceIndex)
                 imageRefs[0] = container.params.encodedImages[0];
             }
 
-            container.viewer.loadImage(imageRefs, false, true);
+            container.viewer.loadImage(imageRefs, false, true, false);
+        } else if(container.params.binaryImages) {
+            imageRefs = container.params.binaryImages[0];
+            container.viewer.loadImage(imageRefs, false, false, true);
         } else if (container.params.files) {
             imageRefs = container.params.files[0];
             if (!(imageRefs instanceof Array)) {
@@ -423,7 +492,7 @@ papaya.Container.buildContainer = function (containerHTML, params, replaceIndex)
                 imageRefs[0] = container.params.files[0];
             }
 
-            container.viewer.loadImage(imageRefs, false, false);
+            container.viewer.loadImage(imageRefs, false, false, false);
         } else {
             container.viewer.finishedLoading();
         }
@@ -683,18 +752,22 @@ papaya.Container.prototype.getViewerDimensions = function () {
 
         width = papayaRoundFast(height / ratio);
     } else {
+
         width = parentWidth;
         height = papayaRoundFast(width / ratio);
     }
 
     if (!this.nestedViewer || this.collapsable) {
+
         if (this.orthogonalTall) {
+
             maxWidth = window.innerWidth - (this.fullScreenPadding ? (2 * PAPAYA_PADDING) : 0);
             if (width > maxWidth) {
                 width = maxWidth;
                 height = papayaRoundFast(width * ratio);
             }
         } else {
+
             maxHeight = window.innerHeight - (papaya.viewer.Display.SIZE + (this.kioskMode ? 0 : (papaya.ui.Toolbar.SIZE +
                 PAPAYA_SPACING)) + PAPAYA_SPACING + (this.fullScreenPadding ? (2 * PAPAYA_CONTAINER_PADDING_TOP) : 0)) -
                 (this.showControlBar ? 2*papaya.ui.Toolbar.SIZE : 0);
@@ -702,6 +775,7 @@ papaya.Container.prototype.getViewerDimensions = function () {
                 height = maxHeight;
                 width = papayaRoundFast(height * ratio);
             }
+
         }
     }
 
@@ -732,6 +806,10 @@ papaya.Container.prototype.readGlobalParams = function() {
 
     if (this.params.showControls !== undefined) {  // default is true
         this.showControls = this.params.showControls;
+    }
+
+    if (this.params.noNewFiles !== undefined) {  // default is false
+        this.noNewFiles = this.params.noNewFiles;
     }
 
     if (this.params.showImageButtons !== undefined) {  // default is true
@@ -802,6 +880,7 @@ papaya.Container.prototype.reset = function () {
     this.orthogonalTall = false;
     this.orthogonalDynamic = false;
     this.kioskMode = false;
+    this.noNewFiles = false;
     this.showControls = true;
     this.showControlBar = false;
     this.fullScreenPadding = true;
@@ -920,8 +999,7 @@ papaya.Container.prototype.resizeViewerComponents = function (resize) {
         this.display.drawEmptyDisplay();
     }
 
-    this.titlebarHtml.css({width: dims[0] + "px", top: (this.viewerHtml.position().top - 1.25 *
-        papaya.ui.Toolbar.SIZE)});
+    this.titlebarHtml.css({width: dims[0] + "px", top: (0)});
 };
 
 
@@ -1135,6 +1213,8 @@ papaya.Container.prototype.hasMoreToLoad = function () {
 papaya.Container.prototype.hasImageToLoad = function () {
     if (this.params.images) {
         return (this.loadingImageIndex < this.params.images.length);
+    } else if(this.params.binaryImages) {
+        return (this.loadingImageIndex < this.params.binaryImages.length);
     } else if (this.params.encodedImages) {
         return (this.loadingImageIndex < this.params.encodedImages.length);
     } else if (this.params.files) {
@@ -1203,6 +1283,25 @@ papaya.Container.prototype.loadNextSurface = function () {
 };
 
 
+papaya.Container.showSurface = function(c,a) {
+    papayaContainers[c].viewer.surfaces[a].hidden=!1;
+    papayaContainers[c].viewer.drawViewer(!0,!1)
+};
+
+papaya.Container.hideImage = function(c,a) {
+    papayaContainers[c].viewer.screenVolumes[a].hidden=!0;
+    papayaContainers[c].viewer.drawViewer(!0,!1)
+};
+
+papaya.Container.showImage = function(c,a) {
+    console.log("c index -> " + c);
+    console.log("a index -> " + a);
+    console.log("size of papaya containers -> " + papayaContainers.length);
+    console.log("size of # ov viewer screenVolumes -> " + papayaContainers[c].viewer.screenVolumes.length);
+    papayaContainers[c].viewer.screenVolumes[a].hidden=!1;
+    papayaContainers[c].viewer.drawViewer(!0,!1)
+};
+
 
 papaya.Container.prototype.loadNextImage = function () {
     var loadingNext = false, imageRefs;
@@ -1217,11 +1316,27 @@ papaya.Container.prototype.loadNextImage = function () {
                 imageRefs[0] = this.params.images[this.loadingImageIndex];
             }
 
-            this.viewer.loadImage(imageRefs, true, false);
+            this.viewer.loadImage(imageRefs, true, false, false);
             this.loadingImageIndex += 1;
         } else {
             this.params.loadedImages = this.params.images;
             this.params.images = [];
+        }
+    } else if(this.params.binaryImages) {
+        if (this.loadingImageIndex < this.params.binaryImages.length) {
+            loadingNext = true;
+            imageRefs = this.params.binaryImages[this.loadingImageIndex];
+
+            if (!(imageRefs instanceof Array)) {
+                imageRefs = [];
+                imageRefs[0] = this.params.binaryImages[this.loadingImageIndex];
+            }
+
+            this.viewer.loadImage(imageRefs, false, false, true);
+            this.loadingImageIndex += 1;
+        } else {
+            this.params.loadedEncodedImages = this.params.binaryImages;
+            this.params.binaryImages = [];
         }
     } else if (this.params.encodedImages) {
         if (this.loadingImageIndex < this.params.encodedImages.length) {
@@ -1233,7 +1348,7 @@ papaya.Container.prototype.loadNextImage = function () {
                 imageRefs[0] = this.params.encodedImages[this.loadingImageIndex];
             }
 
-            this.viewer.loadImage(imageRefs, false, true);
+            this.viewer.loadImage(imageRefs, false, true, false);
             this.loadingImageIndex += 1;
         } else {
             this.params.loadedEncodedImages = this.params.encodedImages;
@@ -1249,7 +1364,7 @@ papaya.Container.prototype.loadNextImage = function () {
                 imageRefs[0] = this.params.files[this.loadingImageIndex];
             }
 
-            this.viewer.loadImage(imageRefs, false, false);
+            this.viewer.loadImage(imageRefs, false, false, false);
             this.loadingImageIndex += 1;
         } else {
             this.params.loadedFiles = this.params.files;
@@ -1265,6 +1380,8 @@ papaya.Container.prototype.loadNextImage = function () {
 papaya.Container.prototype.readyForDnD = function () {
     return !this.kioskMode && ((this.params.images === undefined) ||
         (this.loadingImageIndex >= this.params.images.length)) &&
+        ((this.params.binaryImages === undefined) ||
+        (this.loadingImageIndex >= this.params.binaryImages.length)) &&
         ((this.params.encodedImages === undefined) ||
         (this.loadingImageIndex >= this.params.encodedImages.length)) &&
         ((this.params.encodedSurfaces === undefined) ||
@@ -1288,6 +1405,36 @@ papaya.Container.prototype.findLoadableImage = function (name, surface) {
                 return papayaLoadableImages[ctr];
             }
         }
+    }
+
+    if (window[name] !== undefined) {
+        return {encode:name};
+    }
+
+    return null;
+};
+
+
+
+papaya.Container.prototype.findLoadableImages = function (refs, surface) {
+    var ctr, loadable, loadables = [];
+
+    if (!Array.isArray(refs)) {
+        refs = [refs];
+    }
+
+    if (refs) {
+        for (ctr = 0; ctr < refs.length; ctr++) {
+            loadable = this.findLoadableImage(refs[ctr], surface);
+
+            if (loadable) {
+                loadables.push(loadable);
+            }
+        }
+    }
+
+    if (loadables.length > 0) {
+        return loadables;
     }
 
     return null;

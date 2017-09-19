@@ -44,7 +44,7 @@ papaya.volume.Volume.PROGRESS_LABEL_LOADING = "Loading";
 papaya.volume.Volume.prototype.fileIsCompressed = function (filename, data) {
     var buf, magicCookie1, magicCookie2;
 
-    if (filename.indexOf(".gz") !== -1) {
+    if (filename && filename.indexOf(".gz") !== -1) {
         return true;
     }
 
@@ -119,6 +119,10 @@ papaya.volume.Volume.prototype.readURLs = function (urls, callback) {
     this.onFinishedRead = callback;
     this.compressed = this.fileIsCompressed(this.fileName);
 
+    if (this.fileName.indexOf("?") !== -1) {
+        this.fileName = this.fileName.substr(0, this.fileName.indexOf("?"));
+    }
+
     this.rawData = [];
     this.loadedFileCount = 0;
     this.readEachURL(this)
@@ -138,7 +142,6 @@ papaya.volume.Volume.prototype.readURLs = function (urls, callback) {
                 vol.fileName + "):\n\n" + message);
             vol.finishedLoad();
         });
-
 };
 
 
@@ -189,7 +192,7 @@ papaya.volume.Volume.prototype.loadURL = function (url, vol) {
         })
         .progress(function (loaded,total) {
             progPerc = parseInt(100 * (vol.loadedFileCount) / vol.urls.length, 10);
-            progressText = papaya.volume.Volume.PROGRESS_LABEL_LOADING + 
+            progressText = papaya.volume.Volume.PROGRESS_LABEL_LOADING +
                 ' image ' + (vol.loadedFileCount + 1) + ' of ' + vol.urls.length + ' (' + progPerc + '%)';
             vol.progressMeter.drawProgress(loaded / total, progressText);
         });
@@ -207,10 +210,42 @@ papaya.volume.Volume.prototype.readEachURL = function (vol, index) {
             getFileDeferred
         );
     }
-    return $.when.apply($, deferredLoads); 
+    return $.when.apply($, deferredLoads);
 };
 
+papaya.volume.Volume.prototype.readBinaryData = function (names, callback) {
+    var vol = null;
 
+    try {
+        this.fileName = names[0];
+        this.onFinishedRead = callback;
+        vol = this;
+        this.fileLength = 0;
+        vol.readNextBinaryData(vol, 0, names);
+    } catch (err) {
+        if (vol) {
+            vol.error = new Error("There was a problem reading that file:\n\n" + err.message);
+            vol.finishedLoad();
+        }
+    }
+};
+
+papaya.volume.Volume.prototype.readNextBinaryData = function (vol, index, names) {
+    if (index < names.length) {
+        try {
+            vol.rawData[index] = papaya.utilities.ObjectUtils.dereference(names[index]);
+            vol.compressed = this.fileIsCompressed(this.fileName, vol.rawData[index]);
+            setTimeout(function () {vol.readNextBinaryData(vol, index + 1, names); }, 0);
+        } catch (err) {
+            if (vol) {
+                vol.error = new Error("There was a problem reading that file:\n\n" + err.message);
+                vol.finishedLoad();
+            }
+        }
+    } else {
+        vol.decompress(vol);
+    }
+};
 
 papaya.volume.Volume.prototype.readEncodedData = function (names, callback) {
     var vol = null;
@@ -317,6 +352,8 @@ papaya.volume.Volume.prototype.getZSize = function () {
 
 
 papaya.volume.Volume.prototype.decompress = function (vol) {
+    vol.compressed = vol.compressed || vol.fileIsCompressed(vol.fileName, vol.rawData[0]);
+
     if (vol.compressed) {
         try {
             pako.inflate(new Uint8Array(vol.rawData[0]), null, this.progressMeter,
@@ -440,4 +477,10 @@ papaya.volume.Volume.prototype.isWorldSpaceOnly = function () {
     }
 
     return false;
+};
+
+
+
+papaya.volume.Volume.prototype.getSeriesLabels = function () {
+    return this.header.getSeriesLabels();
 };

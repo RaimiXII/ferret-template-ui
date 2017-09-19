@@ -181,9 +181,10 @@ papaya.viewer.Display.prototype.drawDisplay = function (xLoc, yLoc, zLoc) {
         // atlas labels
         if (this.viewer.atlas && this.viewer.atlas.volume.isLoaded) {
             this.viewer.getWorldCoordinateAtIndex(xLoc, yLoc, zLoc, this.tempCoord);
-            atlasLabel = this.viewer.atlas.getLabelAtCoordinate(this.tempCoord.x, this.tempCoord.y, this.tempCoord.z);
+            current_label = atlasLabel = this.viewer.atlas.getLabelAtCoordinate(this.tempCoord.x, this.tempCoord.y, this.tempCoord.z);
             atlasNumLabels = atlasLabel.length;
             labelColorThresh = Math.ceil(this.viewer.atlas.maxLabels / 2);
+            //if(this.viewer.getWorldCoordinateAtIndex(c,a,d,this.tempCoord),current_label=d=this.viewer.atlas.getLabelAtCoordinate(this.tempCoord.x,this.tempCoord.y,this.tempCoord.z),c=d.length,l=Math.ceil(this.viewer.atlas.maxLabels/2),300>q&&2<=c)for(a=.75*q,h=c-1;0<=h;--h)this.context.fillStyle=h===c-2?papaya.viewer.Display.FONT_COLOR_ORANGE:
 
             if ((halfWidth < 300) && (atlasNumLabels >= 2)) {
                 atlasLabelWidth = halfWidth * 0.75;

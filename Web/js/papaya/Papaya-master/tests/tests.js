@@ -256,6 +256,11 @@ params["message"] = "Test: orthogonalTall.";
 
 params = initTest();
 params["images"] = ["data/sample_image.nii.gz"];
+params["noNewFiles"] = true;
+params["message"] = "Test: noNewFiles.";
+
+params = initTest();
+params["images"] = ["data/sample_image.nii.gz"];
 params["showControls"] = false;
 params["message"] = "Test: showControls (false).";
 
@@ -321,6 +326,16 @@ params = initTest();
 params["images"] = ["data/sample_image.nii.gz"];
 params["surfaces"] = ["data/sample_image.surf"];
 params["message"] = "Test: mango surface.";
+
+params = initTest();
+params["images"] = ["data/sample_image.nii.gz"];
+params["surfaces"] = ["data/sample_image_bin.vtk"];
+params["message"] = "Test: VTK binary surface.";
+
+params = initTest();
+params["images"] = ["data/sample_image.nii.gz"];
+params["surfaces"] = ["data/sample_image_text.vtk"];
+params["message"] = "Test: VTK text surface.";
 
 params = initTest();
 params["images"] = ["data/sample_image.nii.gz"];

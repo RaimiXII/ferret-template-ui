@@ -1,10 +1,13 @@
 html, body {
   margin: 0 auto;
   padding: 0;
+    width: 100%;
+    height: 100%;
   
 /*  background: #3F3F3F;*/
 /*  background-image: url('../img/turtle_shell.jpg');*/
 }
+
 .clear-both {
    clear: both;
 }
@@ -30,7 +33,7 @@ nav ul li a {
   color: #fff;
   display: block;
   font-size: 14px;
-  font-color: #fff
+  
   padding: 15px 14px;
   transition: 0.3s linear;
 }
@@ -56,11 +59,11 @@ nav ul li ul li a:hover { background: #c5c5c5; }
     display: flex;
 }
 #view_and_info1 {
-  list-style-type: none; display: inline; 
+  display: inline; float: none;
   }      
 #view_and_info1 li{
   list-style-type: none;
-  border-right: 1px solid #ffffff; width:250; 
+  border-right: 1px solid #ffffff; 
 }    
 .column {
     flex: 1;        
@@ -77,13 +80,13 @@ nav ul li ul li a:hover { background: #c5c5c5; }
     order: 3;
 }
 .smallViewer {
-    margin:20px;width:500px;height:415px;
+    margin:10%;width:45%;height:42%;
 }    
 .midViewer {
-    margin:1px;width:950px;height:790px;margin:0 auto; 
+    margin:1px;width:60%;height:60%;min-height: 60%;
 }    
 .roiViewer {
-    margin:1px;width:775px;height:790px; margin:0 auto; 
+    margin:1px;width:100%;height:100%;min-height: 100%;
 }
 .left {
     float: left;
@@ -133,7 +136,7 @@ nav ul li ul li a:hover { background: #c5c5c5; }
    }
    100% {
     transform: rotate(0deg);
-   };
+   }
 }
 
 .loading { 
