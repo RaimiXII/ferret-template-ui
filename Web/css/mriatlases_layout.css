@@ -80,7 +80,7 @@ nav ul li ul li a:hover { background: #c5c5c5; }
     order: 3;
 }
 .smallViewer {
-    margin:10%;width:45%;height:42%;
+    margin:1px;width:45%;height:42%;
 }    
 .midViewer {
     margin:1px;width:60%;height:60%;min-height: 60%;
