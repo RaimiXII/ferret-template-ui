@@ -61,7 +61,7 @@
        
             
     
-        <div class="row">
+        <div class="row" id="template_content">
             
         
         <!--            LEFT NAV BAR            -->    
@@ -69,7 +69,7 @@
             <div id="template_nav" class="col-sm-2">
                 <div class="row"><div class="col-md-3"></div>
 
-                  <div class="span3">
+                  <div class="span5">
 
                         <ul class="nav nav-list tree well well-lg">
                             <li><label class="tree-toggle nav-header " id="ferret_atlas"><h3>Ferret</h3></label>
@@ -135,12 +135,13 @@
             <div class="col-sm-8">
                 <div id="MRI_area1" class="container-fluid">
                     <div class="jumbotron">                                                               
-                        <p style="margin:0 auto"><b><h1>Ex-Vivo DTI <div id="current_type">DEC</div></h1></b> </p>
+                        <p style="margin:0 auto"><b><h2>Ex-Vivo DTI </h2></b> </p>
 
 
                         <div id="papaya" class="papaya" data-params="params" ></div>
                     </div>
                 </div>
+            <!--        TBD - move the ROI functionality into its own place and wait until feedback is given until re-deploying
                 <div id="ROI_area1" class="container-fluid">
                                                                  
                     <div id="template1_info" class="jumbotron">
@@ -151,6 +152,7 @@
                         ROI description: <div id="roi_description"></div>
                     </div>
                 </div>
+            -->
             </div>                 
             
             <!--            RIGHT NAV BAR            -->    
@@ -158,20 +160,20 @@
             <div id="template_nav" class="col-sm-2">
                 <div class="row"><div class="col-md-3"></div>
                     
-                  <div class="span3">
+                  <div class="span5">
 
                         <ul class="nav nav-list tree well well-lg">
-                            <li><label class="tree-toggle nav-header "><h3>Ferret</h3></label>
+                            <li><label class="tree-toggle nav-header "><h3>Tools</h3></label>
                                 <ul class="nav nav-list tree well well-sm">
                                     <div>
                                         <ul class="nav nav-list well well-lg ">
-                                            <li><label class="tree-toggle nav-header "><h4>Ex-Vivo</h1></label>
+                                            <li><label class="tree-toggle nav-header "><h4>ROI</h4></label>
                                                 <ul class="nav nav-list tree well well-sm">
                                                     <li><label class="tree-toggle nav"><h5>DTI</h5></label>
                                                         <ul class="nav nav-list tree">
                                                             <li id="ex_vivo_dti_fa"><a href="#">Fractional Anisotropy</a></li>
                                                             <li id="ex_vivo_dti_tr"><a href="#">Trace</a></li>
-                                                            <li id="ex_vivo_dti_dec"><a href="#" >Directionally Encoded Color Map</a></li>                                                
+                                                            <li id="ex_vivo_dti_dec"><a href="#" >Directionally Encoded Color Map</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -196,7 +198,7 @@
                                                         <ul class="nav nav-list tree">
                                                             <li><a href="#">Fractional Anisotropy</a></li>
                                                             <li><a href="#">Trace</a></li>
-                                                            <li><a href="#">Directionally Encoded Color Map</a></li>                                                
+                                                            <li><a href="#">Directionally Encoded Color Map</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -210,16 +212,14 @@
                                                     </li>                                     
                                                 </ul>
                                             </li>
-                                        </ul>                                       
-                                        
+                                        </ul>                                        
                                     </div>
                                 </ul>
                             </li>
                         </ul>
                   </div>                    
                 </div>
-            </div>
-                    
+            </div>                    
         </div>
 
         
@@ -309,7 +309,7 @@
             
             
             $(document).ready(function(){
-                    ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#MRI_area1", "#visualization_templates", "#bannerBox",  "#ex1"/*"#image_actions" */      ]);
+                    ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#MRI_area1", "#visualization_templates", "#bannerBox",  "#ex1", "#template_content"/*"#image_actions" */      ]);
                     $('body').css('background-image', 'url(' + imageUrl + ')');
                 
                     setTimeout(function(){

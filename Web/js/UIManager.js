@@ -61,7 +61,7 @@ var UIManager = function(){
     $("#home_screen").on('click', function(e) {
         console.log("CLICKED home screen");
         $("#current_service").html("Home");
-        ui.hideDivs(    ["#image_actions", "#visualization_templates"]  );
+        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#ex1Slider"]);
         fade_divs_in(["#bannerBox"])
     });
@@ -69,7 +69,7 @@ var UIManager = function(){
     $("#visualization_analysis").on('click', function(e) { 
         console.log("CLICKED visualization analysis"); 
         $("#current_service").html("Visualization");             
-        ui.showDivs(    ["#image_actions", "#visualization_templates"]  );
+        ui.showDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
     });
 
 
