@@ -69,7 +69,10 @@ var UIManager = function(){
     $("#visualization_analysis").on('click', function(e) { 
         console.log("CLICKED visualization analysis"); 
         $("#current_service").html("Visualization");             
-        ui.showDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
+        //ui.showDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
+        fade_divs_out(["#bannerBox"]);
+        fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
+         ResetViewer();
     });
 
 
@@ -313,7 +316,23 @@ var UIManager = function(){
     },
     set_background_color_for_list : SetBackgroundColorForList,
     update_params : UpdateParams,
-    show_surface : ShowSurface,        
+    show_surface : ShowSurface,  
+    LoadMainSurface : function( ) {
+    
+        var surfs = [];
+        var rgbs = [];
+        var fnames = [];
+        var data = brain_region_struct;
+        surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
+        fnames.push("ev_dti_brain.surf.gii");   
+        params["surfaces"] = surfs;
+        params["ev_dti_brain.surf.gii"] = {color: [0.8,0.8,0.8], alpha: 0.75};
+        params["showSurfacePlanes"] = false;
+        params["surfaceBackground"] = "Black";                  
+        params.showControls = false;   
+        params["kioskMode"] = true; 
+    
+    },      
     LoadNewSurfaces : function(index, opt){
             var surfs = [];
             var rgbs = [];
@@ -390,7 +409,11 @@ var UIManager = function(){
                 params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
                 params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
-                ui.LoadNewSurfaces(image_map[current_image],0);
+                
+                //  TBD - put this back in when we get info on the ROIs
+                //ui.LoadNewSurfaces(image_map[current_image],0);
+                
+                ui.LoadMainSurface();
             });
         },
         FadeDivsIn : fade_divs_in,
