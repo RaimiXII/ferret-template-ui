@@ -1,6 +1,5 @@
 // UI Manager
-var UIManager = function()
-{
+var UIManager = function(){
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(0,0, val);
         papaya.Container.showImage(0,0);

@@ -62,37 +62,80 @@
             
     
         <div class="row">
+            
+        
+        <!--            LEFT NAV BAR            -->    
+        
             <div id="template_nav" class="col-sm-2">
                 <div class="row"><div class="col-md-3"></div>
+
                   <div class="span3">
-                    <div class="well">
-                        <div>
-                            <ul class="nav nav-list">
-                                <li><label class="tree-toggle nav-header">Ex-Vivo</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">DTI</a></li>
-                                        <li><a href="#">T2</a></li>
+
+                        <ul class="nav nav-list tree well well-lg">
+                            <li><label class="tree-toggle nav-header " id="ferret_atlas"><h1>Ferret</h1></label>
+                                <ul class="nav nav-list tree well well-sm">
+                                    <div>
+                                        <ul class="nav nav-list well well-lg ">
+                                            <li><label class="tree-toggle nav-header "><h1>Ex-Vivo</h1></label>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>Diffusion Tensor Imaging</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li id="ex_vivo_dti_fa"><a href="#">Fractional Anisotropy</a></li>
+                                                            <li id="ex_vivo_dti_tr"><a href="#">Trace</a></li>
+                                                            <li id="ex_vivo_dti_dec"><a href="#" >Directionally Encoded Color Map</a></li>                                         
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>T2</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li><a href="#">10</a></li>
+                                                            <li><a href="#">100</a></li>
+                                                            <li><a href="#">1000</a></li>                                                
+                                                        </ul>
+                                                    </li>                                     
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <li class="divider"></li>
                                         
-                                    </ul>
-                                </li>
-                                <li class="divider"></li>
-                                <li><label class="tree-toggle nav-header">In-Vivo</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">DTI</a></li>
-                                        <li><a href="#">T2</a></li>
+                                        <ul class="nav nav-list well well-lg ">
+                                            <li><label class="tree-toggle nav-header "><h1>In-Vivo</h1></label>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>Diffusion Tensor Imaging</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li><a href="#">Fractional Anisotropy</a></li>
+                                                            <li><a href="#">Trace</a></li>
+                                                            <li><a href="#">Directionally Encoded Color Map</a></li>                                                
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>T2</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li><a href="#">10</a></li>
+                                                            <li><a href="#">100</a></li>
+                                                            <li><a href="#">1000</a></li>                                                
+                                                        </ul>
+                                                    </li>                                     
+                                                </ul>
+                                            </li>
+                                        </ul>                                       
                                         
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    </div>
+                                    </div>
+                                </ul>
+                            </li>
+                        </ul>
+                  </div>                    
                 </div>
             </div>
+            
+            
             <div class="col-sm-8">
                 <div id="MRI_area1" class="container-fluid">
-                    <div class="pager">                                                               
-                        <p style="margin:0 auto"><b><h1>Ex-Vivo DTI</h1></b></p>
+                    <div class="jumbotron">                                                               
+                        <p style="margin:0 auto"><b><h1>Ex-Vivo DTI <div id="current_type">DEC</div></h1></b> </p>
 
 
                         <div id="papaya" class="papaya" data-params="params" ></div>
@@ -110,67 +153,75 @@
                 </div>
             </div>                 
             
+            <!--            RIGHT NAV BAR            -->    
+            
             <div id="template_nav" class="col-sm-2">
                 <div class="row"><div class="col-md-3"></div>
+                    
                   <div class="span3">
-                    <div class="well">
-                        <div>
-                            <ul class="nav nav-list">
-                                <li><label class="tree-toggle nav-header">Bootstrap</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">JavaScript</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><label class="tree-toggle nav-header">Buttons</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">Colors</a></li>
-                                                <li><a href="#">Sizes</a></li>
-                                                <li><label class="tree-toggle nav-header">Forms</label>
-                                                    <ul class="nav nav-list tree">
-                                                        <li><a href="#">Horizontal</a></li>
-                                                        <li><a href="#">Vertical</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="divider"></li>
-                                <li><label class="tree-toggle nav-header">Responsive</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">Overview</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><label class="tree-toggle nav-header">Media Queries</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">Text</a></li>
-                                                <li><a href="#">Images</a></li>
-                                                <li><label class="tree-toggle nav-header">Mobile Devices</label>
-                                                    <ul class="nav nav-list tree">
-                                                        <li><a href="#">iPhone</a></li>
-                                                        <li><a href="#">Samsung</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><label class="tree-toggle nav-header">Coding</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">JavaScript</a></li>
-                                                <li><a href="#">jQuery</a></li>
-                                                <li><label class="tree-toggle nav-header">HTML DOM</label>
-                                                    <ul class="nav nav-list tree">
-                                                        <li><a href="#">DOM Elements</a></li>
-                                                        <li><a href="#">Recursive</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>            
+
+                        <ul class="nav nav-list tree well well-lg">
+                            <li><label class="tree-toggle nav-header "><h1>Ferret</h1></label>
+                                <ul class="nav nav-list tree well well-sm">
+                                    <div>
+                                        <ul class="nav nav-list well well-lg ">
+                                            <li><label class="tree-toggle nav-header "><h1>Ex-Vivo</h1></label>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>Diffusion Tensor Imaging</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li id="ex_vivo_dti_fa"><a href="#">Fractional Anisotropy</a></li>
+                                                            <li id="ex_vivo_dti_tr"><a href="#">Trace</a></li>
+                                                            <li id="ex_vivo_dti_dec"><a href="#" >Directionally Encoded Color Map</a></li>                                                
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>T2</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li><a href="#">10</a></li>
+                                                            <li><a href="#">100</a></li>
+                                                            <li><a href="#">1000</a></li>                                                
+                                                        </ul>
+                                                    </li>                                     
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <li class="divider"></li>
+                                        
+                                        <ul class="nav nav-list well well-lg ">
+                                            <li><label class="tree-toggle nav-header "><h1>In-Vivo</h1></label>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>Diffusion Tensor Imaging</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li><a href="#">Fractional Anisotropy</a></li>
+                                                            <li><a href="#">Trace</a></li>
+                                                            <li><a href="#">Directionally Encoded Color Map</a></li>                                                
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav"><h2>T2</h2></label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li><a href="#">10</a></li>
+                                                            <li><a href="#">100</a></li>
+                                                            <li><a href="#">1000</a></li>                                                
+                                                        </ul>
+                                                    </li>                                     
+                                                </ul>
+                                            </li>
+                                        </ul>                                       
+                                        
+                                    </div>
+                                </ul>
+                            </li>
+                        </ul>
+                  </div>                    
+                </div>
             </div>
-         </div>
+                    
+        </div>
+
         
         <!--
     <div class="container-fluid">
@@ -261,6 +312,7 @@
             $(document).ready(function(){
                     ui.hideDivs([     "#roi-viz-tools", "#navi", "#ex_vivo_dti", "#MRI_area1", "#visualization_templates", "#bannerBox",  "#ex1"/*"#image_actions" */      ]);
                     $('body').css('background-image', 'url(' + imageUrl + ')');
+                
                     setTimeout(function(){
                         ui.swapDivs(
                             ["#loading"],
