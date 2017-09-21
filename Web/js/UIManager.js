@@ -1,11 +1,6 @@
 // UI Manager
 var UIManager = function(){
-    
-    var params1 = [];
-    var params2 = [];
-    var params3 = [];
-    var params4 = [];  
-    
+
     var image_map = {
                 "ExVivo_DTI_FA"    : [0,0],
                 "ExVivo_DTI_DEC"   : [0,1],
@@ -74,22 +69,22 @@ var UIManager = function(){
         console.log("From papaya 1.")
         console.log("CURRENT IMAGE ->  " +current_image)
         GetCursorLocation(image_map[current_image]);          
-        ui.get_roi_label(image_map[current_image]);  
+        //ui.get_roi_label(image_map[current_image]);  
     });
     $("#papaya2").on('click', function(e) {        
         console.log("From papaya 2.")
         GetCursorLocation(image_map[current_image]);            
-        ui.get_roi_label(image_map[current_image]);
+        //ui.get_roi_label(image_map[current_image]);
     });
     $("#papaya3").on('click', function(e) {        
-        console.log("From papaya 3.")
+        console.log("From papaya 3, image ->+ "+current_image)
         GetCursorLocation(image_map[current_image]);            
-        ui.get_roi_label(image_map[current_image]);
+        //ui.get_roi_label(image_map[current_image]);
     });
     $("#papaya4").on('click', function(e) {        
         console.log("From papaya 4.")
         GetCursorLocation(image_map[current_image]);            
-        ui.get_roi_label(image_map[current_image]);
+        //ui.get_roi_label(image_map[current_image]);
     }); 
     
     $("#evdti").on('click', function(e) {           
@@ -198,59 +193,80 @@ var UIManager = function(){
         }
         for(var i = 0; i < keys.length; i++){
             HideImage(image_map[keys[i]]);
+            console.log("IMAGE -> " + (image_map[keys[i]]))
         }
     };
     
     var UpdateParams = function(img){
-        ResetViewer();   
-        if ( img == "ev_dti_dec" ){             
+        //ResetViewer();   
+        if ( img == "ev_dti_dec" ){         
+            console.log("UPDATING PARAMS -> "+img)
             current_image = "ExVivo_DTI_DEC"
-            ShowImage(image_map[current_image]);
-            SetBackgroundColorForList(["#ev_dec_txt"], '#126d9b');
-            SetBackgroundColorForList(["#ev_tr_txt","#ev_fa_txt"], '#fff');
-            $("#img_description1").html( "<i>Directionally Encoded Map</i>" )
-            $("#template1_info").html(
-                 $("<div></div>").append([
-                    $("<u>Type of Image:  </u>"),                        
-                    $("#img_description1"),
-                    $("<br>"),
-                    $("<p>ROI name: </p>").append($("#current_roi")),
-                    $("<br>"),
-                    $("<p>ROI description: </p>").append($("#roi_description"))
-                ])
-            )                                
+            ShowImage(image_map[current_image]);            
         } else if ( img == "ev_dti_fa" ){
             current_image = "ExVivo_DTI_FA";
-            ShowImage(image_map[current_image]);
-            SetBackgroundColorForList(["#ev_fa_txt"], '#126d9b');
-            SetBackgroundColorForList(["#ev_tr_txt","#ev_dec_txt"], '#fff');
-            $("#img_description1").html( "<i>Fractional Anisotropy</i>" )
-            $("#template1_info").html(
-                 $("<div></div>").append([
-                    $("<u>Type of Image:  </u>"),                        
-                    $("#img_description1"),
-                    $("<br>"),
-                    $("<p>ROI name: </p>").append($("#current_roi")),
-                    $("<br>"),
-                    $("<p>ROI description: </p>").append($("#roi_description"))
-                ])
-            ) 
+            ShowImage(image_map[current_image]);            
         } else if ( img == "ev_dti_tr" ){
             current_image = "ExVivo_DTI_TR"
-            ShowImage(image_map[current_image]);
-            SetBackgroundColorForList(["#ev_tr_txt"], '#126d9b');
-            SetBackgroundColorForList(["#ev_dec_txt","#ev_fa_txt"], '#fff');
-            $("#img_description1").html( "<i>Trace</i>" )
-            $("#template1_info").html(
-                 $("<div></div>").append([
-                    $("<u>Type of Image:  </u>"),                        
-                    $("#img_description1"),
-                    $("<br>"),
-                    $("<p>ROI name: </p>").append($("#current_roi")),
-                    $("<br>"),
-                    $("<p>ROI description: </p>").append($("#roi_description"))
-                ])
-            )
+            ShowImage(image_map[current_image]);            
+        } if ( img == "iv_dti_dec" ){         
+            console.log("UPDATING PARAMS -> "+img)
+            current_image = "InVivo_DTI_DEC"
+            ShowImage(image_map[current_image]);            
+        } else if ( img == "iv_dti_fa" ){
+            current_image = "InVivo_DTI_FA";
+            ShowImage(image_map[current_image]);            
+        } else if ( img == "iv_dti_tr" ){
+            current_image = "InVivo_DTI_TR"
+            ShowImage(image_map[current_image]);            
+        } else if ( img == "ev_t2_10" ){
+             current_image = "Template4D_TE010"
+            ShowImage(image_map["Template4D_TE010"]);                
+        } else if ( img == "ev_t2_20" ){
+             current_image = "Template4D_TE020"
+            ShowImage(image_map["Template4D_TE020"]);                
+        } else if ( img == "ev_t2_30" ){
+             current_image = "Template4D_TE030"
+            ShowImage(image_map["Template4D_TE030"]);                
+        } else if ( img == "ev_t2_40" ){
+             current_image = "Template4D_TE040"
+            ShowImage(image_map["Template4D_TE040"]);                
+        } else if ( img == "ev_t2_50" ){
+             current_image = "Template4D_TE050"
+            ShowImage(image_map["Template4D_TE050"]);                
+        } else if ( img == "ev_t2_60" ){
+             current_image = "Template4D_TE060"
+            ShowImage(image_map["Template4D_TE060"]);                
+        } else if ( img == "ev_t2_70" ){
+             current_image = "Template4D_TE070"
+            ShowImage(image_map["Template4D_TE070"]);                
+        } else if ( img == "ev_t2_80" ){
+             current_image = "Template4D_TE080"
+            ShowImage(image_map["Template4D_TE080"]);                
+        } else if ( img == "ev_t2_90" ){
+             current_image = "Template4D_TE090"
+            ShowImage(image_map["Template4D_TE090"]);                
+        } else if ( img == "ev_t2_100" ){
+             current_image = "Template4D_TE100"
+            ShowImage(image_map["Template4D_TE100"]);                
+        } else if ( img == "iv_t2_012" ){
+            current_image = "ivT2_TE012"
+            ShowImage(image_map["ivT2_TE012"]);                
+        } else if ( img == "iv_t2_036" ){
+            current_image = "ivT2_TE012"
+            ShowImage(image_map["ivT2_TE036"]);                
+        } else if ( img == "iv_t2_060" ){
+            current_image = "ivT2_TE012"
+            ShowImage(image_map["ivT2_TE060"]);                
+        } else if ( img == "iv_t2_084" ){
+            current_image = "ivT2_TE012"
+            ShowImage(image_map["ivT2_TE084"]);                               
+        } else if ( img == "iv_t2_108" ){
+             current_image = "ivT2_TE012"
+            ShowImage(image_map["ivT2_TE108"]);                
+        } else if ( img == "iv_t2_132" ){
+            current_image = "ivT2_TE012"
+            ShowImage(image_map["ivT2_TE132"]);                
         } else {
             console.log("SOMETHING ELSE!");                                                       
         }
@@ -261,19 +277,19 @@ var UIManager = function(){
     var ShowSurface = function(index){
         console.log("SURFACE INDEX ->  " + index)
         if(index == 0){            
-            ShowDivs(    ["#papaya1", "#ROI_area1", "#MRI_area1"] );
+            ShowDivs(    ["#papaya1", "#MRI_area1"] );
             HideDivs( ["#papaya2","#papaya3", "#papaya4"])
         } else if(index == 1) {
-            ShowDivs(    ["#papaya2", "#ROI_area1", "#MRI_area1"] );
+            ShowDivs(    ["#papaya2", "#MRI_area1"] );
             HideDivs( ["#papaya1","#papaya3", "#papaya4"])
         } else if(index == 2){
-            ShowDivs(    ["#papaya3", "#ROI_area1", "#MRI_area1"] );
+            ShowDivs(    ["#papaya3", "#MRI_area1"] );
             HideDivs( ["#papaya1","#papaya2", "#papaya4"])
         } else if(index == 3){
-            ShowDivs(    ["#papaya4", "#ROI_area1", "#MRI_area1"] );
+            ShowDivs(    ["#papaya4", "#MRI_area1"] );
             HideDivs( ["#papaya1","#papaya2", "#papaya3"])
         }
-        {
+        else{
             console.log("Unknown surface request index: "+index);
         }                        
     };
@@ -309,6 +325,7 @@ var UIManager = function(){
     $("#ex_vivo_dti_dec").on('click', function(e) {  
         console.log("CLICKED Ex-vivo DEC"); 
         current_image="ExVivo_DTI_DEC"; 
+        
         ResetViewer(); 
         UpdateParams("ev_dti_dec"); 
         ShowSurface(0);
@@ -420,7 +437,8 @@ var UIManager = function(){
         current_image="Template4D_TE100";
         ResetViewer(); 
         UpdateParams("ev_t2_100");
-        ShowSurface(2);});
+        ShowSurface(2);
+    });    
     $("#in_vivo_T2_12").on('click', function(e) {  
         console.log("CLICKED in-vivo 12"); 
         current_image="ivT2_TE012";
@@ -609,11 +627,12 @@ var UIManager = function(){
             return description;
         },
         FetchBrainRegionData : function(){
-        /*
+        
             $.getJSON('ext/Brain_Regions.json', function(data) { 
                 ui.showDivs(["#loading"]);
                 console.log("PRINTING ROI OBJECT........"+data)                                
                 brain_region_struct = data;
+                /*
                 var surfs = [];
                 var fnames = [];
                 var rgbs = [];
@@ -627,29 +646,28 @@ var UIManager = function(){
                                      ];                
                 params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
+                params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};              
+                */
                 
                 //  TBD - put this back in when we get info on the ROIs
                 //ui.LoadNewSurfaces(image_map[current_image],0);
                 
                 //  This just loads the main 3d whole brain surface volume
-                ui.LoadMainSurface();
-            });
-            */
+                //ui.LoadMainSurface();
+            
+            
             
             var surfs = [];
             var rgbs = [];
             var fnames = [];
             var data = brain_region_struct;
-            surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
-            fnames.push("ev_dti_brain.surf.gii") 
-            params1["ev_dti_brain.surf.gii"] = {color: [0.8,0.8,0.8], alpha: 0.75};
-            params1["surfaces"] = surfs; 
-            
-            params1["showSurfacePlanes"] = false;
-            params1["surfaceBackground"] = "Black";                  
-            params1.showControls = false;   
+                
             params1["kioskMode"] = true;   
+            params1["surfaces"] = []
+            params1["surfaces"] = ["img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"]
+            params1["ev_dti_brain.surf.gii"] = {color: [0.8,0.8,0.8], alpha: 0.75};
+              
+            
             
             params1["images"] =  [                                            
                                     "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
@@ -660,6 +678,9 @@ var UIManager = function(){
             params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
             
+            params1["showSurfacePlanes"] = false;
+            params1["surfaceBackground"] = "Black";                  
+            params1.showControls = false; 
             //  TBD - put this back in when we get info on the ROIs
             //ui.LoadNewSurfaces(image_map[current_image],0);
             
@@ -680,8 +701,13 @@ var UIManager = function(){
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
             params2["showSurfacePlanes"] = false;
             params2["surfaceBackground"] = "Black";
-            params2.showControls = false;                                
-            params3["kioskMode"] = true;                
+            params2.showControls = false;       
+                
+                
+            params3["kioskMode"] = true;      
+            params3["surfaces"] = [];                
+            params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
+            params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};     
             params3["images"] =  [  
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
@@ -694,9 +720,7 @@ var UIManager = function(){
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
                                  ];                    
-            params3["surfaces"] = [];                
-            params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
-            params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                     
+                                            
             params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
@@ -710,7 +734,12 @@ var UIManager = function(){
             params3["showSurfacePlanes"] = false;
             params3["surfaceBackground"] = "Black";
             params3.showControls = false
-            params4["kioskMode"] = true;                
+                
+                
+            params4["kioskMode"] = true;    
+            params4["surfaces"] = [];
+            params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
+            params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};        
             params4["images"] =  [
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
@@ -725,12 +754,13 @@ var UIManager = function(){
             params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};            
-            params4["surfaces"] = [];
-            params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
-            params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                 
+            
+                                                     
             params4["showSurfacePlanes"] = false;                                                        
             params4["surfaceBackground"] = "Black";
-            params4.showControls = false                          
+            params4.showControls = false   
+                
+                });
             
         },
         FadeDivsIn : fade_divs_in,
