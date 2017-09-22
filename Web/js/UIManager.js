@@ -132,7 +132,7 @@ var UIManager = function(){
 
     $("#visualization_analysis").on('click', function(e) { 
         console.log("CLICKED visualization analysis"); 
-        $("#current_service").html("Visualization");             
+        $("#current_service").html("Templates");             
         fade_divs_out(["#bannerBox"]);
         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
          ResetViewer();
