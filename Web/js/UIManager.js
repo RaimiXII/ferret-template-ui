@@ -2,31 +2,29 @@
 var UIManager = function(){
 
     var image_map = {
-                "ExVivo_DTI_FA"    : [0,0],
-                "ExVivo_DTI_DEC"   : [0,1],
-                "ExVivo_DTI_TR"    : [0,2],                
-                "InVivo_DTI_FA"    : [1,0],
-                "InVivo_DTI_DEC"   : [1,1],        
-                "InVivo_DTI_TR"    : [1,2],        
-                "Template4D_TE010" : [2,0],
-                "Template4D_TE020" : [2,1],
-                "Template4D_TE030" : [2,2],
-                "Template4D_TE040" : [2,3],
-                "Template4D_TE050" : [2,4],
-                "Template4D_TE060" : [2,5],
-                "Template4D_TE070" : [2,6],
-                "Template4D_TE080" : [2,7],
-                "Template4D_TE090" : [2,8],
-                "Template4D_TE100" : [2,9],
-                "ivT2_TE012"       : [3,0],
-                "ivT2_TE036"       : [3,1],
-                "ivT2_TE060"       : [3,2],
-                "ivT2_TE084"       : [3,3],
-                "ivT2_TE108"       : [3,4],
-                "ivT2_TE132"       : [3,5] 
-                 
-            };
-
+        "ExVivo_DTI_FA"    : [0,0],
+        "ExVivo_DTI_DEC"   : [0,1],
+        "ExVivo_DTI_TR"    : [0,2],                
+        "InVivo_DTI_FA"    : [1,0],
+        "InVivo_DTI_DEC"   : [1,1],        
+        "InVivo_DTI_TR"    : [1,2],        
+        "Template4D_TE010" : [2,0],
+        "Template4D_TE020" : [2,1],
+        "Template4D_TE030" : [2,2],
+        "Template4D_TE040" : [2,3],
+        "Template4D_TE050" : [2,4],
+        "Template4D_TE060" : [2,5],
+        "Template4D_TE070" : [2,6],
+        "Template4D_TE080" : [2,7],
+        "Template4D_TE090" : [2,8],
+        "Template4D_TE100" : [2,9],
+        "ivT2_TE012"       : [3,0],
+        "ivT2_TE036"       : [3,1],
+        "ivT2_TE060"       : [3,2],
+        "ivT2_TE084"       : [3,3],
+        "ivT2_TE108"       : [3,4],
+        "ivT2_TE132"       : [3,5]                  
+    };
 
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -104,8 +102,7 @@ var UIManager = function(){
     });
     $("#ivt2").on('click', function(e) {           
          fade_divs_in( [ "#in_vivo_t2_viewer", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox","#in_vivo_dti_viewer", "#ex_vivo_dti_viewer","#ex_vivo_t2_viewer",]);
-         
+         fade_divs_out(["#bannerBox","#in_vivo_dti_viewer", "#ex_vivo_dti_viewer","#ex_vivo_t2_viewer",]);         
          ResetViewer();
     });
     
@@ -136,32 +133,11 @@ var UIManager = function(){
     $("#visualization_analysis").on('click', function(e) { 
         console.log("CLICKED visualization analysis"); 
         $("#current_service").html("Visualization");             
-        //ui.showDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
         fade_divs_out(["#bannerBox"]);
         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
          ResetViewer();
     });
 
-
-    //  Below is the grow / shrink functionality for the 
-    /*
-    var current_h = null;
-    var current_w = null;    
-    $("#ex_vivo_dti").hover(
-        function(){
-            current_h = $("#ex_vivo_dti_dec_img").height();
-            current_w = $("#ex_vivo_dti_dec_img").width();
-            $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 100);
-            $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 100);
-            $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: (current_w * 1.4), height: (current_h * 1.4)}, 100);
-        },
-        function(){
-            $("#ex_vivo_dti_dec_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 50);
-            $("#ex_vivo_dti_fa_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 50);
-            $("#ex_vivo_dti_tr_img").stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 50);
-        }
-    ); 
-    */
     $('#ex1').slider({
         formatter: function(value) {
             return 'Current s1 value: ' + value;
@@ -270,10 +246,7 @@ var UIManager = function(){
         } else {
             console.log("SOMETHING ELSE!");                                                       
         }
-    };
-    
-    
-    
+    };           
     var ShowSurface = function(index){
         console.log("SURFACE INDEX ->  " + index)
         if(index == 0){   
@@ -636,30 +609,6 @@ var UIManager = function(){
                 ui.showDivs(["#loading"]);
                 console.log("PRINTING ROI OBJECT........"+data)                                
                 brain_region_struct = data;
-                /*
-                var surfs = [];
-                var fnames = [];
-                var rgbs = [];
-                surfs.push("img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii");    
-                fnames.push("ev_dti_brain.surf.gii")                
-                var current_image = "";            
-                params["images"] =  [                                            
-                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                        "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
-                                     ];                
-                params["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                params["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};              
-                */
-                
-                //  TBD - put this back in when we get info on the ROIs
-                //ui.LoadNewSurfaces(image_map[current_image],0);
-                
-                //  This just loads the main 3d whole brain surface volume
-                //ui.LoadMainSurface();
-            
-            
             
             var surfs = [];
             var rgbs = [];
@@ -669,10 +618,7 @@ var UIManager = function(){
             params1["kioskMode"] = true;   
             params1["surfaces"] = []
             params1["surfaces"] = ["img/linked_content/Templates/DTI_exvivo/ROIs/ev_dti_brain.surf.gii"]
-            params1["ev_dti_brain.surf.gii"] = {color: [0.8,0.8,0.8], alpha: 0.75};
-              
-            
-            
+            params1["ev_dti_brain.surf.gii"] = {color: [0.8,0.8,0.8], alpha: 0.75};                        
             params1["images"] =  [                                            
                                     "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
                                     "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
@@ -689,8 +635,7 @@ var UIManager = function(){
             //ui.LoadNewSurfaces(image_map[current_image],0);
             
             //  This just loads the main 3d whole brain surface volume
-            //ui.LoadMainSurface();
-            
+            //ui.LoadMainSurface();            
             params2["kioskMode"] = true;                            
             params2["images"] =  [                                            
                                     "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
@@ -705,8 +650,7 @@ var UIManager = function(){
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
             params2["showSurfacePlanes"] = false;
             params2["surfaceBackground"] = "Black";
-            params2.showControls = false;       
-                
+            params2.showControls = false;                      
                 
             params3["kioskMode"] = true;      
             params3["surfaces"] = [];                
@@ -723,8 +667,7 @@ var UIManager = function(){
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
-                                 ];                    
-                                            
+                                 ];                                                               
             params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
             params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
@@ -737,8 +680,7 @@ var UIManager = function(){
             params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
             params3["showSurfacePlanes"] = false;
             params3["surfaceBackground"] = "Black";
-            params3.showControls = false
-                
+            params3.showControls = false                
                 
             params4["kioskMode"] = true;    
             params4["surfaces"] = [];
@@ -757,18 +699,15 @@ var UIManager = function(){
             params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};            
-            
-                                                     
+            params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};                                                                            
             params4["showSurfacePlanes"] = false;                                                        
             params4["surfaceBackground"] = "Black";
             params4.showControls = false   
                 
-                });
+            });
             
         },
         FadeDivsIn : fade_divs_in,
-        FadeDivsOut : fade_divs_out,
-        
+        FadeDivsOut : fade_divs_out,        
   };
 };
