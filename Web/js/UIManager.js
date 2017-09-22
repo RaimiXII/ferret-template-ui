@@ -88,23 +88,24 @@ var UIManager = function(){
     }); 
     
     $("#evdti").on('click', function(e) {           
-         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox"]);
+         fade_divs_in( [ "#ex_vivo_dti_viewer", "#roi-viz-tools" ] );
+         fade_divs_out(["#bannerBox", "#in_vivo_dti_viewer", "#ex_vivo_t2_viewer","#in_vivo_t2_viewer"]);
          ResetViewer();
     });
     $("#ivdti").on('click', function(e) {           
-         fade_divs_in( [ "#in_vivo_dti", "#MRI_area1", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox"]);
+         fade_divs_in( [ "#in_vivo_dti_viewer", "#roi-viz-tools" ] );
+         fade_divs_out(["#bannerBox"], "#ex_vivo_dti_viewer","#ex_vivo_t2_viewer","#in_vivo_t2_viewer");
          ResetViewer();
     });
     $("#evt2").on('click', function(e) {           
-         fade_divs_in( [ "#ex_vivo_t2", "#MRI_area1", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox"]);
+         fade_divs_in( [ "#ex_vivo_t2_viewer","#roi-viz-tools" ] );
+         fade_divs_out(["#bannerBox", "#in_vivo_dti_viewer", "#ex_vivo_dti_viewer","#in_vivo_t2_viewer"]);
          ResetViewer();
     });
     $("#ivt2").on('click', function(e) {           
-         fade_divs_in( [ "#in_vivo_t2", "#MRI_area1", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox"]);
+         fade_divs_in( [ "#in_vivo_t2_viewer", "#roi-viz-tools" ] );
+         fade_divs_out(["#bannerBox","#in_vivo_dti_viewer", "#ex_vivo_dti_viewer","#ex_vivo_t2_viewer",]);
+         
          ResetViewer();
     });
     
@@ -200,7 +201,6 @@ var UIManager = function(){
     var UpdateParams = function(img){
         //ResetViewer();   
         if ( img == "ev_dti_dec" ){         
-            console.log("UPDATING PARAMS -> "+img)
             current_image = "ExVivo_DTI_DEC"
             ShowImage(image_map[current_image]);            
         } else if ( img == "ev_dti_fa" ){
@@ -276,18 +276,18 @@ var UIManager = function(){
     
     var ShowSurface = function(index){
         console.log("SURFACE INDEX ->  " + index)
-        if(index == 0){            
-            ShowDivs(    ["#papaya1", "#MRI_area1"] );
-            HideDivs( ["#papaya2","#papaya3", "#papaya4"])
+        if(index == 0){   
+            ShowDivs(    ["#ex_vivo_dti_viewer"] );
+            HideDivs( ["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"])
         } else if(index == 1) {
-            ShowDivs(    ["#papaya2", "#MRI_area1"] );
-            HideDivs( ["#papaya1","#papaya3", "#papaya4"])
+            ShowDivs(    ["#in_vivo_dti_viewer"] );
+            HideDivs( ["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"])
         } else if(index == 2){
-            ShowDivs(    ["#papaya3", "#MRI_area1"] );
-            HideDivs( ["#papaya1","#papaya2", "#papaya4"])
-        } else if(index == 3){
-            ShowDivs(    ["#papaya4", "#MRI_area1"] );
-            HideDivs( ["#papaya1","#papaya2", "#papaya3"])
+            ShowDivs(    ["#ex_vivo_t2_viewer"] );
+            HideDivs( ["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"])
+        } else if(index == 3){ 
+            ShowDivs(    ["#in_vivo_t2_viewer"] );
+            HideDivs( ["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"])
         }
         else{
             console.log("Unknown surface request index: "+index);
@@ -318,14 +318,18 @@ var UIManager = function(){
     var fade_divs_out = function(divs) {
         for(i in divs){
           $( divs[i] ).fadeOut( "slow", function() {
+            
           });
       }    
     };
+    
+    $('.tree-toggle').click(function () {
+        $(this).parent().children('ul.tree').toggle(200);
+    });
 
     $("#ex_vivo_dti_dec").on('click', function(e) {  
         console.log("CLICKED Ex-vivo DEC"); 
-        current_image="ExVivo_DTI_DEC"; 
-        
+        current_image="ExVivo_DTI_DEC";         
         ResetViewer(); 
         UpdateParams("ev_dti_dec"); 
         ShowSurface(0);

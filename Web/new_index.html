@@ -166,10 +166,19 @@
                     <div id="MRI_area1" class="container-fluid">
                         <div class="jumbotron">                                                               
                             <!--<p style="margin:0 auto"><b><h3>Ex-Vivo DTI</h3></b> </p>-->
-                            <div id="papaya1" class="papaya" data-params="params1" ></div>
-                            <div id="papaya2" class="papaya" data-params="params2"></div>
-                            <div id="papaya3" class="papaya" data-params="params3"></div>
-                            <div id="papaya4" class="papaya" data-params="params4"></div>
+                            <div id="ex_vivo_dti_viewer">
+                                <div id="papaya1" class="papaya" data-params="params1" ></div>
+                            </div>
+                            <div id="in_vivo_dti_viewer">
+                                <div id="papaya2" class="papaya" data-params="params2"></div>
+                            </div>
+                            <div id="ex_vivo_t2_viewer">
+                                <div id="papaya3" class="papaya" data-params="params3"></div>
+                            </div>
+                            <div id="in_vivo_t2_viewer">
+                                <div id="papaya4" class="papaya" data-params="params4"></div>
+                            </div>
+                            
                         </div>
 
 
@@ -338,10 +347,11 @@
             
             $(document).ready(function(){
                 ui.FetchBrainRegionData();
-                    ui.hideDivs([     //"#papaya1",
-                                      //"#papaya2",
-                                      //"#papaya3",
-                                      //"#papaya4",
+                    ui.hideDivs([     
+                                      "#ex_vivo_dti_viewer",
+                                      "#in_vivo_dti_viewer",
+                                      "#ex_vivo_t2_viewer",
+                                      "#in_vivo_t2_viewer",
                                       "#roi-viz-tools", 
                                       "#navi", 
                                       "#ex_vivo_dti", 
@@ -349,7 +359,8 @@
                                       "#visualization_templates", 
                                       "#bannerBox",  
                                       "#ex1", 
-                                      "#template_content"/*"#image_actions" */      ]);
+                                      "#template_content"   
+                                ]);
                                       
                     $('body').css('background-image', 'url(' + imageUrl + ')');
                 
