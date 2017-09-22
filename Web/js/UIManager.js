@@ -99,26 +99,9 @@ var UIManager = function(){
         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
         ResetViewer();
     });
-    $('#ex1').slider({
-        formatter: function(value) {
-            return 'Current s1 value: ' + value;
-        }
-    }).on('slide', function() {
-        console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
-        SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
-    }).data('slider');
-    var HideDivs = function(divs) {
-        for(var i in divs)
-        {
-            $(divs[i]).hide();
-        }
-    };    
-    var ShowDivs = function(divs) {
-        for(var i in divs)
-        {
-            $(divs[i]).show();
-        }
-    };    
+    $('#ex1').slider({ formatter: function(value) { return 'Current s1 value: ' + value; } }).on('slide', function() { SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0))); }).data('slider');
+    var HideDivs = function(divs) { for(var i in divs) { $(divs[i]).hide(); } };    
+    var ShowDivs = function(divs) { for(var i in divs) { $(divs[i]).show(); } };    
     var ResetViewer = function( ){
         var keys = [];
         for (var key in image_map) {
@@ -159,43 +142,17 @@ var UIManager = function(){
         ShowSurface(image_map[current_image][0]);
     };           
     var ShowSurface = function(index){
-        console.log("SURFACE INDEX ->  " + index)
-        if(index == 0){  
-            SwapDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_dti_viewer"], "fast");
-        } else if(index == 1) {
-            SwapDivs(["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#in_vivo_dti_viewer"], "fast");
-        } else if(index == 2){
-            SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_t2_viewer"], "fast");
-        } else if(index == 3){ 
-            SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"], ["#in_vivo_t2_viewer"], "fast");
-        }
-        else{
-            console.log("Unknown surface request index: "+index);
-        }                        
+        if(index == 0){ SwapDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_dti_viewer"], "fast"); } 
+        else if(index == 1) { SwapDivs(["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#in_vivo_dti_viewer"], "fast"); } 
+        else if(index == 2){ SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_t2_viewer"], "fast"); } 
+        else if(index == 3){ SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"], ["#in_vivo_t2_viewer"], "fast"); }
+        else{ console.log("Unknown surface request index: "+index); }                        
     };    
-    var HideImage = function(index){            
-        papaya.Container.hideImage(index[0], index[1]);
-    };     
-    var ShowImage = function(index){
-        papaya.Container.showImage(index[0], index[1]);
-    };
-    var SetBackgroundColorForList = function( list, color ){        
-        for( i in list){
-            $(list[i]).css('background', color);
-        }
-    };    
-    var fade_divs_in = function(divs) {
-        for(i in divs){
-          $( divs[i] ).fadeIn( "slow", function() {
-          });
-      }    
-    };    
-    var fade_divs_out = function(divs) {
-        for(i in divs){
-          $( divs[i] ).fadeOut( "slow", function() {            
-          });
-      }    
-    };    
+    var HideImage = function(index){ papaya.Container.hideImage(index[0], index[1]); };     
+    var ShowImage = function(index){ papaya.Container.showImage(index[0], index[1]); };
+    var SetBackgroundColorForList = function( list, color ){ for( i in list){ $(list[i]).css('background', color); } };    
+    var fade_divs_in = function(divs) { for(i in divs){ $( divs[i] ).fadeIn( "slow", function() { }); } };    
+    var fade_divs_out = function(divs) { for(i in divs){ $( divs[i] ).fadeOut( "slow", function() { }); } };    
     $('.tree-toggle').click(function () { $(this).parent().children('ul.tree').toggle(200); });
     $("#ex_vivo_dti_dec").on('click', function(e) { UpdateParams("ev_dti_dec"); });
     $("#ex_vivo_dti_tr").on('click', function(e) { UpdateParams("ev_dti_tr"); });
