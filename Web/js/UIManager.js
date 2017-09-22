@@ -1,6 +1,5 @@
 // UI Manager
 var UIManager = function(){
-
     var image_map = {
         "ExVivo_DTI_FA"    : [0,0],
         "ExVivo_DTI_DEC"   : [0,1],
@@ -25,19 +24,16 @@ var UIManager = function(){
         "ivT2_TE108"       : [3,4],
         "ivT2_TE132"       : [3,5]                  
     };
-
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
         papaya.Container.showImage(index[0], index[1]);
         console.log("Setting surface alpha to "+val);
-    };
-    
+    };    
     var GetCursorLocation = function(index){
         var res = papaya.Container.GetCursorLocation(index[1], index[0]);
         var loc = res[0];
         console.log("LOCATION ->  " + loc)                      
-    };
-    
+    };    
     var GetROILabel = function(index){
         var res = papaya.Container.GetCursorLocation(index[1], index[0]);
         var lbl = res[1];            
@@ -47,8 +43,7 @@ var UIManager = function(){
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         this.set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
-    };
-    
+    };    
     $('nav li').hover(
         function() {
         $('ul', this).stop().slideDown(200);                
@@ -58,54 +53,25 @@ var UIManager = function(){
         }
     );                
     $("#papaya").on('click', function(e) {        
-        console.log("From papaya 1.")
-        console.log("CURRENT IMAGE ->  " +current_image)
         GetCursorLocation(image_map[current_image]);          
         ui.get_roi_label(image_map[current_image]);  
     });
     $("#papaya1").on('click', function(e) {        
-        console.log("From papaya 1.")
-        console.log("CURRENT IMAGE ->  " +current_image)
         GetCursorLocation(image_map[current_image]);          
         //ui.get_roi_label(image_map[current_image]);  
     });
     $("#papaya2").on('click', function(e) {        
-        console.log("From papaya 2.")
         GetCursorLocation(image_map[current_image]);            
         //ui.get_roi_label(image_map[current_image]);
     });
     $("#papaya3").on('click', function(e) {        
-        console.log("From papaya 3, image ->+ "+current_image)
         GetCursorLocation(image_map[current_image]);            
         //ui.get_roi_label(image_map[current_image]);
     });
     $("#papaya4").on('click', function(e) {        
-        console.log("From papaya 4.")
         GetCursorLocation(image_map[current_image]);            
         //ui.get_roi_label(image_map[current_image]);
-    }); 
-    
-    $("#evdti").on('click', function(e) {           
-         fade_divs_in( [ "#ex_vivo_dti_viewer", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox", "#in_vivo_dti_viewer", "#ex_vivo_t2_viewer","#in_vivo_t2_viewer"]);
-         ResetViewer();
-    });
-    $("#ivdti").on('click', function(e) {           
-         fade_divs_in( [ "#in_vivo_dti_viewer", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox"], "#ex_vivo_dti_viewer","#ex_vivo_t2_viewer","#in_vivo_t2_viewer");
-         ResetViewer();
-    });
-    $("#evt2").on('click', function(e) {           
-         fade_divs_in( [ "#ex_vivo_t2_viewer","#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox", "#in_vivo_dti_viewer", "#ex_vivo_dti_viewer","#in_vivo_t2_viewer"]);
-         ResetViewer();
-    });
-    $("#ivt2").on('click', function(e) {           
-         fade_divs_in( [ "#in_vivo_t2_viewer", "#roi-viz-tools" ] );
-         fade_divs_out(["#bannerBox","#in_vivo_dti_viewer", "#ex_vivo_dti_viewer","#ex_vivo_t2_viewer",]);         
-         ResetViewer();
-    });
-    
+    });     
     $("#reset_view").on('click', function(e) {
         console.log("Resetting Viewport.");
         ResetViewer();
@@ -120,24 +86,19 @@ var UIManager = function(){
     });
     $("#create_png").on('click', function(e) {
         console.log("Create PNG selected.");
-    });			
-    
+    });		        
     $("#home_screen").on('click', function(e) {
-        console.log("CLICKED home screen");
         $("#current_service").html("Home");
         ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#ex1Slider"]);
         fade_divs_in(["#bannerBox"])
     });
-
     $("#visualization_analysis").on('click', function(e) { 
-        console.log("CLICKED visualization analysis"); 
         $("#current_service").html("Templates");             
         fade_divs_out(["#bannerBox"]);
         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
-         ResetViewer();
+        ResetViewer();
     });
-
     $('#ex1').slider({
         formatter: function(value) {
             return 'Current s1 value: ' + value;
@@ -146,21 +107,18 @@ var UIManager = function(){
         console.log("Ex-vivo DTI Slider value :   " + parseFloat((parseFloat($("#ex1").val()) / 100.0)));	
         SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0)));    
     }).data('slider');
-
     var HideDivs = function(divs) {
         for(var i in divs)
         {
             $(divs[i]).hide();
         }
-    };
-    
+    };    
     var ShowDivs = function(divs) {
         for(var i in divs)
         {
             $(divs[i]).show();
         }
-    };
-    
+    };    
     var ResetViewer = function( ){
         var keys = [];
         for (var key in image_map) {
@@ -170,306 +128,107 @@ var UIManager = function(){
         }
         for(var i = 0; i < keys.length; i++){
             HideImage(image_map[keys[i]]);
-            console.log("IMAGE -> " + (image_map[keys[i]]))
         }
-    };
-    
+    };    
     var UpdateParams = function(img){
-        //ResetViewer();   
-        if ( img == "ev_dti_dec" ){         
-            current_image = "ExVivo_DTI_DEC"
-            ShowImage(image_map[current_image]);            
-        } else if ( img == "ev_dti_fa" ){
-            current_image = "ExVivo_DTI_FA";
-            ShowImage(image_map[current_image]);            
-        } else if ( img == "ev_dti_tr" ){
-            current_image = "ExVivo_DTI_TR"
-            ShowImage(image_map[current_image]);            
-        } if ( img == "iv_dti_dec" ){         
-            console.log("UPDATING PARAMS -> "+img)
-            current_image = "InVivo_DTI_DEC"
-            ShowImage(image_map[current_image]);            
-        } else if ( img == "iv_dti_fa" ){
-            current_image = "InVivo_DTI_FA";
-            ShowImage(image_map[current_image]);            
-        } else if ( img == "iv_dti_tr" ){
-            current_image = "InVivo_DTI_TR"
-            ShowImage(image_map[current_image]);            
-        } else if ( img == "ev_t2_10" ){
-             current_image = "Template4D_TE010"
-            ShowImage(image_map["Template4D_TE010"]);                
-        } else if ( img == "ev_t2_20" ){
-             current_image = "Template4D_TE020"
-            ShowImage(image_map["Template4D_TE020"]);                
-        } else if ( img == "ev_t2_30" ){
-             current_image = "Template4D_TE030"
-            ShowImage(image_map["Template4D_TE030"]);                
-        } else if ( img == "ev_t2_40" ){
-             current_image = "Template4D_TE040"
-            ShowImage(image_map["Template4D_TE040"]);                
-        } else if ( img == "ev_t2_50" ){
-             current_image = "Template4D_TE050"
-            ShowImage(image_map["Template4D_TE050"]);                
-        } else if ( img == "ev_t2_60" ){
-             current_image = "Template4D_TE060"
-            ShowImage(image_map["Template4D_TE060"]);                
-        } else if ( img == "ev_t2_70" ){
-             current_image = "Template4D_TE070"
-            ShowImage(image_map["Template4D_TE070"]);                
-        } else if ( img == "ev_t2_80" ){
-             current_image = "Template4D_TE080"
-            ShowImage(image_map["Template4D_TE080"]);                
-        } else if ( img == "ev_t2_90" ){
-             current_image = "Template4D_TE090"
-            ShowImage(image_map["Template4D_TE090"]);                
-        } else if ( img == "ev_t2_100" ){
-             current_image = "Template4D_TE100"
-            ShowImage(image_map["Template4D_TE100"]);                
-        } else if ( img == "iv_t2_012" ){
-            current_image = "ivT2_TE012"
-            ShowImage(image_map["ivT2_TE012"]);                
-        } else if ( img == "iv_t2_036" ){
-            current_image = "ivT2_TE012"
-            ShowImage(image_map["ivT2_TE036"]);                
-        } else if ( img == "iv_t2_060" ){
-            current_image = "ivT2_TE012"
-            ShowImage(image_map["ivT2_TE060"]);                
-        } else if ( img == "iv_t2_084" ){
-            current_image = "ivT2_TE012"
-            ShowImage(image_map["ivT2_TE084"]);                               
-        } else if ( img == "iv_t2_108" ){
-             current_image = "ivT2_TE012"
-            ShowImage(image_map["ivT2_TE108"]);                
-        } else if ( img == "iv_t2_132" ){
-            current_image = "ivT2_TE012"
-            ShowImage(image_map["ivT2_TE132"]);                
-        } else {
-            console.log("SOMETHING ELSE!");                                                       
-        }
+        ResetViewer();   
+        if ( img == "ev_dti_dec" ){ current_image = "ExVivo_DTI_DEC"; } 
+        else if ( img == "ev_dti_fa" ){ current_image = "ExVivo_DTI_FA"; } 
+        else if ( img == "ev_dti_tr" ){ current_image = "ExVivo_DTI_TR"; } 
+        else if ( img == "iv_dti_dec" ){ current_image = "InVivo_DTI_DEC"; } 
+        else if ( img == "iv_dti_fa" ){ current_image = "InVivo_DTI_FA"; } 
+        else if ( img == "iv_dti_tr" ){ current_image = "InVivo_DTI_TR"; } 
+        else if ( img == "ev_t2_10" ){ current_image = "Template4D_TE010"; } 
+        else if ( img == "ev_t2_20" ){ current_image = "Template4D_TE020"; } 
+        else if ( img == "ev_t2_30" ){ current_image = "Template4D_TE030"; } 
+        else if ( img == "ev_t2_40" ){ current_image = "Template4D_TE040"; } 
+        else if ( img == "ev_t2_50" ){ current_image = "Template4D_TE050"; } 
+        else if ( img == "ev_t2_60" ){ current_image = "Template4D_TE060"; } 
+        else if ( img == "ev_t2_70" ){ current_image = "Template4D_TE070"; } 
+        else if ( img == "ev_t2_80" ){ current_image = "Template4D_TE080"; } 
+        else if ( img == "ev_t2_90" ){ current_image = "Template4D_TE090"; } 
+        else if ( img == "ev_t2_100" ){ current_image = "Template4D_TE100"; } 
+        else if ( img == "iv_t2_012" ){ current_image = "ivT2_TE012"; } 
+        else if ( img == "iv_t2_036" ){ current_image = "ivT2_TE036"; } 
+        else if ( img == "iv_t2_060" ){ current_image = "ivT2_TE060"; } 
+        else if ( img == "iv_t2_084" ){ current_image = "ivT2_TE084"; } 
+        else if ( img == "iv_t2_108" ){ current_image = "ivT2_TE108"; } 
+        else if ( img == "iv_t2_132" ){ current_image = "ivT2_TE132"; } 
+        else {console.log("SOMETHING ELSE was selected..."); }
+        ShowImage(image_map[current_image]);
+        ShowSurface(image_map[current_image][0]);
     };           
     var ShowSurface = function(index){
         console.log("SURFACE INDEX ->  " + index)
-        if(index == 0){   
-            ShowDivs(    ["#ex_vivo_dti_viewer"] );
-            HideDivs( ["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"])
+        if(index == 0){  
+            SwapDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_dti_viewer"], "fast");
         } else if(index == 1) {
-            ShowDivs(    ["#in_vivo_dti_viewer"] );
-            HideDivs( ["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"])
+            SwapDivs(["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#in_vivo_dti_viewer"], "fast");
         } else if(index == 2){
-            ShowDivs(    ["#ex_vivo_t2_viewer"] );
-            HideDivs( ["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"])
+            SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_t2_viewer"], "fast");
         } else if(index == 3){ 
-            ShowDivs(    ["#in_vivo_t2_viewer"] );
-            HideDivs( ["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"])
+            SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"], ["#in_vivo_t2_viewer"], "fast");
         }
         else{
             console.log("Unknown surface request index: "+index);
         }                        
-    };
-    
+    };    
     var HideImage = function(index){            
         papaya.Container.hideImage(index[0], index[1]);
-    };
-     
+    };     
     var ShowImage = function(index){
         papaya.Container.showImage(index[0], index[1]);
     };
-
     var SetBackgroundColorForList = function( list, color ){        
         for( i in list){
             $(list[i]).css('background', color);
         }
-    };
-    
+    };    
     var fade_divs_in = function(divs) {
         for(i in divs){
           $( divs[i] ).fadeIn( "slow", function() {
           });
       }    
-    };
-    
+    };    
     var fade_divs_out = function(divs) {
         for(i in divs){
-          $( divs[i] ).fadeOut( "slow", function() {
-            
+          $( divs[i] ).fadeOut( "slow", function() {            
           });
       }    
-    };
-    
-    $('.tree-toggle').click(function () {
-        $(this).parent().children('ul.tree').toggle(200);
-    });
-
-    $("#ex_vivo_dti_dec").on('click', function(e) {  
-        console.log("CLICKED Ex-vivo DEC"); 
-        current_image="ExVivo_DTI_DEC";         
-        ResetViewer(); 
-        UpdateParams("ev_dti_dec"); 
-        ShowSurface(0);
-    });
-
-    $("#ex_vivo_dti_tr").on('click', function(e) {  
-        console.log("CLICKED Ex-vivo Trace");  
-        current_image="ExVivo_DTI_TR"; 
-        ResetViewer();
-        UpdateParams("ev_dti_tr"); 
-        ShowSurface(0);
-    });
-
-    $("#ex_vivo_dti_fa").on('click', function(e) {  
-        console.log("CLICKED Ex-vivo FA");  
-        current_image="ExVivo_DTI_FA"; 
-        ResetViewer(); 
-        UpdateParams("ev_dti_fa"); 
-        ShowSurface(0);
-    });
-    
-    $("#in_vivo_dti_dec").on('click', function(e) {  
-        console.log("CLICKED In-vivo DEC");  
-        current_image="InVivo_DTI_DEC"; 
-        ResetViewer(); 
-        UpdateParams("iv_dti_dec"); 
-        ShowSurface(1); 
-    });
-    $("#in_vivo_dti_tr").on('click', function(e) {  
-        console.log("CLICKED In-vivo Trace");  
-        current_image="InVivo_DTI_TR"; 
-        ResetViewer(); 
-        UpdateParams("iv_dti_tr");
-        ShowSurface(1);
-    });
-    
-    $("#in_vivo_dti_fa").on('click', function(e) {  
-        console.log("CLICKED In-vivo FA"); 
-        current_image="InVivo_DTI_FA"; 
-        ResetViewer(); 
-        UpdateParams("iv_dti_fa");
-        ShowSurface(1); 
-    }); 
-    $("#ex_vivo_T2_10").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  10"); 
-        current_image="Template4D_TE010";
-        ResetViewer(); 
-        UpdateParams("ev_t2_10");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_20").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  20"); 
-        current_image="Template4D_TE020";
-        ResetViewer(); 
-        UpdateParams("ev_t2_20");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_30").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  30"); 
-        current_image="Template4D_TE030";
-        ResetViewer(); 
-        UpdateParams("ev_t2_30");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_40").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  40"); 
-        current_image="Template4D_TE040";
-        ResetViewer(); 
-        UpdateParams("ev_t2_40");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_50").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  50"); 
-        current_image="Template4D_TE050";
-        ResetViewer(); 
-        UpdateParams("ev_t2_50");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_60").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  60"); 
-        current_image="Template4D_TE060";
-        ResetViewer(); 
-        UpdateParams("ev_t2_60");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_70").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  70"); 
-        current_image="Template4D_TE070";
-        ResetViewer(); 
-        UpdateParams("ev_t2_70");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_80").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  80"); 
-        current_image="Template4D_TE080";
-        ResetViewer(); 
-        UpdateParams("ev_t2_80");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_90").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  90"); 
-        current_image="Template4D_TE090";
-        ResetViewer(); 
-        UpdateParams("ev_t2_90");
-        ShowSurface(2);
-    });
-    $("#ex_vivo_T2_100").on('click', function(e) {  
-        console.log("CLICKED ex-vivo  100"); 
-        current_image="Template4D_TE100";
-        ResetViewer(); 
-        UpdateParams("ev_t2_100");
-        ShowSurface(2);
-    });    
-    $("#in_vivo_T2_12").on('click', function(e) {  
-        console.log("CLICKED in-vivo 12"); 
-        current_image="ivT2_TE012";
-        ResetViewer(); 
-        UpdateParams("iv_t2_012");
-        ShowSurface(3); 
-    });
-    $("#in_vivo_T2_36").on('click', function(e) {  
-        console.log("CLICKED in-vivo 36");
-        current_image="ivT2_TE036"; 
-        ResetViewer(); 
-        UpdateParams("iv_t2_036");
-        ShowSurface(3); 
-    });
-    $("#in_vivo_T2_60").on('click', function(e) {  
-        console.log("CLICKED in-vivo 60"); 
-        current_image="ivT2_TE060"; 
-        ResetViewer(); 
-        UpdateParams("iv_t2_060");
-        ShowSurface(3); 
-    });
-    $("#in_vivo_T2_84").on('click', function(e) {  
-        console.log("CLICKED in-vivo 84"); 
-        current_image="ivT2_TE084"; 
-        ResetViewer(); 
-        UpdateParams("iv_t2_084");
-        ShowSurface(3); 
-    });
-    $("#in_vivo_T2_108").on('click', function(e) {  
-        console.log("CLICKED in-vivo 108"); 
-        current_image="ivT2_TE108"; 
-        ResetViewer(); 
-        UpdateParams("iv_t2_108");
-        ShowSurface(3); 
-    });
-    $("#in_vivo_T2_132").on('click', function(e) {  
-        console.log("CLICKED in-vivo 132"); 
-        current_image="ivT2_TE132"; 
-        ResetViewer(); 
-        UpdateParams("iv_t2_132");
-        ShowSurface(3); 
-    });
-
-    var SwapDivs = function(goingOut, goingIn){
+    };    
+    $('.tree-toggle').click(function () { $(this).parent().children('ul.tree').toggle(200); });
+    $("#ex_vivo_dti_dec").on('click', function(e) { UpdateParams("ev_dti_dec"); });
+    $("#ex_vivo_dti_tr").on('click', function(e) { UpdateParams("ev_dti_tr"); });
+    $("#ex_vivo_dti_fa").on('click', function(e) { UpdateParams("ev_dti_fa"); });    
+    $("#in_vivo_dti_dec").on('click', function(e) { UpdateParams("iv_dti_dec"); });
+    $("#in_vivo_dti_tr").on('click', function(e) { UpdateParams("iv_dti_tr"); });    
+    $("#in_vivo_dti_fa").on('click', function(e) { UpdateParams("iv_dti_fa"); }); 
+    $("#ex_vivo_T2_10").on('click', function(e) { UpdateParams("ev_t2_10"); });
+    $("#ex_vivo_T2_20").on('click', function(e) { UpdateParams("ev_t2_20"); });
+    $("#ex_vivo_T2_30").on('click', function(e) { UpdateParams("ev_t2_30"); });
+    $("#ex_vivo_T2_40").on('click', function(e) { UpdateParams("ev_t2_40"); });
+    $("#ex_vivo_T2_50").on('click', function(e) { UpdateParams("ev_t2_50"); });
+    $("#ex_vivo_T2_60").on('click', function(e) { UpdateParams("ev_t2_60"); });
+    $("#ex_vivo_T2_70").on('click', function(e) { UpdateParams("ev_t2_70"); });
+    $("#ex_vivo_T2_80").on('click', function(e) { UpdateParams("ev_t2_80"); });
+    $("#ex_vivo_T2_90").on('click', function(e) { UpdateParams("ev_t2_90"); });
+    $("#ex_vivo_T2_100").on('click', function(e) { UpdateParams("ev_t2_100"); });    
+    $("#in_vivo_T2_12").on('click', function(e) { UpdateParams("iv_t2_012"); });
+    $("#in_vivo_T2_36").on('click', function(e) { UpdateParams("iv_t2_036"); });
+    $("#in_vivo_T2_60").on('click', function(e) { UpdateParams("iv_t2_060"); });
+    $("#in_vivo_T2_84").on('click', function(e) { UpdateParams("iv_t2_084"); });
+    $("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
+    $("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
+    var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
-          $( goingIn[i] ).fadeIn( "slow", function() {
+          $( goingIn[i] ).fadeIn( speed, function() {
             for(j in goingOut){
-                  $( goingOut[j] ).fadeOut( "slow", function() {
+                  $( goingOut[j] ).fadeOut( speed, function() {
                   });
               }
           });
       }                   
-    };
-    
+    };    
   return {  
     hideDivs : HideDivs,    
     showDivs : ShowDivs,    
@@ -524,9 +283,7 @@ var UIManager = function(){
         }
     },
     reset_viewer : ResetViewer,
-    reset_roi_info : function( ){
-        $("#ROI_area1").hide()
-    },
+    reset_roi_info : function( ){ $("#ROI_area1").hide(); },
     set_background_color_for_list : SetBackgroundColorForList,
     update_params : UpdateParams,
     show_surface : ShowSurface,  

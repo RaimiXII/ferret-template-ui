@@ -199,17 +199,8 @@
                                 ]);                                      
                     $('body').css('background-image', 'url(' + imageUrl + ')');                
                     setTimeout(function(){
-                        ui.swapDivs(
-                            ["#loading"],
-                            [   "#navi", "#bannerBox" ]
-                        );
-                        
+                        ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
                     }, 3000);                    
-                /*
-                    $('.tree-toggle').click(function () {
-	                    $(this).parent().children('ul.tree').toggle(200);
-                    });
-                */
             });
         </script>        
     </body>
