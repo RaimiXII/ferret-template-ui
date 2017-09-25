@@ -21,29 +21,47 @@ var UIManager = function(){
         "ivT2_TE036"       : [3,1],
         "ivT2_TE060"       : [3,2],
         "ivT2_TE084"       : [3,3],
-        "ivT2_TE108"       : [3,4],
-        "ivT2_TE132"       : [3,5]                  
+       // "ivT2_TE108"       : [3,4],
+       // "ivT2_TE132"       : [3,5]                  
     };
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
         papaya.Container.showImage(index[0], index[1]);
         console.log("Setting surface alpha to "+val);
     };    
+    
+    var GetRegionDataByName = function(name){    
+            var roi_list = brain_region_struct["rois"];
+            var description = ""
+            for(var i=0; i < roi_list.length; i++){
+                if(name == roi_list[i]["data"]["name"]){
+                    description = roi_list[i]["data"]["description"];
+                }
+            }
+            return description;
+        }
+    
     var GetCursorLocation = function(index){
         var res = papaya.Container.GetCursorLocation(index[1], index[0]);
         var loc = res[0];
         console.log("LOCATION ->  " + loc)                      
+        return res
     };    
     var GetROILabel = function(index){
-        var res = papaya.Container.GetCursorLocation(index[1], index[0]);
+        var res = GetCursorLocation(index);
         var lbl = res[1];            
-        var desc = this.GetRegionDataByName(lbl);
-        var r_str = "<h3>"+lbl+"</h3>";
-        var d_str = "<h3>"+desc+"</h3>";
+        SetROIContent(lbl)
+        //this.set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
+    };    
+    var SetROIContent = function(name){
+        var r_str = "<b>"+name+"</b>";
+        //      Eventually we can query the file. for now we provide a link for SME's to email us with description.
+        //        var desc = GetRegionDataByName(name);
+        var desc = '<p>Are you an expert in Ferret anatomy? <br>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">email us</a> with your suggested content for this ROI! </p>';
+        var d_str = "<b>"+desc+"</b>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
-        this.set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
-    };    
+    };
     $('nav li').hover(
         function() {
         $('ul', this).stop().slideDown(200);                
@@ -53,24 +71,28 @@ var UIManager = function(){
         }
     );                
     $("#papaya").on('click', function(e) {        
-        GetCursorLocation(image_map[current_image]);          
-        ui.get_roi_label(image_map[current_image]);  
-    });
-    $("#papaya1").on('click', function(e) {        
-        GetCursorLocation(image_map[current_image]);          
+        //GetCursorLocation(image_map[current_image]);          
         //ui.get_roi_label(image_map[current_image]);  
     });
+    $("#papaya1").on('click', function(e) {        
+        //GetCursorLocation(image_map[current_image]);          
+        GetROILabel(image_map[current_image]);  
+        $("#img_description").html("<b>Ex-Vivo DTI</b>")
+    });
     $("#papaya2").on('click', function(e) {        
-        GetCursorLocation(image_map[current_image]);            
-        //ui.get_roi_label(image_map[current_image]);
+        //GetCursorLocation(image_map[current_image]);            
+        GetROILabel(image_map[current_image]);
+        $("#img_description").html("<b>In-Vivo DTI</b>")
     });
     $("#papaya3").on('click', function(e) {        
-        GetCursorLocation(image_map[current_image]);            
-        //ui.get_roi_label(image_map[current_image]);
+        //GetCursorLocation(image_map[current_image]);            
+        GetROILabel(image_map[current_image]);
+        $("#img_description").html("<b>Ex-Vivo T2</b>")
     });
     $("#papaya4").on('click', function(e) {        
-        GetCursorLocation(image_map[current_image]);            
-        //ui.get_roi_label(image_map[current_image]);
+        //GetCursorLocation(image_map[current_image]);            
+        GetROILabel(image_map[current_image]);
+        $("#img_description").html("<b>In-Vivo T2</b>")
     });     
     $("#reset_view").on('click', function(e) {
         console.log("Resetting Viewport.");
@@ -135,17 +157,17 @@ var UIManager = function(){
         else if ( img == "iv_t2_036" ){ current_image = "ivT2_TE036"; } 
         else if ( img == "iv_t2_060" ){ current_image = "ivT2_TE060"; } 
         else if ( img == "iv_t2_084" ){ current_image = "ivT2_TE084"; } 
-        else if ( img == "iv_t2_108" ){ current_image = "ivT2_TE108"; } 
-        else if ( img == "iv_t2_132" ){ current_image = "ivT2_TE132"; } 
+        //else if ( img == "iv_t2_108" ){ current_image = "ivT2_TE108"; } 
+        //else if ( img == "iv_t2_132" ){ current_image = "ivT2_TE132"; } 
         else {console.log("SOMETHING ELSE was selected..."); }
         ShowImage(image_map[current_image]);
         ShowSurface(image_map[current_image][0]);
     };           
     var ShowSurface = function(index){
-        if(index == 0){ SwapDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_dti_viewer"], "fast"); } 
-        else if(index == 1) { SwapDivs(["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#in_vivo_dti_viewer"], "fast"); } 
-        else if(index == 2){ SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_t2_viewer"], "fast"); } 
-        else if(index == 3){ SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"], ["#in_vivo_t2_viewer"], "fast"); }
+        if(index == 0){ HideDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"]); SwapDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_dti_viewer"], "fast"); } 
+        else if(index == 1) { HideDivs(["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"]); SwapDivs(["#ex_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#in_vivo_dti_viewer"], "fast"); } 
+        else if(index == 2){ HideDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"]); SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_t2_viewer"], "fast"); } 
+        else if(index == 3){ HideDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"]); SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"], ["#in_vivo_t2_viewer"], "fast"); }
         else{ console.log("Unknown surface request index: "+index); }                        
     };    
     var HideImage = function(index){ papaya.Container.hideImage(index[0], index[1]); };     
@@ -174,8 +196,11 @@ var UIManager = function(){
     $("#in_vivo_T2_36").on('click', function(e) { UpdateParams("iv_t2_036"); });
     $("#in_vivo_T2_60").on('click', function(e) { UpdateParams("iv_t2_060"); });
     $("#in_vivo_T2_84").on('click', function(e) { UpdateParams("iv_t2_084"); });
-    $("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
-    $("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
+    //$("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
+    //$("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
+    $("#search_roi").on('click', function(e) { console.log("Search button pressed."); SetROIContent($("#query").val());});
+    
+    
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
           $( goingIn[i] ).fadeIn( speed, function() {
@@ -206,6 +231,7 @@ var UIManager = function(){
     show_image : ShowImage,
     get_cursor_location : GetCursorLocation,
     get_roi_label : GetROILabel,
+    SetROIContent:SetROIContent,
     set_surface_alpha : SetSurfaceAlpha,
     set_roi_alpha_val : function(idx, val){                     
         console.log("Setting roi alpha to "+val);
@@ -307,16 +333,7 @@ var UIManager = function(){
                 console.log("Not showing the image.");
             }
         },
-        GetRegionDataByName : function(name){    
-            var roi_list = brain_region_struct["rois"];
-            var description = ""
-            for(var i=0; i < roi_list.length; i++){
-                if(name == roi_list[i]["data"]["name"]){
-                    description = roi_list[i]["data"]["description"];
-                }
-            }
-            return description;
-        },
+        GetRegionDataByName : GetRegionDataByName,
         FetchBrainRegionData : function(){
         
             $.getJSON('ext/Brain_Regions.json', function(data) { 
@@ -328,6 +345,19 @@ var UIManager = function(){
             var rgbs = [];
             var fnames = [];
             var data = brain_region_struct;
+            
+            var roi_names=[]
+            for(var i = 0; i < data["rois"].length; i++){
+                roi_names.push(data["rois"][i]["data"]["name"])
+            }
+            console.log("THE ROI LIST -> ")
+            console.log(roi_names)
+            
+            $('#query').typeahead({        
+                local: roi_names
+            });
+            $('.tt-query').css('background-color','#fff');       
+            
                 
             params1["kioskMode"] = true;   
             params1["surfaces"] = []
@@ -359,7 +389,7 @@ var UIManager = function(){
             params2["surfaces"] = [];
             params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
             params2["iv_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                    
-            params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0.1, "max": 0.87};
+            params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
             params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
             params2["showSurfacePlanes"] = false;
@@ -405,15 +435,15 @@ var UIManager = function(){
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                    //"img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
+                                    //"img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
                                  ];  
             params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
             params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-            params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};                                                                            
+            //params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+            //params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};                                                                            
             params4["showSurfacePlanes"] = false;                                                        
             params4["surfaceBackground"] = "Black";
             params4.showControls = false   
