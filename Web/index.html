@@ -140,17 +140,17 @@
             <div class="col-sm-8">
                 <div class="row">
                     <div id="MRI_area1" class="container-fluid">
-                        <div class="jumbotron">                                                               
-                            <div id="ex_vivo_dti_viewer" class="clearfix">
-                                <div id="papaya1" class="papaya" data-params="params1" ></div>
+                        <div class="jumbotron" id="view_container">                                                               
+                            <div id="ex_vivo_dti_viewer" style="width:58vw;">
+                                <div id="papaya1" class="papaya" data-params="params1"></div>
                             </div>
-                            <div id="in_vivo_dti_viewer">
+                            <div id="in_vivo_dti_viewer" style="width:58vw;">
                                 <div id="papaya2" class="papaya" data-params="params2"></div>
                             </div>
-                            <div id="ex_vivo_t2_viewer">
+                            <div id="ex_vivo_t2_viewer" style="width:58vw;">
                                 <div id="papaya3" class="papaya" data-params="params3"></div>
                             </div>
-                            <div id="in_vivo_t2_viewer">
+                            <div id="in_vivo_t2_viewer" style="width:58vw;">
                                 <div id="papaya4" class="papaya" data-params="params4"></div>
                             </div>                            
                         </div>
@@ -163,7 +163,7 @@
                 <div class="row"><div class="col-md-3"></div>
                   <div class="span5">
                         <ul class="nav nav-list tree well well-lg">
-                            <li><label class="tree-toggle nav-header " id="ferret_atlas">Tools</label>
+                            <li><label class="tree-toggle nav-header " id="atlas_tools">Tools</label>
                                 <ul id="sub" class="nav nav-list tree well well-sm">
                                     <div>
                                         <ul class="nav nav-list well well-lg ">
@@ -200,25 +200,27 @@
                                                             </li>
                                                         </ul>
                                                     </li>                                                                                           
-                                                </ul>
-                                                <ul id="sub" class="nav nav-list tree well well-sm">
-                                                    <li><label class="tree-toggle nav">Plot</label>
-                                                        <ul id="sub" class="nav nav-list tree">
-                                                            <li id="plot_area" class="well well-sm">
-                                                                <canvas id="RoiChart"></canvas>
-                                                            </li>
-                                                        </ul>
-                                                    </li>                                                                                           
-                                                </ul>
+                                                </ul>                                                
                                             </li>
-                                        </ul>                                                                                                       
+                                            
+                                        </ul>  
+                                        <ul class="nav nav-list well well-lg "> 
+                                            <li><label class="tree-toggle nav-header ">Distribution Plot</label>
+                                                <ul id="sub" class="nav nav-list tree ">
+                                                    <li id="plot_area" class="">
+                                                        <canvas id="RoiChart"></canvas>
+                                                    </li>                                                                                         
+                                                </ul>
+                                            </li>  
+                                        </ul>                                                                                                  
                                     </div>
                                 </ul>
                             </li>
                         </ul>
                     </div>                    
                 </div>
-            </div>                 
+            </div>   
+            </div>           
             <!-- slider 
             <div id="roi-viz-tools" class="pager">
                 <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75" aria-hidden="true">
@@ -253,10 +255,11 @@
                 }, 3000);         
                 ui.FetchBrainRegionData();
                     ui.hideDivs([     
+                                      
                                       "#ex_vivo_dti_viewer",
                                       "#in_vivo_dti_viewer",
                                       "#ex_vivo_t2_viewer",
-                                      "#in_vivo_t2_viewer",
+                                      "#in_vivo_t2_viewer",                                      
                                       "#roi-viz-tools", 
                                       "#navi", 
                                       "#ex_vivo_dti", 
@@ -267,8 +270,11 @@
                                       "#template_content"   
                                 ]);
                                 
-                       ch.CreateChart("RoiChart");    
-                              
+                       ch.CreateChart("RoiChart");   
+                       
+                
+
+               
             });
         </script>        
     </body>
