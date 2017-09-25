@@ -254,27 +254,22 @@
                     ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
                 }, 3000);         
                 ui.FetchBrainRegionData();
-                    ui.hideDivs([     
-                                      
-                                      "#ex_vivo_dti_viewer",
-                                      "#in_vivo_dti_viewer",
-                                      "#ex_vivo_t2_viewer",
-                                      "#in_vivo_t2_viewer",                                      
-                                      "#roi-viz-tools", 
-                                      "#navi", 
-                                      "#ex_vivo_dti", 
-                                      "#MRI_area1", 
-                                      "#visualization_templates", 
-                                      "#bannerBox",  
-                                      "#ex1", 
-                                      "#template_content"   
-                                ]);
-                                
-                       ch.CreateChart("RoiChart");   
-                       
-                
+                ui.hideDivs([
+                      "#ex_vivo_dti_viewer",
+                      "#in_vivo_dti_viewer",
+                      "#ex_vivo_t2_viewer",
+                      "#in_vivo_t2_viewer",                                      
+                      "#roi-viz-tools", 
+                      "#navi", 
+                      "#ex_vivo_dti", 
+                      "#MRI_area1", 
+                      "#visualization_templates", 
+                      "#bannerBox",  
+                      "#ex1", 
+                      "#template_content"   
+                ]);                
+                ch.CreateChart("RoiChart");   
 
-               
             });
         </script>        
     </body>
