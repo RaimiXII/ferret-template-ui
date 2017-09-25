@@ -24,6 +24,11 @@ var UIManager = function(){
        // "ivT2_TE108"       : [3,4],
        // "ivT2_TE132"       : [3,5]                  
     };
+    
+
+    
+    
+    
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
         papaya.Container.showImage(index[0], index[1]);
@@ -200,6 +205,8 @@ var UIManager = function(){
     //$("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
     $("#search_roi").on('click', function(e) { console.log("Search button pressed."); SetROIContent($("#query").val());});
     
+//    var mychart = ch.CreateChart("RoiChart");
+    
     
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
@@ -356,8 +363,50 @@ var UIManager = function(){
             $('#query').typeahead({        
                 local: roi_names
             });
-            $('.tt-query').css('background-color','#fff');       
+            $('.tt-query').css('background-color','#fff');                             
             
+            
+            
+            //  TBD why do we have to define this nonsense here? Why not in charthelper?
+            /*
+            var ctx = document.getElementById("RoiChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    datasets: [{
+                        label: '# of Voxels',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+            */
                 
             params1["kioskMode"] = true;   
             params1["surfaces"] = []

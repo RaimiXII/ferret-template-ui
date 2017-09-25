@@ -190,11 +190,19 @@
                                                                     ROI description: <div id="roi_description"></div>
                                                             </li>
                                                         </ul>
-                                                    </li>                                     
+                                                    </li>                                                                                           
+                                                </ul>
+                                                <ul class="nav nav-list tree well well-sm">
+                                                    <li><label class="tree-toggle nav">Plot</label>
+                                                        <ul class="nav nav-list tree">
+                                                            <li id="plot_area" class="well well-sm">
+                                                                <canvas id="RoiChart"></canvas>
+                                                            </li>
+                                                        </ul>
+                                                    </li>                                                                                           
                                                 </ul>
                                             </li>
-                                        </ul>
-                                        <li class="divider"></li>                                                                                                                
+                                        </ul>                                                                                                       
                                     </div>
                                 </ul>
                             </li>
@@ -222,7 +230,9 @@
             var params2 = [];
             var params3 = [];
             var params4 = [];  
+            var ch = new ChartHelper();
             var ui = new UIManager();            
+            
             var current_image ="";                     
             var brain_region_struct = {};            
             var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com            
@@ -247,7 +257,7 @@
                                       "#template_content"   
                                 ]);
                                 
-                                                       
+                       ch.CreateChart("RoiChart");    
                               
             });
         </script>        
