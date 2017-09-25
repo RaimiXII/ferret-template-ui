@@ -70,14 +70,14 @@
                 <div class="row"><div class="col-md-3"></div>
                   <div class="span5">
                         <ul class="nav nav-list tree well well-lg">
-                            <li><span class="badge pull-right tree-toggle nav">20 Ex-Vivo and In-vivo Templates</span><label class="tree-toggle nav-header " id="ferret_atlas">Ferret</label>
-                                <ul class="nav nav-list tree well well-sm">
+                            <li><span class="badge pull-right tree-toggle nav">20 Ex-Vivo and In-vivo Templates</span><label class="tree-toggle nav-header" id="ferret_atlas">Ferret</label>
+                                <ul id="sub" class="nav nav-list tree well well-sm">
                                     <div>
                                         <ul class="nav nav-list well well-lg ">
                                             <li><span class="badge pull-right tree-toggle nav">13 DTI and TE Templates</span><label class="tree-toggle nav-header ">Ex-Vivo</label>
                                                 <ul class="nav nav-list tree well well-sm">
                                                     <li><span class="badge pull-right tree-toggle nav">3</span><label class="tree-toggle nav">DTI </label>
-                                                        <ul class="nav nav-list tree">
+                                                        <ul id="sub" class="nav nav-list tree">
                                                             <li id="ex_vivo_dti_fa"><a href="#">Fractional Anisotropy</a></li>
                                                             <li id="ex_vivo_dti_tr"><a href="#">Trace</a></li>
                                                             <li id="ex_vivo_dti_dec"><a href="#" >Directionally Encoded Color Map</a></li>                                         
@@ -86,7 +86,7 @@
                                                 </ul>                                                                                           
                                                 <ul class="nav nav-list tree well well-sm">
                                                     <li><span class="badge pull-right tree-toggle nav">10</span><label class="tree-toggle nav">TE </label>
-                                                        <ul class="nav nav-list tree">
+                                                        <ul id="sub" class="nav nav-list tree">
                                                             <li id="ex_vivo_T2_10"><a href="#">10 ms</a></li>
                                                             <li id="ex_vivo_T2_20"><a href="#">20 ms</a></li>
                                                             <li id="ex_vivo_T2_30"><a href="#">30 ms</a></li>                                                
@@ -107,7 +107,7 @@
                                             <li><span class="badge pull-right tree-toggle nav">7 DTI and TE Templates</span><label class="tree-toggle nav-header ">In-Vivo</label>
                                                 <ul class="nav nav-list tree well well-sm">
                                                     <li><span class="badge pull-right tree-toggle nav">3</span><label class="tree-toggle nav">DTI </label>
-                                                        <ul class="nav nav-list tree">
+                                                        <ul id="sub" class="nav nav-list tree">
                                                             <li id="in_vivo_dti_fa"><a href="#">Fractional Anisotropy</a></li>
                                                             <li id="in_vivo_dti_tr"><a href="#">Trace</a></li>
                                                             <li id="in_vivo_dti_dec"><a href="#">Directionally Encoded Color Map</a></li>                                                
@@ -116,7 +116,7 @@
                                                 </ul>                                                
                                                 <ul class="nav nav-list tree well well-sm">
                                                     <li><span class="badge pull-right tree-toggle nav">4</span><label class="tree-toggle nav">TE </label>
-                                                        <ul class="nav nav-list tree">
+                                                        <ul id="sub" class="nav nav-list tree">
                                                             <li id="in_vivo_T2_12"><a href="#">12 ms</a></li>
                                                             <li id="in_vivo_T2_36"><a href="#">36 ms</a></li>
                                                             <li id="in_vivo_T2_60"><a href="#">60 ms</a></li>                                                
@@ -246,6 +246,7 @@
             var brain_region_struct = {};            
             var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com            
             $(document).ready(function(){
+            $('ul[id=sub]').hide();
              $('body').css('background-image', 'url(' + imageUrl + ')');                
                 setTimeout(function(){
                     ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
