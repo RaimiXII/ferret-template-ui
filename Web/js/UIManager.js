@@ -25,10 +25,6 @@ var UIManager = function(){
        // "ivT2_TE132"       : [3,5]                  
     };
     
-
-    
-    
-    
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
         papaya.Container.showImage(index[0], index[1]);
@@ -120,12 +116,25 @@ var UIManager = function(){
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#ex1Slider"]);
         fade_divs_in(["#bannerBox"])
     });
-    $("#visualization_analysis").on('click', function(e) { 
+    $("#visualization_screen").on('click', function(e) { 
         $("#current_service").html("Templates");             
         fade_divs_out(["#bannerBox"]);
-        fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
+        fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content", "#download_templates" ] );         
         ResetViewer();
     });
+    $("#download_screen").on('click', function(e) { 
+        $("#current_service").html("Downloads");             
+        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#about_templates"]  );
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1",  "#bannerBox"  /*"#ex1Slider"*/]);
+        //fade_divs_in(["#bannerBox"])
+    });
+    $("#about_screen").on('click', function(e) { 
+        $("#current_service").html("About");             
+        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates"]  );
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox"  /*"#ex1Slider"*/]);
+        //fade_divs_in(["#bannerBox"])
+    });
+    
     $('#ex1').slider({ formatter: function(value) { return 'Current s1 value: ' + value; } }).on('slide', function() { SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0))); }).data('slider');
     var HideDivs = function(divs) { for(var i in divs) { $(divs[i]).hide(); } };    
     var ShowDivs = function(divs) { for(var i in divs) { $(divs[i]).show(); } };    
