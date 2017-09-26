@@ -60,50 +60,34 @@ var ChartHelper = function()
     var ctx = document.getElementById(div_tag);
     
     ctx.height = hgt;
-        var background = 'rgba(12, 12, 132, 0.2)';
-        var border            =  'rgba(0,0,0,1)';
-    
-    
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "Max"],
-                    datasets: [{
-                        label: '# of Voxels',
-                        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                        
-                        backgroundColor: [
-                            background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,
-                            /*
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            */
-                        ],
-                        borderColor: [
-                            border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,
-                            /*
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',*/
-                        ],
-                        
-                        borderWidth: 1
+        var br = 'rgba(12, 12, 132, 0.2)';
+        var bd            =  'rgba(0,0,0,1)';     
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "Max"],
+                datasets: [{
+                    label: '# of Voxels',
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],                        
+                    backgroundColor: [
+                        br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,
+                    ],
+                    borderColor: [
+                        bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,
+                    ],                        
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
                     }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    },
-                    
-                }
-            });
+                },                    
+            }
+        });
             
     chart = myChart;
     return chart;

@@ -210,6 +210,9 @@ var UIManager = function(){
     //$("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
     //$("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
     $("#search_roi").on('click', function(e) { SetROIContent($("#query").val());});    
+    $("#explore_mode").on('click', function(e) { console.log("explore mode selected.");});    
+    $("#annotate_mode").on('click', function(e) { console.log("annotate mode selected.");});    
+    $("#extra_mode").on('click', function(e) { console.log("extra mode selected.");});    
     
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
@@ -299,6 +302,7 @@ var UIManager = function(){
     var SetChartHelper = function(c){
         chartHelper = c;
     };      
+
     
   return {  
     SetChartHelper: SetChartHelper,
@@ -463,6 +467,7 @@ var UIManager = function(){
             params1["showSurfacePlanes"] = false;
             params1["surfaceBackground"] = "Black";                  
             params1.showControls = false; 
+            params1["contextManager"] = 5;
             //  TBD - put this back in when we get info on the ROIs
             //ui.LoadNewSurfaces(image_map[current_image],0);
             
