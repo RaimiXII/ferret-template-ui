@@ -204,7 +204,7 @@ var UIManager = function(){
     $("#in_vivo_T2_84").on('click', function(e) { UpdateParams("iv_t2_084"); });
     //$("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
     //$("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
-    $("#search_roi").on('click', function(e) { console.log("Search button pressed."); SetROIContent($("#query").val());});    
+    $("#search_roi").on('click', function(e) { SetROIContent($("#query").val());});    
     
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
