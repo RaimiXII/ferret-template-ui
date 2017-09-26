@@ -46,11 +46,13 @@ var ChartHelper = function()
     console.log('done clearing');
   };
   
-  var updateChart = function(new_data)
+  var updateChart = function(new_data, new_min, new_max)
   {  
+    console.log("UPDATING MIN -> " + new_min + "   AND    MAX -> " + new_max);
     chart.data.datasets[0].data = new_data;
-    chart.update();
-    
+    chart.data.labels[0] = (new_min);
+    chart.data.labels[new_data.length-1] = (new_max);
+    chart.update();    
   }
   
   var CreateChart = function(div_tag, hgt)
@@ -58,6 +60,10 @@ var ChartHelper = function()
     var ctx = document.getElementById(div_tag);
     
     ctx.height = hgt;
+        var background = 'rgba(12, 12, 132, 0.2)';
+        var border            =  'rgba(0,0,0,1)';
+    
+    
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -65,22 +71,25 @@ var ChartHelper = function()
                     datasets: [{
                         label: '# of Voxels',
                         data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                        /*
+                        
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
+                            background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,background,
+                            /*
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
+                            */
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
+                            border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,
+                            /*
                             'rgba(54, 162, 235, 1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
+                            'rgba(153, 102, 255, 1)',*/
                         ],
-                        */
+                        
                         borderWidth: 1
                     }]
                 },
@@ -228,38 +237,32 @@ var ChartHelper = function()
   }
   
   
-  var CreateHistogram = function(data, nbins){  
+  var CreateHistogram = function(data, nbins, idx){  
   
-    var v1 = getColumn(data, 0);    
+    var v1 = getColumn(data, idx);    
     var n_entries = v1.length;    
     var sorted_v1 = SortFloatArray(v1);    
     var min_v1 = sorted_v1[0];
     var max_v1 = sorted_v1[n_entries-1];
     var range_v1 = (max_v1 - min_v1);
     var step_v1    = range_v1 / nbins;
-    /*
-    console.log("Min -> " + min_v1);
-    console.log("Max -> " + max_v1);
-    console.log("Range -> " + range_v1);
-    console.log("Step -> " + step_v1);
-    */    
-    var intervals = [];    
-    var histogram =[];    
+
+    var intervals = [];    var histogram =[];    
     for(var i=0; i < nbins; i++)
     {    
-        intervals.push( (i*step_v1) + min_v1);        
-        histogram.push(0);
+        intervals.push( (i*step_v1) + min_v1);                histogram.push(0);
     }    
     for(var i =0; i < n_entries; i++)
     {
         histogram[GetBinIndexOfValue(sorted_v1[i], intervals)] = histogram[GetBinIndexOfValue(sorted_v1[i], intervals)]+1;
     }
-    
-//  console.log(histogram);
-    
-  updateChart(histogram);
+    updateChart(histogram, JRound(min_v1, 3), JRound(max_v1,2));
   };
   
+  function JRound(value, decimals) {
+      return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+    };
+      
     var GetBinIndexOfValue = function(value, intervals){      
         for(var i =0; i < intervals.length-1; i++){            
             if( (value >= intervals[i])    &&  (value <= intervals[i+1])){                
@@ -268,10 +271,6 @@ var ChartHelper = function()
         }
         return -1;
     };
-  
-  
-  
-  
   
   var getUniqueValuesInColumn = function(csv, colName)
   {

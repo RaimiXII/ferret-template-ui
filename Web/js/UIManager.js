@@ -25,11 +25,8 @@ var UIManager = function(){
        // "ivT2_TE132"       : [3,5]                  
     };
     
-    var chartHelper;
-    
+    var chartHelper;    
    var currentData;
-    
-    
     
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -68,11 +65,7 @@ var UIManager = function(){
         var d_str = "<b>"+desc+"</b>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
-        var roidata = GetRegionCsvByName(name);
-        
-        console.log("YOYOYO DATA ->  " + roidata)
-        
-        
+        var roidata = GetRegionCsvByName(name);        
     };
     $('nav li').hover(
         function() {
@@ -176,9 +169,10 @@ var UIManager = function(){
         else if ( img == "iv_t2_084" ){ current_image = "ivT2_TE084"; } 
         //else if ( img == "iv_t2_108" ){ current_image = "ivT2_TE108"; } 
         //else if ( img == "iv_t2_132" ){ current_image = "ivT2_TE132"; } 
-        else {console.log("SOMETHING ELSE was selected..."); }
+        else {console.log("SOMETHING ELSE was selected..."); }        
         ShowImage(image_map[current_image]);
         ShowSurface(image_map[current_image][0]);
+        GetROILabel(image_map[current_image])
     };           
     var ShowSurface = function(index){
         if(index == 0){ HideDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"]); SwapDivs(["#in_vivo_dti_viewer","#ex_vivo_t2_viewer", "#in_vivo_t2_viewer"], ["#ex_vivo_dti_viewer"], "fast"); } 
@@ -258,7 +252,6 @@ var UIManager = function(){
         var allTextLines = allText.split(/\r\n|\n/);
         var entries = allTextLines[0].split(',');
         var lines = [];
-
         var headings = entries.splice(0,record_num);
         while (entries.length>0) {
             var tarr = [];
@@ -267,7 +260,6 @@ var UIManager = function(){
             }
             lines.push(tarr);
         }
-        // alert(lines);
     }
     
      var GetRegionCsvByName = function(name){
@@ -285,22 +277,28 @@ var UIManager = function(){
     };
     
     var UpdateRoiData = function(d){
-    console.log("THE DATA -> ");
-    console.log(d);
-
-    var csv_as_json = chartHelper.CsvToJson(d)
-    console.log(csv_as_json);
-    
-    console.log("Creating histogram...")
-    chartHelper.CreateHistogram(csv_as_json, 25);
-
+        var csv_as_json = chartHelper.CsvToJson(d)
+        
+        var c_im_split = current_image.split('_');
+        var c_im_type = c_im_split[c_im_split.length-1];
+        var plot_col;
+        if(c_im_type == "FA")
+        {
+            chartHelper.CreateHistogram(csv_as_json, 25,0);
+        }
+        else if(c_im_type == "TR")
+        {
+            chartHelper.CreateHistogram(csv_as_json, 25,1);
+        }
+        else
+        {
+            console.log("Not a quantitative map.... no plot updates.");
+        }    
     }
     
     var SetChartHelper = function(c){
         chartHelper = c;
-    };
-    
-    
+    };      
     
   return {  
     SetChartHelper: SetChartHelper,
@@ -438,13 +436,11 @@ var UIManager = function(){
             var rgbs = [];
             var fnames = [];
             var data = brain_region_struct;
-            
+                        
             var roi_names=[]
             for(var i = 0; i < data["rois"].length; i++){
                 roi_names.push(data["rois"][i]["data"]["name"])
             }
-            console.log("THE ROI LIST -> ")
-            console.log(roi_names)
             
             $('#query').typeahead({        
                 local: roi_names
@@ -480,7 +476,7 @@ var UIManager = function(){
                                  ];  
             params2["surfaces"] = [];
             params2["surfaces"] = ["img/linked_content/Templates/DTI_invivo/ROIs/iv_dti_brain.surf.gii"];                                  
-            params2["iv_dti_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};                                                    
+            params2["iv_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};                                                    
             params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
             params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
@@ -491,7 +487,7 @@ var UIManager = function(){
             params3["kioskMode"] = true;      
             params3["surfaces"] = [];                
             params3["surfaces"] = ["img/linked_content/Templates/T2_exvivo/ROIs/ev_t2_brain.surf.gii"];
-            params3["ev_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};     
+            params3["ev_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};     
             params3["images"] =  [  
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
                                     "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
@@ -521,7 +517,7 @@ var UIManager = function(){
             params4["kioskMode"] = true;    
             params4["surfaces"] = [];
             params4["surfaces"] = ["img/linked_content/Templates/T2_invivo/ROIs/iv_t2_brain.surf.gii"];
-            params4["iv_t2_brain.surf.gii"] = {color:[0.5,0.5,0.5], alpha: 0.5};        
+            params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};        
             params4["images"] =  [
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
                                     "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",

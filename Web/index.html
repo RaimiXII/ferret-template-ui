@@ -193,24 +193,18 @@
                                                                         ROI description: <div id="roi_description"></div>
                                                                 </li>
                                                             </ul>
-                                                   
                                                 </li>
-                                                
-                                                                                                                                            
-                                        
                                     </ul>
                                 </li>
                                 <li><label class="tree-toggle nav-header " id="atlas_tools">Plot</label>
-                                    <ul id="sub" class="nav nav-list tree well well-sm">
-       
-                                            <li><label class="tree-toggle nav-header ">Distribution </label>
+                                    <ul id="sub" class="nav nav-list tree well well-sm">       
+                                            <li><label class="tree-toggle nav-header ">Histogram </label>
                                                 <ul id="sub" class="nav nav-list tree ">
-                                                    <li id="plot_area"class="">
+                                                    <li id="plot_area">
                                                         <canvas id="RoiChart"></canvas>
                                                     </li>                                                                                         
                                                 </ul>
-                                            </li>  
-                                    
+                                            </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -218,18 +212,12 @@
                     </div>
                 </div>   
             </div>   
-            
-        
         </div>
-            
-            
-       </div> 
-       
+       </div>
        <div id="ferret_atlas_download_content">   
         <div id="download_templates">
             <div class="row" >
-                <div class="container"  >
-                    
+                <div class="container"  >                    
                 <ul class="nav nav-list tree well well-lg">
                     <li><span class="badge pull-right tree-toggle nav nav-inverse">20</span><label class="tree-toggle nav-header" id="ferret_atlas_downloads">Download Ferret Templates</label>
                         <ul id="sub" class="nav nav-list tree well well-sm">
@@ -294,8 +282,7 @@
                             </div>
                         </ul>
                     </li>
-                </ul>
-                
+                </ul>                
                 <ul class="nav nav-list tree well well-lg">
                     <li><label class="tree-toggle nav-header" id="ferret_atlas"><a href="img/linked_content/Templates/Bundle/FerretTemplateBundle.zip" download>Download Entire Bundle (.zip)</a></label>
                 </ul>
@@ -304,12 +291,9 @@
             </div>
         </div>
         </div>
-        
-            
         <script type="text/javascript">
-            $("#ferret_atlas_download_content").hide()
-        </script>
-        
+            $("#ferret_atlas_download_content").hide();
+        </script>        
         <div id="loading" class="centered">
             <div class="loading spin-1"/>
             <div class="loading spin-2"/>
@@ -326,41 +310,32 @@
             var params4 = [];  
             var ch = new ChartHelper();
             var ui = new UIManager();            
-            ui.SetChartHelper(ch)
-            
+            ui.SetChartHelper(ch);            
             var current_image ="";                     
             var brain_region_struct = {};            
-            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com        
-            
+            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com                    
             $(document).ready(function(){
             $('ul[id=sub]').hide();
-
-             $('body').css('background-image', 'url(' + imageUrl + ')');                
-                
+             $('body').css('background-image', 'url(' + imageUrl + ')');                                
                 ui.hideDivs([
-/*                      "#ex_vivo_dti_viewer",
+                      "#ex_vivo_dti_viewer",
                       "#in_vivo_dti_viewer",
                       "#ex_vivo_t2_viewer",
-                      "#in_vivo_t2_viewer",          */                           
+                      "#in_vivo_t2_viewer",                                    
                       "#navi", 
                       "#download_templates",
                       "#ferret_atlas_download_content",
                       "#MRI_area1", 
                       "#visualization_templates", 
                       "#bannerBox",  
-                      "#template_content",
-                      
+                      "#template_content",                      
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);  
-                
-                
-                
                 setTimeout(function(){
                     ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
                 }, 3000);         
                 ui.FetchBrainRegionData(); 
-
             });
         </script>        
     </body>
