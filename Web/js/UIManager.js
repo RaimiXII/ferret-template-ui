@@ -58,7 +58,7 @@ var UIManager = function(){
         var r_str = "<b>"+name+"</b>";
         //      Eventually we can query the file. for now we provide a link for SME's to email us with description.
         //        var desc = GetRegionDataByName(name);
-        var desc = '<p>Are you an expert in Ferret anatomy? <br>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">email us</a> with your suggested content for this ROI! </p>';
+        var desc = '<p>Expert in Ferret anatomy? <br>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">send us</a> your suggested content! </p>';
         var d_str = "<b>"+desc+"</b>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
@@ -71,27 +71,19 @@ var UIManager = function(){
         $('ul', this).stop().slideUp(200);
         }
     );                
-    $("#papaya").on('click', function(e) {        
-        //GetCursorLocation(image_map[current_image]);          
-        //ui.get_roi_label(image_map[current_image]);  
-    });
-    $("#papaya1").on('click', function(e) {        
-        //GetCursorLocation(image_map[current_image]);          
+    $("#papaya1").on('click', function(e) {               
         GetROILabel(image_map[current_image]);  
         $("#img_description").html("<b>Ex-Vivo DTI</b>")
     });
-    $("#papaya2").on('click', function(e) {        
-        //GetCursorLocation(image_map[current_image]);            
+    $("#papaya2").on('click', function(e) {                 
         GetROILabel(image_map[current_image]);
         $("#img_description").html("<b>In-Vivo DTI</b>")
     });
     $("#papaya3").on('click', function(e) {        
-        //GetCursorLocation(image_map[current_image]);            
         GetROILabel(image_map[current_image]);
         $("#img_description").html("<b>Ex-Vivo T2</b>")
     });
-    $("#papaya4").on('click', function(e) {        
-        //GetCursorLocation(image_map[current_image]);            
+    $("#papaya4").on('click', function(e) {                  
         GetROILabel(image_map[current_image]);
         $("#img_description").html("<b>In-Vivo T2</b>")
     });     
@@ -212,10 +204,7 @@ var UIManager = function(){
     $("#in_vivo_T2_84").on('click', function(e) { UpdateParams("iv_t2_084"); });
     //$("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
     //$("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
-    $("#search_roi").on('click', function(e) { console.log("Search button pressed."); SetROIContent($("#query").val());});
-    
-//    var mychart = ch.CreateChart("RoiChart");
-    
+    $("#search_roi").on('click', function(e) { console.log("Search button pressed."); SetROIContent($("#query").val());});    
     
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
@@ -372,49 +361,7 @@ var UIManager = function(){
             $('#query').typeahead({        
                 local: roi_names
             });
-            $('.tt-query').css('background-color','#fff');               
-            
-            
-            //  TBD why do we have to define this nonsense here? Why not in charthelper?
-            /*
-            var ctx = document.getElementById("RoiChart");
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                    datasets: [{
-                        label: '# of Voxels',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    }
-                }
-            });
-            */
+            $('.tt-query').css('background-color','#fff');  
                 
             params1["kioskMode"] = true;   
             params1["surfaces"] = []
