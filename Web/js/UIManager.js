@@ -25,6 +25,12 @@ var UIManager = function(){
        // "ivT2_TE132"       : [3,5]                  
     };
     
+    var chartHelper;
+    
+   var currentData;
+    
+    
+    
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
         papaya.Container.showImage(index[0], index[1]);
@@ -62,6 +68,11 @@ var UIManager = function(){
         var d_str = "<b>"+desc+"</b>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
+        var roidata = GetRegionCsvByName(name);
+        
+        console.log("YOYOYO DATA ->  " + roidata)
+        
+        
     };
     $('nav li').hover(
         function() {
@@ -216,10 +227,87 @@ var UIManager = function(){
           });
       }                   
     };    
+    
+    var CsvToJson = function(fname){
+        var lines=csv.split("\n");
+
+          var result = [];
+
+          var headers=lines[0].split(",");
+
+          for(var i=1;i<lines.length;i++){
+
+              var obj = {};
+              var currentline=lines[i].split(",");
+
+              for(var j=0;j<headers.length;j++){
+	              obj[headers[j]] = currentline[j];
+              }
+
+              result.push(obj);
+
+          }
+          
+          //return result; //JavaScript object
+          return JSON.stringify(result); //JSON
+    
+    };
+    
+    function processData(allText) {
+        var record_num = 2;  // or however many elements there are in each row
+        var allTextLines = allText.split(/\r\n|\n/);
+        var entries = allTextLines[0].split(',');
+        var lines = [];
+
+        var headings = entries.splice(0,record_num);
+        while (entries.length>0) {
+            var tarr = [];
+            for (var j=0; j<record_num; j++) {
+                tarr.push(headings[j]+":"+entries.shift());
+            }
+            lines.push(tarr);
+        }
+        // alert(lines);
+    }
+    
+     var GetRegionCsvByName = function(name){
+        var roi_list = brain_region_struct["rois"];
+            var values = ""
+            for(var i=0; i < roi_list.length; i++){
+                if(name == roi_list[i]["data"]["name"]){
+                    values = roi_list[i]["data"]["ExVivoVoxelValues"];
+                }
+            }            
+             $.ajax({
+              url: values,
+              dataType: 'text',
+            }).done(UpdateRoiData);    
+    };
+    
+    var UpdateRoiData = function(d){
+    console.log("THE DATA -> ");
+    console.log(d);
+
+    var csv_as_json = chartHelper.CsvToJson(d)
+    console.log(csv_as_json);
+    
+    console.log("Creating histogram...")
+    chartHelper.CreateHistogram(csv_as_json, 25);
+
+    }
+    
+    var SetChartHelper = function(c){
+        chartHelper = c;
+    };
+    
+    
+    
   return {  
+    SetChartHelper: SetChartHelper,
     hideDivs : HideDivs,    
     showDivs : ShowDivs,    
     swapDivs : SwapDivs,
+    GetRegionCsvByName:GetRegionCsvByName,
     instanceDiv : function(theDiv, numInstances) {       
         var new_ob = $("<div></div>");     
         var ob_arr = [];

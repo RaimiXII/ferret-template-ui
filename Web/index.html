@@ -2,18 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">    
     <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="css/mriatlases_layout.css" />
         <script src="js/vendor/jquery-min.js"></script>
         <link rel="stylesheet" href="css/bootstrap337.min.css" />
         <!--<link rel="stylesheet" href="css/lavish-bootstrap.css" />-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
         <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css" />
         <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js"></script>
         <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
@@ -26,6 +26,7 @@
         <script type="text/javascript" src="js/vendor/jquery-migrate-121-min.js"></script>
         <script type="text/javascript" src="js/vendor/jquery-1110-min.js"></script>
         <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
+        <script type="text/javascript" src="js/vendor/papaparse.js"></script>
         <script type="text/javascript" src="js/typeahead.js"></script>
         <script type="text/javascript" src="js/UIManager.js"></script>                
         <script type="text/javascript" src="js/vendor/chartjs-2.7.0/Chart.bundle.min.js"></script>
@@ -325,6 +326,7 @@
             var params4 = [];  
             var ch = new ChartHelper();
             var ui = new UIManager();            
+            ui.SetChartHelper(ch)
             
             var current_image ="";                     
             var brain_region_struct = {};            
@@ -351,6 +353,8 @@
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);  
+                
+                
                 
                 setTimeout(function(){
                     ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        

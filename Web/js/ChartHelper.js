@@ -46,14 +46,11 @@ var ChartHelper = function()
     console.log('done clearing');
   };
   
-  var updateChart = function(data)
+  var updateChart = function(new_data)
   {  
-    var ctx = document.getElementById("plot_canvas").getContext("2d");
-    chart = null;
-    var x = new Chart(ctx).Bar(data, {
-			responsive : true
-	});
-    chart = x;
+    chart.data.datasets[0].data = new_data;
+    chart.update();
+    
   }
   
   var CreateChart = function(div_tag, hgt)
@@ -64,10 +61,11 @@ var ChartHelper = function()
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Low", "Medium-Low", "Medium", "Medium-High", "High"],
+                    labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "Max"],
                     datasets: [{
                         label: '# of Voxels',
-                        data: [12, 19, 3, 5, 2],
+                        data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        /*
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -82,6 +80,7 @@ var ChartHelper = function()
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
                         ],
+                        */
                         borderWidth: 1
                     }]
                 },
@@ -152,13 +151,14 @@ var ChartHelper = function()
     var headers = allTextLines[0].split(',');
     var lines = [];
 
-    for (var i=0; i<allTextLines.length; i++) {
+    // we have headers. skip
+    for (var i=1; i<allTextLines.length; i++) {
         var data = allTextLines[i].split(',');
         if (data.length == headers.length) {
             var tarr = [];
             for (var j=0; j<headers.length; j++) {
                 var d = data[j].replace(/["]/g, "");
-                tarr.push(/*headers[j]+":"+*/d);
+                tarr.push(/*headers[j]+":"+*/parseFloat(d));
             }
             lines.push(tarr);
         }
@@ -169,7 +169,7 @@ var ChartHelper = function()
   var CsvToJson = function(csv)
   {
         var formattedData = processData(csv);
-        console.log(formattedData);
+        console.log(formattedData)
         return formattedData;
   };  
   var getColumn = function(csv, index)
@@ -223,6 +223,56 @@ var ChartHelper = function()
     return rows;
   };
   
+  var SortFloatArray = function(arr){  
+    return arr.sort(function(a,b) { return a - b;});
+  }
+  
+  
+  var CreateHistogram = function(data, nbins){  
+  
+    var v1 = getColumn(data, 0);    
+    var n_entries = v1.length;    
+    var sorted_v1 = SortFloatArray(v1);    
+    var min_v1 = sorted_v1[0];
+    var max_v1 = sorted_v1[n_entries-1];
+    var range_v1 = (max_v1 - min_v1);
+    var step_v1    = range_v1 / nbins;
+    /*
+    console.log("Min -> " + min_v1);
+    console.log("Max -> " + max_v1);
+    console.log("Range -> " + range_v1);
+    console.log("Step -> " + step_v1);
+    */    
+    var intervals = [];    
+    var histogram =[];    
+    for(var i=0; i < nbins; i++)
+    {    
+        intervals.push( (i*step_v1) + min_v1);        
+        histogram.push(0);
+    }    
+    for(var i =0; i < n_entries; i++)
+    {
+        histogram[GetBinIndexOfValue(sorted_v1[i], intervals)] = histogram[GetBinIndexOfValue(sorted_v1[i], intervals)]+1;
+    }
+    
+//  console.log(histogram);
+    
+  updateChart(histogram);
+  };
+  
+    var GetBinIndexOfValue = function(value, intervals){      
+        for(var i =0; i < intervals.length-1; i++){            
+            if( (value >= intervals[i])    &&  (value <= intervals[i+1])){                
+                return i;
+            }            
+        }
+        return -1;
+    };
+  
+  
+  
+  
+  
   var getUniqueValuesInColumn = function(csv, colName)
   {
     var u_vals = {   
@@ -258,6 +308,7 @@ var ChartHelper = function()
 
   return {
     CreateChart:CreateChart,
+    CreateHistogram: CreateHistogram,
     init: init,
     setChart: setChart,
     updateChart: updateChart,

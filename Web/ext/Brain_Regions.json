@@ -11,7 +11,9 @@
            "name": "White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "1_White_Matter.surf.gii",
-           "description": "White matter refers to axon tracts and commissures. Long thought to be passive tissue, it actively affects learning and brain functions, modulating the distribution of action potentials, acting as a relay and coordinating communication between different brain regions."
+           "description": "White matter refers to axon tracts and commissures. Long thought to be passive tissue, it actively affects learning and brain functions, modulating the distribution of action potentials, acting as a relay and coordinating communication between different brain regions.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_WhiteMatter.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_WhiteMatter.csv"
        }
      },
      {
@@ -24,7 +26,9 @@
            "name": "Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "2_Gray_Matter.surf.gii",
-           "description": "Grey matter (or gray matter) is a major component of the central nervous system, consisting of neuronal cell bodies, neuropil (dendrites and myelinated as well as unmyelinated axons), glial cells (astroglia and oligodendrocytes), synapses, and capillaries."
+           "description": "Grey matter (or gray matter) is a major component of the central nervous system, consisting of neuronal cell bodies, neuropil (dendrites and myelinated as well as unmyelinated axons), glial cells (astroglia and oligodendrocytes), synapses, and capillaries.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_GrayMatter.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_GrayMatter.csv"
        }
      },
      {
@@ -37,7 +41,9 @@
            "name": "Corpus Callosum",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "3_Corpus_Callosum.surf.gii",
-           "description": "The corpus callosum (/ˈkɔːrpəs kəˈloʊsəm/; Latin for 'tough body'), also known as the callosal commissure, is a wide, flat bundle of neural fibers about 10 cm long beneath the cortex in the eutherian brain at the longitudinal fissure."
+           "description": "The corpus callosum (/ˈkɔːrpəs kəˈloʊsəm/; Latin for 'tough body'), also known as the callosal commissure, is a wide, flat bundle of neural fibers about 10 cm long beneath the cortex in the eutherian brain at the longitudinal fissure.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CorpusCallosum.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CorpusCallosum.csv"
        }   
      },
      {
@@ -50,7 +56,9 @@
            "name": "Cingulum",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "4_Cingulum.surf.gii",
-           "description": "The cingulum is a collection of white matter fibers projecting from the cingulate gyrus to the entorhinal cortex in the brain, allowing for communication between components of the limbic system."
+           "description": "The cingulum is a collection of white matter fibers projecting from the cingulate gyrus to the entorhinal cortex in the brain, allowing for communication between components of the limbic system.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Cingulum.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Cingulum.csv"
        }
      },
      {
@@ -63,7 +71,9 @@
            "name": "Fornix",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "5_Fornix.surf.gii",
-           "description": "The fornix (Latin: arch) is a C-shaped bundle of nerve fibers in the brain that carries signals from the hippocampus to the mammillary bodies and then to the anterior nuclei of thalamus."
+           "description": "The fornix (Latin: arch) is a C-shaped bundle of nerve fibers in the brain that carries signals from the hippocampus to the mammillary bodies and then to the anterior nuclei of thalamus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Fornix.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Fornix.csv"
        }
      },
      {
@@ -76,7 +86,9 @@
            "name": "Anterior Commisure",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "6_Anterior_Commisure.surf.gii",
-           "description": "The anterior commissure (also known as the precommissure) is a bundle of nerve fibers (white matter), connecting the two temporal lobes of the cerebral hemispheres across the midline, and placed in front of the columns of the fornix."
+           "description": "The anterior commissure (also known as the precommissure) is a bundle of nerve fibers (white matter), connecting the two temporal lobes of the cerebral hemispheres across the midline, and placed in front of the columns of the fornix.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_AnteriorCommisure.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_AnteriorCommisure.csv"
        }
      },
      {
@@ -89,7 +101,9 @@
            "name": "Optic Tract",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "7_Optic_Tract.surf.gii",
-           "description": "The Optic Tract is a part of the visual system in the brain. It is a continuation of the optic nerve that relays information from the optic chiasm to the ipsilateral lateral geniculate nucleus (LGN), pretectal nuclei, and superior colliculus."
+           "description": "The Optic Tract is a part of the visual system in the brain. It is a continuation of the optic nerve that relays information from the optic chiasm to the ipsilateral lateral geniculate nucleus (LGN), pretectal nuclei, and superior colliculus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_OpticTract.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_OpticTract.csv"
        }
      },
      {
@@ -102,7 +116,9 @@
            "name": "Corticospinal Tract",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "8_Corticospinal_Tract.surf.gii",
-           "description": "The corticospinal tract is a descending tract of the spinal cord which contains bundles of axons which originate in the cerebral cortex and descend to synapse within the brainstem or spinal cord.."
+           "description": "The corticospinal tract is a descending tract of the spinal cord which contains bundles of axons which originate in the cerebral cortex and descend to synapse within the brainstem or spinal cord..",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CorticoSpinalTract.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CorticoSpinalTract.csv"
        }
      },
      {
@@ -115,7 +131,9 @@
            "name": "Cortex White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "9_Cortex_White_Matter.surf.gii",
-           "description": "White matter is the underlying tissue component of the cerebral cortex consisting mainly of the white myelinated sheaths of neuronal axons."
+           "description": "White matter is the underlying tissue component of the cerebral cortex consisting mainly of the white myelinated sheaths of neuronal axons.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CortexWM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CortexWM.csv"
        }
      },
      {
@@ -128,7 +146,9 @@
            "name": "Lateral Olfactory Tract",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "10_Lateral_Olfactory_Tract.surf.gii",
-           "description": "The olfactory tract is a bundle of axons connecting the mitral and tufted cells of the olfactory bulb to several target regions in the brain, including piriform cortex, amygdala, and entorhinal cortex. It is a narrow white band, triangular on coronal section, the apex being directed upward."
+           "description": "The olfactory tract is a bundle of axons connecting the mitral and tufted cells of the olfactory bulb to several target regions in the brain, including piriform cortex, amygdala, and entorhinal cortex. It is a narrow white band, triangular on coronal section, the apex being directed upward.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_LateralOlfactoryTract.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_LateralOlfactoryTract.csv"
        }
      },
      {
@@ -141,7 +161,9 @@
            "name": "Brainstem White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "11_Brainstem_White_Matter.surf.gii",
-           "description": "White matter forms the bulk of the deep parts of the brain and the superficial parts of the spinal cord. Aggregates of gray matter such as the basal ganglia (caudate nucleus, putamen, globus pallidus, subthalamic nucleus, nucleus accumbens) and brain stem nuclei (red nucleus, substantia nigra, cranial nerve nuclei) are spread within the cerebral white matter.."
+           "description": "White matter forms the bulk of the deep parts of the brain and the superficial parts of the spinal cord. Aggregates of gray matter such as the basal ganglia (caudate nucleus, putamen, globus pallidus, subthalamic nucleus, nucleus accumbens) and brain stem nuclei (red nucleus, substantia nigra, cranial nerve nuclei) are spread within the cerebral white matter..",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_BrainstemWM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_BrainstemWM.csv"
        }
      },
      {
@@ -154,7 +176,9 @@
            "name": "Cerebellum White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "12_Cerebellum_White_Matter.surf.gii",
-           "description": "Underneath the gray matter of the cortex lies white matter, made up largely of myelinated nerve fibers running to and from the cortex. Embedded within the white matter—which is sometimes called the arbor vitae (tree of life) because of its branched, tree-like appearance in cross-section—are four deep cerebellar nuclei, composed of gray matter."
+           "description": "Underneath the gray matter of the cortex lies white matter, made up largely of myelinated nerve fibers running to and from the cortex. Embedded within the white matter—which is sometimes called the arbor vitae (tree of life) because of its branched, tree-like appearance in cross-section—are four deep cerebellar nuclei, composed of gray matter.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CerebellumWM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CerebellumWM.csv"
        }
      },
      {
@@ -167,7 +191,9 @@
            "name": "Midbrain White Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "13_Midbrain_White_Matter.surf.gii",
-           "description": "The midbrain or mesencephalon (from the Greek mesos, middle, and enkephalos, brain[1]) is a portion of the central nervous system associated with vision, hearing, motor control, sleep/wake, arousal (alertness), and temperature regulation."
+           "description": "The midbrain or mesencephalon (from the Greek mesos, middle, and enkephalos, brain[1]) is a portion of the central nervous system associated with vision, hearing, motor control, sleep/wake, arousal (alertness), and temperature regulation.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_MidbrainWM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_MidbrainWM.csv"
        }
      },
      {
@@ -180,7 +206,9 @@
            "name": "Olfactory Bulb",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "21_Olfactory_Bulb.surf.gii",
-           "description": "The olfactory bulb (bulbus olfactorius) is a neural structure of the vertebrate forebrain involved in olfaction, or the sense of smell."
+           "description": "The olfactory bulb (bulbus olfactorius) is a neural structure of the vertebrate forebrain involved in olfaction, or the sense of smell.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_OlfactoryBulb.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_OlfactoryBulb.csv"
        }
      },
      {
@@ -193,7 +221,9 @@
            "name": "Cerebellum Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "22_Cerebellum_Gray_Matter.surf.gii",
-           "description": "Most of the Cerebellum volume is made up of a very tightly folded layer of gray matter: the cerebellar cortex. "
+           "description": "Most of the Cerebellum volume is made up of a very tightly folded layer of gray matter: the cerebellar cortex. ",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CerebellumGM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CerebellumGM.csv"
        }
      },
      {
@@ -206,7 +236,9 @@
            "name": "Brainstem Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "23_Brainstem_Gray_Matter.surf.gii",
-           "description": "Some brainstem gray matter structures include the substantia nigra, red nucleus, olivary nuclei, and cranial nerve nuclei."
+           "description": "Some brainstem gray matter structures include the substantia nigra, red nucleus, olivary nuclei, and cranial nerve nuclei.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_BrainstemGM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_BrainstemGM.csv"
        }
      },
      {
@@ -219,7 +251,9 @@
            "name": "Inferior Colliculus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "24_Inferior_Colliculus.surf.gii",
-           "description": "The inferior colliculus (IC) (Latin, lower hill) is the principal midbrain nucleus of the auditory pathway and receives input from several peripheral brainstem nuclei in the auditory pathway, as well as inputs from the auditory cortex."
+           "description": "The inferior colliculus (IC) (Latin, lower hill) is the principal midbrain nucleus of the auditory pathway and receives input from several peripheral brainstem nuclei in the auditory pathway, as well as inputs from the auditory cortex.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_InferiorColliculus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_InferiorColliculus.csv"
        }
      },
      {
@@ -232,7 +266,9 @@
            "name": "Superior Colliculus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "25_Superior_Colliculus.surf.gii",
-           "description": "The two superior colliculi sit below the thalamus and surround the pineal gland in the vertebrate midbrain. It comprises the dorsal aspect of the midbrain, posterior to the periaqueductal gray and immediately superior to the inferior colliculus."
+           "description": "The two superior colliculi sit below the thalamus and surround the pineal gland in the vertebrate midbrain. It comprises the dorsal aspect of the midbrain, posterior to the periaqueductal gray and immediately superior to the inferior colliculus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_SuperiorColliculus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_SuperiorColliculus.csv"
        }
      },
      {
@@ -245,7 +281,9 @@
            "name": "Periaqueductal Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "26_Periaqueductal_Gray_Matter.surf.gii",
-           "description": "The periaqueductal grey matter is the grey matter located around the cerebral aqueduct within the tegmentum of the midbrain. It projects to the nucleus raphe magnus, and also contains descending autonomic tracts."
+           "description": "The periaqueductal grey matter is the grey matter located around the cerebral aqueduct within the tegmentum of the midbrain. It projects to the nucleus raphe magnus, and also contains descending autonomic tracts.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_PeriaqueductalGray.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_PeriaqueductalGray.csv"
        }
      },
      {
@@ -258,7 +296,9 @@
            "name": "Midbrain Gray Matter",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "27_Midbrain_Gray_Matter.surf.gii",
-           "description": "The gray matter of the midbrain includes regions such as the mesencephalic nuclei, left periaqueductal gray matter (PAG) and adjacent reticular nuclei."
+           "description": "The gray matter of the midbrain includes regions such as the mesencephalic nuclei, left periaqueductal gray matter (PAG) and adjacent reticular nuclei.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_MidbrainGM.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_MidbrainGM.csv"
        }
      },
      {
@@ -271,7 +311,9 @@
            "name": "Thalamus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "28_Thalamus.surf.gii",
-           "description": "The thalamus is located in the forebrain which is superior to the midbrain, near the center of the brain, with nerve fibers projecting out to the cerebral cortex in all directions. The medial surface of the thalamus constitutes the upper part of the lateral wall of the third ventricle, and is connected to the corresponding surface of the opposite thalamus by a flattened gray band, the interthalamic adhesion."
+           "description": "The thalamus is located in the forebrain which is superior to the midbrain, near the center of the brain, with nerve fibers projecting out to the cerebral cortex in all directions. The medial surface of the thalamus constitutes the upper part of the lateral wall of the third ventricle, and is connected to the corresponding surface of the opposite thalamus by a flattened gray band, the interthalamic adhesion.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Thalamus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Thalamus.csv"
        }
      },
      {
@@ -284,7 +326,9 @@
            "name": "Hippocampus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "29_Hippocampus.surf.gii",
-           "description": "The hippocampus belongs to the limbic system and plays important roles in the consolidation of information from short-term memory to long-term memory, and in spatial navigation. The hippocampus is located under the cerebral cortex (sub-cortical)[1] and in primates in the medial temporal lobe. "
+           "description": "The hippocampus belongs to the limbic system and plays important roles in the consolidation of information from short-term memory to long-term memory, and in spatial navigation. The hippocampus is located under the cerebral cortex (sub-cortical)[1] and in primates in the medial temporal lobe. ",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Hippocampus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Hippocampus.csv"
        }
      },
      {
@@ -297,7 +341,9 @@
            "name": "Hypothalamus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "30_Hypothalamus.surf.gii",
-           "description": "The Hypothalamus is a region of the forebrain below the thalamus that coordinates both the autonomic nervous system and the activity of the pituitary, controlling body temperature, thirst, hunger, and other homeostatic systems, and involved in sleep and emotional activity."
+           "description": "The Hypothalamus is a region of the forebrain below the thalamus that coordinates both the autonomic nervous system and the activity of the pituitary, controlling body temperature, thirst, hunger, and other homeostatic systems, and involved in sleep and emotional activity.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Hypothalamus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Hypothalamus.csv"
        }
      },
      {
@@ -310,7 +356,9 @@
            "name": "Globus Pallidus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "31_Globus_Pallidus.surf.gii",
-           "description": "The globus pallidus is a major component of the basal ganglia core along with the striatum and its direct target, the substantia nigra."
+           "description": "The globus pallidus is a major component of the basal ganglia core along with the striatum and its direct target, the substantia nigra.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_GlobusPallidus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_GlobusPallidus.csv"
        }
      },
      {
@@ -323,7 +371,9 @@
            "name": "Putamen",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "32_Putamen.surf.gii",
-           "description": "The putamen is a structure in the forebrain. Along with the caudate nucleus it forms the dorsal striatum."
+           "description": "The putamen is a structure in the forebrain. Along with the caudate nucleus it forms the dorsal striatum.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Putamen.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Putamen.csv"
        }
      },
      {
@@ -336,7 +386,9 @@
            "name": "Caudate",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "33_Caudate.surf.gii",
-           "description": "Together with the putamen, the caudate forms the dorsal striatum, which is considered a single functional structure; anatomically, it is separated by a large white matter tract, the internal capsule, so it is sometimes also referred to as two structures: the medial dorsal striatum (the caudate) and the lateral dorsal striatum (the putamen)."
+           "description": "Together with the putamen, the caudate forms the dorsal striatum, which is considered a single functional structure; anatomically, it is separated by a large white matter tract, the internal capsule, so it is sometimes also referred to as two structures: the medial dorsal striatum (the caudate) and the lateral dorsal striatum (the putamen).",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Caudate.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Caudate.csv"
        }
      },
      {
@@ -349,7 +401,9 @@
            "name": "Septum",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "34_Septum.surf.gii",
-           "description": "The Septum separates the anterior horns of the left and right lateral ventricles of the brain."
+           "description": "The Septum separates the anterior horns of the left and right lateral ventricles of the brain.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Septum.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Septum.csv"
        }
      },
      {
@@ -362,7 +416,9 @@
            "name": "Amygdala",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "35_Amygdala.surf.gii",
-           "description": "The Amygdalae are two almond-shaped groups of nuclei located deep and medially within the temporal lobes of the brain in complex vertebrates, including humans."
+           "description": "The Amygdalae are two almond-shaped groups of nuclei located deep and medially within the temporal lobes of the brain in complex vertebrates, including humans.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_Amygdala.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_Amygdala.csv"
        }
      },
      {
@@ -375,7 +431,9 @@
            "name": "Orbital Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "40_Orbital_Gyrus.surf.gii",
-           "description": "The inferior or orbital surface of the frontal lobe is concave, and rests on the orbital plate of the frontal bone. It is divided into four orbital gyri by a well-marked H-shaped orbital sulcus."
+           "description": "The inferior or orbital surface of the frontal lobe is concave, and rests on the orbital plate of the frontal bone. It is divided into four orbital gyri by a well-marked H-shaped orbital sulcus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_OrbitalGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_OrbitalGyrus.csv"
        }
      },
      {
@@ -388,7 +446,9 @@
            "name": "Anterior Sigmoid Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "41_Anterior_Sigmoid_Gyrus.surf.gii",
-           "description": "Oriented in a lateral-to-medial direction and separated by the cruciate sulcus."
+           "description": "Oriented in a lateral-to-medial direction and separated by the cruciate sulcus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_AnteriorSigmoidGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_AnteriorSigmoidGyrus.csv"
        }
      },
      {
@@ -401,7 +461,9 @@
            "name": "Posterior Sigmoid Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "42_Posterior_Sigmoid_Gyrus.surf.gii",
-           "description": "Oriented in a lateral-to-medial direction and separated by the cruciate sulcus."
+           "description": "Oriented in a lateral-to-medial direction and separated by the cruciate sulcus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_PosteriorSigmoidGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_PosteriorSigmoidGyrus.csv"
        }
      },
      {
@@ -414,7 +476,9 @@
            "name": "Coronal Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "43_Coronal_Gyrus.surf.gii",
-           "description": "The Coronal Gyrus is the anterior part of the insular cortex."
+           "description": "The Coronal Gyrus is the anterior part of the insular cortex.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CoronalGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CoronalGyrus.csv"
        }
      },
      {
@@ -427,7 +491,9 @@
            "name": "Anterior Ectosylvian Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "44_Anterior_Ectosylvian_Gyrus.surf.gii",
-           "description": "Cells in this gyrus fall into two classes, 'modality-place-specific' and 'unspecific' due to their behavior when mechanically stimulated. "
+           "description": "Cells in this gyrus fall into two classes, 'modality-place-specific' and 'unspecific' due to their behavior when mechanically stimulated. ",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_AnteriorEctosylvianGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_AnteriorEctosylvianGyrus.csv"
        }
      },
      {
@@ -440,7 +506,9 @@
            "name": "Posterior Ectosylvian Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "45_Posterior_Ectosylvian_Gyrus.surf.gii",
-           "description": "The Posterior Ectosylvian Gyrus contains a broad band of association cortex that is bounded anteriorly by tonotopic auditory areas and posteriorly by retinotopic visual areas. - TBD"
+           "description": "The Posterior Ectosylvian Gyrus contains a broad band of association cortex that is bounded anteriorly by tonotopic auditory areas and posteriorly by retinotopic visual areas. - TBD",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_PosteriorEctosylvianGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_PosteriorEctosylvianGyrus.csv"
        }
      },
      {
@@ -453,7 +521,9 @@
            "name": "Lateral Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "46_Lateral_Gyrus.surf.gii",
-           "description": "The Lateral Gyrus is the convolution lying lateral to the Lateral Sulcus."
+           "description": "The Lateral Gyrus is the convolution lying lateral to the Lateral Sulcus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_LateralGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_LateralGyrus.csv"
        }
      },
      {
@@ -466,7 +536,9 @@
            "name": "Suprasylvian Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "47_Suprasylvian_Gyrus.surf.gii",
-           "description": "The Suprasylvian Gyrus is the  - TBD"
+           "description": "The Suprasylvian Gyrus is the  - TBD",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_SupraSylvianGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_SupraSylvianGyrus.csv"
        }       
      },
      {
@@ -479,7 +551,9 @@
            "name": "Piriform Lobe",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "48_Piriform_Lobe.surf.gii",
-           "description": "The Piriform Lobe consists of the cortical amygdala, uncus, and anterior parahippocampal gyrus."
+           "description": "The Piriform Lobe consists of the cortical amygdala, uncus, and anterior parahippocampal gyrus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_PiriformLobe.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_PiriformLobe.csv"
        }     
      },
      {
@@ -492,7 +566,9 @@
            "name": "Gyrus Rectus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "49_Gyrus_Rectus.surf.gii",
-           "description": "The Gyrus Rectus is a portion of the frontal lobe medial to the medial orbital gyrus and olfactory tract, and is continuous with the superior frontal gyrus on the medial surface."
+           "description": "The Gyrus Rectus is a portion of the frontal lobe medial to the medial orbital gyrus and olfactory tract, and is continuous with the superior frontal gyrus on the medial surface.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_GyrusRectus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_GyrusRectus.csv"
        }            
      },
      {
@@ -505,7 +581,9 @@
            "name": "Olfactory Tubercle",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "50_Olfactory_Tubercle.surf.gii",
-           "description": "The Olfactory Tubercle is a multi-sensory processing center in the olfactory cortex that plays a role in reward behaviors."
+           "description": "The Olfactory Tubercle is a multi-sensory processing center in the olfactory cortex that plays a role in reward behaviors.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_OlfactoryTubercle.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_OlfactoryTubercle.csv"
        }     
      },
      {
@@ -518,7 +596,9 @@
            "name": "Cingulate Gyrus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "51_Cingulate_Gyrus.surf.gii",
-           "description": "The cingulate gyrus is a part of the Limbic system which helps regulate emotions and pain. It is also involved in predicting and avoiding negative consequences."
+           "description": "The cingulate gyrus is a part of the Limbic system which helps regulate emotions and pain. It is also involved in predicting and avoiding negative consequences.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CingulateGyrus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CingulateGyrus.csv"
        }     
      },
      {
@@ -531,7 +611,9 @@
            "name": "Presylvian Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "60_Presylvian_Sulcus.surf.gii",
-           "description": "The anterior branch of the Sylvian Sulcus - TBD"
+           "description": "The anterior branch of the Sylvian Sulcus - TBD",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_PreSylvianSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_PreSylvianSulcus.csv"
        }     
      },
      {
@@ -544,7 +626,9 @@
            "name": "Cruciate Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "61_Cruciate_Sulcus.surf.gii",
-           "description": "The Cruciate Sulcus is a deep groove which runs transversely across the rostro-dorsal surface of the cerebrum and which is one of the landmarks on the cerebral cortex."
+           "description": "The Cruciate Sulcus is a deep groove which runs transversely across the rostro-dorsal surface of the cerebrum and which is one of the landmarks on the cerebral cortex.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CruciateSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CruciateSulcus.csv"
        }
      },
      {
@@ -557,7 +641,9 @@
            "name": "Splenial Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "62_Splenial_Sulcus.surf.gii",
-           "description": "The Splenium is the posterior end of the corpus callosum, and the thickest part. - TBD"
+           "description": "The Splenium is the posterior end of the corpus callosum, and the thickest part. - TBD",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_SplenialSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_SplenialSulcus.csv"
        }
      },
      {
@@ -570,7 +656,9 @@
            "name": "Longitudinal Fissure",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "63_Longitudinal_Fissure.surf.gii",
-           "description": "The Longitudinal fissure is the deep groove that separates the two hemispheres of the vertebrate brain."
+           "description": "The Longitudinal fissure is the deep groove that separates the two hemispheres of the vertebrate brain.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_LongitudinalFissure.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_LongitudinalFissure.csv"
        }
      },
      {
@@ -583,7 +671,9 @@
            "name": "Coronal Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "64_Coronal_Sulcus.surf.gii",
-           "description": "The Coronal Gyrus is the posterior part of the insular cortex."
+           "description": "The Coronal Gyrus is the posterior part of the insular cortex.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_CoronalSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_CoronalSulcus.csv"
        }
      },
      {
@@ -596,7 +686,9 @@
            "name": "Ansinate Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "65_Ansinate_Sulcus.surf.gii",
-           "description": "The Ansate Sulcus is responsible for the separation of frontal lobe and parietal lobes. Also separates the primary motor cortex from the primary somatosensory cortex."
+           "description": "The Ansate Sulcus is responsible for the separation of frontal lobe and parietal lobes. Also separates the primary motor cortex from the primary somatosensory cortex.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_AnsinateSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_AnsinateSulcus.csv"
        }
      },
      {
@@ -609,7 +701,9 @@
            "name": "Lateral Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "66_Lateral_Sulcus.surf.gii",
-           "description": "The lateral sulcus divides both the frontal lobe and parietal lobe above from the temporal lobe below."
+           "description": "The lateral sulcus divides both the frontal lobe and parietal lobe above from the temporal lobe below.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_LateralSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_LateralSulcus.csv"
        }
      },
      {
@@ -622,7 +716,9 @@
            "name": "Suprasylvian Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "67_Suprasylvian_Sulcus.surf.gii",
-           "description": "The Suprasylvian Sulcus helps bound Parietal Lobe with Pseudosylvian Sulcus/Lateral Sulcus and Ansate sulcus."
+           "description": "The Suprasylvian Sulcus helps bound Parietal Lobe with Pseudosylvian Sulcus/Lateral Sulcus and Ansate sulcus.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_SupraSylvianSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_SupraSylvianSulcus.csv"
        }
      },
      {
@@ -635,7 +731,9 @@
            "name": "Pseudosylvian Sulcus",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "68_Pseudosylvian_Sulcus.surf.gii",
-           "description": "The Pseudosylvian Sulcus bounds the Frontal Lobe with Ansate sulcus; bounds Temporal Lobe with the help of Suprasylvian Sulcus; holds occipital Lobe."
+           "description": "The Pseudosylvian Sulcus bounds the Frontal Lobe with Ansate sulcus; bounds Temporal Lobe with the help of Suprasylvian Sulcus; holds occipital Lobe.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_PseudoSylvianSulcus.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_PseudoSylvianSulcus.csv"
        }
      },
      {
@@ -648,7 +746,9 @@
            "name": "Rhinal Fissure",
            "path": "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/Surfaces/",
            "filename": "69_Rhinal_Fissure.surf.gii",
-           "description": "The Rhinal Fissure defines one boundary of the limbic system."
+           "description": "The Rhinal Fissure defines one boundary of the limbic system.",
+           "ExVivoVoxelValues": "data/values/evDTI/evDTI_ROI_RhinalFissure.csv",
+           "InVivoVoxelValues": "data/values/ivDTI/ivDTI_ROI_RhinalFissure.csv"
        }
      }
     ]
