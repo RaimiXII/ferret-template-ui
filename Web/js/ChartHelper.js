@@ -56,9 +56,11 @@ var ChartHelper = function()
     chart = x;
   }
   
-  var CreateChart = function(div_tag)
+  var CreateChart = function(div_tag, hgt)
   {  
     var ctx = document.getElementById(div_tag);
+    
+    ctx.height = hgt;
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -90,9 +92,11 @@ var ChartHelper = function()
                                 beginAtZero:true
                             }
                         }]
-                    }
+                    },
+                    
                 }
             });
+            
     chart = myChart;
     return chart;
   }
