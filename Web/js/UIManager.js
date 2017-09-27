@@ -467,7 +467,7 @@ var UIManager = function(){
             params1["showSurfacePlanes"] = false;
             params1["surfaceBackground"] = "Black";                  
             params1.showControls = false; 
-            params1["contextManager"] = 5;
+            params1["contextManager"] = new ContextManager();
             //  TBD - put this back in when we get info on the ROIs
             //ui.LoadNewSurfaces(image_map[current_image],0);
             
@@ -487,7 +487,8 @@ var UIManager = function(){
             params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
             params2["showSurfacePlanes"] = false;
             params2["surfaceBackground"] = "Black";
-            params2.showControls = false;                      
+            params2.showControls = false;          
+            params2["contextManager"] = new ContextManager();            
                 
             params3["kioskMode"] = true;      
             params3["surfaces"] = [];                
@@ -517,7 +518,8 @@ var UIManager = function(){
             params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
             params3["showSurfacePlanes"] = false;
             params3["surfaceBackground"] = "Black";
-            params3.showControls = false                
+            params3.showControls = false              
+            params3["contextManager"] = new ContextManager();  
                 
             params4["kioskMode"] = true;    
             params4["surfaces"] = [];
@@ -540,6 +542,7 @@ var UIManager = function(){
             params4["showSurfacePlanes"] = false;                                                        
             params4["surfaceBackground"] = "Black";
             params4.showControls = false   
+            params4["contextManager"] = new ContextManager();
                 
             });
             

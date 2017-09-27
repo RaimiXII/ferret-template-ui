@@ -31,6 +31,7 @@
         <script type="text/javascript" src="js/UIManager.js"></script>                
         <script type="text/javascript" src="js/vendor/chartjs-2.7.0/Chart.bundle.min.js"></script>
         <script type="text/javascript" src="js/ChartHelper.js"></script>                
+        <script type="text/javascript" src="js/ContextManager.js"></script>
         
     </head>        
     <body>       
@@ -327,6 +328,7 @@
             var params4 = [];  
             var ch = new ChartHelper();
             var ui = new UIManager();            
+            var ctx = new ContextManager();
             ui.SetChartHelper(ch);            
             var current_image ="";                     
             var brain_region_struct = {};            
