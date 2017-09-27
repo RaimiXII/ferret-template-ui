@@ -15,6 +15,8 @@ var ContextManager = function(){
             {"label": "Clear Points", "action": "Context-Clear"}
         ]
     };
+    
+    var view_index;
 
     /**
      * Returns menu options at image position.
@@ -26,6 +28,14 @@ var ContextManager = function(){
     var getContextAtImagePosition = function(x, y, z) {
         return menudata;
     };
+    
+    var SetViewer = function(v){
+        view_index = v;
+    };
+    
+    var SetBrainRegions = function(ro){
+        region_obj = ro;
+    };
 
     /**
      * Callback when menu option is selected.
@@ -33,14 +43,18 @@ var ContextManager = function(){
      */
     var actionPerformed = function(action) {
         if (action === "Log") {
-            var currentCoor = papayaContainers[0].viewer.cursorPosition;
+            var currentCoor = papayaContainers[view_index].viewer.cursorPosition;
             var coor = new papaya.core.Coordinate(currentCoor.x, currentCoor.y, currentCoor.z);
             loggedPoints.push(coor);
         } else if (action === "Clear") {
             loggedPoints = [];
         }
 
-        papayaContainers[0].viewer.drawViewer();
+        papayaContainers[view_index].viewer.drawViewer();
+    };
+    
+    var GetCoordinate = function(loc){    
+        return new papaya.core.Coordinate(loc[0], loc[1], loc[2]);
     };
 
     /**
@@ -49,15 +63,15 @@ var ContextManager = function(){
      */
     var drawToViewer = function(ctx) {
         for (var ctr = 0; ctr < loggedPoints.length; ctr += 1) {
-            if (papayaContainers[0].viewer.intersectsMainSlice(loggedPoints[ctr])) {
-                var screenCoor = papayaContainers[0].viewer.convertCoordinateToScreen(loggedPoints[ctr]);
+            if (papayaContainers[view_index].viewer.intersectsMainSlice(loggedPoints[ctr])) {
+                var screenCoor = papayaContainers[view_index].viewer.convertCoordinateToScreen(loggedPoints[ctr]);
                 ctx.fillStyle = "rgb(255, 0, 0)";
                 ctx.fillRect(screenCoor.x, screenCoor.y, 5, 5);
 
                 // some more examples of converting coordinates
-                var originalCoord = papayaContainers[0].viewer.convertScreenToImageCoordinate(screenCoor.x, screenCoor.y);
+                var originalCoord = papayaContainers[view_index].viewer.convertScreenToImageCoordinate(screenCoor.x, screenCoor.y);
                 var world = new papaya.core.Coordinate();
-                papayaContainers[0].viewer.getWorldCoordinateAtIndex(originalCoord.x, originalCoord.y, originalCoord.z, world);
+                papayaContainers[view_index].viewer.getWorldCoordinateAtIndex(originalCoord.x, originalCoord.y, originalCoord.z, world);
                 console.log(originalCoord.toString() + " " + world.toString());
             }
         }
@@ -72,6 +86,9 @@ var ContextManager = function(){
 
 
     return {
+        SetViewer:SetViewer,
+        SetBrainRegions:SetBrainRegions,
+        GetCoordinate:GetCoordinate,
         loggedPoints:loggedPoints,
         menudata:menudata,
         getContextAtImagePosition:getContextAtImagePosition,
