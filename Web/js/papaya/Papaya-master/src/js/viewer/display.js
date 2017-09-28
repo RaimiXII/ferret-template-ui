@@ -42,7 +42,9 @@ papaya.viewer.Display.MINI_LABELS_THRESH = 700;
 papaya.viewer.Display.PADDING = 8;
 
 papaya.viewer.Display.FONT_COLOR_WHITE = "white";
-papaya.viewer.Display.FONT_COLOR_ORANGE = "rgb(182, 59, 0)";
+//papaya.viewer.Display.FONT_COLOR_ORANGE = "rgb(182, 59, 0)";
+papaya.viewer.Display.FONT_COLOR_ORANGE = "rgb(181,203,211)";
+
 
 papaya.viewer.Display.FONT_SIZE_COORDINATE_LABEL = 12;
 papaya.viewer.Display.FONT_COLOR_COORDINATE_LABEL = papaya.viewer.Display.FONT_COLOR_WHITE;
