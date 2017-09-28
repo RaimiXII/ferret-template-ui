@@ -288,8 +288,7 @@ var UIManager = function(){
     };
     
     var UpdateRoiData = function(d){
-        var csv_as_json = chartHelper.CsvToJson(d)
-        
+        var csv_as_json = chartHelper.CsvToJson(d);        
         var c_im_split = current_image.split('_');
         var c_im_type = c_im_split[c_im_split.length-1];
         var plot_col;
