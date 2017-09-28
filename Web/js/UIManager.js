@@ -223,6 +223,26 @@ var UIManager = function(){
     $("#modality_tr").on('click', function(e) {console.log("TR MODALITY SELECTED."); UpdateParams("ev_dti_tr");   ShowDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]);});
     $("#modality_ev_roi").on('click', function(e) {console.log("ROI MODALITY SELECTED."); UpdateParams("ev_dti_segmentation"); HideDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]);  });
     
+    $("#evdti_navtree").on('click', function(e) {
+        HideDivs(['ul.sub']);
+        fade_divs_in(['#evdti_tree']);
+    });
+    $("#ivdti_navtree").on('click', function(e) {
+        HideDivs(['ul.sub']);
+        fade_divs_in(['#ivdti_tree']);
+     });
+    $("#evt2_navtree").on('click', function(e) {
+        HideDivs(['ul.sub']);
+        fade_divs_in(['#evt2_tree']);
+    });
+    $("#ivt2_navtree").on('click', function(e) {
+        HideDivs(['ul.sub']);
+        fade_divs_in(['#ivt2_tree']);
+    });
+    $("#evseg_navtree").on('click', function(e) {
+        console.log("EV SEG NAV CLICKED."); 
+    });
+    
     //$("#answer").submit(function(e) {     
     //console.log("EVENT -> " ); 
     //console.log(e); 
@@ -241,27 +261,17 @@ var UIManager = function(){
     
     var CsvToJson = function(fname){
         var lines=csv.split("\n");
-
           var result = [];
-
           var headers=lines[0].split(",");
-
           for(var i=1;i<lines.length;i++){
-
               var obj = {};
               var currentline=lines[i].split(",");
-
               for(var j=0;j<headers.length;j++){
 	              obj[headers[j]] = currentline[j];
               }
-
               result.push(obj);
-
-          }
-          
-          //return result; //JavaScript object
-          return JSON.stringify(result); //JSON
-    
+          }          
+          return JSON.stringify(result); //JSON    
     };
     
     function processData(allText) {
@@ -459,54 +469,8 @@ var UIManager = function(){
                 }
                 
                 $('#query').typeahead({ local: roi_names });
-                $('.tt-query').css('background-color','#fff');  
+                $('.tt-query').css('background-color','#fff');                  
                 
-                /*
-                var ctxManager = function() {
-                    this.loggedPoints = [];
-                };
-
-                ctxManager.prototype.getContextAtImagePosition = function(x, y, z) {
-                    return ctxManager.menudata;
-                };
-
-                ctxManager.prototype.actionPerformed = function(action) {
-                    if (action === "Log") {
-                        var currentCoor = papayaContainers[0].viewer.cursorPosition;
-                        var coor = new papaya.core.Coordinate(currentCoor.x, currentCoor.y, currentCoor.z);
-                        this.loggedPoints.push(coor);
-                    } else if (action === "Clear") {
-                        this.loggedPoints = [];
-                    }
-
-                    papayaContainers[0].viewer.drawViewer();
-                };
-
-                ctxManager.prototype.drawToViewer = function(ctx) {
-                    var ctr;
-                    var slice = papayaContainers[0].viewer.mainImage;
-                    for (ctr = 0; ctr < this.loggedPoints.length; ctr += 1) {
-                        if (slice.sliceDirection === papaya.viewer.ScreenSlice.DIRECTION_AXIAL) {
-                            if (this.loggedPoints[ctr].z === slice.currentSlice) {
-                                var screenCoor = papayaContainers[0].viewer.convertCoordinateToScreen(this.loggedPoints[ctr], slice);
-                                ctx.fillStyle = "rgb(255, 0, 0)";
-                                ctx.fillRect(screenCoor.x, screenCoor.y, 5, 5);
-                            }
-                        }
-                    }
-                };
-
-                ctxManager.prototype.clearContext = function() {
-                    // do nothing
-                };
-
-                ctxManager.menudata = {"label": "Test",
-                    "items": [
-                        {"label": "Log Point", "action": "Context-Log"},
-                        {"label": "Clear Points", "action": "Context-Clear"}
-                    ]
-                };
-                */
                 
                 var ctxMgr1 = new ContextManager();
                 ctxMgr1.SetViewer(0);
