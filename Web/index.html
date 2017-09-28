@@ -92,7 +92,7 @@
                                     <ul class="nav nav-list tree well well-sm">
                                         <li>
                                             <span class="badge pull-right tree-toggle nav">10</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">TE </label>
+                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">T2 Weighted </label>
                                             <ul class="nav nav-list tree sub">
                                                 <li id="ex_vivo_T2_10"><a href="#">10 ms</a></li>
                                                 <li id="ex_vivo_T2_20"><a href="#">20 ms</a></li>
@@ -126,7 +126,7 @@
                                     <ul class="nav nav-list tree well well-sm">
                                         <li>
                                             <span class="badge pull-right tree-toggle nav">4</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">TE </label>
+                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">T2 Weighted </label>
                                             <ul class="nav nav-list tree sub">
                                                 <li id="in_vivo_T2_12"><a href="#">12 ms</a></li>
                                                 <li id="in_vivo_T2_36"><a href="#">36 ms</a></li>
@@ -161,31 +161,35 @@
                     <div id="template_nav2">
                         <ul class="nav nav-list tree well well-lg">
                             <li>
-                                <label class="tree-toggle nav-header " id="atlas_tools">Tools</label>
-                                <ul class="nav nav-list tree well well-sm sub">
+                                <label class="tree-toggle nav-header " for="query">Search:
+                                    <input type="text" class="form-control" title="query" aria-label="search bar" name="query" id="query" placeholder="Enter ROI name">
+                                </label>
+                                <span class="input-group-btn">
+                                    <button id="search_roi" class="btn btn-success" type="button">Go</button>
+                                </span> 
+                                <br>
+                            </li>
+                            <li>
+                                <label class="tree-toggle nav-header " id="atlas_analysis">Measurements</label>
+                                <ul class="nav nav-list tree well well-sm sub">                                           
                                     <li>
-                                        <label class="tree-toggle nav-header ">ROI Details</label>
+                                        <label class="tree-toggle nav-header ">Statistics</label>
                                         <ul class="nav nav-list tree sub">
-                                            <li id="roi_search_auto">
-                                                <label for="query">Search:
-                                                    <input type="text" class="form-control" title="query" aria-label="search bar" name="query" id="query" placeholder="Enter ROI name"></label>
-                                                    <span class="input-group-btn">
-                                                        <button id="search_roi" class="btn btn-success" type="button">Go</button>
-                                                    </span> 
-                                                
+                                            <li id="roi_stats" class="well well-sm">
                                                     Imaging modality: <div id="img_description"></div>
                                                     <br>
                                                     ROI name: <div id="current_roi"></div>
                                                     <br>
-                                                    ROI description: <div id="roi_description"></div>                                                    
-                                            </li>
+                                                    ROI volume: <div id="roi_volume"></div>
+                                                    <br>
+                                                    ROI mean: <div id="roi_mean"></div>
+                                                    <br>
+                                                    ROI standard deviation: <div id="roi_std_dev"></div>
+                                                    <br>
+                                                    ROI description: <div id="roi_description"></div>                                                       
+                                            </li>                                                                                        
                                         </ul>
-                                    </li>                                                
-                                </ul>
-                            </li>
-                            <li>
-                                <label class="tree-toggle nav-header " id="atlas_analysis">Analysis</label>
-                                <ul class="nav nav-list tree well well-sm sub">       
+                                    </li>       
                                     <li>
                                         <label class="tree-toggle nav-header ">Histogram</label>
                                         <ul class="nav nav-list tree sub">
@@ -193,19 +197,7 @@
                                                 <canvas id="RoiChart"></canvas>
                                             </li>                                                                                         
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <label class="tree-toggle nav-header ">Statistics</label>
-                                        <ul class="nav nav-list tree sub">
-                                            <li id="roi_stats" class="well well-sm">
-                                                    ROI volume: <div id="roi_volume"></div>
-                                                    <br>
-                                                    ROI mean: <div id="roi_mean"></div>
-                                                    <br>
-                                                    ROI standard deviation: <div id="roi_std_dev"></div>
-                                            </li>                                                                                        
-                                        </ul>
-                                    </li>                                            
+                                    </li>                                     
                                 </ul>
                             </li>
                         </ul>
