@@ -574,7 +574,7 @@ var UIManager = function(){
                            
                 params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
+                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                  
                 
                 params2.showControls = false;          
                 //params2["contextManager"] = ctxMgr2;            
@@ -631,10 +631,10 @@ var UIManager = function(){
                                         //"img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
                                         //"img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
                                      ];  
-                params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-                params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-                params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
+                params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
+                params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
+                params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
+                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 //params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
                 //params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};                                                                            
                 
