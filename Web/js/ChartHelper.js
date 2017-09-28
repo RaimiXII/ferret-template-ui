@@ -162,7 +162,7 @@ var ChartHelper = function()
   var CsvToJson = function(csv)
   {
         var formattedData = processData(csv);
-        console.log(formattedData)
+        //console.log(formattedData)
         return formattedData;
   };  
   var getColumn = function(csv, index)
@@ -220,6 +220,44 @@ var ChartHelper = function()
     return arr.sort(function(a,b) { return a - b;});
   }
   
+  var MeanFloatArray = function(arr){
+    
+    var res = 0;
+    for(var i=0; i<arr.length; i++)
+    {
+        res=res+arr[i];
+    }
+    res = res/arr.length;
+    
+    return res;
+    
+  };
+  
+  var StdDevFloatArray = function(arr){
+    
+    var mean_arr = MeanFloatArray(arr);
+    
+    var res = 0;
+    for(var i=0; i<arr.length; i++)
+    {
+        var tmp = Math.pow((arr[i] - mean_arr), 2);
+        res=res+tmp;
+    }
+    res = Math.sqrt(res/arr.length);
+    
+    return res;
+    
+  };
+  
+  var FindVolume = function(arr, res){
+  
+  
+    var vox_vol = res[0]*res[1]*res[2];
+    return arr.length * vox_vol;
+    
+  
+  };
+  
   
   var CreateHistogram = function(data, nbins, idx){  
   
@@ -230,6 +268,16 @@ var ChartHelper = function()
     var max_v1 = sorted_v1[n_entries-1];
     var range_v1 = (max_v1 - min_v1);
     var step_v1    = range_v1 / nbins;
+    
+    var mu = MeanFloatArray(sorted_v1);
+    var sd = StdDevFloatArray(sorted_v1);
+    var vol = FindVolume(sorted_v1, [0.5, 0.5, 0.5]);
+    
+    //console.log("MU -> " + mu + "  STD DEV -> " + sd + " VOL -> " + vol);
+    
+    $("#roi_mean").html("<b>"+mu+"</b>")
+    $("#roi_std_dev").html("<b>"+sd+"</b>")
+    $("#roi_volume").html("<b>"+vol+" mm^3</b>")
 
     var intervals = [];    var histogram =[];    
     for(var i=0; i < nbins; i++)

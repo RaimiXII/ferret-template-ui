@@ -66,6 +66,62 @@ papaya.viewer.ColorTable.TABLE_FIRE = {"name": "Fire", "data": [[0, 0, 0, 0], [0
     [0.22, 0.48, 0, 0.89], [0.31, 0.68, 0, 0.6], [0.37, 0.76, 0, 0.36], [0.5, 0.94, 0.31, 0], [0.56, 1, 0.45, 0],
     [0.81, 1, 0.91, 0], [0.88, 1, 1, 0.38], [1,1,1,1]], "gradation": true};
     
+papaya.viewer.ColorTable.TABLE_EV_DTI_SEGMENTATION = {"name": "Ev Dti Seg", "data": [ 
+  [ 0.01449275,    0.9529411764705882,    0.9529411764705882,    0.9529411764705882 ],
+  [ 0.0289855,    0.34509803921568627,    0.34509803921568627,    0.34509803921568627 ],
+  [ 0.043478, 0.2, 1, 1 ],
+  [ 0.05797, 1, 1, 0 ],
+  [ 0.07246, 0.00784313725490196, 0, 0.20784313725490197 ],
+  [ 0.0869565, 1, 0, 1 ],
+  [ 0.10145, 0.00784313725490196, 1, 0.2 ],
+  [ 0.11594, 0, 0, 0.803921568627451 ],
+  [ 0.13043,    0.9568627450980393,    0.36470588235294116,    0.9568627450980393 ],
+  [ 0.1449275, 1, 0.3333333333333333, 0 ],
+  [ 0.15942, 0.8549019607843137, 0.43921568627450980392156862745098, 0.00784313725490196 ],
+  [ 0.173913, 0, 0, 0.10980392156862745 ],
+  [ 0.1884, 1, 0.27450980392156865, 0.10588235294117647 ],
+  [ 0.304347, 1, 1, 0.20784313725490197 ],
+  [ 0.31884, 0, 0.00784313725490196, 0 ],
+  [ 0.33333, 0, 1, 0.8 ],
+  [ 0.347826, 0, 0.20784313725490197, 1 ],
+  [ 0.362318, 0, 0.2, 1 ],
+  [ 0.37681159, 0.8, 0.8, 0.8 ],
+  [ 0.391304,    0.20784313725490197,    0.20784313725490197,    0.00784313725490196 ],
+  [ 0.405797,   0.20784313725490197,    0.00784313725490196,    0.00784313725490196 ],
+  [ 0.42028985,    0.00784313725490196,    0.00784313725490196,    0.20784313725490197 ],
+  [ 0.4347826, 0.8, 0.8, 0 ],
+  [ 0.449275, 0.2, 0, 0.20784313725490197 ],
+  [ 0.463768, 0, 0.20784313725490197, 0 ],
+  [ 0.47826, 0.8, 0.2, 0 ],
+  [ 0.49275, 0.8, 0.20784313725490197, 0.20784313725490197 ],
+  [ 0.507246, 0.20784313725490197, 0.00784313725490196, 0.2 ],
+  [ 0.57971, 1, 1, 0.8 ],
+  [ 0.5942, 1, 0.8, 0.8 ],
+  [ 0.608695, 1, 0.20784313725490197, 0.00784313725490196 ],
+  [ 0.623188, 0.8, 0.8, 1 ],
+  [ 0.637681159, 0.8, 1, 0.20784313725490197 ],
+  [ 0.6521739, 0.8, 0.8, 0.20784313725490197 ],
+  [ 0.666666, 1, 0.8, 0 ],
+  [ 0.681159, 0.8, 0.20784313725490197, 1 ],
+  [ 0.69565217, 0.8, 1, 1 ],
+  [ 0.71014493, 1, 1, 0.10588235294117647 ],
+  [ 0.72463768, 0.9725490196078431, 0.9725490196078431, 1 ],
+  [ 0.73913, 0.8, 1, 0.2 ],
+  [ 0.869565, 1, 0.00784313725490196, 0 ],
+  [ 0.88405797, 1, 0, 0 ],
+  [ 0.8985507, 0.8, 0, 0 ],
+  [ 0.913043478, 0.20784313725490197, 0.2, 0 ],
+  [ 0.927536, 1, 0, 1 ],
+  [ 0.94202898, 1, 0, 0.20784313725490197 ],
+  [ 0.956521739, 0.8, 0.2, 0.20784313725490197 ],
+  [ 0.97101449, 1, 0.2, 0 ],
+  [ 0.985507, 1, 0.2, 0.00784313725490196 ],
+  [ 1, 0.8, 0.2, 0 ],
+  [ 0, 0, 0, 0 ] ]
+,
+"gradation": false
+}
+    
 
 papaya.viewer.ColorTable.ARROW_ICON = "data:image/gif;base64,R0lGODlhCwARAPfGMf//////zP//mf//Zv//M///AP/M///MzP/Mmf/M" +
     "Zv/MM//MAP+Z//+ZzP+Zmf+ZZv+ZM/+ZAP9m//9mzP9mmf9mZv9mM/9mAP8z//8zzP8zmf8zZv8zM/8zAP8A//8AzP8Amf8AZv8AM/8AAMz//8z/" +
@@ -83,12 +139,14 @@ papaya.viewer.ColorTable.ARROW_ICON_WIDTH = 11;
 papaya.viewer.ColorTable.DEFAULT_COLOR_TABLE = papaya.viewer.ColorTable.TABLE_GRAYSCALE;
 
 papaya.viewer.ColorTable.PARAMETRIC_COLOR_TABLES = [papaya.viewer.ColorTable.TABLE_RED2YELLOW,
-    papaya.viewer.ColorTable.TABLE_BLUE2GREEN];
+    papaya.viewer.ColorTable.TABLE_BLUE2GREEN, papaya.viewer.ColorTable.TABLE_EV_DTI_SEGMENTATION,];
 
 papaya.viewer.ColorTable.OVERLAY_COLOR_TABLES = [
     papaya.viewer.ColorTable.TABLE_RED2WHITE,
     papaya.viewer.ColorTable.TABLE_GREEN2WHITE,
-    papaya.viewer.ColorTable.TABLE_BLUE2WHITE
+    papaya.viewer.ColorTable.TABLE_EV_DTI_SEGMENTATION,
+    papaya.viewer.ColorTable.TABLE_BLUE2WHITE,
+    
 ];
 
 papaya.viewer.ColorTable.TABLE_ALL = [
@@ -101,7 +159,8 @@ papaya.viewer.ColorTable.TABLE_ALL = [
     papaya.viewer.ColorTable.TABLE_BLUE2GREEN,
     papaya.viewer.ColorTable.TABLE_RED2WHITE,
     papaya.viewer.ColorTable.TABLE_GREEN2WHITE,
-    papaya.viewer.ColorTable.TABLE_BLUE2WHITE
+    papaya.viewer.ColorTable.TABLE_BLUE2WHITE,
+    papaya.viewer.ColorTable.TABLE_EV_DTI_SEGMENTATION,
 ];
 
 papaya.viewer.ColorTable.LUT_MIN = 0;

@@ -1227,6 +1227,14 @@ papaya.viewer.Viewer.prototype.drawViewer = function (force, skipUpdate) {
     if (this.container.contextManager && this.container.contextManager.drawToViewer) {
         this.container.contextManager.drawToViewer(this.context);
     }
+    
+    if (this.container.contextManager && this.container.contextManager.drawRoiPointsToViewer) {
+        this.container.contextManager.drawRoiPointsToViewer(this.context);
+    }
+    
+    if (this.container.contextManager && this.container.contextManager.GetRegionFileByName) {
+        this.container.contextManager.GetRegionFileByName(this.context)
+    }
 };
 
 
@@ -1422,6 +1430,13 @@ papaya.viewer.Viewer.prototype.drawRuler = function () {
     this.context.fillText(text, xText, yText);
 };
 
+
+papaya.viewer.Viewer.prototype.drawRoiPoint = function(loc) {
+
+
+
+
+};
 
 
 papaya.viewer.Viewer.prototype.drawCrosshairs = function () {

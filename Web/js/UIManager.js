@@ -3,7 +3,8 @@ var UIManager = function(){
     var image_map = {
         "ExVivo_DTI_FA"    : [0,0],
         "ExVivo_DTI_DEC"   : [0,1],
-        "ExVivo_DTI_TR"    : [0,2],                
+        "ExVivo_DTI_TR"    : [0,2],      
+        "evDTI_SEGMENTATION"    : [0,3],              
         "InVivo_DTI_FA"    : [1,0],
         "InVivo_DTI_DEC"   : [1,1],        
         "InVivo_DTI_TR"    : [1,2],        
@@ -147,10 +148,11 @@ var UIManager = function(){
     };    
     var UpdateParams = function(img){
         ResetViewer();   
-        if ( img == "ev_dti_dec" ){ current_image = "ExVivo_DTI_DEC"; } 
+        if (      img == "ev_dti_dec" ){ current_image = "ExVivo_DTI_DEC"; } 
         else if ( img == "ev_dti_fa" ){ current_image = "ExVivo_DTI_FA"; } 
         else if ( img == "ev_dti_tr" ){ current_image = "ExVivo_DTI_TR"; } 
-        else if ( img == "iv_dti_dec" ){ current_image = "InVivo_DTI_DEC"; } 
+        else if ( img == "ev_dti_segmentation" ){ current_image = "evDTI_SEGMENTATION"; } 
+        else if ( img == "iv_dti_dec" ){ current_image = "InVivo_DTI_DEC"; }         
         else if ( img == "iv_dti_fa" ){ current_image = "InVivo_DTI_FA"; } 
         else if ( img == "iv_dti_tr" ){ current_image = "InVivo_DTI_TR"; } 
         else if ( img == "ev_t2_10" ){ current_image = "Template4D_TE010"; } 
@@ -189,7 +191,8 @@ var UIManager = function(){
     $('.tree-toggle').click(function () { $(this).parent().children('ul.tree').toggle(200); });
     $("#ex_vivo_dti_dec").on('click', function(e) { UpdateParams("ev_dti_dec"); });
     $("#ex_vivo_dti_tr").on('click', function(e) { UpdateParams("ev_dti_tr"); });
-    $("#ex_vivo_dti_fa").on('click', function(e) { UpdateParams("ev_dti_fa"); });    
+    $("#ex_vivo_dti_fa").on('click', function(e) { UpdateParams("ev_dti_fa"); });  
+    $("#ev_dti_segmentation").on('click', function(e) { UpdateParams("ev_dti_segmentation"); });  
     $("#in_vivo_dti_dec").on('click', function(e) { UpdateParams("iv_dti_dec"); });
     $("#in_vivo_dti_tr").on('click', function(e) { UpdateParams("iv_dti_tr"); });    
     $("#in_vivo_dti_fa").on('click', function(e) { UpdateParams("iv_dti_fa"); }); 
@@ -213,7 +216,12 @@ var UIManager = function(){
     $("#explore_mode").on('click', function(e) { console.log("explore mode selected.");});    
     $("#annotate_mode").on('click', function(e) { console.log("annotate mode selected.");});    
     $("#extra_mode").on('click', function(e) { console.log("extra mode selected.");});    
-    
+    $("#ferret_atlas_downloads").on('click', function(e) { console.log("trying to d/l bundle "); /**$("#myModal").show();*/ });
+    //$("#answer").submit(function(e) {     
+    //console.log("EVENT -> " ); 
+    //console.log(e); 
+    //e.preventDefault(); 
+    //});
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
           $( goingIn[i] ).fadeIn( speed, function() {
@@ -440,6 +448,8 @@ var UIManager = function(){
             var rgbs = [];
             var fnames = [];
             var data = brain_region_struct;
+            
+            
                         
             var roi_names=[]
             for(var i = 0; i < data["rois"].length; i++){
@@ -451,18 +461,71 @@ var UIManager = function(){
             });
             $('.tt-query').css('background-color','#fff');  
             
+            /*
+            var ctxManager = function() {
+                this.loggedPoints = [];
+            };
+
+            ctxManager.prototype.getContextAtImagePosition = function(x, y, z) {
+                return ctxManager.menudata;
+            };
+
+            ctxManager.prototype.actionPerformed = function(action) {
+                if (action === "Log") {
+                    var currentCoor = papayaContainers[0].viewer.cursorPosition;
+                    var coor = new papaya.core.Coordinate(currentCoor.x, currentCoor.y, currentCoor.z);
+                    this.loggedPoints.push(coor);
+                } else if (action === "Clear") {
+                    this.loggedPoints = [];
+                }
+
+                papayaContainers[0].viewer.drawViewer();
+            };
+
+            ctxManager.prototype.drawToViewer = function(ctx) {
+                var ctr;
+                var slice = papayaContainers[0].viewer.mainImage;
+                for (ctr = 0; ctr < this.loggedPoints.length; ctr += 1) {
+                    if (slice.sliceDirection === papaya.viewer.ScreenSlice.DIRECTION_AXIAL) {
+                        if (this.loggedPoints[ctr].z === slice.currentSlice) {
+                            var screenCoor = papayaContainers[0].viewer.convertCoordinateToScreen(this.loggedPoints[ctr], slice);
+                            ctx.fillStyle = "rgb(255, 0, 0)";
+                            ctx.fillRect(screenCoor.x, screenCoor.y, 5, 5);
+                        }
+                    }
+                }
+            };
+
+            ctxManager.prototype.clearContext = function() {
+                // do nothing
+            };
+
+            ctxManager.menudata = {"label": "Test",
+                "items": [
+                    {"label": "Log Point", "action": "Context-Log"},
+                    {"label": "Clear Points", "action": "Context-Clear"}
+                ]
+            };
+            */
             
             var ctxMgr1 = new ContextManager();
             ctxMgr1.SetViewer(0);
+            ctxMgr1.SetRegionObject(brain_region_struct);
             
             var ctxMgr2 = new ContextManager();
             ctxMgr2.SetViewer(1);
+            ctxMgr2.SetRegionObject(brain_region_struct);
             
             var ctxMgr3 = new ContextManager();
             ctxMgr3.SetViewer(2);
+            ctxMgr3.SetRegionObject(brain_region_struct);
             
             var ctxMgr4 = new ContextManager();
             ctxMgr4.SetViewer(3);
+            ctxMgr4.SetRegionObject(brain_region_struct);
+            
+
+            
             
             var using_surfaces = false;
                 
@@ -478,12 +541,15 @@ var UIManager = function(){
             params1["images"] =  [                                            
                                     "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
                                     "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii"
+                                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
+                                    "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm"
                                 ];                
             params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
             params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-            params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                
+            params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};        
             
+            //params1["luts"] = [{"name": "Custom", "data":[[0, 1, 0, 0], [.5, 1, 1, 0], [1, 1, 1, 1]]}];
+            params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};
              
             params1.showControls = false; 
             params1["contextManager"] = ctxMgr1;
@@ -498,7 +564,7 @@ var UIManager = function(){
             params2["images"] =  [                                            
                                     "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
                                     "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii"
+                                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
                                  ];  
              if(using_surfaces){
                 params2["surfaces"] = [];
