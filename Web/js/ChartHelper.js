@@ -275,9 +275,9 @@ var ChartHelper = function()
     
     //console.log("MU -> " + mu + "  STD DEV -> " + sd + " VOL -> " + vol);
     
-    $("#roi_mean").html("<b>"+mu+"</b>")
-    $("#roi_std_dev").html("<b>"+sd+"</b>")
-    $("#roi_volume").html("<b>"+vol+" mm^3</b>")
+    $("#roi_mean").html("Mean: <b>"+mu+"</b><br><br>")
+    $("#roi_std_dev").html("Standard Deviation: <b>"+sd+"</b><br><br>")
+    $("#roi_volume").html(" Volume: <b>"+vol+" mm^3</b><br><br>")
 
     var intervals = [];    var histogram =[];    
     for(var i=0; i < nbins; i++)

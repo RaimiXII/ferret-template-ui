@@ -28,6 +28,7 @@ var UIManager = function(){
     
     var chartHelper;    
     var currentData;
+    var currentLabel;
     
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -52,18 +53,19 @@ var UIManager = function(){
         console.log("LOCATION ->  " + loc)                      
         return res
     };    
-    var GetROILabel = function(index){
+    
+    var GetROILabel = function(index){        
         var res = GetCursorLocation(index);
-        var lbl = res[1];            
-        SetROIContent(lbl)
+        var lbl = res[1];              
+        SetROIContent(lbl);                                   
         //this.set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
     };    
     var SetROIContent = function(name){
-        var r_str = "<b>"+name+"</b>";
+        var r_str = "ROI name: <b>"+name+"</b><br><br>";
         //      Eventually we can query the file. for now we provide a link for SME's to email us with description.
         //        var desc = GetRegionDataByName(name);
-        var desc = '<p>Expert in Ferret anatomy? <br>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">send us</a> your suggested content! </p>';
-        var d_str = "<b>"+desc+"</b>";
+        var desc = '<p>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">send us</a> your suggested content! </p>';
+        var d_str = "Description: <b>"+desc+"</b><br><br>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
@@ -78,19 +80,19 @@ var UIManager = function(){
     );                
     $("#papaya1").on('click', function(e) {               
         GetROILabel(image_map[current_image]);  
-        $("#img_description").html("<b>Ex-Vivo DTI</b>")
+        $("#img_description").html("Image Modality: <b>Ex-Vivo DTI</b>")
     });
     $("#papaya2").on('click', function(e) {                 
         GetROILabel(image_map[current_image]);
-        $("#img_description").html("<b>In-Vivo DTI</b>")
+        $("#img_description").html("Image Modality: <b>In-Vivo DTI</b>")
     });
     $("#papaya3").on('click', function(e) {        
         GetROILabel(image_map[current_image]);
-        $("#img_description").html("<b>Ex-Vivo T2</b>")
+        $("#img_description").html("Image Modality: <b>Ex-Vivo T2 Weighted</b>")
     });
     $("#papaya4").on('click', function(e) {                  
         GetROILabel(image_map[current_image]);
-        $("#img_description").html("<b>In-Vivo T2</b>")
+        $("#img_description").html("Image Modality: <b>In-Vivo T2 Weighted</b>")
     });     
     $("#reset_view").on('click', function(e) {
         console.log("Resetting Viewport.");
@@ -189,27 +191,27 @@ var UIManager = function(){
     var fade_divs_in = function(divs) { for(i in divs){ $( divs[i] ).fadeIn( "slow", function() { }); } };    
     var fade_divs_out = function(divs) { for(i in divs){ $( divs[i] ).fadeOut( "slow", function() { }); } };    
     $('.tree-toggle').click(function () { $(this).parent().children('ul.tree').toggle(200); });
-    $("#ex_vivo_dti_dec").on('click', function(e) { UpdateParams("ev_dti_dec"); });
-    $("#ex_vivo_dti_tr").on('click', function(e) { UpdateParams("ev_dti_tr"); });
-    $("#ex_vivo_dti_fa").on('click', function(e) { UpdateParams("ev_dti_fa"); });  
-    $("#ev_dti_segmentation").on('click', function(e) { UpdateParams("ev_dti_segmentation"); });  
-    $("#in_vivo_dti_dec").on('click', function(e) { UpdateParams("iv_dti_dec"); });
-    $("#in_vivo_dti_tr").on('click', function(e) { UpdateParams("iv_dti_tr"); });    
-    $("#in_vivo_dti_fa").on('click', function(e) { UpdateParams("iv_dti_fa"); }); 
-    $("#ex_vivo_T2_10").on('click', function(e) { UpdateParams("ev_t2_10"); });
-    $("#ex_vivo_T2_20").on('click', function(e) { UpdateParams("ev_t2_20"); });
-    $("#ex_vivo_T2_30").on('click', function(e) { UpdateParams("ev_t2_30"); });
-    $("#ex_vivo_T2_40").on('click', function(e) { UpdateParams("ev_t2_40"); });
-    $("#ex_vivo_T2_50").on('click', function(e) { UpdateParams("ev_t2_50"); });
-    $("#ex_vivo_T2_60").on('click', function(e) { UpdateParams("ev_t2_60"); });
-    $("#ex_vivo_T2_70").on('click', function(e) { UpdateParams("ev_t2_70"); });
-    $("#ex_vivo_T2_80").on('click', function(e) { UpdateParams("ev_t2_80"); });
-    $("#ex_vivo_T2_90").on('click', function(e) { UpdateParams("ev_t2_90"); });
-    $("#ex_vivo_T2_100").on('click', function(e) { UpdateParams("ev_t2_100"); });    
-    $("#in_vivo_T2_12").on('click', function(e) { UpdateParams("iv_t2_012"); });
-    $("#in_vivo_T2_36").on('click', function(e) { UpdateParams("iv_t2_036"); });
-    $("#in_vivo_T2_60").on('click', function(e) { UpdateParams("iv_t2_060"); });
-    $("#in_vivo_T2_84").on('click', function(e) { UpdateParams("iv_t2_084"); });
+    $("#ex_vivo_dti_dec").on('click', function(e) { UpdateParams("ev_dti_dec"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_dti_tr").on('click', function(e) { UpdateParams("ev_dti_tr"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_dti_fa").on('click', function(e) { UpdateParams("ev_dti_fa"); HideDivs(["#template_nav2"]);});  
+    $("#ev_dti_segmentation").on('click', function(e) { UpdateParams("ev_dti_segmentation"); ShowDivs(["#template_nav2"]);});  
+    $("#in_vivo_dti_dec").on('click', function(e) { UpdateParams("iv_dti_dec"); HideDivs(["#template_nav2"]);});
+    $("#in_vivo_dti_tr").on('click', function(e) { UpdateParams("iv_dti_tr"); HideDivs(["#template_nav2"]);});    
+    $("#in_vivo_dti_fa").on('click', function(e) { UpdateParams("iv_dti_fa"); HideDivs(["#template_nav2"]);}); 
+    $("#ex_vivo_T2_10").on('click', function(e) { UpdateParams("ev_t2_10"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_20").on('click', function(e) { UpdateParams("ev_t2_20"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_30").on('click', function(e) { UpdateParams("ev_t2_30"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_40").on('click', function(e) { UpdateParams("ev_t2_40"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_50").on('click', function(e) { UpdateParams("ev_t2_50"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_60").on('click', function(e) { UpdateParams("ev_t2_60"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_70").on('click', function(e) { UpdateParams("ev_t2_70"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_80").on('click', function(e) { UpdateParams("ev_t2_80");HideDivs(["#template_nav2"]); });
+    $("#ex_vivo_T2_90").on('click', function(e) { UpdateParams("ev_t2_90"); HideDivs(["#template_nav2"]);});
+    $("#ex_vivo_T2_100").on('click', function(e) { UpdateParams("ev_t2_100"); HideDivs(["#template_nav2"]);});    
+    $("#in_vivo_T2_12").on('click', function(e) { UpdateParams("iv_t2_012"); HideDivs(["#template_nav2"]);});
+    $("#in_vivo_T2_36").on('click', function(e) { UpdateParams("iv_t2_036"); HideDivs(["#template_nav2"]);});
+    $("#in_vivo_T2_60").on('click', function(e) { UpdateParams("iv_t2_060"); HideDivs(["#template_nav2"]);});
+    $("#in_vivo_T2_84").on('click', function(e) { UpdateParams("iv_t2_084"); HideDivs(["#template_nav2"]);});
     //$("#in_vivo_T2_108").on('click', function(e) { UpdateParams("iv_t2_108"); });
     //$("#in_vivo_T2_132").on('click', function(e) { UpdateParams("iv_t2_132"); });
     $("#search_roi").on('click', function(e) { SetROIContent($("#query").val());});    
@@ -217,6 +219,10 @@ var UIManager = function(){
     $("#annotate_mode").on('click', function(e) { console.log("annotate mode selected.");});    
     $("#extra_mode").on('click', function(e) { console.log("extra mode selected.");});    
     $("#ferret_atlas_downloads").on('click', function(e) { console.log("trying to d/l bundle "); /**$("#myModal").show();*/ });
+    $("#modality_fa").on('click', function(e) {console.log("FA MODALITY SELECTED."); UpdateParams("ev_dti_fa"); ShowDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]); });
+    $("#modality_tr").on('click', function(e) {console.log("TR MODALITY SELECTED."); UpdateParams("ev_dti_tr");   ShowDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]);});
+    $("#modality_ev_roi").on('click', function(e) {console.log("ROI MODALITY SELECTED."); UpdateParams("ev_dti_segmentation"); HideDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]);  });
+    
     //$("#answer").submit(function(e) {     
     //console.log("EVENT -> " ); 
     //console.log(e); 
@@ -543,7 +549,7 @@ var UIManager = function(){
                 params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};
                  
                 params1.showControls = false; 
-                params1["contextManager"] = ctxMgr1;
+                //params1["contextManager"] = ctxMgr1;
                 //  TBD - put this back in when we get info on the ROIs
                 //ui.LoadNewSurfaces(image_map[current_image],0);
                 
@@ -571,7 +577,7 @@ var UIManager = function(){
                 params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 1759.71, "max": 2463.59};                  
                 
                 params2.showControls = false;          
-                params2["contextManager"] = ctxMgr2;            
+                //params2["contextManager"] = ctxMgr2;            
                     
                 params3["kioskMode"] = true;      
                 if(using_surfaces){
@@ -606,7 +612,7 @@ var UIManager = function(){
                 params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
                 
                 params3.showControls = false              
-                params3["contextManager"] = ctxMgr3;  
+                //params3["contextManager"] = ctxMgr3;  
                     
                 params4["kioskMode"] = true;    
                 if(using_surfaces){
@@ -633,7 +639,7 @@ var UIManager = function(){
                 //params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};                                                                            
                 
                 params4.showControls = false   
-                params4["contextManager"] = ctxMgr4;                
+                //params4["contextManager"] = ctxMgr4;                
             });            
         },
         FadeDivsIn : fade_divs_in,

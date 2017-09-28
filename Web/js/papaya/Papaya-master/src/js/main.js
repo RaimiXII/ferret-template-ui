@@ -188,12 +188,12 @@ papaya.Container.showImage = function (index, imageIndex) {
 */
 papaya.Container.GetCursorLocation=function(c,a){
     var pos = papayaContainers[a].viewer.cursorPosition; 
-    console.log("LABEL ->  " + current_label)    
-    console.log(papayaContainers[a].viewer.surfaces[c])
+    //console.log("LABEL ->  " + current_label)    
+    //consoconsole.log(papayaContainers[a].viewer.surfaces[c])
     return [pos, current_label];
 };
 papaya.Container.SetSurfaceAlpha=function(c,a,al){
-    console.log("NUMBER OF SURFACES....." + papayaContainers[c].viewer.surfaces.length); 
+    //console.log("NUMBER OF SURFACES....." + papayaContainers[c].viewer.surfaces.length); 
     papayaContainers[c].viewer.surfaces[a].alpha = al;
 }
 papaya.Container.GetNumberOfSurfaces=function(c)
@@ -1294,10 +1294,10 @@ papaya.Container.hideImage = function(c,a) {
 };
 
 papaya.Container.showImage = function(c,a) {
-    console.log("c index -> " + c);
-    console.log("a index -> " + a);
-    console.log("size of papaya containers -> " + papayaContainers.length);
-    console.log("size of # ov viewer screenVolumes -> " + papayaContainers[c].viewer.screenVolumes.length);
+    //console.log("c index -> " + c);
+    //console.log("a index -> " + a);
+    //console.log("size of papaya containers -> " + papayaContainers.length);
+    //console.log("size of # ov viewer screenVolumes -> " + papayaContainers[c].viewer.screenVolumes.length);
     papayaContainers[c].viewer.screenVolumes[a].hidden=!1;
     papayaContainers[c].viewer.drawViewer(!0,!1)
 };

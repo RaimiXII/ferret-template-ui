@@ -79,13 +79,13 @@
                                     <label class="tree-toggle nav-header ">Ex-Vivo</label>
                                     <ul class="nav nav-list tree well well-sm">
                                         <li>
-                                            <span class="badge pull-right tree-toggle nav">4</span>
+                                            <span class="badge pull-right tree-toggle nav">3</span>
                                             <label class="tree-toggle nav" data-toggle="tooltip" title="Diffusion Tensor Imaging Maps">DTI </label>
                                             <ul class="nav nav-list tree sub">
                                                 <li id="ex_vivo_dti_fa"><a href="#" data-toggle="tooltip" title="Fractional Anisotropy">FA</a></li>
                                                 <li id="ex_vivo_dti_tr"><a href="#">Trace</a></li>
                                                 <li id="ex_vivo_dti_dec"><a href="#" data-toggle="tooltip" title="Directionally Encoded Color (DEC) map">DEC</a></li>                                           
-                                                <li id="ev_dti_segmentation"><a href="#" data-toggle="tooltip" title="Parcellation of ex-vivo DTI into uniquely colored ROIs">ROIs</a></li>
+                                                
                                             </ul>
                                         </li>
                                     </ul>                                                                                           
@@ -107,8 +107,16 @@
                                             </ul>
                                         </li>                                     
                                     </ul>
+                                    <ul class="nav nav-list tree well well-sm">
+                                        <li>
+                                            <span class="badge pull-right tree-toggle nav">1</span>
+                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">Segmentation</label>
+                                            <ul class="nav nav-list tree sub">
+                                                <li id="ev_dti_segmentation"><a href="#" data-toggle="tooltip" title="Parcellation of ex-vivo DTI into uniquely colored ROIs">Base Annotations</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </li>
-
                                 <li>
                                     <span class="badge pull-right tree-toggle nav">7</span>
                                     <label class="tree-toggle nav-header ">In-Vivo</label>
@@ -161,7 +169,7 @@
                     <div id="template_nav2">
                         <ul class="nav nav-list tree well well-lg">
                             <li>
-                                <label class="tree-toggle nav-header " for="query">Search:
+                                <label class="tree-toggle nav-header " for="query">Search for an ROI:
                                     <input type="text" class="form-control" title="query" aria-label="search bar" name="query" id="query" placeholder="Enter ROI name">
                                 </label>
                                 <span class="input-group-btn">
@@ -170,28 +178,37 @@
                                 <br>
                             </li>
                             <li>
-                                <label class="tree-toggle nav-header " id="atlas_analysis">Measurements</label>
+                                <label>Select quantitative map</label>
+                                <div class="btn-group" data-toggle="buttons">
+                                  <label id="modality_ev_roi" class="btn btn-primary active">
+                                    <input type="radio" name="options" id="option2" autocomplete="off" checked> ROI
+                                  </label>
+                                  <label id="modality_fa" class="btn btn-primary">
+                                    <input type="radio" name="options" id="option1" autocomplete="off"> FA
+                                  </label>
+                                  <label id="modality_tr" class="btn btn-primary">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> TR
+                                  </label>                                  
+                                </div>
+                            </li>
+                            <li>
+                                <label class="tree-toggle nav-header " id="atlas_analysis">Measurement Tools</label>
                                 <ul class="nav nav-list tree well well-sm sub">                                           
                                     <li>
                                         <label class="tree-toggle nav-header ">Statistics</label>
                                         <ul class="nav nav-list tree sub">
                                             <li id="roi_stats" class="well well-sm">
-                                                    Imaging modality: <div id="img_description"></div>
-                                                    <br>
-                                                    ROI name: <div id="current_roi"></div>
-                                                    <br>
-                                                    ROI volume: <div id="roi_volume"></div>
-                                                    <br>
-                                                    ROI mean: <div id="roi_mean"></div>
-                                                    <br>
-                                                    ROI standard deviation: <div id="roi_std_dev"></div>
-                                                    <br>
-                                                    ROI description: <div id="roi_description"></div>                                                       
+                                                    <div id="img_description"></div>
+                                                    <div id="current_roi"></div>
+                                                    <div id="roi_volume"></div>
+                                                    <div id="roi_mean"></div>
+                                                    <div id="roi_std_dev"></div>
+                                                    <div id="roi_description"></div>
                                             </li>                                                                                        
                                         </ul>
                                     </li>       
-                                    <li>
-                                        <label class="tree-toggle nav-header ">Histogram</label>
+                                    <li id="histogram_container" >
+                                        <label id="histogram_container" class="tree-toggle nav-header ">Histogram</label>
                                         <ul class="nav nav-list tree sub">
                                             <li id="plot_area">
                                                 <canvas id="RoiChart"></canvas>
@@ -264,6 +281,9 @@
                       "#visualization_templates", 
                       "#bannerBox",  
                       "#template_content",     
+                      "#template_nav2",
+                      "#histogram_container",
+                      "#roi_volume", "#roi_mean", "#roi_std_dev"
                       //"#myModal"                 
                 ]);                
                 //  tbd change 300 to screen height derived percentage
