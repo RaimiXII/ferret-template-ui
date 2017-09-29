@@ -21,9 +21,7 @@ var UIManager = function(){
         "ivT2_TE012"       : [3,0],
         "ivT2_TE036"       : [3,1],
         "ivT2_TE060"       : [3,2],
-        "ivT2_TE084"       : [3,3],
-       // "ivT2_TE108"       : [3,4],
-       // "ivT2_TE132"       : [3,5]                  
+        "ivT2_TE084"       : [3,3],            
     };
     
     var chartHelper;    
@@ -171,8 +169,6 @@ var UIManager = function(){
         else if ( img == "iv_t2_036" ){ current_image = "ivT2_TE036"; } 
         else if ( img == "iv_t2_060" ){ current_image = "ivT2_TE060"; } 
         else if ( img == "iv_t2_084" ){ current_image = "ivT2_TE084"; } 
-        //else if ( img == "iv_t2_108" ){ current_image = "ivT2_TE108"; } 
-        //else if ( img == "iv_t2_132" ){ current_image = "ivT2_TE132"; } 
         else {console.log("SOMETHING ELSE was selected..."); }        
         ShowImage(image_map[current_image]);
         ShowSurface(image_map[current_image][0]);
@@ -243,11 +239,6 @@ var UIManager = function(){
         console.log("EV SEG NAV CLICKED."); 
     });
     
-    //$("#answer").submit(function(e) {     
-    //console.log("EVENT -> " ); 
-    //console.log(e); 
-    //e.preventDefault(); 
-    //});
     var SwapDivs = function(goingOut, goingIn, speed){
         for(i in goingIn){
           $( goingIn[i] ).fadeIn( speed, function() {
@@ -591,16 +582,13 @@ var UIManager = function(){
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",
-                                        //"img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE108.nii",
-                                        //"img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE132.nii"                                                            
+                                        "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",                                             
                                      ];  
                 params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                //params4["ivT2_TE108.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};
-                //params4["ivT2_TE132.nii"] = {"lut": "Hot-Cool", "min": 10, "max": 100};                                                                            
+                                                                      
                 
                 params4.showControls = false   
                 //params4["contextManager"] = ctxMgr4;                

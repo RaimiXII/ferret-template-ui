@@ -43,14 +43,12 @@
                 <ul class="dropdown-menu">
                  <li id="home_screen"><a href="#">Home</a></li>
                  <li id="visualization_screen"><a href="#">View Templates</a></li>
-                <!-- <li id="download_screen"><a href="#">Downloads</a></li>    -->
                  <li id="about_screen"><a href="#">About</a></li>                        
               </ul>
             </div>
             <ul class="nav navbar-nav navbar-inverse">
               <li class="active"><a href="#"><div id="current_service">Home</div></a></li>
               <li id="visualization_templates">Templates<span class="caret"></span>                
-              <!--  <li id="download_templates">Downloads<span class="caret"></span>    -->
               <li id="about_templates">About<span class="caret"></span>                                        
               </li>
             </ul>            
@@ -221,25 +219,6 @@
                 </div>   
             </div>
        </div>
-       
-       <!-- 
-       <div id="ferret_atlas_download_content" >   
-       
-           tbd waiting on approach for auth v. open download 
-           
-            <ul class="nav nav-list tree well well-lg">
-                <li>
-                    <label class="tree-toggle nav-header" id="ferret_atlas_zip">
-                        <a href="img/linked_content/Templates/Bundle/FerretTemplateBundle.zip" download>Download Entire Bundle (.zip)</a>
-                    </label>
-                </li>
-            </ul>
-        </div>
-        -->   
-        
-        
-        <!-- tbd waiting on approach for captcha v. form -->
-
         <div id="loading" class="centered">
             <div class="loading spin-1">
                 <div class="loading spin-2">
@@ -252,8 +231,7 @@
                     </div>            
                 </div>            
             </div>            
-        </div>       
-
+        </div>
         <script type="text/javascript">
             var params  = [];
             var params1 = [];
@@ -267,8 +245,7 @@
             ctx.SetChartHelper(ch);
             var current_image ="";                     
             var brain_region_struct = {};            
-            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com   
-            //placenumber();                 
+            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
             $(document).ready(function(){
             $('ul.sub').hide();
              $('body').css('background-image', 'url(' + imageUrl + ')');                                
@@ -278,16 +255,13 @@
                       "#ex_vivo_t2_viewer",
                       "#in_vivo_t2_viewer",                                    
                       "#navi", 
-                      "#download_templates",
-                    //  "#ferret_atlas_download_content",
                       "#MRI_area1", 
                       "#visualization_templates", 
                       "#bannerBox",  
                       "#template_content",     
                       "#template_nav2",
                       "#histogram_container",
-                      "#roi_volume", "#roi_mean", "#roi_std_dev"
-                      //"#myModal"                 
+                      "#roi_volume", "#roi_mean", "#roi_std_dev"          
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);  
