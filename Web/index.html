@@ -25,6 +25,7 @@
         <script type="text/javascript" src="js/vendor/jquery-migrate-121-min.js"></script>
         <script type="text/javascript" src="js/vendor/jquery-1110-min.js"></script>
         <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
+        <script type="text/javascript" src="js/vendor/BootstrapValidator.min.js"></script>
         <script type="text/javascript" src="js/vendor/papaparse.js"></script>
         <script type="text/javascript" src="js/typeahead.js"></script>
         <script type="text/javascript" src="js/UIManager.js"></script>                
@@ -218,6 +219,93 @@
                 </div>   
             </div>
        </div>
+       
+       <div class="col-sm-8 col-sm-push-2 container-fluid" id="about_containter">
+        <div class="jumbotron" id="about_content"  style="width:58vw;">            
+        </div>
+       </div>
+       
+       <div id="form_modal" class="modal fade ">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">MRI Atlases</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div id="modal_body_content" class="modal-body">
+                  <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        <fieldset>
+        <!-- Form Name -->
+        <legend>Data request form</legend>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">First Name</label>  
+          <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+            </div>
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" >Last Name</label> 
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
+            </div>
+          </div>
+        </div>
+        <!-- Text input-->
+               <div class="form-group">
+          <label class="col-md-4 control-label">E-Mail</label>  
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+            </div>
+          </div>
+        </div>       
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Institution</label>  
+           <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+          <input name="institution" placeholder="Institution name" class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+        <!-- Text area -->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Usage Description: </label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                	<textarea class="form-control" name="comment" placeholder="Usage Description..."></textarea>
+          </div>
+          </div>
+        </div>
+        <!-- Success message -->       
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+          </div>
+        </div>
+        </fieldset>
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    <!-- /.container -->
+    
         <div id="loading" class="centered">
             <div class="loading spin-1">
                 <div class="loading spin-2">
@@ -260,7 +348,8 @@
                       "#template_content",     
                       "#template_nav2",
                       "#histogram_container",
-                      "#roi_volume", "#roi_mean", "#roi_std_dev"          
+                      "#roi_volume", "#roi_mean", "#roi_std_dev",
+                      "#about_containter"
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);  

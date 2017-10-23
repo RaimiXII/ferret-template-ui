@@ -28,6 +28,25 @@ var UIManager = function(){
     var currentData;
     var currentLabel;
     
+    
+    var LoadAboutPage = function(){
+        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
+        var sub_head = '<p class="lead">This is a MRI Atlas viewer created by NIH NIBIB QMI.  FA, TR, DTI and TE images are available at this time for the Ferret and we intend to add more in the near future.</p>'
+        var line = '<hr class="my-4">';
+        var email_info = '<p>To obtain a copy of the data seen here, please click the button below to request the data!.</p>';
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
+        var content = title+sub_head+line+email_info+email_button;
+        $("#about_content").html(content);
+        
+       // $("#modal_body_content").html(LoadRequestForm());
+        
+        
+    };
+    
+    var LoadRequestForm = function(){
+    };
+    
+    
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
         papaya.Container.showImage(index[0], index[1]);
@@ -101,7 +120,7 @@ var UIManager = function(){
         ui.reset_roi_info();
     });
     $("#minimize_all").on('click', function(e) {
-        fade_divs_out( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#download_templates" ] );
+        fade_divs_out( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#download_templates","#about_containter" ] );
         ResetViewer();
     });
     $("#create_png").on('click', function(e) {
@@ -110,12 +129,12 @@ var UIManager = function(){
     $("#home_screen").on('click', function(e) {
         $("#current_service").html("Home");
         ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content"]  );
-        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#ex1Slider", "#ferret_atlas_download_content"]);
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#ex1Slider", "#ferret_atlas_download_content", "#about_containter"]);
         fade_divs_in(["#bannerBox"])
     });
     $("#visualization_screen").on('click', function(e) { 
         $("#current_service").html("Templates");             
-        fade_divs_out(["#bannerBox", "#ferret_atlas_download_content"]);
+        fade_divs_out(["#bannerBox", "#ferret_atlas_download_content", "#about_containter"]);
         fade_divs_in( [ "#ex_vivo_dti", "#MRI_area1", "#roi-viz-tools", "#image_actions", "#visualization_templates", "#template_content" ] );         
         ResetViewer();
     });
@@ -127,10 +146,148 @@ var UIManager = function(){
     });
     $("#about_screen").on('click', function(e) { 
         $("#current_service").html("About");             
+        LoadAboutPage();
         ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates"]  );
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
-        //fade_divs_in(["#bannerBox"])
+        fade_divs_in(["#about_containter"])
     });
+    $("#submit_button").on('click', function(e) {
+        LoadRequestForm();
+    });
+    
+    $('#contact_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            first_name: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             last_name: {
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    }
+                }
+            },
+            institution: {
+                validators: {
+                      stringLength: {
+                        min: 2,
+                        max: 200,
+                        message:'Please enter at least 2 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a valid institution.'
+                    }
+                    }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },/*
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    phone: {
+                        country: 'US',
+                        message: 'Please supply a vaild phone number with area code'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                     stringLength: {
+                        min: 8,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your street address'
+                    }
+                }
+            },
+            city: {
+                validators: {
+                     stringLength: {
+                        min: 4,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your state'
+                    }
+                }
+            },
+            zip: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your zip code'
+                    },
+                    zipCode: {
+                        country: 'US',
+                        message: 'Please supply a vaild zip code'
+                    }
+                }
+            },*/
+            comment: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 200,
+                        message:'Please enter at least 10 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description of your intended usage for our data'
+                    }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+                
+                
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
     
     //$('#ex1').slider({ formatter: function(value) { return 'Current s1 value: ' + value; } }).on('slide', function() { SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0))); }).data('slider');
     var HideDivs = function(divs) { for(var i in divs) { $(divs[i]).hide(); } };    
@@ -378,6 +535,10 @@ var UIManager = function(){
     set_background_color_for_list : SetBackgroundColorForList,
     update_params : UpdateParams,
     show_surface : ShowSurface,  
+    
+    LoadAboutPage :  LoadAboutPage,
+    LoadRequestForm : LoadRequestForm,
+    
     LoadMainSurface : function( ) {
     
         var surfs = [];
