@@ -87,6 +87,29 @@ var UIManager = function(){
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
     };
+    /*
+    function getFormData($f){
+        var unindexed_array = $f.serialize();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+    */
+    
+    function objectifyForm(formArray) {//serialize data function
+
+          var returnArray = {};
+          for (var i = 0; i < formArray.length; i++){
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+          }
+          return returnArray;
+        }
+
+
     $('nav li').hover(
         function() {
         $('ul', this).stop().slideDown(200);                
@@ -271,8 +294,6 @@ var UIManager = function(){
         .on('success.form.bv', function(e) {
             $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#contact_form').data('bootstrapValidator').resetForm();
-                
-                
 
             // Prevent form submission
             e.preventDefault();
@@ -282,11 +303,10 @@ var UIManager = function(){
 
             // Get the BootstrapValidator instance
             var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
+            
+            // Format the form fields into json object
+            var dataz = objectifyForm($form.serializeArray());
+            console.log(dataz);
         });
     
     //$('#ex1').slider({ formatter: function(value) { return 'Current s1 value: ' + value; } }).on('slide', function() { SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0))); }).data('slider');
