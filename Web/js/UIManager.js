@@ -294,7 +294,7 @@ var UIManager = function(){
         .on('success.form.bv', function(e) {
             $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#contact_form').data('bootstrapValidator').resetForm();
-
+/*
             // Prevent form submission
             e.preventDefault();
 
@@ -308,31 +308,23 @@ var UIManager = function(){
             var dataz = objectifyForm($form.serializeArray());
             console.log(dataz);
             console.log($form.serialize());
-            
-            
-            
-            
+                        
             var data = {
                 name: dataz["first_name"] + " " + dataz["last_name"],
                 email: dataz["email"],
                 message: dataz["comment"]
             };
             
-            
             $.ajax({
                 type: "POST",
                 url: "form_mailer.php",
-                contentType: "application/json",
+                contentType: 'text',
                 data: data,
                 success: function(){
                     $('.success').fadeIn(1000);
                 }
             });
-            
-            
-            
-            
-            
+            */
         });
     
     //$('#ex1').slider({ formatter: function(value) { return 'Current s1 value: ' + value; } }).on('slide', function() { SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0))); }).data('slider');
