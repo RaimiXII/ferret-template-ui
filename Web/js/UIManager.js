@@ -294,9 +294,9 @@ var UIManager = function(){
         .on('success.form.bv', function(e) {
             $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#contact_form').data('bootstrapValidator').resetForm();
-/*
+
             // Prevent form submission
-            e.preventDefault();
+            //e.preventDefault();
 
             // Get the form instance
             var $form = $(e.target);
@@ -317,14 +317,15 @@ var UIManager = function(){
             
             $.ajax({
                 type: "POST",
-                url: "form_mailer.php",
-                contentType: 'text',
+                url: "/form_mailer.php",
+                dataType: 'text',
                 data: data,
-                success: function(){
+                success: function(data){
+                    console.log('DATA');
+                    console.log(data);
                     $('.success').fadeIn(1000);
                 }
             });
-            */
         });
     
     //$('#ex1').slider({ formatter: function(value) { return 'Current s1 value: ' + value; } }).on('slide', function() { SetSurfaceAlpha(image_map[current_image], parseFloat((parseFloat($("#ex1").val()) / 100.0))); }).data('slider');
