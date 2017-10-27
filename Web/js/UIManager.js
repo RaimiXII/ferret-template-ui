@@ -81,11 +81,15 @@ var UIManager = function(){
         var r_str = "ROI name: <b>"+name+"</b><br><br>";
         //      Eventually we can query the file. for now we provide a link for SME's to email us with description.
         //        var desc = GetRegionDataByName(name);
-        var desc = '<p>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">send us</a> your suggested content! </p>';
-        var d_str = "Description: <b>"+desc+"</b><br><br>";
+        //var desc = '<p>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">send us</a> your suggested content! </p>';
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
+        var d_str = "Description: <b>"+email_button+"</b><br><br>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
+        
+        
+        
     };
     /*
     function getFormData($f){
@@ -227,56 +231,7 @@ var UIManager = function(){
                         message: 'Please supply a valid email address'
                     }
                 }
-            },/*
-            phone: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your phone number'
-                    },
-                    phone: {
-                        country: 'US',
-                        message: 'Please supply a vaild phone number with area code'
-                    }
-                }
             },
-            address: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your street address'
-                    }
-                }
-            },
-            city: {
-                validators: {
-                     stringLength: {
-                        min: 4,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select your state'
-                    }
-                }
-            },
-            zip: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your zip code'
-                    },
-                    zipCode: {
-                        country: 'US',
-                        message: 'Please supply a vaild zip code'
-                    }
-                }
-            },*/
             comment: {
                 validators: {
                       stringLength: {
@@ -292,7 +247,7 @@ var UIManager = function(){
             }
         })
         .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+            $('#success_message_request').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#contact_form').data('bootstrapValidator').resetForm();
 
             // Prevent form submission
@@ -312,6 +267,109 @@ var UIManager = function(){
             var data = {
                 name: dataz["first_name"] + " " + dataz["last_name"],
                 email: dataz["email"],
+                institution: dataz["institution"],
+                message: dataz["comment"]
+            };
+            
+            $.ajax({
+                type: "POST",
+                url: "/form_mailer.php",
+                dataType: 'text',
+                data: data,
+                success: function(data){
+                    console.log('DATA');
+                    console.log(data);
+                    $('.success').fadeIn(1000);
+                }
+            });
+        });
+        
+        $('#feedback_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            first_name: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             last_name: {
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    }
+                }
+            },
+            institution: {
+                validators: {
+                      stringLength: {
+                        min: 2,
+                        max: 200,
+                        message:'Please enter at least 2 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a valid institution.'
+                    }
+                    }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+            comment: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 200,
+                        message:'Please enter at least 10 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description of your intended usage for our data'
+                    }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message_roi').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#feedback_form').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            //e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            
+            // Format the form fields into json object
+            var dataz = objectifyForm($form.serializeArray());
+            console.log(dataz);
+            console.log($form.serialize());
+                        
+            var data = {
+                name: dataz["first_name"] + " " + dataz["last_name"],
+                email: dataz["email"],
+                institution: dataz["institution"],
                 message: dataz["comment"]
             };
             

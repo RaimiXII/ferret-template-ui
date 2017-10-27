@@ -37,7 +37,7 @@
         <nav id="navi" class="navbar navbar-inverse" aria-label="main mega menu, with over 100 links">        
           <div class="container-fluid"  >
             <div class="navbar-header">              
-            <div class="nav navbar-nav pull-left"><a href="https://www.nibib.nih.gov"><img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" style="height:1.5vw; width3vw;" /></a></div>
+            <div class="nav navbar-nav pull-left"><a href="https://www.nibib.nih.gov"><img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" style="height:2.5vw; width9vw;" /></a></div>
             <div class="navbar-brand"></div>
               <a class="navbar-brand dropdown-toggle pull-right" href="#" data-toggle="dropdown">MRI Atlases Menu<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -290,7 +290,88 @@
           </div>
         </div>
         <!-- Success message -->       
-        <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+        <div class="alert alert-success" role="alert" id="success_message_request">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+          </div>
+        </div>
+        </fieldset>
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        <!-- roi feedback form -->>
+        <div id="feedback_modal" class="modal fade ">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">MRI Atlases</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div id="modal_body_content" class="modal-body">
+                  <form class="well form-horizontal" action=" " method="post"  id="feedback_form">
+        <fieldset>
+        <!-- Form Name -->
+        <legend>ROI Feedback form</legend>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="first_name">First Name</label>  
+          <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input  id="first_name" name="first_name" placeholder="First Name" class="form-control"  type="text"/>
+            </div>
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="first_name">Last Name</label> 
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="last_name" name="last_name" placeholder="Last Name" class="form-control"  type="text"/>
+            </div>
+          </div>
+        </div>
+        <!-- Text input-->
+               <div class="form-group">
+          <label class="col-md-4 control-label">E-Mail</label>  
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <input id="email" name="email" placeholder="E-Mail Address" class="form-control"  type="text"/>
+            </div>
+          </div>
+        </div>       
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label">Institution</label>  
+           <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+          <input id="institution" name="institution" placeholder="Institution name" class="form-control" type="text"/>
+            </div>
+          </div>
+        </div>
+        <!-- Text area -->
+        <div class="form-group">
+          <label class="col-md-4 control-label">ROI Description: </label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                	<textarea id="comment" class="form-control" name="comment" placeholder="<ROI Name> &nbsp;- <ROI Description...>"></textarea>
+          </div>
+          </div>
+        </div>
+        <!-- Success message -->       
+        <div class="alert alert-success" role="alert" id="success_message_roi">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for submitting your suggestion, we will get back to you shortly.</div>
         <!-- Button -->
         <div class="form-group">
           <label class="col-md-4 control-label"></label>
@@ -351,7 +432,8 @@
                       "#template_nav2",
                       "#histogram_container",
                       "#roi_volume", "#roi_mean", "#roi_std_dev",
-                      "#about_containter", "#success_message"
+                      "#about_containter", "#success_message_request",
+                      "#success_message_roi",
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);  
