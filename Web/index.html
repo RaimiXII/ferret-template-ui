@@ -34,12 +34,12 @@
         <script type="text/javascript" src="js/ContextManager.js"></script>
     </head>        
     <body>       
-        <nav id="navi" class="navbar navbar-inverse" aria-label="main mega menu, with over 100 links">        
+        <nav id="navi" class="navbar navbar-inverse" aria-label="nothing here">        
           <div class="container-fluid"  >
             <div class="navbar-header">              
-            <div class="nav navbar-nav pull-left"><a href="https://www.nibib.nih.gov"><img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" style="height:2.5vw; width9vw;" /></a></div>
+            
             <div class="navbar-brand"></div>
-              <a class="navbar-brand dropdown-toggle pull-right" href="#" data-toggle="dropdown">MRI Atlases Menu<span class="caret"></span></a>
+              <a class="navbar-brand dropdown-toggle " href="#" data-toggle="dropdown">MRI Atlases Menu<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                  <li id="home_screen"><a href="#">Home</a></li>
                  <li id="visualization_screen"><a href="#">View Templates</a></li>
@@ -51,15 +51,28 @@
               <li id="visualization_templates">Templates<span class="caret"></span></li>
               <li id="about_templates">About<span class="caret"></span>                                        
               </li>
+              
             </ul>
+            <div class="nav navbar-nav pull-left"><a href="https://www.nibib.nih.gov"><img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" style="height:1.5vw; width9vw;" /></a></div>
           </div>          
+          
         </nav>        
         <div id="bannerBox" class="pager" style="width:100%;margin:0">
             <img src="img/banner_full.png" alt="Ferret brain web viewer main banner." style="width:100%;" />
             <div id="attentionMessage" class="list-group">
               <a class="list-group-item active-inverse">
-                <p class="list-group-item-heading">Welcome!</p>
-                <p class="list-group-item-text">Click 'MRI Template Viewer' in the top left to begin browsing!</p>                
+                <div class="jumbotron">
+                    <p class="list-group-item-heading"><h1>Welcome to the NIH MRI atlases page</h1></p>
+                    <p class="list-group-item-text">This website is supported by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH.</p>
+                    <p class="list-group-item-text">We are a group of scientists who develop methods for processing and analyzing images of the brain.</p>                    
+                    <p class="list-group-item-text">We have developed tools to morph individual brains into an average brain representation of the population, as well as tools to extract an average brain from a series of individual brains.</p>
+                    <p class="list-group-item-text">The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.</p>
+                    <p class="list-group-item-text"></p>
+                    <p class="list-group-item-text">We would be grateful to experts who would like to contribute in the identification of anatomical regions and annotating the atlases.</p>
+                    <button class="btn btn-primary list-group-item-text" id="about_page_button">Get the Data</button>
+                    <p class="list-group-item-text"></p>
+                    <p class="list-group-item-text"></p>
+                </div>
               </a>
             </div>
         </div>                           

@@ -31,11 +31,14 @@ var UIManager = function(){
     
     var LoadAboutPage = function(){
         var title = '<h1 class="display-3">About MRI Atlases!</h1>'
-        var sub_head = '<p class="lead">This is a MRI Atlas viewer created by NIH NIBIB QMI.  FA, TR, DTI and TE images are available at this time for the Ferret and we intend to add more in the near future.</p>'
+        var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
+        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
+        var additional = '<p> with anatomical labels according to the book chapter: </p>';
+        var book_cite = '<p> Neuroanatomy of the Ferret Brain with Focus on the Cerebral Cortex by Christopher D. Kroenke, Brian D. Mills, Jaime F. Olavarria and Jeffrey J. Neil in the book Biology and Diseases of the Ferret, 2014.</p>';
         var line = '<hr class="my-4">';
-        var email_info = '<p>To obtain a copy of the data seen here, please click the button below to request the data!.</p>';
+        var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
         var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
-        var content = title+sub_head+line+email_info+email_button;
+        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button;
         $("#about_content").html(content);
         
        // $("#modal_body_content").html(LoadRequestForm());
@@ -180,6 +183,14 @@ var UIManager = function(){
     });
     $("#submit_button").on('click', function(e) {
         LoadRequestForm();
+    });
+    
+    $("#about_page_button").on('click', function(e) {
+         $("#current_service").html("About");             
+        LoadAboutPage();
+        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates"]  );
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
+        fade_divs_in(["#about_containter"])
     });
     
     $('#contact_form').bootstrapValidator({
