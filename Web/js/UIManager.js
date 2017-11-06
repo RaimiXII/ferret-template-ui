@@ -82,30 +82,13 @@ var UIManager = function(){
     };    
     var SetROIContent = function(name){
         var r_str = "ROI name: <b>"+name+"</b><br><br>";
-        //      Eventually we can query the file. for now we provide a link for SME's to email us with description.
-        //        var desc = GetRegionDataByName(name);
-        //var desc = '<p>Please <a href="mailto:beth.b.hutchinson@gmail.com?Subject=ROI%20Content%20'+name+'" target="_top">send us</a> your suggested content! </p>';
+
         var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
         var d_str = "Description: <b>"+email_button+"</b><br><br>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
-        
-        
-        
     };
-    /*
-    function getFormData($f){
-        var unindexed_array = $f.serialize();
-        var indexed_array = {};
-
-        $.map(unindexed_array, function(n, i){
-            indexed_array[n['name']] = n['value'];
-        });
-
-        return indexed_array;
-    }
-    */
     
     function objectifyForm(formArray) {//serialize data function
 
@@ -446,6 +429,7 @@ var UIManager = function(){
         else if(index == 3){ HideDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"]); SwapDivs(["#ex_vivo_dti_viewer","#in_vivo_dti_viewer", "#ex_vivo_t2_viewer"], ["#in_vivo_t2_viewer"], "fast"); }
         else{ console.log("Unknown surface request index: "+index); }                        
     };    
+    var GetVoxelValue = function(index, vidx){ return papaya.Container.getVoxelValue(index[0], index[1], vidx) };
     var HideImage = function(index){ papaya.Container.hideImage(index[0], index[1]); };     
     var ShowImage = function(index){ papaya.Container.showImage(index[0], index[1]); };
     var SetBackgroundColorForList = function( list, color ){ for( i in list){ $(list[i]).css('background', color); } };    
@@ -480,9 +464,9 @@ var UIManager = function(){
     $("#annotate_mode").on('click', function(e) { console.log("annotate mode selected.");});    
     $("#extra_mode").on('click', function(e) { console.log("extra mode selected.");});    
     $("#ferret_atlas_downloads").on('click', function(e) { console.log("trying to d/l bundle "); /**$("#myModal").show();*/ });
-    $("#modality_fa").on('click', function(e) {console.log("FA MODALITY SELECTED."); UpdateParams("ev_dti_fa"); ShowDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]); });
-    $("#modality_tr").on('click', function(e) {console.log("TR MODALITY SELECTED."); UpdateParams("ev_dti_tr");   ShowDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]);});
-    $("#modality_ev_roi").on('click', function(e) {console.log("ROI MODALITY SELECTED."); UpdateParams("ev_dti_segmentation"); HideDivs(["#histogram_container", "#roi_volume", "#roi_mean", "#roi_std_dev"]);  });
+    $("#modality_fa").on('click', function(e) {console.log("FA MODALITY SELECTED."); UpdateParams("ev_dti_fa"); ShowDivs(["#histogram_container", "#voxel_value","#roi_volume", "#roi_mean", "#roi_std_dev"]); });
+    $("#modality_tr").on('click', function(e) {console.log("TR MODALITY SELECTED."); UpdateParams("ev_dti_tr");   ShowDivs(["#histogram_container", "#voxel_value","#roi_volume", "#roi_mean", "#roi_std_dev"]);});
+    $("#modality_ev_roi").on('click', function(e) {console.log("ROI MODALITY SELECTED."); UpdateParams("ev_dti_segmentation"); HideDivs(["#histogram_container", "#voxel_value","#roi_volume", "#roi_mean", "#roi_std_dev"]);  });
     
     $("#evdti_navtree").on('click', function(e) {
         HideDivs(['ul.sub']);
@@ -567,10 +551,14 @@ var UIManager = function(){
         if(c_im_type == "FA")
         {
             chartHelper.CreateHistogram(csv_as_json, 25,0);
+            var val = GetVoxelValue(image_map[current_image], GetCursorLocation(image_map[current_image])[0]);            
+            $("#voxel_value").html("Value: <b>"+ (val)+"</b><br><br>")
         }
         else if(c_im_type == "TR")
         {
             chartHelper.CreateHistogram(csv_as_json, 25,1);
+            var val = GetVoxelValue(image_map[current_image], GetCursorLocation(image_map[current_image])[0]);            
+            $("#voxel_value").html("Value: <b>"+ (val)+"(mm^2)/s</b><br><br>")
         }
         else
         {
@@ -581,7 +569,7 @@ var UIManager = function(){
     var SetChartHelper = function(c){
         chartHelper = c;
     };      
-    
+     
   return {  
     SetChartHelper: SetChartHelper,
     hideDivs : HideDivs,    
@@ -660,8 +648,7 @@ var UIManager = function(){
         params["showSurfacePlanes"] = false;
         params["surfaceBackground"] = "Black";                  
         params.showControls = false;   
-        params["kioskMode"] = true; 
-    
+        params["kioskMode"] = true;     
     },      
     LoadNewSurfaces : function(index, opt){
             var surfs = [];
@@ -774,6 +761,7 @@ var UIManager = function(){
                  
                 params1.showControls = false; 
                 //params1["contextManager"] = ctxMgr1;
+                
                 //  TBD - put this back in when we get info on the ROIs
                 //ui.LoadNewSurfaces(image_map[current_image],0);
                 

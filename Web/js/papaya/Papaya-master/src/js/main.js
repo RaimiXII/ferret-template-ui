@@ -1293,11 +1293,19 @@ papaya.Container.hideImage = function(c,a) {
     papayaContainers[c].viewer.drawViewer(!0,!1)
 };
 
+papaya.Container.getVoxelValue = function(c, a, idx) {
+    var val = papayaContainers[c].viewer.screenVolumes[a];
+    var x = idx["x"]; var y = idx["y"]; var z = idx["z"];
+    var idata = papayaContainers[c].viewer.screenVolumes[a].volume.transform.voxelValue;
+    var width = parseInt(idata.xDim);
+    var height = parseInt(idata.yDim);   
+    var depth = parseInt(idata.zDim);
+    var the_idx = height*width*z + width*y + x;
+     var the_val= papayaContainers[c].viewer.screenVolumes[a].volume.imageData.data[the_idx];
+    return the_val
+};
+
 papaya.Container.showImage = function(c,a) {
-    //console.log("c index -> " + c);
-    //console.log("a index -> " + a);
-    //console.log("size of papaya containers -> " + papayaContainers.length);
-    //console.log("size of # ov viewer screenVolumes -> " + papayaContainers[c].viewer.screenVolumes.length);
     papayaContainers[c].viewer.screenVolumes[a].hidden=!1;
     papayaContainers[c].viewer.drawViewer(!0,!1)
 };
