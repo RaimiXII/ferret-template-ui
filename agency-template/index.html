@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MRI Atlases - NIH-NIBIB-QMI</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="css/agency.css" rel="stylesheet">    
+  </head>
+  
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"></nav>
+    <!-- Header -->
+    <header class="masthead"><div class="container" id="mhead"></div></header>
+    <!-- Services -->
+    <section id="services"> </section>
+    <!-- Portfolio Grid -->
+    <section class="bg-light" id="portfolio"></section>
+    <!-- About -->
+    <section id="about"></section>
+    <!-- Team -->
+    <section class="bg-light" id="team"></section>
+    <!-- Clients -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <a href="#">
+              <img class="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <a href="#">
+              <img class="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <a href="#">
+              <img class="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <a href="#">
+              <img class="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact -->
+    <section id="contact"></section>
+
+    <!-- Footer -->
+    <footer> <div id="d_footer"></div> </footer>
+
+    <!-- Portfolio Modals -->
+
+    <!-- Modal 1 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <!-- Modal 2 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <!-- Modal 3 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <!-- Modal 4 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <!-- Modal 5 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <!-- Modal 6 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true"></div>      
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>        
+    <script src="js/BootstrapHelper.js"></script>    
+    <script type="text/javascript">    
+    
+$(document).ready(function(){
+        var bh = BootstrapHelper();
+        console.log("and here we go.")
+            
+        $("#socialtest").append([
+            bh.UnorderedList({'class':"list-inline social-buttons"}).append([                    
+                bh.ListItem({class:"list-inline-item"}).append([
+                    bh.Anchor({'href':"#"}).append([
+                        bh.Icon({'class':"fa fa-twitter"})
+                    ])
+                ]),
+                bh.ListItem({class:"list-inline-item"}).append([
+                    bh.Anchor({'href':"#"}).append([
+                        bh.Icon({'class':"fa fa-facebook"})
+                    ])
+                ]),
+                bh.ListItem({class:"list-inline-item"}).append([
+                    bh.Anchor({'href':"#"}).append([
+                        bh.Icon({'class':"fa fa-linkedin"})
+                    ])
+                ]),
+            ])
+        ]);
+
+        $("#mhead").append([
+            bh.Div({'class':"intro-text"}).append([
+                bh.Div({'class':"intro-lead-in",'text':"It\'s Nice to Meet You"}), 
+                bh.Div({'class':"intro-heading text-uppercase", 'text':"Welcome To Our Studio!"}), 
+                bh.Anchor({'class':"btn btn-primary btn-xl text-uppercase js-scroll-trigger",'href':"#services",'text':"Tell me More"})
+            ])
+        ]);            
+        
+        $("#mainNav").append([
+            bh.Div({'class':"container"}).append([
+                bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"#page-top",'text':"MRI Atlases Home"}),
+                bh.Button({'class':"navbar-toggler navbar-toggler-right", 'type':"button", 'data-toggle':"collapse", 'data-target':"#navbarResponsive", 'aria-controls':"navbarResponsive", 'aria-expanded':"false", 'aria-label':"Toggle navigation"}).append([
+                    $('Menu'),
+                    bh.Icon({'class':"fa fa-bars"}),
+                ]),
+                bh.Div({'class':"collapse navbar-collapse", 'id':"navbarResponsive"}).append([
+                    bh.UnorderedList({'class':"navbar-nav text-uppercase ml-auto"}).append([
+                        bh.ListItem({class:"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#services",'text':"Services"})
+                        ]),
+                        bh.ListItem({class:"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#portfolio",'text':"Portfolio"})
+                        ]),
+                        bh.ListItem({class:"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#about",'text':"About"})
+                        ]),
+                        bh.ListItem({class:"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#team",'text':"Team"})
+                        ]),
+                        bh.ListItem({class:"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#contact",'text':"Contact"})
+                        ]),
+                    ])
+                ])                    
+            ])            
+        ]);
+            
+        $("#services").append([
+            bh.Div({'class':"container"}).append([
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-12 text-center"}).append([
+                        bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"Services"}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),                        
+                    ])
+                ]),
+                bh.Div({'class':"row text-center"}).append([
+                    bh.Div({'class':"col-md-4"}).append([
+                        bh.Span({'class':"fa-stack fa-4x"}).append([
+                            bh.Icon({'class':"fa fa-circle fa-stack-2x text-primary"}),
+                            bh.Icon({'class':"fa fa-shopping-cart fa-stack-1x fa-inverse"})
+                        ]),
+                        bh.Header({'order':"4",'class':"service-heading",'text':"E-Commerce"}),
+                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit"})                    
+                    ]),                    
+                    bh.Div({'class':"col-md-4"}).append([
+                        bh.Span({'class':"fa-stack fa-4x"}).append([
+                            bh.Icon({'class':"fa fa-circle fa-stack-2x text-primary"}),
+                            bh.Icon({'class':"fa fa-laptop fa-stack-1x fa-inverse"})
+                        ]),
+                        bh.Header({'order':"4",'class':"service-heading",'text':"Responsive Design"}),
+                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit"})                    
+                    ]),
+                    bh.Div({'class':"col-md-4"}).append([
+                            bh.Span({'class':"fa-stack fa-4x"}).append([
+                                bh.Icon({'class':"fa fa-circle fa-stack-2x text-primary"}),
+                                bh.Icon({'class':"fa fa-lock fa-stack-1x fa-inverse"})
+                            ]),
+                            bh.Header({'order':"4",'class':"service-heading",'text':"Web Security"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit."})
+                    ])
+                ]),
+            ])
+        ]);
+        
+        $("#portfolio").append([
+            bh.Div({'class':"container"}).append([
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-12 text-center"}).append([
+                        bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"Portfolio"}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."})
+                    ])
+                ]),
+                bh.Div({'class':"row"}).append([
+                
+                    bh.Div({'class':"col-md-4 col-sm-6 portfolio-item"}).append([
+                        bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href':"#portfolioModal1"}).append([
+                            bh.Div({'class':"portfolio-hover"}).append([
+                                bh.Div({'class':"portfolio-hover-content"}).append([
+                                    bh.Icon({'class':"fa fa-plus fa-3x"})
+                                ])
+                            ]),
+                            bh.Image({'class':"img-fluid",'src':"img/portfolio/01-thumbnail.jpg",'alt':""})
+                        ]),                    
+                        bh.Div({'class':"portfolio-caption"}).append([
+                            bh.Header({'order':"4",'text':"Threads"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Illustration"})
+                        ])
+                    ]),
+                    bh.Div({'class':"col-md-4 col-sm-6 portfolio-item"}).append([
+                        bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href':"#portfolioModal2"}).append([
+                            bh.Div({'class':"portfolio-hover"}).append([
+                                bh.Div({'class':"portfolio-hover-content"}).append([
+                                    bh.Icon({'class':"fa fa-plus fa-3x"})
+                                ])
+                            ]),
+                            bh.Image({'class':"img-fluid",'src':"img/portfolio/02-thumbnail.jpg",'alt':""})
+                        ]),                    
+                        bh.Div({'class':"portfolio-caption"}).append([
+                            bh.Header({'order':"4",'text':"Explore"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Graphic Design"})
+                        ])
+                    ]),
+                    bh.Div({'class':"col-md-4 col-sm-6 portfolio-item"}).append([
+                        bh.Div({'class':"portfolio-link", 'data-toggle':"modal",'href':"#portfolioModal3"}).append([
+                            bh.Div({'class':"portfolio-hover"}).append([
+                                bh.Div({'class':"portfolio-hover-content"}).append([
+                                    bh.Icon({'class':"fa fa-plus fa-3x"})
+                                ])
+                            ]),
+                            bh.Image({'class':"img-fluid",'src':"img/portfolio/03-thumbnail.jpg",'alt':""})
+                        ]),                    
+                        bh.Div({'class':"portfolio-caption"}).append([
+                            bh.Header({'order':"4",'text':"Finish"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Identity"})
+                        ])
+                    ]),
+                    
+                    bh.Div({'class':"col-md-4 col-sm-6 portfolio-item"}).append([
+                        bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href':"#portfolioModal4"}).append([
+                            bh.Div({'class':"portfolio-hover"}).append([
+                                bh.Div({'class':"portfolio-hover-content"}).append([
+                                    bh.Icon({'class':"fa fa-plus fa-3x"})
+                                ])
+                            ]),
+                            bh.Image({'class':"img-fluid",'src':"img/portfolio/04-thumbnail.jpg",'alt':""})
+                        ]),                    
+                        bh.Div({'class':"portfolio-caption"}).append([
+                            bh.Header({'order':"4",'text':"Lines"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Branding"})
+                        ])
+                    ]),
+                    bh.Div({'class':"col-md-4 col-sm-6 portfolio-item"}).append([
+                        bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href':"#portfolioModal5"}).append([
+                            bh.Div({'class':"portfolio-hover"}).append([
+                                bh.Div({'class':"portfolio-hover-content"}).append([
+                                    bh.Icon({'class':"fa fa-plus fa-3x"})
+                                ])
+                          ]),
+                           bh.Image({'class':"img-fluid",'src':"img/portfolio/05-thumbnail.jpg",'alt':""})
+                        ]),                    
+                        bh.Div({'class':"portfolio-caption"}).append([
+                            bh.Header({'order':"4",'text':"Southwest"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Website Design"})
+                        ])
+                    ]),
+                    bh.Div({'class':"col-md-4 col-sm-6 portfolio-item"}).append([
+                        bh.Div({'class':"portfolio-link", 'data-toggle':"modal",'href':"#portfolioModal6"}).append([
+                            bh.Div({'class':"portfolio-hover"}).append([
+                                bh.Div({'class':"portfolio-hover-content"}).append([
+                                    bh.Icon({'class':"fa fa-plus fa-3x"})
+                                ])
+                          ]),
+                           bh.Image({'class':"img-fluid",'src':"img/portfolio/06-thumbnail.jpg",'alt':""})
+                        ]),                    
+                        bh.Div({'class':"portfolio-caption"}).append([
+                            bh.Header({'order':"4",'text':"Window"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Photography"})
+                        ])
+                    ]),
+                ])
+            ])
+        ]);
+     
+        $("#about").append([
+            bh.Div({'class':"container"}).append([
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-12 text-center"}).append([
+                        bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"About"}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."})
+                    ]),
+                ]),
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-12"}).append([
+                        bh.UnorderedList({'class':"timeline"}).append([
+                            bh.ListItem({}).append([
+                                bh.Div({'class':"timeline-image"}).append([
+                                    $('<img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">')
+                                ]),
+                                bh.Div({'class':"timeline-panel"}).append([
+                                    bh.Div({'class':"timeline-heading"}).append([
+                                        bh.Header({'order':"4",'text':"2009-2011"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"Our Humble Beginnings"})
+                                    ]),
+                                    bh.Div({'class':"timeline-body"}).append([
+                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit."})
+                                    ])
+                                ])
+                            ]),
+                            bh.ListItem({'class':"timeline-inverted"}).append([
+                                bh.Div({'class':"timeline-image"}).append([
+                                    $('<img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">')
+                                ]),
+                                bh.Div({'class':"timeline-panel"}).append([
+                                    bh.Div({'class':"timeline-heading"}).append([
+                                        bh.Header({'order':"4",'text':"March 2011"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"An agency is born"}),
+                                    ]),
+                                    bh.Div({'class':"timeline-body"}).append([
+                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit. !"})
+                                    ])
+                                ])
+                            ]),
+                            bh.ListItem({}).append([
+                                bh.Div({'class':"timeline-image"}).append([
+                                    $('<img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">')
+                                ]),
+                                bh.Div({'class':"timeline-panel"}).append([
+                                    bh.Div({'class':"timeline-heading"}).append([
+                                        bh.Header({'order':"4",'text':"December 2012"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"Transition to Full Service"})
+                                    ]),
+                                    bh.Div({'class':"timeline-body"}).append([
+                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit."})
+                                    ])
+                                ])
+                            ]),
+                            $('<li class="timeline-inverted"></li>').append([
+                                bh.Div({'class':"timeline-image"}).append([
+                                    $('<img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">')
+                                ]),
+                                bh.Div({'class':"timeline-panel"}).append([
+                                    bh.Div({'class':"timeline-heading"}).append([
+                                        bh.Header({'order':"4",'text':"July 2014"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"Phase two expansion"})
+                                    ]),
+                                    bh.Div({'class':"timeline-body"}).append([
+                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit. !"})
+                                    ])
+                                ])
+                            ]),
+                        ])
+                    ])
+                ])
+            ])
+        ]);
+    
+        $("#team").append([
+            bh.Div({'class':"container"}).append([
+                bh.Div({'class':"col-lg-12 text-center"}).append([
+                    bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"Our Amazing Team"}),
+                    bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."})
+                ]),
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-sm-4"}).append([
+                        bh.Div({'class':"team-member"}).append([
+                            bh.Image({'class':"mx-auto rounded-circle",'src':"img/team/1.jpg",'alt':""}),
+                            bh.Header({'order':"4",'text':"Kay Garland"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Lead Designer"})
+                        ])
+                    ]),
+                    bh.Div({'class':"col-sm-4"}).append([
+                        bh.Div({'class':"team-member"}).append([
+                            bh.Image({'class':"mx-auto rounded-circle",'src':"img/team/2.jpg",'alt':""}),
+                            bh.Header({'order':"4",'text':"Larry Parker"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Lead Marketer"})
+                        ])
+                    ]),
+                    bh.Div({'class':"col-sm-4"}).append([
+                        bh.Div({'class':"team-member"}).append([
+                            bh.Image({'class':"mx-auto rounded-circle",'src':"img/team/3.jpg",'alt':""}),
+                            bh.Header({'order':"4",'text':"Diana Petersen"}),
+                            bh.Paragraph({'class':"text-muted",'text':"Lead Developer"})
+                        ])
+                    ]),
+                ]),
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-8 mx-auto text-center"}).append([
+                        bh.Paragraph({'class':"large text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde."})
+                    ])
+                ])                
+            ])
+        ]);
+    
+        
+        $("#contact").append([
+            bh.Div({'class':"container"}).append([
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-12 text-center"}).append([
+                        bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"Contact Us"}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."})
+                    ])
+                ]),
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-lg-12"}).append([
+                        bh.Form({'id':"contactForm",'name':"sentMessage"}).append([
+                            bh.Div({'class':"row"}).append([
+                                bh.Div({'class':"col-md-6"}).append([
+                                    bh.Div({'class':"form-group"}).append([
+                                        bh.Input({'class':"form-control",'id':"name",'type':"text",'placeholder':"Your Name *",'data-validation-required-message':"Please enter your name.",'extra':"required"}),
+                                        bh.Paragraph({'class':"help-block text-danger"})
+                                    ]),
+                                    bh.Div({'class':"form-group"}).append([
+                                        bh.Input({'class':"form-control",'id':"email",'type':"email",'placeholder':"Your Email *",'data-validation-required-message':"Please enter your email.",'extra':"required"}),
+                                        bh.Paragraph({'class':"help-block text-danger"})
+                                    ]),
+                                    bh.Div({'class':"form-group"}).append([
+                                        bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution.",'extra':"required"}),
+                                        bh.Paragraph({'class':"help-block text-danger"})
+                                    ]),
+                                ]),
+                                bh.Div({'class':"col-md-6"}).append([
+                                    bh.Div({'class':"form-group"}).append([
+                                        bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message.",'extra':"required"}),
+                                        bh.Paragraph({'class':"help-block text-danger"})
+                                    ]),
+                                ]),
+                                bh.Div({'class':"clearfix"}),
+                                bh.Div({'class':"col-lg-12 text-center"}).append([
+                                    bh.Div({'id':"success"}),
+                                    bh.Button({'id':"sendMessageButton",'class':"btn btn-primary btn-xl text-uppercase",'type':"submit",'text':"Send Message"})
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])    
+        ]);
+    
+    
+    
+        $("#d_footer").append([
+            bh.Div({'class':"container"}).append([
+                bh.Div({'class':"row"}).append([
+                    bh.Div({'class':"col-md-4"}).append([
+                        bh.Span({'class':"copyright",'text':"Copyright &copy; NIH - NIBIB - QMI, 2017"})
+                    ]),
+                    bh.Div({'class':"col-md-4",'id':"socialtest"}),
+                    bh.Div({'class':"col-md-4"}).append([
+                        bh.UnorderedList({'class':"list-inline quicklinks"}).append([
+                            bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"#",'text':"Privacy Policy"})
+                            ]),
+                            bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"#",'text':"Terms of Use"})
+                            ])
+                        ])
+                    ])
+                ])
+            ])            
+        ]);
+    
+    
+        $("#portfolioModal1").append([            
+            bh.Div({'class':"modal-dialog"}).append([
+                bh.Div({'class':"modal-content"}).append([
+                    bh.Div({'class':"close-modal",'data-dismiss':"modal"}).append([
+                        bh.Div({'class':"lr"}).append([
+                            bh.Div({'class':"rl"})
+                        ])
+                    ]),
+                    bh.Div({'class':"container"}).append([
+                        bh.Div({'class':"row"}).append([
+                            bh.Div({'class':"col-lg-8 mx-auto"}).append([
+                                bh.Div({'class':"modal-body"}).append([
+                                    bh.Header({'order':"2",'class':"text-uppercase",'text':"Project Name"}),
+                                    bh.Paragraph({'class':"item-intro text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':"img/portfolio/01-full.jpg",'alt':""}),
+                                    bh.Paragraph({'text':"Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!"}),
+                                    bh.UnorderedList({'class':"list-inline"}).append([
+                                        bh.ListItem({'text':"Date: January 2017"}),
+                                        bh.ListItem({'text':"Client: Threads"}),
+                                        bh.ListItem({'text':"Category: Illustrations"}),
+                                    ]),
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                        bh.Icon({'class':"fa fa-times"})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])
+        ]); 
+
+    
+        $("#portfolioModal2").append([            
+            bh.Div({'class':"modal-dialog"}).append([
+                bh.Div({'class':"modal-content"}).append([
+                    bh.Div({'class':"close-modal",'data-dismiss':"modal"}).append([
+                        bh.Div({'class':"lr"}).append([
+                            bh.Div({'class':"rl"})
+                        ])
+                    ]),
+                    bh.Div({'class':"container"}).append([
+                        bh.Div({'class':"row"}).append([
+                            bh.Div({'class':"col-lg-8 mx-auto"}).append([
+                                bh.Div({'class':"modal-body"}).append([
+                                    bh.Header({'order':"2",'class':"text-uppercase",'text':"Project Name"}),
+                                    bh.Paragraph({'class':"item-intro text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':"img/portfolio/02-full.jpg",'alt':""}),
+                                    bh.Paragraph({'text':"Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!"}),
+                                    bh.UnorderedList({'class':"list-inline"}).append([
+                                        bh.ListItem({'text':"Date: January 2017"}),
+                                        bh.ListItem({'text':"Client: Explore"}),
+                                        bh.ListItem({'text':"Category: Graphic Design"}),
+                                    ]),
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                        bh.Icon({'class':"fa fa-times"})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])
+        ]); 
+    
+        $("#portfolioModal3").append([            
+            bh.Div({'class':"modal-dialog"}).append([
+                bh.Div({'class':"modal-content"}).append([
+                    bh.Div({'class':"close-modal",'data-dismiss':"modal"}).append([
+                        bh.Div({'class':"lr"}).append([
+                            bh.Div({'class':"rl"})
+                        ])
+                    ]),
+                    bh.Div({'class':"container"}).append([
+                        bh.Div({'class':"row"}).append([
+                            bh.Div({'class':"col-lg-8 mx-auto"}).append([
+                                bh.Div({'class':"modal-body"}).append([
+                                    bh.Header({'order':"2",'class':"text-uppercase",'text':"Project Name"}),
+                                    bh.Paragraph({'class':"item-intro text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':"img/portfolio/03-full.jpg",'alt':""}),
+                                    bh.Paragraph({'text':"Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!"}),
+                                    bh.UnorderedList({'class':"list-inline"}).append([
+                                        bh.ListItem({'text':"Date: January 2017"}),
+                                        bh.ListItem({'text':"Client: Finish"}),
+                                        bh.ListItem({'text':"Category: Identity"}),
+                                    ]),
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                        bh.Icon({'class':"fa fa-times"})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])
+        ]); 
+    
+        $("#portfolioModal4").append([            
+            bh.Div({'class':"modal-dialog"}).append([
+                bh.Div({'class':"modal-content"}).append([
+                    bh.Div({'class':"close-modal",'data-dismiss':"modal"}).append([
+                        bh.Div({'class':"lr"}).append([
+                            bh.Div({'class':"rl"})
+                        ])
+                    ]),
+                    bh.Div({'class':"container"}).append([
+                        bh.Div({'class':"row"}).append([
+                            bh.Div({'class':"col-lg-8 mx-auto"}).append([
+                                bh.Div({'class':"modal-body"}).append([
+                                    bh.Header({'order':"2",'class':"text-uppercase",'text':"Project Name"}),
+                                    bh.Paragraph({'class':"item-intro text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':"img/portfolio/04-full.jpg",'alt':""}),
+                                    bh.Paragraph({'text':"Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!"}),
+                                    bh.UnorderedList({'class':"list-inline"}).append([
+                                        bh.ListItem({'text':"Date: January 2017"}),
+                                        bh.ListItem({'text':"Client: Lines"}),
+                                        bh.ListItem({'text':"Category: Branding"}),
+                                    ]),
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                        bh.Icon({'class':"fa fa-times"})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])
+        ]);    
+
+        $("#portfolioModal5").append([            
+            bh.Div({'class':"modal-dialog"}).append([
+                bh.Div({'class':"modal-content"}).append([
+                    bh.Div({'class':"close-modal",'data-dismiss':"modal"}).append([
+                        bh.Div({'class':"lr"}).append([
+                            bh.Div({'class':"rl"})
+                        ])
+                    ]),
+                    bh.Div({'class':"container"}).append([
+                        bh.Div({'class':"row"}).append([
+                            bh.Div({'class':"col-lg-8 mx-auto"}).append([
+                                bh.Div({'class':"modal-body"}).append([
+                                    bh.Header({'order':"2",'class':"text-uppercase",'text':"Project Name"}),
+                                    bh.Paragraph({'class':"item-intro text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':"img/portfolio/05-full.jpg",'alt':""}),
+                                    bh.Paragraph({'text':"Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!"}),
+                                    bh.UnorderedList({'class':"list-inline"}).append([
+                                        bh.ListItem({'text':"Date: January 2017"}),
+                                        bh.ListItem({'text':"Client: Southwest"}),
+                                        bh.ListItem({'text':"Category: Website Design"}),
+                                    ]),
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                        bh.Icon({'class':"fa fa-times"})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])
+        ]);
+        $("#portfolioModal6").append([            
+            bh.Div({'class':"modal-dialog"}).append([
+                bh.Div({'class':"modal-content"}).append([
+                    bh.Div({'class':"close-modal",'data-dismiss':"modal"}).append([
+                        bh.Div({'class':"lr"}).append([
+                            bh.Div({'class':"rl"})
+                        ])
+                    ]),
+                    bh.Div({'class':"container"}).append([
+                        bh.Div({'class':"row"}).append([
+                            bh.Div({'class':"col-lg-8 mx-auto"}).append([
+                                bh.Div({'class':"modal-body"}).append([
+                                    bh.Header({'order':"2",'class':"text-uppercase",'text':"Project Name"}),
+                                    bh.Paragraph({'class':"item-intro text-muted",'text':"Lorem ipsum dolor sit amet consectetur."}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':"img/portfolio/06-full.jpg",'alt':""}),
+                                    bh.Paragraph({'text':"Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!"}),
+                                    bh.UnorderedList({'class':"list-inline"}).append([
+                                        bh.ListItem({'text':"Date: January 2017"}),
+                                        bh.ListItem({'text':"Client: Window"}),
+                                        bh.ListItem({'text':"Category: Photography"}),
+                                    ]),
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                        bh.Icon({'class':"fa fa-times"})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ])
+        ]);
+    
+    
+            
+});
+    
+    
+    </script>
+  </body>
+</html>
