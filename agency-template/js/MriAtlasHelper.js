@@ -22,7 +22,7 @@ var MriAtlasHelper = function(){
         this.BuildNavBar();
         
         //  build services
-        this.BuildServicesSection();
+        //this.BuildServicesSection();
         
         //  build projects
         this.BuildAllProjects();   
@@ -42,6 +42,7 @@ var MriAtlasHelper = function(){
     {
         var g_div = info['grid_div'];
         var m_div = info['modal_div'];
+        var p_div = info['project_div'];
         var name = info['name'];
         var img_full = info['image'];
         var img_thumb= info['thumbnail'];
@@ -74,10 +75,15 @@ var MriAtlasHelper = function(){
                                         bh.ListItem({'text':"Maps: "+maps.join(", ")}),
                                     ]),
                                     bh.Paragraph({'text':"Based on the work :"}),
-                                    bh.Paragraph({'class':"text-muted",'text':cite}),
-                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Close Project"}).append([
+                                    bh.Paragraph({'class':"text-muted",'text':cite}),                                   
+                                    
+                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Explore", 'id':p_div}).append([
+                                        bh.Icon({'class':"fa fa-play"})
+                                    ]),
+                                    bh.Header({'order':'5','text':"  "}),
+                                     bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Go Back"}).append([
                                         bh.Icon({'class':"fa fa-times"})
-                                    ])
+                                    ]),
                                 ])
                             ])
                         ])
@@ -264,7 +270,7 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"Contact Us"}),
-                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."})
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"If want to contribute to this site and you are an expert, let's get to know each other!  Fill out the fields below to get the conversation started."})
                     ])
                 ]),
                 bh.Div({'class':"row"}).append([
@@ -309,7 +315,8 @@ var MriAtlasHelper = function(){
         $("#mhead").append([
             bh.Div({'class':"intro-text"}).append([
                 bh.Div({'class':"intro-heading text-uppercase", 'text':"MRI Atlases"}), 
-                bh.Div({'class':"intro-lead-in",'text':"An online MRI viewer"}),                     
+                bh.Div({'class':"intro-lead-in",'text':"An online MRI viewer"}),      
+                bh.Header({'order':"2",'text':"<br>"}),
                 bh.Anchor({'class':"btn btn-primary btn-xl text-uppercase js-scroll-trigger",'href':"#portfolio",'text':"Start Exploring"})
             ])
         ]);     

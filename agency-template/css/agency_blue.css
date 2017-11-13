@@ -11,12 +11,12 @@ p {
   line-height: 1.75; }
 
 a {
-  color: #fed136; }
+  color: #1893db; }
   a:hover {
-    color: #fec503; }
+    color: #086da8; }
 
 .text-primary {
-  color: #fed136 !important; }
+  color: #1893db !important; }
 
 h1,
 h2,
@@ -54,21 +54,21 @@ section {
   padding: 20px 40px; }
 
 .btn-primary {
-  background-color: #fed136;
-  border-color: #fed136; }
+  background-color: #1893db;
+  border-color: #1893db; }
   .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-    background-color: #fec810 !important;
-    border-color: #fec810 !important;
+    background-color: #109ff2 !important;
+    border-color: #109ff2 !important;
     color: white; }
   .btn-primary:active, .btn-primary:focus {
-    box-shadow: 0 0 0 0.2rem rgba(254, 209, 55, 0.5) !important; }
-
+    /**box-shadow: 0 0 0 0.2rem rgba(254, 209, 55, 0.5) !important; }*/
+    box-shadow: 0 0 0 0.2rem rgba(16, 159, 242, 0.5) !important; }
 ::-moz-selection {
-  background: #fed136;
+  background: #1893db;
   text-shadow: none; }
 
 ::selection {
-  background: #fed136;
+  background: #1893db;
   text-shadow: none; }
 
 img::selection {
@@ -78,7 +78,7 @@ img::-moz-selection {
   background: transparent; }
 
 body {
-  -webkit-tap-highlight-color: #fed136; }
+  -webkit-tap-highlight-color: #1893db; }
 
 #mainNav {
   background-color: #212529; }
@@ -89,13 +89,13 @@ body {
     text-transform: uppercase;
     color: white;
     border: 0;
-    background-color: #fed136;
+    background-color: #1893db;
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   #mainNav .navbar-brand {
-    color: #fed136;
+    color: #1893db;
     font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; }
     #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-      color: #fec503; }
+      color: #086da8; }
   #mainNav .navbar-nav .nav-item .nav-link {
     font-size: 90%;
     font-weight: 400;
@@ -104,7 +104,7 @@ body {
     color: white;
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
     #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-      color: #fed136; }
+      color: #1893db; }
 
 @media (min-width: 992px) {
   #mainNav {
@@ -133,7 +133,7 @@ body {
 header.masthead {
   text-align: center;
   color: white;
-  background-image: url("../img/landing-bg.jpg");   /** https://inform.tmforum.org/wp-content/uploads/2015/11/blue-abstract-virtualization-shutterstock_240678277.jpg*/
+  background-image: url("../img/2tone-bg.png");   /** https://inform.tmforum.org/wp-content/uploads/2015/11/blue-abstract-virtualization-shutterstock_240678277.jpg*/
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -195,7 +195,8 @@ header.masthead {
       -moz-transition: all ease 0.5s;
       transition: all ease 0.5s;
       opacity: 0;
-      background: rgba(254, 209, 54, 0.9); }
+/**      background: rgba(254, 209, 54, 0.9); } */
+      background: rgba(16, 159, 242, 0.9); }
       #portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
         opacity: 1; }
       #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
@@ -340,7 +341,7 @@ header.masthead {
       color: white;
       border: 7px solid #e9ecef;
       border-radius: 100%;
-      background-color: #fed136; }
+      background-color: #1893db; }
       .timeline > li .timeline-image h4 {
         font-size: 10px;
         line-height: 14px;
@@ -456,7 +457,7 @@ section#contact {
     section#contact .form-group textarea.form-control {
       height: 248px; }
   section#contact .form-control:focus {
-    border-color: #fed136;
+    border-color: #1893db;
     box-shadow: none; }
   section#contact ::-webkit-input-placeholder {
     font-weight: 700;
@@ -508,4 +509,4 @@ ul.social-buttons {
     outline: none;
     background-color: #212529; }
     ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
-      background-color: #fed136; }
+      background-color: #1893db; }

@@ -1,8 +1,0 @@
-var PageBuilder = function() {
-
-    
-
-    return {    
-    
-    };    
-};
