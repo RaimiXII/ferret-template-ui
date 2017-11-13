@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">    
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="css/mriatlases_layout.css" />
+        <script src="js/vendor/jquery-min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap337.min.css" />
+        <!--<link rel="stylesheet" href="css/lavish-bootstrap.css" />-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css" />
+        <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js"></script>
+        <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
+        <title>National Institutes of Health - National Institute of Biomedical Imaging and Bioengineering - Quantitative Medical Imaging - MRI Atlases</title>
+        <script src="js/vendor/bootstrap-min.js"></script>
+        <script src="js/vendor/jquery1124-min.js"></script>        
+        <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery-migrate-121-min.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery-1110-min.js"></script>
+        <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
+        <script type="text/javascript" src="js/vendor/papaparse.js"></script>
+        <script type="text/javascript" src="js/typeahead.js"></script>
+        <script type="text/javascript" src="js/UIManager.js"></script>                
+        <script type="text/javascript" src="js/vendor/chartjs-2.7.0/Chart.bundle.min.js"></script>
+        <script type="text/javascript" src="js/ChartHelper.js"></script>                
+        <script type="text/javascript" src="js/JsPaint.js"></script>
+    </head>        
+    <body>       
+       
+                        
+            <div class="col-sm-8">
+                <div class="row">
+                    <div id="PaintArea" class="container-fluid">
+                        <div id="paint-app"></div>
+                </div>
+            </div>                            
+
+
+        <script type="text/javascript">
+            var params  = [];
+            var params1 = [];
+            var params2 = [];
+            var params3 = [];
+            var params4 = [];  
+            
+            var pjs = new JsPaint();
+            
+            var appDiv = document.querySelector('#paint-app');
+            pjs.createPaint(appDiv);
+            
+            
+            var ch = new ChartHelper();
+            var ui = new UIManager();            
+            ui.SetChartHelper(ch);            
+            var current_image ="";                     
+            var brain_region_struct = {};            
+            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com                    
+            $(document).ready(function(){
+
+             $('body').css('background-image', 'url(' + imageUrl + ')');                                
+                 
+
+                //ui.FetchBrainRegionData(); 
+            });
+        </script>        
+    </body>
+</html>

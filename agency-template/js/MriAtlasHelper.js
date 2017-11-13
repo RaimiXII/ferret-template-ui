@@ -4,6 +4,7 @@ var MriAtlasHelper = function(){
     var modal_projects;
     var grid_projects;
     var members;
+    var bindings;
     
     var Init = function()
     {
@@ -11,6 +12,36 @@ var MriAtlasHelper = function(){
         modal_projects = {};
         grid_projects = {};
         members = {};
+        this.bindings = {};
+        
+        
+        
+    };
+    
+    var BindAction = function(div, txt)
+    {
+        $(div).click(function(event){            
+                console.log(""+txt);   
+                
+                $("#landingContent").hide();
+                
+                $("#projectContent").html()                
+                $("#projectContent").append([
+                    bh.Div({'class':"row"}).append([
+                        bh.IFrame({'class': "col-lg-12 col-md-12 col-sm-12", 'src': txt, 'width':"100w", 'height':"100vh",'frameborder':"0"})
+                    ])
+                ]);
+                $("#projectContent").show();
+                //$("#mhead").hide();
+        });
+    };    
+    
+    var SetupBindings = function()
+    {
+        var ks = Object.keys(this.bindings);
+        for(var i=0; i < ks.length; i++){
+            this.BindAction(ks[i], this.bindings[ks[i]]);           
+        }  
     };
     
     var Generate = function()
@@ -35,6 +66,10 @@ var MriAtlasHelper = function(){
         
         //  build footer
         this.BuildFooter();
+
+        //  setup bindings
+       this.SetupBindings();
+
     };
     
     
@@ -42,7 +77,7 @@ var MriAtlasHelper = function(){
     {
         var g_div = info['grid_div'];
         var m_div = info['modal_div'];
-        var p_div = info['project_div'];
+        var page_url = info['project_url'];
         var name = info['name'];
         var img_full = info['image'];
         var img_thumb= info['thumbnail'];
@@ -76,10 +111,11 @@ var MriAtlasHelper = function(){
                                     ]),
                                     bh.Paragraph({'text':"Based on the work :"}),
                                     bh.Paragraph({'class':"text-muted",'text':cite}),                                   
-                                    
-                                    bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Explore", 'id':p_div}).append([
-                                        bh.Icon({'class':"fa fa-play"})
-                                    ]),
+
+                                        bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Explore",'id': g_div.split('#')[1]+"_explore"}).append([
+                                            bh.Icon({'class':"fa fa-play"})
+                                        ]),
+
                                     bh.Header({'order':'5','text':"  "}),
                                      bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Go Back"}).append([
                                         bh.Icon({'class':"fa fa-times"})
@@ -105,6 +141,10 @@ var MriAtlasHelper = function(){
                 bh.Paragraph({'class':"text-muted",'text':short_desc})
             ])
         ];
+        
+        
+        
+        this.bindings[g_div+"_explore"] = [(page_url)];
         
     };
     
@@ -137,6 +177,9 @@ var MriAtlasHelper = function(){
         for(var i=0; i< ks2.length; i++){
             $(ks2[i]).append(grid_projects[ks2[i]]);
         }         
+        
+        
+        
     };
     
     var BuildAllTeamMembers = function()
@@ -326,16 +369,18 @@ var MriAtlasHelper = function(){
     {
         $("#mainNav").append([
             bh.Div({'class':"container"}).append([
-                bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"#page-top",'text':"Homepage"}),
+                bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"#page-top",'text':"Home",'id':"homeButton"}),
                 bh.Button({'class':"navbar-toggler navbar-toggler-right", 'type':"button", 'data-toggle':"collapse", 'data-target':"#navbarResponsive", 'aria-controls':"navbarResponsive", 'aria-expanded':"false", 'aria-label':"Toggle navigation"}).append([
                     $('Menu'),
                     bh.Icon({'class':"fa fa-bars"}),
                 ]),
                 bh.Div({'class':"collapse navbar-collapse", 'id':"navbarResponsive"}).append([
                     bh.UnorderedList({'class':"navbar-nav text-uppercase ml-auto"}).append([
+                        /*
                         bh.ListItem({'class':"nav-item"}).append([
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#services",'text':"Services"})
                         ]),
+                        */
                         bh.ListItem({'class':"nav-item"}).append([
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#portfolio",'text':"Projects"})
                         ]),
@@ -385,6 +430,8 @@ var MriAtlasHelper = function(){
     return {
         Init:Init,
         Generate:Generate,
+        BindAction:BindAction,
+        SetupBindings:SetupBindings,
         AddProject:AddProject,
         AddTeamMember:AddTeamMember,
         BuildAllProjects:BuildAllProjects,

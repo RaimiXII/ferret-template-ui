@@ -42,6 +42,11 @@ var BootstrapHelper = function(){
         return $(FormatArgStr(params));
     };
     
+    var IFrame = function(params){
+        params['tag'] = "iframe";
+        return $(FormatArgStr(params));
+    };
+    
     var Image = function(params){
         params['tag'] = "img";
         return $(FormatArgStr(params));
@@ -84,6 +89,7 @@ var BootstrapHelper = function(){
         Form:Form,
         Header:Header,
         Icon:Icon,
+        IFrame:IFrame,
         Image:Image,
         Input:Input,
         ListItem:ListItem,

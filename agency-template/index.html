@@ -21,57 +21,65 @@
   <body id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"></nav>
-    <!-- Header -->
+    
+    
     <header class="masthead"><div class="container" id="mhead"></div></header>
-    <!-- Services     
-    <section class="bg-light" id="services"> </section>
-    -->
-    <!-- Project Grid -->
-    <section id="portfolio">    
-        <div class="container">
-            <div class="row">
-              <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Projects</h2>
-                <h3 class="section-subheading text-muted">Click on a project below to learn more and explore.</h3>
-              </div>
-            </div>
-            <div class="row">                
-                <div class="col-md-4 col-sm-6 portfolio-item" id="project1"></div>
-                <div class="col-md-4 col-sm-6 portfolio-item" id="project2"></div>
-                <div class="col-md-4 col-sm-6 portfolio-item" id="project3"></div>                          
-            </div>
-        </div>    
-    </section>
-    <!-- About 
-    <section id="about"></section>
-    -->
-    <!-- Team -->
-    <section class="bg-light" id="team">
-        <div class="container">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">MRI Atlases Team</h2>
-                <h3 class="section-subheading text-muted">Meet the contributors to the NIH MRI Atlases online exploration tool!</h3>
-            </div>
-            <div class="row">
-                <div class="col-sm-4" id="member1"></div>
-                <div class="col-sm-4" id="member2"></div>
-                <div class="col-sm-4" id="member3"></div>
-                <div class="col-sm-4" id="member4"></div>
-            </div>
-            <div class="col-lg-8 mx-auto text-center">
-                <p class="large text-muted">The core contributors are members of NIH NIBIB QMI section, Bethesda Maryland.</p>
+    <div id="projectContent" class="embed-responsive embed-responsive-16by9" width="100vw" height="100vh"></div>
+    <div id="landingContent">
+    
+        <!-- Header -->
+        
+        <!-- Services     
+        <section class="bg-light" id="services"> </section>
+        -->
+        <!-- Project Grid -->
+        <section id="portfolio">    
+            <div class="container">
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Projects</h2>
+                    <h3 class="section-subheading text-muted">Click on a project below to learn more and explore.</h3>
+                  </div>
+                </div>
+                <div class="row">                
+                    <div class="col-md-4 col-sm-6 portfolio-item" id="project1"></div>
+                    <div class="col-md-4 col-sm-6 portfolio-item" id="project2"></div>
+                    <div class="col-md-4 col-sm-6 portfolio-item" id="project3"></div>                          
+                </div>
             </div>    
-        </div>    
-    </section>
-    <!-- Contact -->
-    <section id="contact"></section>
-    <!-- Footer -->
-    <footer> <div id="d_footer"></div> </footer>
-    <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="project1_more" tabindex="-1" role="dialog" aria-hidden="true"></div>    
-    <div class="portfolio-modal modal fade" id="project2_more" tabindex="-1" role="dialog" aria-hidden="true"></div>
-    <div class="portfolio-modal modal fade" id="project3_more" tabindex="-1" role="dialog" aria-hidden="true"></div>
-
+        </section>
+        <!-- About 
+        <section id="about"></section>
+        -->
+        <!-- Team -->
+        <section class="bg-light" id="team">
+            <div class="container">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">MRI Atlases Team</h2>
+                    <h3 class="section-subheading text-muted">Meet the contributors to the NIH MRI Atlases online exploration tool!</h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" id="member1"></div>
+                    <div class="col-sm-4" id="member2"></div>
+                    <div class="col-sm-4" id="member3"></div>
+                    <div class="col-sm-4" id="member4"></div>
+                </div>
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="large text-muted">The core contributors are members of NIH NIBIB QMI section, Bethesda Maryland.</p>
+                </div>    
+            </div>    
+        </section>
+        <!-- Contact -->
+        <section id="contact"></section>
+        <!-- Footer -->
+        <footer> <div id="d_footer"></div> </footer>
+        <!-- Portfolio Modals -->
+        <div class="portfolio-modal modal fade" id="project1_more" tabindex="-1" role="dialog" aria-hidden="true"></div>    
+        <div class="portfolio-modal modal fade" id="project2_more" tabindex="-1" role="dialog" aria-hidden="true"></div>
+        <div class="portfolio-modal modal fade" id="project3_more" tabindex="-1" role="dialog" aria-hidden="true"></div>
+        
+    </div>
+    
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -89,13 +97,12 @@
     <script type="text/javascript">    
     
         $(document).ready (function(){
-            console.log("and here we go.")
             var mh = MriAtlasHelper();
-            mh.Init();
-            
+            mh.Init();            
             //  ferret ui
             mh.AddProject({     'modal_div':"#project1_more",
                                 'grid_div':"#project1",
+                                'project_url': "ferret-project/Web/index.html",
                                 'name':'Ferret Template',
                                 'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
                                 'species':'Ferret',
@@ -111,6 +118,7 @@
             //  human brainstem                 
             mh.AddProject({     'modal_div':"#project2_more",
                                 'grid_div':"#project2",
+                                'project_url': "ferret-project/Web/old_minimal_index.html",
                                 'name':'Human Brainstem',
                                 'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
                                 'species':'Human',
@@ -126,6 +134,7 @@
             //  aging project
             mh.AddProject({     'modal_div':"#project3_more",
                                 'grid_div':"#project3",
+                                'project_url': "ferret-project/Web/index_drawing.html",
                                 'name':'HCP Aging Study',
                                 'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
                                 'species':'Human',
@@ -165,8 +174,19 @@
                                 'website': "https://www.researchgate.net/profile/Jeffrey_Jenkins9"});
                                 
             //  build page content
-            mh.Generate();                                      
+            mh.Generate();
+            
+            $("#homeButton").click(function(event){
+                $("#projectContent").hide();
+                $("#landingContent").show();
+            });
+            
+           // $("#projectContent").hide();
+           $("#projectContent").hide();
+            
         });    
+        
+         
                     
     </script>
   </body>

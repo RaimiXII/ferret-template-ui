@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<atlas version="1.0">
+  <header>
+    <name>Ferret Atlas</name>
+    <type>Label</type>
+    <images>
+        <imagefile>evDTI_SEGMENTATION</imagefile>
+        <summaryimagefile>evDTI_SEGMENTATION</summaryimagefile>
+    </images>
+    <display>*.</display> 
+  </header>
+  <data>
+    <label> :</label>
+    <label index="1">White Matter</label>
+    <label index="2">Gray Matter</label>
+    <label index="3">Corpus Callosum</label>
+    <label index="4">Cingulum</label>
+    <label index="5">Fornix</label>
+    <label index="6">Anterior Commisure</label>
+    <label index="7">Optic Tract</label>
+    <label index="8">Corticospinal Tract</label>
+    <label index="9">Cortex White Matter</label>
+    <label index="10">Lateral Olfactory Tract</label>
+    <label index="11">Brainstem White Matter</label>
+    <label index="12">Cerebellum White Matter</label>
+    <label index="13">Midbrain White Matter</label>
+    <label index="21">Olfactory Bulb</label>
+    <label index="22">Cerebellum Gray Matter</label>
+    <label index="23">Brainstem Gray Matter</label>
+    <label index="24">Inferior Colliculus</label>
+    <label index="25">Superior Colliculus</label>
+    <label index="26">Periaqueductal Gray Matter</label>
+    <label index="27">Midbrain Gray Matter</label>
+    <label index="28">Thalamus</label>
+    <label index="29">Hippocampus</label>
+    <label index="30">Hypothalamus</label>
+    <label index="31">Globus Pallidus</label>
+    <label index="32">Putamen</label>
+    <label index="33">Caudate</label>
+    <label index="34">Septum</label>
+    <label index="35">Amygdala</label>
+    <label index="40">Orbital Gyrus</label>
+    <label index="41">Anterior Sigmoid Gyrus</label>
+    <label index="42">Posterior Sigmoid Gyrus</label>
+    <label index="43">Coronal Gyrus</label>
+    <label index="44">Anterior Ectosylvian Gyrus</label>
+    <label index="45">Posterior Ectosylvian Gyrus</label>
+    <label index="46">Lateral Gyrus</label>
+    <label index="47">Suprasylvian Gyrus</label>
+    <label index="48">Piriform Lobe</label>
+    <label index="49">Gyrus Rectus</label>
+    <label index="50">Olfactory Tubercle</label>
+    <label index="51">Cingulate Gyrus</label>
+    <label index="60">Presylvian Sulcus</label>
+    <label index="61">Cruciate Sulcus</label>
+    <label index="62">Splenial Sulcus</label>
+    <label index="63">Longitudinal Fissure</label>
+    <label index="64">Coronal Sulcus</label>
+    <label index="65">Ansinate Sulcus</label>
+    <label index="66">Lateral Sulcus</label>
+    <label index="67">Suprasylvian Sulcus</label>
+    <label index="68">Pseudosylvian Sulcus</label>
+    <label index="69">Rhinal Fissure</label>
+  </data>
+</atlas>
+

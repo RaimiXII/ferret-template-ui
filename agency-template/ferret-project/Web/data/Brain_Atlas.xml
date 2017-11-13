@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<atlas version="1.0">
+  <header>
+    <name>Ferret Atlas</name>
+    <type>Label</type>
+    <images>
+        <imagefile>/js/papaya/Papaya-master/data/evDTI_SEGMENTATION</imagefile>
+        <summaryimagefile>/js/papaya/Papaya-master/data/evDTI_SEGMENTATION</summaryimagefile>
+    </images>
+    <display>*.</display> 
+  </header>
+  <data>
+    <label> :</label>
+    <label index="1">White Matter</label>
+    <label index="2">Gray Matter</label>
+  </data>
+</atlas>
