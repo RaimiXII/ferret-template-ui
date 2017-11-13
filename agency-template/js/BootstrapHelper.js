@@ -8,7 +8,6 @@ var BootstrapHelper = function(){
         var _xtra= '';
         for(var i=0; i < ks.length; i++){
             if(ks[i] == 'tag'){}
-            //else if(ks[i] == 'type'){}
             else{
                 if(ks[i]=='text'){_txt = params['text'];}
                 if(ks[i]=='extra'){_xtra=params['extra'];}
@@ -76,8 +75,7 @@ var BootstrapHelper = function(){
     var UnorderedList = function(params){
         params['tag'] = "ul";
         return $(FormatArgStr(params));
-    };
-    
+    };    
 
     return {
         Anchor:Anchor,
