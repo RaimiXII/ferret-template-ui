@@ -259,7 +259,8 @@ var UIManager = function(){
             console.log($form.serialize());
                         
             var data = {
-                name: dataz["first_name"] + " " + dataz["last_name"],
+                first_name: dataz["first_name"],
+                last_name: dataz["last_name"],
                 email: dataz["email"],
                 institution: dataz["institution"],
                 message: dataz["comment"]
@@ -267,7 +268,7 @@ var UIManager = function(){
             
             $.ajax({
                 type: "POST",
-                url: "/form_mailer.php",
+                url: "/mail/index.php",
                 dataType: 'text',
                 data: data,
                 success: function(data){
@@ -361,7 +362,8 @@ var UIManager = function(){
             console.log($form.serialize());
                         
             var data = {
-                name: dataz["first_name"] + " " + dataz["last_name"],
+                first_name: dataz["first_name"],
+                last_name: dataz["last_name"],
                 email: dataz["email"],
                 institution: dataz["institution"],
                 message: dataz["comment"]
@@ -369,7 +371,7 @@ var UIManager = function(){
             
             $.ajax({
                 type: "POST",
-                url: "/form_mailer.php",
+                url: "/mail/index.php",
                 dataType: 'text',
                 data: data,
                 success: function(data){
