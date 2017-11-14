@@ -1,461 +1,193 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">    
-    <head>    
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="css/mriatlases_layout.css" />
-        <script src="js/vendor/jquery-min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap337.min.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="stylesheet" type="text/css" href="js/papaya/Papaya-master/build/papaya.css" />
-        <script type="text/javascript" src="js/papaya/Papaya-master/build/papaya.js"></script>
-        <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
-        <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
-        <title>National Institutes of Health - National Institute of Biomedical Imaging and Bioengineering - Quantitative Medical Imaging - MRI Atlases</title>
-        <script src="js/vendor/bootstrap-min.js"></script>
-        <script src="js/vendor/jquery1124-min.js"></script>        
-        <script type="text/javascript" src="js/vendor/slick-1.6.0/slick/slick.min.js"></script>
-        <script type="text/javascript" src="js/vendor/jquery-migrate-121-min.js"></script>
-        <script type="text/javascript" src="js/vendor/jquery-1110-min.js"></script>
-        <script type="text/javascript" src="js/vendor/bootstrap-slider.js"></script>
-        <script type="text/javascript" src="js/vendor/BootstrapValidator.min.js"></script>
-        <script type="text/javascript" src="js/vendor/papaparse.js"></script>
-        <script type="text/javascript" src="js/typeahead.js"></script>
-        <script type="text/javascript" src="js/UIManager.js"></script>                
-        <script type="text/javascript" src="js/vendor/chartjs-2.7.0/Chart.bundle.min.js"></script>
-        <script type="text/javascript" src="js/ChartHelper.js"></script>                
-        <script type="text/javascript" src="js/ContextManager.js"></script>
-    </head>        
-    <body>       
-        <nav id="navi" class="navbar navbar-inverse" aria-label="nothing here">        
-          <div class="container-fluid"  >
-            <div class="navbar-header">              
-            
-            <div class="navbar-brand"></div>
-              <a class="navbar-brand dropdown-toggle " href="#" data-toggle="dropdown">MRI Atlases Menu<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                 <li id="home_screen"><a href="#">Home</a></li>
-                 <li id="visualization_screen"><a href="#">View Templates</a></li>
-                 <li id="about_screen"><a href="#">About</a></li>                        
-              </ul>
-            </div>
-            <ul class="nav navbar-nav navbar-inverse">
-              <li class="active"><a href="#"><div id="current_service">Home</div></a></li>
-              <li id="visualization_templates">Templates<span class="caret"></span></li>
-              <li id="about_templates">About<span class="caret"></span>                                        
-              </li>
-              
-            </ul>
-            <div class="nav navbar-nav pull-left"><a href="https://www.nibib.nih.gov"><img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" style="height:1.5vw; width9vw;" /></a></div>
-          </div>          
-          
-        </nav>        
-        <div id="bannerBox" class="pager" style="width:100%;margin:0">
-            <img src="img/banner_full.png" alt="Ferret brain web viewer main banner." style="width:100%;" />
-            <div id="attentionMessage" class="list-group">
-              <a class="list-group-item active-inverse">
-                <div class="jumbotron">
-                    <p class="list-group-item-heading"><h1>Welcome to the NIH MRI atlases page</h1></p>
-                    <p class="list-group-item-text">This website is supported by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH.</p>
-                    <p class="list-group-item-text">We are a group of scientists who develop methods for processing and analyzing images of the brain.</p>                    
-                    <p class="list-group-item-text">We have developed tools to morph individual brains into an average brain representation of the population, as well as tools to extract an average brain from a series of individual brains.</p>
-                    <p class="list-group-item-text">The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.</p>
-                    <p class="list-group-item-text"></p>
-                    <p class="list-group-item-text">We would be grateful to experts who would like to contribute in the identification of anatomical regions and annotating the atlases.</p>
-                    <button class="btn btn-primary list-group-item-text" id="about_page_button">Get the Data</button>
-                    <p class="list-group-item-text"></p>
-                    <p class="list-group-item-text"></p>
-                </div>
-              </a>
-            </div>
-        </div>                           
-        <!--            LEFT NAV BAR            -->     
-        <div class="container-fluid" id="template_content">                                  
-            <div id="template_nav1" class="row">
-                <div class="col-sm-2">
-                    <ul class="nav nav-list tree well well-sm">
-                        <li>
-                            <span class="badge pull-right tree-toggle nav nav-inverse">21</span>
-                            <label class="tree-toggle nav-header" id="ferret_atlas">Ferret Templates</label>
-                            <ul class="nav nav-list tree well well-sm ">
-                                <li  >
-                                    <span class="badge pull-right tree-toggle nav">14</span>
-                                    <label class="tree-toggle nav-header ">Ex-Vivo</label>
-                                    <ul id="evdti_navtree" class="nav nav-list tree well well-sm">
-                                        <li>
-                                            <span class="badge pull-right tree-toggle nav">3</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Diffusion Tensor Imaging Maps">DTI </label>
-                                            <ul id="evdti_tree" class="nav nav-list tree sub">
-                                                <li id="ex_vivo_dti_fa"><a href="#" data-toggle="tooltip" title="Fractional Anisotropy">FA</a></li>
-                                                <li id="ex_vivo_dti_tr"><a href="#">Trace</a></li>
-                                                <li id="ex_vivo_dti_dec"><a href="#" data-toggle="tooltip" title="Directionally Encoded Color (DEC) map">DEC</a></li>                                                
-                                            </ul>
-                                        </li>
-                                    </ul>                                                                                           
-                                    <ul id="evt2_navtree" class="nav nav-list tree well well-sm">
-                                        <li  >
-                                            <span class="badge pull-right tree-toggle nav">10</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">T2 Weighted </label>
-                                            <ul id="evt2_tree" class="nav nav-list tree sub">
-                                                <li id="ex_vivo_T2_10"><a href="#">10 ms</a></li>
-                                                <li id="ex_vivo_T2_20"><a href="#">20 ms</a></li>
-                                                <li id="ex_vivo_T2_30"><a href="#">30 ms</a></li>                                                
-                                                <li id="ex_vivo_T2_40"><a href="#">40 ms</a></li>   
-                                                <li id="ex_vivo_T2_50"><a href="#">50 ms</a></li>   
-                                                <li id="ex_vivo_T2_60"><a href="#">60 ms</a></li>   
-                                                <li id="ex_vivo_T2_70"><a href="#">70 ms</a></li>   
-                                                <li id="ex_vivo_T2_80"><a href="#">80 ms</a></li>   
-                                                <li id="ex_vivo_T2_90"><a href="#">90 ms</a></li>   
-                                                <li id="ex_vivo_T2_100"><a href="#">100 ms</a></li>   
-                                            </ul>
-                                        </li>                                     
-                                    </ul>
-                                    <ul id="evseg_navtree" class="nav nav-list tree well well-sm">
-                                        <li  >
-                                            <span class="badge pull-right tree-toggle nav">1</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">Segmentation</label>
-                                            <ul id="evseg_tree" class="nav nav-list tree sub">
-                                                <li id="ev_dti_segmentation"><a href="#" data-toggle="tooltip" title="Parcellation of ex-vivo DTI into uniquely colored ROIs">Base Annotations</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <span class="badge pull-right tree-toggle nav">7</span>
-                                    <label class="tree-toggle nav-header ">In-Vivo</label>
-                                    <ul id="ivdti_navtree" class="nav nav-list tree well well-sm ">
-                                        <li >
-                                            <span class="badge pull-right tree-toggle nav">3</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Diffusion Tensor Imaging Maps">DTI </label>
-                                            <ul id="ivdti_tree" class="nav nav-list tree sub">
-                                                <li id="in_vivo_dti_fa"><a href="#" data-toggle="tooltip" title="Fractional Anisotropy">FA</a></li>
-                                                <li id="in_vivo_dti_tr"><a href="#">Trace</a></li>
-                                                <li id="in_vivo_dti_dec"><a href="#" data-toggle="tooltip" title="Directionally Encoded Color (DEC) map">DEC</a></li>                                         
-                                            </ul>
-                                        </li>
-                                    </ul>                                                
-                                    <ul id="ivt2_navtree" class="nav nav-list tree well well-sm">
-                                        <li  >
-                                            <span class="badge pull-right tree-toggle nav">4</span>
-                                            <label class="tree-toggle nav" data-toggle="tooltip" title="Echo Time (milliseconds)">T2 Weighted </label>
-                                            <ul id="ivt2_tree" class="nav nav-list tree sub">
-                                                <li id="in_vivo_T2_12"><a href="#">12 ms</a></li>
-                                                <li id="in_vivo_T2_36"><a href="#">36 ms</a></li>
-                                                <li id="in_vivo_T2_60"><a href="#">60 ms</a></li>                                                
-                                                <li id="in_vivo_T2_84"><a href="#">84 ms</a></li>       
-                                            </ul>
-                                        </li>                                     
-                                    </ul>
-                                </li>                                   
-                            </ul>
-                        </li>
-                    </ul>                
-                </div>                        
-                <div class="col-sm-8" id="MRI_area1">
-                    <div class="jumbotron" id="view_container" >                                                               
-                        <div id="ex_vivo_dti_viewer" style="width:58vw;">
-                            <div id="papaya1" class="papaya" data-params="params1"></div>
-                        </div>
-                        <div id="in_vivo_dti_viewer" style="width:58vw;">
-                            <div id="papaya2" class="papaya" data-params="params2"></div>
-                        </div>
-                        <div id="ex_vivo_t2_viewer" style="width:58vw;">
-                            <div id="papaya3" class="papaya" data-params="params3"></div>
-                        </div>
-                        <div id="in_vivo_t2_viewer" style="width:58vw;">
-                            <div id="papaya4" class="papaya" data-params="params4"></div>
-                        </div>                            
-                    </div>
-                </div>                            
-                <!--            RIGHT NAV BAR            -->                
-                <div class="col-sm-2" >                                  
-                    <div id="template_nav2">
-                        <ul class="nav nav-list tree well well-lg">
-                            <li>
-                                <label class="tree-toggle nav-header " for="query">Search for an ROI:
-                                    <input type="text" class="form-control" title="query" aria-label="search bar" name="query" id="query" placeholder="Enter ROI name"/>
-                                </label>
-                                <span class="input-group-btn">
-                                    <button id="search_roi" class="btn btn-success" type="button">Go</button>
-                                </span> 
-                                <br/>
-                            </li>
-                            <li>
-                                <label>Select quantitative map</label>
-                                <div class="btn-group" data-toggle="buttons">
-                                  <label id="modality_ev_roi" class="btn btn-primary active">
-                                    <input type="radio" name="options" id="option2" autocomplete="off" checked="true"> ROI</input>
-                                  </label>
-                                  <label id="modality_fa" class="btn btn-primary">
-                                    <input type="radio" name="options" id="option1" autocomplete="off"> FA </input>
-                                  </label>
-                                  <label id="modality_tr" class="btn btn-primary">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> TR </input>
-                                  </label>                                  
-                                </div>
-                            </li>
-                            <li>
-                                <label class="tree-toggle nav-header " id="atlas_analysis">Measurement Tools</label>
-                                <ul class="nav nav-list tree well well-sm sub">                                           
-                                    <li>
-                                        <label class="tree-toggle nav-header ">Statistics</label>
-                                        <ul class="nav nav-list tree sub">
-                                            <li id="roi_stats" class="well well-sm">
-                                                    <div id="img_description"></div>
-                                                    <div id="voxel_value"></div>
-                                                    <div id="current_roi"></div>
-                                                    <div id="roi_volume"></div>
-                                                    <div id="roi_mean"></div>
-                                                    <div id="roi_std_dev"></div>
-                                                    <div id="roi_description"></div>
-                                            </li>                                                                                        
-                                        </ul>
-                                    </li>       
-                                    <li id="histogram_container" >
-                                        <label id="histogram_container" class="tree-toggle nav-header ">Histogram</label>
-                                        <ul class="nav nav-list tree sub">
-                                            <li id="plot_area">
-                                                <canvas id="RoiChart"></canvas>
-                                            </li>                                                                                         
-                                        </ul>
-                                    </li>                                     
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>    
-                </div>   
-            </div>
-       </div>
-       
-       <div class="col-sm-8 col-sm-push-2 container-fluid" id="about_containter">
-        <div class="jumbotron" id="about_content"  style="width:58vw;">            
-        </div>
-       </div>
-       
-       <div id="form_modal" class="modal fade ">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">MRI Atlases</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true"></span>
-                    </button>
-                  </div>
-                  <div id="modal_body_content" class="modal-body">
-                  <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-        <fieldset>
-        <!-- Form Name -->
-        <legend>Data request form</legend>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="first_name">First Name</label>  
-          <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input  id="first_name" name="first_name" placeholder="First Name" class="form-control"  type="text"/>
-            </div>
-          </div>
-        </div>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="first_name">Last Name</label> 
-            <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="last_name" name="last_name" placeholder="Last Name" class="form-control"  type="text"/>
-            </div>
-          </div>
-        </div>
-        <!-- Text input-->
-               <div class="form-group">
-          <label class="col-md-4 control-label" for="email">E-Mail</label>  
-            <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-          <input id="email" name="email" placeholder="E-Mail Address" class="form-control"  type="text"/>
-            </div>
-          </div>
-        </div>       
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="institution">Institution</label>  
-           <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-          <input id="institution" name="institution" placeholder="Institution name" class="form-control" type="text"/>
-            </div>
-          </div>
-        </div>
-        <!-- Text area -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="message">Usage Description: </label>
-            <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                	<textarea id="comment" class="form-control" name="comment" placeholder="Usage Description..."></textarea>
-          </div>
-          </div>
-        </div>
-        <!-- Success message -->       
-        <div class="alert alert-success" role="alert" id="success_message_request">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
-        <!-- Button -->
-        <div class="form-group">
-          <label class="col-md-4 control-label"></label>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-          </div>
-        </div>
-        </fieldset>
-        </form>
-        </div>
-        </div>
-        </div>
-        </div>
-        
-        <!-- roi feedback form -->>
-        <div id="feedback_modal" class="modal fade ">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">MRI Atlases</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true"></span>
-                    </button>
-                  </div>
-                  <div id="modal_body_content" class="modal-body">
-                  <form class="well form-horizontal" action=" " method="post"  id="feedback_form">
-        <fieldset>
-        <!-- Form Name -->
-        <legend>ROI Feedback form</legend>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="first_name">First Name</label>  
-          <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input  id="first_name" name="first_name" placeholder="First Name" class="form-control"  type="text"/>
-            </div>
-          </div>
-        </div>
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="first_name">Last Name</label> 
-            <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="last_name" name="last_name" placeholder="Last Name" class="form-control"  type="text"/>
-            </div>
-          </div>
-        </div>
-        <!-- Text input-->
-               <div class="form-group">
-          <label class="col-md-4 control-label" for="email">E-Mail</label>  
-            <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-          <input id="email" name="email" placeholder="E-Mail Address" class="form-control"  type="text"/>
-            </div>
-          </div>
-        </div>       
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="institution">Institution</label>  
-           <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-          <input id="institution" name="institution" placeholder="Institution name" class="form-control" type="text"/>
-            </div>
-          </div>
-        </div>
-        <!-- Text area -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="message">ROI Description: </label>
-            <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                	<textarea id="comment" class="form-control" name="comment" placeholder="<ROI Name> &nbsp;- <ROI Description...>"></textarea>
-          </div>
-          </div>
-        </div>
-        <!-- Success message -->       
-        <div class="alert alert-success" role="alert" id="success_message_roi">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for submitting your suggestion, we will get back to you shortly.</div>
-        <!-- Button -->
-        <div class="form-group">
-          <label class="col-md-4 control-label"></label>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-          </div>
-        </div>
-        </fieldset>
-        </form>
-        </div>
-        </div>
-        </div>
-        </div>
-        
-
-    <!-- /.container -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MRI Atlases - NIH-NIBIB-QMI</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="css/agency_blue.css" rel="stylesheet">    
+  </head>
+  
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"></nav>
     
-        <div id="loading" class="centered">
-            <div class="loading spin-1">
-                <div class="loading spin-2">
-                    <div class="loading spin-3">
-                        <div class="loading spin-4">
-                            <div class="loading spin-5">
-                                <div class="loading spin-6"></div>
-                            </div>            
-                        </div>            
-                    </div>            
-                </div>            
-            </div>            
-        </div>
-        <script type="text/javascript">
-            var params  = [];
-            var params1 = [];
-            var params2 = [];
-            var params3 = [];
-            var params4 = [];  
-            var ch = new ChartHelper();
-            var ui = new UIManager();            
-            var ctx = new ContextManager();
-            ui.SetChartHelper(ch);            
-            ctx.SetChartHelper(ch);
-            var current_image ="";                     
-            var brain_region_struct = {};            
-            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
-            $(document).ready(function(){
-            $('ul.sub').hide();
-             $('body').css('background-image', 'url(' + imageUrl + ')');                                
-                ui.hideDivs([
-                      "#ex_vivo_dti_viewer",
-                      "#in_vivo_dti_viewer",
-                      "#ex_vivo_t2_viewer",
-                      "#in_vivo_t2_viewer",                                    
-                      "#navi", 
-                      "#MRI_area1", 
-                      "#visualization_templates", 
-                      "#bannerBox",  
-                      "#template_content",     
-                      "#template_nav2",
-                      "#histogram_container",
-                      "#roi_volume", "#roi_mean", "#roi_std_dev",
-                      "#about_containter", "#success_message_request",
-                      "#success_message_roi",
-                ]);                
-                //  tbd change 300 to screen height derived percentage
-                ch.CreateChart("RoiChart", 300);  
-                setTimeout(function(){
-                    ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
-                }, 3000);         
-                ui.FetchBrainRegionData(); 
+    
+    <header class="masthead"><div class="container" id="mhead"></div></header>
+    <div id="projectContent" class="embed-responsive embed-responsive-16by9" width="100vw" height="100vh"></div>
+    <div id="landingContent">
+    
+        <!-- Header -->
+        
+        <!-- Services     
+        <section class="bg-light" id="services"> </section>
+        -->
+        <!-- Project Grid -->
+        <section id="portfolio">    
+            <div class="container">
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Projects</h2>
+                    <h3 class="section-subheading text-muted">Click on a project below to learn more and explore.</h3>
+                  </div>
+                </div>
+                <div class="row">                
+                    <div class="col-md-4 col-sm-6 portfolio-item" id="project1"></div>
+                    <div class="col-md-4 col-sm-6 portfolio-item" id="project2"></div>
+                    <div class="col-md-4 col-sm-6 portfolio-item" id="project3"></div>                          
+                </div>
+            </div>    
+        </section>
+        <!-- About 
+        <section id="about"></section>
+        -->
+        <!-- Team -->
+        <section class="bg-light" id="team">
+            <div class="container">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">MRI Atlases Team</h2>
+                    <h3 class="section-subheading text-muted">Meet the contributors to the NIH MRI Atlases online exploration tool!</h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" id="member1"></div>
+                    <div class="col-sm-4" id="member2"></div>
+                    <div class="col-sm-4" id="member3"></div>
+                    <div class="col-sm-4" id="member4"></div>
+                </div>
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="large text-muted">The core contributors are members of NIH NIBIB QMI section, Bethesda Maryland.</p>
+                </div>    
+            </div>    
+        </section>
+        <!-- Contact -->
+        <section id="contact"></section>
+        <!-- Footer -->
+        <footer> <div id="d_footer"></div> </footer>
+        <!-- Portfolio Modals -->
+        <div class="portfolio-modal modal fade" id="project1_more" tabindex="-1" role="dialog" aria-hidden="true"></div>    
+        <div class="portfolio-modal modal fade" id="project2_more" tabindex="-1" role="dialog" aria-hidden="true"></div>
+        <div class="portfolio-modal modal fade" id="project3_more" tabindex="-1" role="dialog" aria-hidden="true"></div>
+        
+    </div>
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Contact form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>        
+    <!-- Custom scripts site -->
+    <script src="js/BootstrapHelper.js"></script>    
+    <script src="js/MriAtlasHelper.js"></script>   
+    
+    <script type="text/javascript">    
+    
+        $(document).ready (function(){
+            var mh = MriAtlasHelper();
+            mh.Init();            
+            //  ferret ui
+            mh.AddProject({     'modal_div':"#project1_more",
+                                'grid_div':"#project1",
+                                'project_url': "ferret-project/Web/index.html",
+                                'name':'Ferret Template',
+                                'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
+                                'species':'Ferret',
+                                'image':"img/portfolio/ferret-full.jpg",
+                                'thumbnail':"img/portfolio/ferret-thumbnail.jpg",
+                                'modalities':['ex-vivo','in-vivo'],
+                                'description_short':'A collection of whole-brain diffusion relaxometry templates.',
+                                'description_long':'This is a collection of in-vivo and ex-vivo Ferret templates.  \
+                                ROI segmentation has been performed and ...please insert more text here about \
+                                specifics for this project...',
+                                'citation':"Hutchinson, E.B.; Schwerin, S.C.; Radomski, K.L.; Sadeghi, N.; Jenkins, J.; Komlosh, M.E.; Irfanoglu, M.O.; Juliano, S.L.; and Pierpaoli, C., \"Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis\" (2017). Uniformed Services University of the Health Sciences. 190."});
+            
+            //  human brainstem                 
+            mh.AddProject({     'modal_div':"#project2_more",
+                                'grid_div':"#project2",
+                                'project_url': "brainstem-project/Web/index.html",
+                                'name':'Human Brainstem',
+                                'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
+                                'species':'Human',
+                                'image':"img/portfolio/brainstem-full.jpg",
+                                'thumbnail':"img/portfolio/brainstem-thumbnail.jpg",
+                                'modalities':['ex-vivo'],
+                                'description_short':'A collection of brainstem templates.',
+                                'description_long':'This is a collection of ex-vivo Human brainstem templates.  \
+                                ROI segmentation has been performed and ...please insert more text here about \
+                                specifics for this project...',
+                                'ciatation':"n/a"});
+                                 
+            //  aging project
+            mh.AddProject({     'modal_div':"#project3_more",
+                                'grid_div':"#project3",
+                                'project_url': "aging-project/Web/index.html",
+                                'name':'HCP Aging Study',
+                                'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
+                                'species':'Human',
+                                'image':"img/portfolio/aging-full.png",
+                                'thumbnail':"img/portfolio/aging-thumbnail.jpg",
+                                'modalities':['in-vivo'],
+                                'description_short':'A collection of age specific templates.',
+                                'description_long':'This is a collection of in-vivo Human brain templates.  \
+                                Multiple age groups are represented in this image set.  ROI segmentation \
+                                has been performed and ...please insert more text here about specifics for this project...',
+                                'citation':"n/a"});
+                                                                
+            //  member 1
+            mh.AddTeamMember({  'div': "#member1",
+                                'name': "Elizabeth Hutchinson",
+                                'image': "img/team/eh.png",
+                                'description': "Neuroscientist - Ph.D. (HJF)",
+                                'website': "https://www.researchgate.net/profile/Elizabeth_Hutchinson"});
+                                
+            //  member 2
+            mh.AddTeamMember({  'div': "#member2",
+                                'name': "Carlo Pierpaoli",
+                                'image': "img/team/cp.jpg",
+                                'description': "Principal Investigator - M.D, Ph.D (NIH)",
+                                'website': "https://scholar.google.com/citations?user=sF8PNIIAAAAJ&hl=en"});      
+            //  member 3
+            mh.AddTeamMember({  'div': "#member3",
+                                'name': "Okan Irfanoglu",
+                                'image': "img/team/oi.jpg",
+                                'description': "Staff Scientist - Ph.D (NIH)",
+                                'website': "https://www.researchgate.net/profile/Mustafa_Irfanoglu"});        
+            //  member 4
+            mh.AddTeamMember({  'div': "#member4",
+                                'name': "Jeff Jenkins",
+                                'image': "img/team/jj.jpg",
+                                'description': "Computer Scientist - PhD. Candidate (CUA)",
+                                'website': "https://www.researchgate.net/profile/Jeffrey_Jenkins9"});
+                                
+            //  build page content
+            mh.Generate();
+            
+            $("#homeButton").click(function(event){
+                $("#projectContent").hide();
+                $("#landingContent").show();
             });
-        </script>        
-    </body>
+            
+           // $("#projectContent").hide();
+           $("#projectContent").hide();
+            
+        });    
+        
+         
+                    
+    </script>
+  </body>
 </html>
