@@ -360,7 +360,7 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"intro-heading text-uppercase", 'text':"MRI Atlases"}), 
                 bh.Div({'class':"intro-lead-in",'text':"An online MRI viewer"}),      
                 bh.Header({'order':"2",'text':"<br>"}),
-                bh.Anchor({'class':"btn btn-primary btn-xl text-uppercase js-scroll-trigger",'href':"#portfolio",'text':"Start Exploring"})
+                bh.Anchor({'class':"btn btn-primary btn-xl text-uppercase js-scroll-trigger",'href':"#portfolio",'text':"Start Exploring",'id':"start_exploring"})
             ])
         ]);     
     };
