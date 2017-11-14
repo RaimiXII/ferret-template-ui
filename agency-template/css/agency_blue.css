@@ -442,9 +442,14 @@ header.masthead {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../img/map-image.png");
+  background-image: url("../img/footer-bg.jpg"); /**http://wallpapers-best.com/uploads/posts/2015-10/11_black_abstract.jpg*/
   background-repeat: no-repeat;
-  background-position: center; }
+  background-attachment: scroll;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
   section#contact .section-heading {
     color: #fff; }
   section#contact .form-group {
