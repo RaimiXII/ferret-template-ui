@@ -22,18 +22,18 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"></nav>
     
+    <!-- Header -->    
     
     <header class="masthead"><div class="container" id="mhead"></div></header>
     <div id="projectContent" class="embed-responsive embed-responsive-16by9" width="100vw" height="100vh"></div>
     <div id="landingContent">
-    
-        <!-- Header -->
-        
         <!-- Services     
         <section class="bg-light" id="services"> </section>
-        -->
+        -->      
+        <!-- About  -->
+        <section id="about"></section>
         <!-- Project Grid -->
-        <section id="portfolio">    
+        <section class="bg-light" id="portfolio">    
             <div class="container">
                 <div class="row">
                   <div class="col-lg-12 text-center">
@@ -48,11 +48,9 @@
                 </div>
             </div>    
         </section>
-        <!-- About 
-        <section id="about"></section>
-        -->
+               
         <!-- Team -->
-        <section class="bg-light" id="team">
+        <section id="team">
             <div class="container">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">MRI Atlases Team</h2>
@@ -99,6 +97,17 @@
         $(document).ready (function(){
             var mh = MriAtlasHelper();
             mh.Init();            
+            /*
+        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
+        var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
+        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
+        var additional = '<p> with anatomical labels according to the book chapter: </p>';
+        var book_cite = '<p> Neuroanatomy of the Ferret Brain with Focus on the Cerebral Cortex by Christopher D. Kroenke, Brian D. Mills, Jaime F. Olavarria and Jeffrey J. Neil in the book Biology and Diseases of the Ferret, 2014.</p>';
+        var line = '<hr class="my-4">';
+        var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
+        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button;
+            */
             //  ferret ui
             mh.AddProject({     'modal_div':"#project1_more",
                                 'grid_div':"#project1",
@@ -125,12 +134,12 @@
                                 'image':"img/portfolio/brainstem-full.jpg",
                                 'thumbnail':"img/portfolio/brainstem-thumbnail.jpg",
                                 'modalities':['ex-vivo'],
-                                'description_short':'A collection of brainstem templates.',
+                                'description_short':'A collection of brainstem diffusion relaxometry templates.',
                                 'description_long':'This is a collection of ex-vivo Human brainstem templates.  \
                                 ROI segmentation has been performed and ...please insert more text here about \
                                 specifics for this project...',
                                 'ciatation':"n/a"});
-                                 
+        
             //  aging project
             mh.AddProject({     'modal_div':"#project3_more",
                                 'grid_div':"#project3",
@@ -141,7 +150,7 @@
                                 'image':"img/portfolio/aging-full.png",
                                 'thumbnail':"img/portfolio/aging-thumbnail.jpg",
                                 'modalities':['in-vivo'],
-                                'description_short':'A collection of age specific templates.',
+                                'description_short':'A collection of age specific templates acquired with the Connectome scanner.',
                                 'description_long':'This is a collection of in-vivo Human brain templates.  \
                                 Multiple age groups are represented in this image set.  ROI segmentation \
                                 has been performed and ...please insert more text here about specifics for this project...',

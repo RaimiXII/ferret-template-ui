@@ -12,23 +12,17 @@ var MriAtlasHelper = function(){
         modal_projects = {};
         grid_projects = {};
         members = {};
-        this.bindings = {};
-        
-        
-        
+        this.bindings = {};        
     };
     
     var BindAction = function(div, txt)
     {
         $(div).click(function(event){            
-                console.log(""+txt);   
-                
                 $("#landingContent").hide();
-                
                 $("#projectContent").html()                
                 $("#projectContent").append([
                     bh.Div({'class':"row"}).append([
-                        bh.IFrame({'class': "col-lg-12 col-md-12 col-sm-12", 'src': txt, 'width':"100w", 'height':"100vh",'frameborder':"0"})
+                        bh.IFrame({'class': "col-lg-12 col-md-12 col-sm-12", 'src': txt, 'width':"100w", 'height':"100vh",'frameborder':"0",'aria-tag':"This is an embedded portion of the page which links to content related to projects in NIH NIBIB QMI."})
                     ])
                 ]);
                 $("#projectContent").show();
@@ -50,14 +44,12 @@ var MriAtlasHelper = function(){
             $("#projectContent").hide();
             $("#projectContent").empty();
             $("#landingContent").show();
-        });
-        
+        });        
         $("#start_exploring").click(function(event){
             $("#projectContent").hide();
             $("#projectContent").empty();
             $("#landingContent").show();
         });
-
        $("#projectContent").hide();
     };
     
@@ -71,6 +63,9 @@ var MriAtlasHelper = function(){
         
         //  build services
         //this.BuildServicesSection();
+        
+        //  build about
+        this.BuildAboutSection();
         
         //  build projects
         this.BuildAllProjects();   
@@ -89,9 +84,7 @@ var MriAtlasHelper = function(){
        
        //   setup handler
        this.SetupHandlers();
-
-    };
-    
+    };    
     
     var AddProject = function(info)
     {
@@ -129,17 +122,19 @@ var MriAtlasHelper = function(){
                                         bh.ListItem({'text':"Modalities: "+mods.join(", ")}),
                                         bh.ListItem({'text':"Maps: "+maps.join(", ")}),
                                     ]),
+                                    /*
                                     bh.Paragraph({'text':"Based on the work :"}),
-                                    bh.Paragraph({'class':"text-muted",'text':cite}),                                   
-
+                                    bh.Paragraph({'class':"text-muted",'text':cite}),                
+                                    */
+                                    bh.Div({'class':"btn-group"}).append([ 
+                                        bh.Button({'class':"btn btn-warning",'data-dismiss':"modal",'type':"button",'text':"Close"}).append([
+                                            bh.Icon({'class':"fa fa-times"})
+                                        ]),
+                                        bh.Paragraph({'text':"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}),
                                         bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Explore",'id': g_div.split('#')[1]+"_explore"}).append([
                                             bh.Icon({'class':"fa fa-play"})
                                         ]),
-
-                                    bh.Header({'order':'5','text':"  "}),
-                                     bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Go Back"}).append([
-                                        bh.Icon({'class':"fa fa-times"})
-                                    ]),
+                                    ])
                                 ])
                             ])
                         ])
@@ -161,11 +156,7 @@ var MriAtlasHelper = function(){
                 bh.Paragraph({'class':"text-muted",'text':short_desc})
             ])
         ];
-        
-        
-        
         this.bindings[g_div+"_explore"] = [(page_url)];
-        
     };
     
     var AddTeamMember = function(info)
@@ -175,17 +166,15 @@ var MriAtlasHelper = function(){
         var img  = info['image'];
         var desc = info['description'];
         var site = info['website'];
-
         members[m_div] = [
             bh.Div({'class':"team-member"}).append([
                 bh.Image({'class':"mx-auto rounded-circle",'src':img,'alt':""}),
                 bh.Header({'order':"4",'text':name}),
                 bh.Paragraph({'class':"text-muted",'text':desc}),
-                bh.Anchor({'class':"btn btn-primary",'href':site,'text':"Website"}),
+                bh.Anchor({'class':"btn btn-primary btn-lg",'href':site,'text':"Website"}),
             ])
         ];
-    };
-    
+    };    
     
     var BuildAllProjects = function()
     {
@@ -196,10 +185,7 @@ var MriAtlasHelper = function(){
         var ks2 = Object.keys(grid_projects);
         for(var i=0; i< ks2.length; i++){
             $(ks2[i]).append(grid_projects[ks2[i]]);
-        }         
-        
-        
-        
+        }                 
     };
     
     var BuildAllTeamMembers = function()
@@ -217,7 +203,7 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"About"}),
-                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"Lorem ipsum dolor sit amet consectetur."})
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"MRI Atlases is the home of numerous projects in Dr. Carlo Pierpaoli's lab, the Quantitative Medical Imaging lab, a new section formed in the intramural program at NIBIB."})
                     ]),
                 ]),
                 bh.Div({'class':"row"}).append([
@@ -225,57 +211,57 @@ var MriAtlasHelper = function(){
                         bh.UnorderedList({'class':"timeline"}).append([
                             bh.ListItem({}).append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_1.jpg" alt="">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
-                                        bh.Header({'order':"4",'text':"2009-2011"}),
-                                        bh.Header({'order':"4",'class':"subheading",'text':"Our Humble Beginnings"})
+                                        bh.Header({'order':"4",'text':"MRI Atlases"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"Who we are"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit."})
+                                        bh.Paragraph({'class':"text-muted",'text':"This website is supported by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH."})
                                     ])
                                 ])
                             ]),
                             bh.ListItem({'class':"timeline-inverted"}).append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_2.jpg" alt="">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
-                                        bh.Header({'order':"4",'text':"March 2011"}),
-                                        bh.Header({'order':"4",'class':"subheading",'text':"An agency is born"}),
+                                        bh.Header({'order':"4",'text':"Mission"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"Why we do it"}),
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit. !"})
+                                        bh.Paragraph({'class':"text-muted",'text':"We are a group of scientists who develop methods for processing and analyzing images of the brain."})
                                     ])
                                 ])
                             ]),
                             bh.ListItem({}).append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_3.jpg" alt="">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
-                                        bh.Header({'order':"4",'text':"December 2012"}),
-                                        bh.Header({'order':"4",'class':"subheading",'text':"Transition to Full Service"})
+                                        bh.Header({'order':"4",'text':"Methods"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"How it's done"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit."})
+                                        bh.Paragraph({'class':"text-muted",'text':"We have developed tools to morph individual brains into an average brain representation of the population, as well as tools to extract an average brain from a series of individual brains."})
                                     ])
                                 ])
                             ]),
                             $('<li class="timeline-inverted"></li>').append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_4.jpg" alt="">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
-                                        bh.Header({'order':"4",'text':"July 2014"}),
-                                        bh.Header({'order':"4",'class':"subheading",'text':"Phase two expansion"})
+                                        bh.Header({'order':"4",'text':"Where to explore"}),
+                                        bh.Header({'order':"4",'class':"subheading",'text':"What we offer"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"Lorem ipsum dolor sit amet, consectetur adipisicing elit. !"})
+                                        bh.Paragraph({'class':"text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects."})
                                     ])
                                 ])
                             ]),
@@ -402,13 +388,11 @@ var MriAtlasHelper = function(){
                         ]),
                         */
                         bh.ListItem({'class':"nav-item"}).append([
-                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#portfolio",'text':"Projects"})
-                        ]),
-                        /*
-                        bh.ListItem({'class':"nav-item"}).append([
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#about",'text':"About"})
                         ]),
-                        */
+                        bh.ListItem({'class':"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#portfolio",'text':"Projects"})
+                        ]),                        
                         bh.ListItem({'class':"nav-item"}).append([
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#team",'text':"Team"})
                         ]),
@@ -423,7 +407,6 @@ var MriAtlasHelper = function(){
     
     var BuildFooter = function()
     {
-    
         $("#d_footer").append([
             bh.Div({'class':"container"}).append([
                 bh.Div({'class':"row"}).append([
@@ -445,7 +428,6 @@ var MriAtlasHelper = function(){
             ])            
         ]);
     };
-
 
     return {
         Init:Init,
