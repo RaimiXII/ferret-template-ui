@@ -44,6 +44,23 @@ var MriAtlasHelper = function(){
         }  
     };
     
+    var SetupHandlers = function()
+    {
+        $("#homeButton").click(function(event){
+            $("#projectContent").hide();
+            $("#projectContent").empty();
+            $("#landingContent").show();
+        });
+        
+        $("#start_exploring").click(function(event){
+            $("#projectContent").hide();
+            $("#projectContent").empty();
+            $("#landingContent").show();
+        });
+
+       $("#projectContent").hide();
+    };
+    
     var Generate = function()
     {
         //  build header
@@ -69,6 +86,9 @@ var MriAtlasHelper = function(){
 
         //  setup bindings
        this.SetupBindings();
+       
+       //   setup handler
+       this.SetupHandlers();
 
     };
     
@@ -414,7 +434,7 @@ var MriAtlasHelper = function(){
                     bh.Div({'class':"col-md-4"}).append([
                         bh.UnorderedList({'class':"list-inline quicklinks"}).append([
                             bh.ListItem({'class':"list-inline-item"}).append([
-                                bh.Anchor({'href':"#",'text':"Privacy Policy"})
+                                bh.Anchor({'href':"https://www.nibib.nih.gov/policies#privacy",'text':"Privacy Policy"})
                             ]),
                             bh.ListItem({'class':"list-inline-item"}).append([
                                 bh.Anchor({'href':"#",'text':"Terms of Use"})
@@ -432,6 +452,7 @@ var MriAtlasHelper = function(){
         Generate:Generate,
         BindAction:BindAction,
         SetupBindings:SetupBindings,
+        SetupHandlers:SetupHandlers,
         AddProject:AddProject,
         AddTeamMember:AddTeamMember,
         BuildAllProjects:BuildAllProjects,
