@@ -437,7 +437,7 @@ var MriAtlasHelper = function(){
                                 bh.Anchor({'href':"https://www.nibib.nih.gov/policies#privacy",'text':"Privacy Policy"})
                             ]),
                             bh.ListItem({'class':"list-inline-item"}).append([
-                                bh.Anchor({'href':"#",'text':"Terms of Use"})
+                                bh.Anchor({'href':"https://www.nibib.nih.gov/disclaimer",'text':"Terms of Use"})
                             ])
                         ])
                     ])
