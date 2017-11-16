@@ -26,10 +26,7 @@ var MriAtlasHelper = function(){
                     ])
                 ]);
                 $("#projectContent").show();
-                //$("#mhead").hide();
-                $('.navbar-collapse').collapse('hide');
                 $("#bgImage").hide();
-                $("#mainNav").addClass("navbar-shrink")
         });
     };    
     

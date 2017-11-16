@@ -18,6 +18,10 @@
         <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
         <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
+        <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.css"/>
+        
+
+        <link rel="stylesheet" type="text/css" src="js/vendor/treed/treed.css">
         <title>National Institutes of Health - National Institute of Biomedical Imaging and Bioengineering - Quantitative Medical Imaging - MRI Atlases</title>
         <script src="js/vendor/bootstrap-min.js"></script>
         <script src="js/vendor/jquery1124-min.js"></script>        
@@ -32,13 +36,16 @@
         <script type="text/javascript" src="js/vendor/chartjs-2.7.0/Chart.bundle.min.js"></script>
         <script type="text/javascript" src="js/ChartHelper.js"></script>                
         <script type="text/javascript" src="js/ContextManager.js"></script>
+
     </head>        
     <body>       
         <nav id="navi" class="navbar navbar-inverse" aria-label="nothing here">        
           <div class="container-fluid"  >
             <div class="navbar-header">              
             
+            
             <div class="navbar-brand"></div>
+            <!--
               <a class="navbar-brand dropdown-toggle " href="#" data-toggle="dropdown">MRI Atlases Menu<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                  <li id="home_screen"><a href="#">Home</a></li>
@@ -55,21 +62,17 @@
             </ul>
             <div class="nav navbar-nav pull-left"><a href="https://www.nibib.nih.gov"><img class="list-group-item active" src="img/nibib_logo_wide_white.png" alt="NIBIB" style="height:1.5vw; width9vw;" /></a></div>
           </div>          
-          
+           -->
+              </div>
+            </div>
         </nav>        
+       
         <div id="bannerBox" class="pager" style="width:100%;margin:0">
             <img src="img/banner_full.png" alt="Ferret brain web viewer main banner." style="width:100%;" />
             <div id="attentionMessage" class="list-group">
               <a class="list-group-item active-inverse">
                 <div class="jumbotron">
-                    <p class="list-group-item-heading"><h1>Welcome to the NIH MRI atlases page</h1></p>
-                    <p class="list-group-item-text">This website is supported by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH.</p>
-                    <p class="list-group-item-text">We are a group of scientists who develop methods for processing and analyzing images of the brain.</p>                    
-                    <p class="list-group-item-text">We have developed tools to morph individual brains into an average brain representation of the population, as well as tools to extract an average brain from a series of individual brains.</p>
-                    <p class="list-group-item-text">The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.</p>
-                    <p class="list-group-item-text"></p>
-                    <p class="list-group-item-text">We would be grateful to experts who would like to contribute in the identification of anatomical regions and annotating the atlases.</p>
-                    <button class="btn btn-primary list-group-item-text" id="about_page_button">Get the Data</button>
+                    <button class="btn btn-primary list-group-item-text" id="visualization_screen">Browse Templates</button>
                     <p class="list-group-item-text"></p>
                     <p class="list-group-item-text"></p>
                 </div>
@@ -78,8 +81,72 @@
         </div>                           
         <!--            LEFT NAV BAR            -->     
         <div class="container-fluid" id="template_content">                                  
+        
             <div id="template_nav1" class="row">
                 <div class="col-sm-2">
+<!--
+                       <div class="jTree well well-lg">
+                            <ul>
+                                <li>
+                                    <span><i class="fa fa-chevron-circle-down fa-3x"></i> Parent</span> <a href="">Goes somewhere</a>
+                                    <ul>
+                                        <li>
+                                        	<span><i class="fa fa-chevron-circle-down fa-3x"></i> Child</span> <a href="">Goes somewhere</a>
+                                            <ul>
+                                                <li>
+	                                                <span><i class="fa fa-chevron-circle-down fa-3x"></i> Grand Child</span> <a href="">Goes somewhere</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                        	<span><i class="fa fa-chevron-circle-down fa-3x"></i> Child</span> <a href="">Goes somewhere</a>
+                                            <ul>
+                                                <li>
+	                                                <span><i class="fa fa-chevron-circle-down fa-3x"></i> Grand Child</span> <a href="">Goes somewhere</a>
+                                                </li>
+                                                <li>
+                                                	<span><i class="fa fa-chevron-circle-down fa-3x"></i> Grand Child</span> <a href="">Goes somewhere</a>
+                                                    <ul>
+                                                        <li>
+	                                                        <span><i class="fa fa-chevron-circle-down fa-3x"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
+		                                                    <ul>
+		                                                        <li>
+			                                                        <span><i class="fa fa-chevron-circle-down fa-3x"></i> Great great Grand Child</span> <a href="">Goes somewhere</a>
+		                                                        </li>
+		                                                        <li>
+			                                                        <span><i class="fa fa-chevron-circle-down fa-3x"></i> Great great Grand Child</span> <a href="">Goes somewhere</a>
+		                                                        </li>
+		                                                     </ul>
+                                                        </li>
+                                                        <li>
+	                                                        <span><i class="fa fa-chevron-circle-down fa-3x"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
+                                                        </li>
+                                                        <li>
+	                                                        <span><i class="fa fa-chevron-circle-down fa-3x"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+	                                                <span><i class="fa fa-chevron-circle-down fa-3x"></i> Grand Child</span> <a href="">Goes somewhere</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span><i class="fa fa-chevron-circle-down fa-3x"></i> Parent2</span> <a href="">Goes somewhere</a>
+                                    <ul>
+                                        <li>
+                                        	<span><i class="fa fa-chevron-circle-down fa-3x"></i> Child</span> <a href="">Goes somewhere</a>
+		                                </li>
+		                            </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+-->
+        
+
                     <ul class="nav nav-list tree well well-sm">
                         <li>
                             <span class="badge pull-right tree-toggle nav nav-inverse">21</span>
@@ -157,7 +224,9 @@
                             </ul>
                         </li>
                     </ul>                
-                </div>                        
+                </div>                      
+                
+                  
                 <div class="col-sm-8" id="MRI_area1">
                     <div class="jumbotron" id="view_container" >                                                               
                         <div id="ex_vivo_dti_viewer" style="width:58vw;">
@@ -185,7 +254,7 @@
                                 <span class="input-group-btn">
                                     <button id="search_roi" class="btn btn-success" type="button">Go</button>
                                 </span> 
-                                <br/>
+                                <br>
                             </li>
                             <li>
                                 <label>Select quantitative map</label>
@@ -430,6 +499,22 @@
             var current_image ="";                     
             var brain_region_struct = {};            
             var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
+            
+            
+            $('.jTree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+            $('.jTree li.parent_li > span').on('click', function (e) {
+                var children = $(this).parent('li.parent_li').find(' > ul > li');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                    $(this).attr('title', 'Expand this branch').find(' > i').addClass('fa-chevron-circle-right fa-3x').removeClass('fa-chevron-circle-down fa-3x');
+                } else {
+                    children.show('fast');
+                    $(this).attr('title', 'Collapse this branch').find(' > i').addClass('fa-chevron-circle-down fa-3x').removeClass('fa-chevron-circle-right fa-3x');
+                }
+                e.stopPropagation();
+            });
+            
+            
             $(document).ready(function(){
             $('ul.sub').hide();
              $('body').css('background-image', 'url(' + imageUrl + ')');                                
@@ -455,6 +540,7 @@
                     ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
                 }, 3000);         
                 ui.FetchBrainRegionData(); 
+                
             });
         </script>        
     </body>

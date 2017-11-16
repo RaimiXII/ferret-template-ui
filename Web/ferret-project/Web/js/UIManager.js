@@ -40,10 +40,6 @@ var UIManager = function(){
         var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
         var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button;
         $("#about_content").html(content);
-        
-       // $("#modal_body_content").html(LoadRequestForm());
-        
-        
     };
     
     var LoadRequestForm = function(){
