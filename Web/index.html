@@ -61,6 +61,7 @@
                     <div class="col-sm-4" id="member2"></div>
                     <div class="col-sm-4" id="member3"></div>
                     <div class="col-sm-4" id="member4"></div>
+                    <div class="col-sm-4" id="member5"></div>
                 </div>
                 <div class="col-lg-8 mx-auto text-center">
                     <p class="large text-muted">The core contributors are members of NIH NIBIB QMI section, Bethesda Maryland.</p>
@@ -138,23 +139,26 @@
                                 'description_long':'This is a collection of ex-vivo Human brainstem templates.  \
                                 ROI segmentation has been performed and ...please insert more text here about \
                                 specifics for this project...',
-                                'ciatation':"n/a"});
+                                'citation':"Cibu Thomas, Frank Q. Ye, M. Okan Irfanoglu, Pooja Modi, Kadharbatcha S. Saleem, David A. Leopold, and Carlo Pierpaoli, \"Anatomical accuracy of brain connections derived from diffusion MRI tractography is inherently limited\", PNAS 2014 111 (46) 16574-16579; published ahead of print November 3, 2014, doi:10.1073/pnas.1405672111"});
         
             //  aging project
             mh.AddProject({     'modal_div':"#project3_more",
                                 'grid_div':"#project3",
                                 'project_url': "aging-project/Web/index.html",
-                                'name':'HCP Aging Study',
+                                'name':'PedsDTI',
                                 'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
                                 'species':'Human',
                                 'image':"img/portfolio/aging-full.png",
-                                'thumbnail':"img/portfolio/aging-thumbnail.jpg",
+                                'thumbnail':"img/portfolio/pedsdti.jpg",
                                 'modalities':['in-vivo'],
-                                'description_short':'A collection of age specific templates acquired with the Connectome scanner.',
-                                'description_long':'This is a collection of in-vivo Human brain templates.  \
-                                Multiple age groups are represented in this image set.  ROI segmentation \
-                                has been performed and ...please insert more text here about specifics for this project...',
-                                'citation':"n/a"});
+                                'description_short':'The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development ',
+                                'description_long':'This is a collection of in-vivo Human brain templates which are derived from <a href="https://pediatricmri.nih.gov/nihpd/info/index.html">The NIH MRI Study of Normal Brain Development</a>.  \
+                                Multiple age cohorts, or "Objectives" are represented in this multi-site longitudinal study with anatomical MRI, DTI, and MR Spectroscopy.',
+                                'citation':"Walker, Lindsay; Chang, Lin-Ching; Nayak, Amritha et al. (2016) The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development (PedsDTI). Neuroimage 124:1125-30"});
+                                
+                                
+                                //https://ndar.nih.gov/edit_collection.html?id=1151
+                                // https://pediatricmri.nih.gov/nihpd/info/index.html:  Use children holding hands image
                                                                 
             //  member 1
             mh.AddTeamMember({  'div': "#member1",
@@ -181,6 +185,13 @@
                                 'image': "img/team/jj.jpg",
                                 'description': "Computer Scientist - PhD. Candidate (CUA)",
                                 'website': "https://www.researchgate.net/profile/Jeffrey_Jenkins9"});
+                                
+            //  member 5
+            mh.AddTeamMember({  'div': "#member5",
+                                'name': "Amritha Nayak",
+                                'image': "img/team/an.jpeg",
+                                'description': "Image Scientist - M.S. BME (HJF)",
+                                'website': "https://www.researchgate.net/profile/Amritha_Nayak"});
                                 
             //  build page content
             mh.Generate();

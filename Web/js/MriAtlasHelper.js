@@ -122,10 +122,10 @@ var MriAtlasHelper = function(){
                                         bh.ListItem({'text':"Modalities: "+mods.join(", ")}),
                                         bh.ListItem({'text':"Maps: "+maps.join(", ")}),
                                     ]),
-                                    /*
+                                    
                                     bh.Paragraph({'text':"Based on the work :"}),
                                     bh.Paragraph({'class':"text-muted",'text':cite}),                
-                                    */
+                                    
                                     bh.Div({'class':"btn-group"}).append([ 
                                         bh.Button({'class':"btn btn-warning",'data-dismiss':"modal",'type':"button",'text':"Close"}).append([
                                             bh.Icon({'class':"fa fa-times"})
@@ -203,7 +203,9 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"About"}),
-                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"MRI Atlases is the home of numerous projects in Dr. Carlo Pierpaoli's lab, the Quantitative Medical Imaging lab, a new section formed in the intramural program at NIBIB."})
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"MRI Atlases is the home of numerous projects in the Quantitative Medical Imaging lab, a new section formed in the intramural program at NIBIB."}),
+                        bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://science.nichd.nih.gov/confluence/display/nihpd/Home",'text':"Visit Us!"}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"."}),
                     ]),
                 ]),
                 bh.Div({'class':"row"}).append([
@@ -219,7 +221,7 @@ var MriAtlasHelper = function(){
                                         bh.Header({'order':"4",'class':"subheading",'text':"Who we are"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"This website is supported by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH."})
+                                        bh.Paragraph({'class':"text-muted",'text':"This website is actively developed and maintained by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH."})
                                     ])
                                 ])
                             ]),
@@ -257,11 +259,11 @@ var MriAtlasHelper = function(){
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
-                                        bh.Header({'order':"4",'text':"Where to explore"}),
+                                        bh.Header({'order':"4",'text':"Explore"}),
                                         bh.Header({'order':"4",'class':"subheading",'text':"What we offer"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects."})
+                                        bh.Paragraph({'class':"text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.  We extend an invitation to <i>you</i> to contribute and collaborate with us to further this site."})
                                     ])
                                 ])
                             ]),
@@ -375,7 +377,10 @@ var MriAtlasHelper = function(){
     {
         $("#mainNav").append([
             bh.Div({'class':"container"}).append([
-                bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"#page-top",'text':"Home",'id':"homeButton"}),
+                //bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"#page-top",'text':"Home",'id':"homeButton"}),
+                bh.Anchor({'class':"navbar-brand js-scroll-trigger",'alt':"", 'href':"https://www.nibib.nih.gov"}).append([
+                    bh.Image({'src':"img/logos/nibib_logo_wide_white.png",'height':"45vh"})
+                ]),
                 bh.Button({'class':"navbar-toggler navbar-toggler-right", 'type':"button", 'data-toggle':"collapse", 'data-target':"#navbarResponsive", 'aria-controls':"navbarResponsive", 'aria-expanded':"false", 'aria-label':"Toggle navigation"}).append([
                     $('Menu'),
                     bh.Icon({'class':"fa fa-bars"}),
@@ -387,6 +392,9 @@ var MriAtlasHelper = function(){
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#services",'text':"Services"})
                         ]),
                         */
+                        bh.ListItem({'class':"nav-item"}).append([
+                            bh.Anchor({'class':"nav-link js-scroll-trigger",'id':"homeButton", 'href':"#page-top",'text':"Home"})
+                        ]),
                         bh.ListItem({'class':"nav-item"}).append([
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#about",'text':"About"})
                         ]),
