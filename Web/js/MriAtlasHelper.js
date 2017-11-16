@@ -376,12 +376,12 @@ var MriAtlasHelper = function(){
                 bh.Anchor({'class':"navbar-brand js-scroll-trigger",'alt':"", 'href':"https://www.nibib.nih.gov"}).append([
                     bh.Image({'src':"img/logos/nibib_logo_wide_white.png",'height':"45vh"})
                 ]),
-                
+                /*
                 bh.Button({'class':"navbar-toggler navbar-toggler-right", 'type':"button", 'data-toggle':"collapse", 'data-target':"#navbarResponsive", 'aria-controls':"navbarResponsive", 'aria-expanded':"false", 'aria-label':"Toggle navigation"}).append([
                     $('Menu'),
                     bh.Icon({'class':"fa fa-bars"}),
                 ]),
-                
+                */
                 bh.Div({'class':"collapse navbar-collapse", 'id':"navbarResponsive"}).append([
                     bh.UnorderedList({'class':"navbar-nav text-uppercase ml-auto"}).append([
                         bh.ListItem({'class':"nav-item"}).append([
