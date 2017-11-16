@@ -27,6 +27,9 @@ var MriAtlasHelper = function(){
                 ]);
                 $("#projectContent").show();
                 //$("#mhead").hide();
+                $('.navbar-collapse').collapse('hide');
+                $("#bgImage").hide();
+                $("#mainNav").addClass("navbar-shrink")
         });
     };    
     
@@ -44,11 +47,15 @@ var MriAtlasHelper = function(){
             $("#projectContent").hide();
             $("#projectContent").empty();
             $("#landingContent").show();
+            $("#bgImage").show();
+             $("#mainNav").addClass("navbar-shrink")
         });        
         $("#start_exploring").click(function(event){
             $("#projectContent").hide();
             $("#projectContent").empty();
             $("#landingContent").show();
+            $("#bgImage").show();
+            $("#mainNav").addClass("navbar-shrink")
         });
        $("#projectContent").hide();
     };
@@ -56,32 +63,21 @@ var MriAtlasHelper = function(){
     var Generate = function()
     {
         //  build header
-        this.BuildHeader();
-        
+        this.BuildHeader();        
         //  build navbar
-        this.BuildNavBar();
-        
-        //  build services
-        //this.BuildServicesSection();
-        
+        this.BuildNavBar();        
         //  build about
-        this.BuildAboutSection();
-        
+        this.BuildAboutSection();        
         //  build projects
-        this.BuildAllProjects();   
-        
+        this.BuildAllProjects();           
         //  build team members
-        this.BuildAllTeamMembers();            
-        
+        this.BuildAllTeamMembers();                    
         //  build contact
-        this.BuildContactSection();
-        
+        this.BuildContactSection();        
         //  build footer
         this.BuildFooter();
-
         //  setup bindings
-       this.SetupBindings();
-       
+       this.SetupBindings();       
        //   setup handler
        this.SetupHandlers();
     };    
@@ -364,7 +360,7 @@ var MriAtlasHelper = function(){
     var BuildHeader = function()
     {
         $("#mhead").append([
-            bh.Div({'class':"intro-text"}).append([
+            bh.Div({'class':"intro-text",'id':"bgImage"}).append([
                 bh.Div({'class':"intro-heading text-uppercase", 'text':"MRI Atlases"}), 
                 bh.Div({'class':"intro-lead-in",'text':"An online MRI viewer"}),      
                 bh.Header({'order':"2",'text':"<br>"}),
@@ -377,21 +373,17 @@ var MriAtlasHelper = function(){
     {
         $("#mainNav").append([
             bh.Div({'class':"container"}).append([
-                //bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"#page-top",'text':"Home",'id':"homeButton"}),
                 bh.Anchor({'class':"navbar-brand js-scroll-trigger",'alt':"", 'href':"https://www.nibib.nih.gov"}).append([
                     bh.Image({'src':"img/logos/nibib_logo_wide_white.png",'height':"45vh"})
                 ]),
+                
                 bh.Button({'class':"navbar-toggler navbar-toggler-right", 'type':"button", 'data-toggle':"collapse", 'data-target':"#navbarResponsive", 'aria-controls':"navbarResponsive", 'aria-expanded':"false", 'aria-label':"Toggle navigation"}).append([
                     $('Menu'),
                     bh.Icon({'class':"fa fa-bars"}),
                 ]),
+                
                 bh.Div({'class':"collapse navbar-collapse", 'id':"navbarResponsive"}).append([
                     bh.UnorderedList({'class':"navbar-nav text-uppercase ml-auto"}).append([
-                        /*
-                        bh.ListItem({'class':"nav-item"}).append([
-                            bh.Anchor({'class':"nav-link js-scroll-trigger",'href':"#services",'text':"Services"})
-                        ]),
-                        */
                         bh.ListItem({'class':"nav-item"}).append([
                             bh.Anchor({'class':"nav-link js-scroll-trigger",'id':"homeButton", 'href':"#page-top",'text':"Home"})
                         ]),
