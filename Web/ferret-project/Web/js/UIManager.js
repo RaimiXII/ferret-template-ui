@@ -38,7 +38,8 @@ var UIManager = function(){
         var line = '<hr class="my-4">';
         var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
         var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
-        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button;
+        var back_button = $("#back_button");
+        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button+back_button;
         $("#about_content").html(content);
     };
     
@@ -77,7 +78,7 @@ var UIManager = function(){
         //this.set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
     };    
     var SetROIContent = function(name){
-        var r_str = "ROI name: <b>"+name+"</b><br><br>";
+        var r_str = "<br>ROI name: <b>"+name+"</b><br>";
 
         var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
         var d_str = "Description: <b>"+email_button+"</b><br><br>";
@@ -170,6 +171,28 @@ var UIManager = function(){
         ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates","#mri_headers"]  );
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
         fade_divs_in(["#about_containter"])
+    });
+    
+    $("#back_button").on('click', function(e){
+        console.log('clicked back');
+        ui.hideDivs([
+                          "#ex_vivo_dti_viewer",
+                          "#in_vivo_dti_viewer",
+                          "#ex_vivo_t2_viewer",
+                          "#in_vivo_t2_viewer",                                    
+                          "#navi", 
+                          "#MRI_area1", 
+                          "#visualization_templates", 
+                          "#bannerBox",  
+                          "#mri_headers","#template_content",                               
+                          "#template_nav2",
+                          "#histogram_container",
+                          "#roi_volume", "#roi_mean", "#roi_std_dev",
+                          "#about_containter", "#success_message_request",
+                          "#success_message_roi",
+                    ]);                         
+                    $("#about_content").clear("")
+                ui.fadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
     });
     
     $('#contact_form').bootstrapValidator({
@@ -466,31 +489,33 @@ var UIManager = function(){
     $("#modality_tr").on('click', function(e) {console.log("TR MODALITY SELECTED."); UpdateParams("ev_dti_tr");   ShowDivs(["#histogram_container", "#voxel_value","#roi_volume", "#roi_mean", "#roi_std_dev"]);});
     $("#modality_ev_roi").on('click', function(e) {console.log("ROI MODALITY SELECTED."); UpdateParams("ev_dti_segmentation"); HideDivs(["#histogram_container", "#voxel_value","#roi_volume", "#roi_mean", "#roi_std_dev"]);  });
     
-    $("#evdti_navtree").on('click', function(e) {
-        HideDivs(['ul.sub']);
-        fade_divs_in(['#evdti_tree']);
+    
+    $("#evdti_group").on('click', function(e) {
+        console.log('evdti clicked');
+        SwapDivs(["#ivdti_modality_buttons","#evt2_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#evdti_modality_buttons"], "slow");
     });
-    $("#ivdti_navtree").on('click', function(e) {
-        HideDivs(['ul.sub']);
-        fade_divs_in(['#ivdti_tree']);
-     });
-    $("#evt2_navtree").on('click', function(e) {
-        HideDivs(['ul.sub']);
-        fade_divs_in(['#evt2_tree']);
+    $("#evt2_group").on('click', function(e) {
+        console.log('evdti clicked');
+        SwapDivs(["#evdti_modality_buttons", "#ivdti_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#evt2_modality_buttons"], "slow");
     });
-    $("#ivt2_navtree").on('click', function(e) {
-        HideDivs(['ul.sub']);
-        fade_divs_in(['#ivt2_tree']);
+    $("#ivdti_group").on('click', function(e) {
+        console.log('evdti clicked');
+        SwapDivs(["#evt2_modality_buttons", "#evdti_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#ivdti_modality_buttons"], "slow");
     });
-    $("#evseg_navtree").on('click', function(e) {
-        console.log("EV SEG NAV CLICKED."); 
+    $("#ivt2_group").on('click', function(e) {
+        console.log('evdti clicked');
+        SwapDivs(["#evt2_modality_buttons", "#ivdti_modality_buttons", "#evdti_modality_buttons","#segmentation_modality_buttons"], ["#ivt2_modality_buttons"], "slow");
+    });
+    $("#segmentation_group").on('click', function(e) {
+        SwapDivs(["#evt2_modality_buttons", "#ivdti_modality_buttons", "#evdti_modality_buttons","#ivt2_modality_buttons"], ["#segmentation_modality_buttons"], "slow");
     });
     
+    
     var SwapDivs = function(goingOut, goingIn, speed){
-        for(i in goingIn){
-          $( goingIn[i] ).fadeIn( speed, function() {
-            for(j in goingOut){
-                  $( goingOut[j] ).fadeOut( speed, function() {
+        for(i in goingOut){
+          $( goingOut[i] ).fadeOut( speed, function() {
+            for(j in goingIn){
+                  $( goingIn[j] ).fadeIn( speed, function() {
                   });
               }
           });
