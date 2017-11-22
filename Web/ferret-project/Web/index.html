@@ -79,6 +79,20 @@
               </a>
             </div>
         </div>                           
+        
+        <div class="container-fluid" id="mri_headers">               
+            <div class="row">
+                 <div class="col-sm-2">                    
+                    <h2 class="well well-lg">Templates</h2>
+                 </div>
+                 <div class="col-sm-8">                 
+                     <h2 class="well well-lg">MRI Viewer</h2>
+                 </div>
+                 <div class="col-sm-2">              
+                    <h2 class="well well-lg">Information</h2>   
+                 </div>
+            </div>
+        </div>
         <!--            LEFT NAV BAR            -->     
         <div class="container-fluid" id="template_content">                                  
         
@@ -500,21 +514,6 @@
             var brain_region_struct = {};            
             var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
             
-            
-            $('.jTree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-            $('.jTree li.parent_li > span').on('click', function (e) {
-                var children = $(this).parent('li.parent_li').find(' > ul > li');
-                if (children.is(":visible")) {
-                    children.hide('fast');
-                    $(this).attr('title', 'Expand this branch').find(' > i').addClass('fa-chevron-circle-right fa-3x').removeClass('fa-chevron-circle-down fa-3x');
-                } else {
-                    children.show('fast');
-                    $(this).attr('title', 'Collapse this branch').find(' > i').addClass('fa-chevron-circle-down fa-3x').removeClass('fa-chevron-circle-right fa-3x');
-                }
-                e.stopPropagation();
-            });
-            
-            
             $(document).ready(function(){
             $('ul.sub').hide();
              $('body').css('background-image', 'url(' + imageUrl + ')');                                
@@ -527,7 +526,8 @@
                       "#MRI_area1", 
                       "#visualization_templates", 
                       "#bannerBox",  
-                      "#template_content",     
+                      "#mri_headers","#template_content",     
+                      
                       "#template_nav2",
                       "#histogram_container",
                       "#roi_volume", "#roi_mean", "#roi_std_dev",
@@ -536,11 +536,12 @@
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);  
-                setTimeout(function(){
-                    ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");                        
-                }, 3000);         
-                ui.FetchBrainRegionData(); 
                 
+                setTimeout(function(){
+                    ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow"); 
+                    ui.FetchBrainRegionData(); 
+                }, 5000);         
+
             });
         </script>        
     </body>
