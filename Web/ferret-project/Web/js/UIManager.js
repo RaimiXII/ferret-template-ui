@@ -274,10 +274,10 @@ var UIManager = function(){
             
             // Format the form fields into json object
             var dataz = objectifyForm($form.serializeArray());
-            console.log(dataz);
-            console.log($form.serialize());
+            /*console.log(dataz);
+            console.log($form.serialize());*/
                         
-            var data = {
+            var data_to_send = {
                 first_name: dataz["first_name"],
                 last_name: dataz["last_name"],
                 email: dataz["email"],
@@ -289,11 +289,10 @@ var UIManager = function(){
                 type: "POST",
                 url: "/mail/index.php",
                 dataType: 'text',
-                data: data,
+                data: data_to_send,
                 success: function(data){
-                    console.log('DATA');
-                    console.log(data);
                     $('.success').fadeIn(1000);
+                    $('.success').fadeOut(4000);
                 }
             });
         });
