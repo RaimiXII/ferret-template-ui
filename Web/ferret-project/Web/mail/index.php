@@ -1,8 +1,15 @@
 <?php
+
+$firstNameField = $_POST['first_name'];
+$lastNameField = $_POST['last_name'];
+$nameField = $_POST['first_name'] .  $_POST['last_name'];
+$emailField = $_POST['email'];
+$institutionField = $_POST['institution'];
+$messageField = $_POST['message'];
+
 /**
  * This example shows making an SMTP connection with authentication.
  */
-
 //Import the PHPMailer class into the global namespace
 include("PHPMailer/class.phpmailer.php");
 
@@ -24,31 +31,6 @@ $mail->isSMTP();
 // 2 = client and server messages
 $mail->SMTPDebug = 0;
 
-//  Get the data object from the form
-
-/* These are the variable that tell the subject of the email and where the email will be sent.*/
-
-$emailSubject = 'Customer Has a Question!';
-$mailto = 'jeff.jenkins.1986@gmail.com';    // for testing
-$recipeintName = "jeff";
-
-/* These will gather what the user has typed into the fieled. */
-$firstNameField = $_POST['first_name'];
-$lastNameField = $_POST['last_name']
-$nameField = $_POST['first_name'] .  $_POST['last_name'];
-$emailField = $_POST['email'];
-$institutionField = $_POST['institution']
-$messageField = $_POST['message'];
-
-/* This takes the information and lines it up the way you want it to be sent in the email. */
-
-$body = <<<EOD
-<br><hr><br>
-Name: $nameField <br>
-Email: $emailField <br>
-Message: $messageField <br>
-EOD;
-
 //Set the hostname of the mail server
 $mail->Host = 'mailfwd.nih.gov';
 
@@ -65,24 +47,21 @@ $mail->Username = 'test@test.com';
 $mail->Password = '';
 
 //Set who the message is to be sent from
-//was: $mail->setFrom('test@nih.gov', 'First name');
-$mail->setFrom($emailField, $firstNameField);
+$mail->setFrom($emailField , $nameField);
 
 //Set who the message is to be sent to
-$mail->addAddress($mailto, $recipeintName);
+$mail->addAddress('jeffrey.jenkins@nih.gov', 'Jeff');
 
 //Set the subject line
-$mail->Subject = $emailSubject;
+$mail->Subject = 'Testing';
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 
 //convert HTML into a basic plain-text alternative body
-//was: $mail->msgHTML('testing email545454564561');
-$mail->msgHTML($body);
-
+$mail->msgHTML($messageField);
 
 //Replace the plain text body with one created manually
-$mail->AltBody = $body;
+$mail->AltBody = 'This is a plain-text message body';
 
 //send the message, check for errors
 if (!$mail->send()) {
