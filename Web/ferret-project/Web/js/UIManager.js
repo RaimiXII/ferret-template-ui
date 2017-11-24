@@ -78,10 +78,10 @@ var UIManager = function(){
         //this.set_roi_alpha($("#current_roi").val(), parseFloat((parseFloat($("#ex1").val()) / 100.0)));
     };    
     var SetROIContent = function(name){
-        var r_str = "<br>ROI name: <b>"+name+"</b><br>";
+        var r_str = "<br>ROI name: <b>"+name+"</b>";
 
-        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
-        var d_str = "Description: <b>"+email_button+"</b><br><br>";
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
+        var d_str = "Description: <b>"+email_button+"</b>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
@@ -491,22 +491,22 @@ var UIManager = function(){
     
     $("#evdti_group").on('click', function(e) {
         console.log('evdti clicked');
-        SwapDivs(["#ivdti_modality_buttons","#evt2_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#evdti_modality_buttons"], "slow");
+        SwapDivs(["#ivdti_modality_buttons","#evt2_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#evdti_modality_buttons"], "fast");
     });
     $("#evt2_group").on('click', function(e) {
         console.log('evdti clicked');
-        SwapDivs(["#evdti_modality_buttons", "#ivdti_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#evt2_modality_buttons"], "slow");
+        SwapDivs(["#evdti_modality_buttons", "#ivdti_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#evt2_modality_buttons"], "fast");
     });
     $("#ivdti_group").on('click', function(e) {
         console.log('evdti clicked');
-        SwapDivs(["#evt2_modality_buttons", "#evdti_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#ivdti_modality_buttons"], "slow");
+        SwapDivs(["#evt2_modality_buttons", "#evdti_modality_buttons", "#ivt2_modality_buttons","#segmentation_modality_buttons"], ["#ivdti_modality_buttons"], "fast");
     });
     $("#ivt2_group").on('click', function(e) {
         console.log('evdti clicked');
-        SwapDivs(["#evt2_modality_buttons", "#ivdti_modality_buttons", "#evdti_modality_buttons","#segmentation_modality_buttons"], ["#ivt2_modality_buttons"], "slow");
+        SwapDivs(["#evt2_modality_buttons", "#ivdti_modality_buttons", "#evdti_modality_buttons","#segmentation_modality_buttons"], ["#ivt2_modality_buttons"], "fast");
     });
     $("#segmentation_group").on('click', function(e) {
-        SwapDivs(["#evt2_modality_buttons", "#ivdti_modality_buttons", "#evdti_modality_buttons","#ivt2_modality_buttons"], ["#segmentation_modality_buttons"], "slow");
+        SwapDivs(["#evt2_modality_buttons", "#ivdti_modality_buttons", "#evdti_modality_buttons","#ivt2_modality_buttons"], ["#segmentation_modality_buttons"], "fast");
     });
     
     

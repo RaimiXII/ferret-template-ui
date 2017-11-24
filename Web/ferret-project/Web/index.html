@@ -82,7 +82,8 @@
                             <label class="btn btn-warning" id="ivt2_group" ><input type="radio" name="options" autocomplete="off"> In-Vivo T2 </label>
                             <label class="btn btn-info" id="segmentation_group" ><input type="radio" name="options" autocomplete="off"> Segmentation </label>
                         </div>
-                        <br>                        
+                        <br>   
+                        <div><hr></div>                     
                         <div class="btn-group-vertical btn-block" id="evdti_modality_buttons">
                             <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_fa">Fractional Anisotropy</button>
                             <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_tr">Trace</button>
@@ -162,7 +163,8 @@
                           </label>                                  
                         </div>
                         <div id="atlas_analysis">
-                            <h1 class="display-4">Statistics</h1>
+                            <hr>
+                            <p>Statistics</p>
                             <div id="roi_stats">
                                 <div id="img_description"></div>
                                 <div id="current_roi"></div>
@@ -174,7 +176,8 @@
                             </div>                            
                         </div>
                         <div id="histogram_container" >
-                            <h1 class="display-4">Histogram</h1>
+                            <hr>
+                            <p>Histogram</p>
                             <div id="plot_area">
                                 <canvas id="RoiChart"></canvas>
                             </div>
@@ -381,7 +384,8 @@
             ctx.SetChartHelper(ch);
             var current_image ="";                     
             var brain_region_struct = {};            
-            var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
+            //var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
+            var imageUrl = 'img/black_minimal_bkg.jpg';
             
             $(document).ready(function(){
             $('ul.sub').hide();
