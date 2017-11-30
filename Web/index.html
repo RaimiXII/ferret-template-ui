@@ -97,22 +97,8 @@
         $(document).ready (function(){
             console.log("MHelper inits");
             var mh = MriAtlasHelper();
-            
-            
             mh.Init();            
-            
-            /*
-        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
-        var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
-        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
-        var additional = '<p> with anatomical labels according to the book chapter: </p>';
-        var book_cite = '<p> Neuroanatomy of the Ferret Brain with Focus on the Cerebral Cortex by Christopher D. Kroenke, Brian D. Mills, Jaime F. Olavarria and Jeffrey J. Neil in the book Biology and Diseases of the Ferret, 2014.</p>';
-        var line = '<hr class="my-4">';
-        var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
-        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
-        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button;
-            */
-            
+
             //  ferret ui
             mh.AddProject({    'modal_div':"#project1_more",
                                                 'grid_div':"#project1",
@@ -127,8 +113,7 @@
                                                 'description_long':'This is a collection of in-vivo and ex-vivo Ferret templates.  \
                                                 ROI segmentation has been performed and ...please insert more text here about \
                                                 specifics for this project...',
-                                                'citation':"Hutchinson, E.B.; Schwerin, S.C.; Radomski, K.L.; Sadeghi, N.; Jenkins, J.; Komlosh, M.E.; Irfanoglu, M.O.; Juliano, S.L.; and Pierpaoli, C., \"Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis\" (2017). Uniformed Services University of the Health Sciences. 190."});
-            
+                                                'citation':"Hutchinson, E.B.; Schwerin, S.C.; Radomski, K.L.; Sadeghi, N.; Jenkins, J.; Komlosh, M.E.; Irfanoglu, M.O.; Juliano, S.L.; and Pierpaoli, C., \"Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis\" (2017). Uniformed Services University of the Health Sciences. 190."});            
             //  human brainstem                 
             mh.AddProject({    'modal_div':"#project2_more",
                                                 'grid_div':"#project2",
@@ -143,8 +128,7 @@
                                                 'description_long':'This is a collection of ex-vivo Human brainstem templates.  \
                                                 ROI segmentation has been performed and ...please insert more text here about \
                                                 specifics for this project...',
-                                                'citation':"Cibu Thomas, Frank Q. Ye, M. Okan Irfanoglu, Pooja Modi, Kadharbatcha S. Saleem, David A. Leopold, and Carlo Pierpaoli, \"Anatomical accuracy of brain connections derived from diffusion MRI tractography is inherently limited\", PNAS 2014 111 (46) 16574-16579; published ahead of print November 3, 2014, doi:10.1073/pnas.1405672111"});
-        
+                                                'citation':"Cibu Thomas, Frank Q. Ye, M. Okan Irfanoglu, Pooja Modi, Kadharbatcha S. Saleem, David A. Leopold, and Carlo Pierpaoli, \"Anatomical accuracy of brain connections derived from diffusion MRI tractography is inherently limited\", PNAS 2014 111 (46) 16574-16579; published ahead of print November 3, 2014, doi:10.1073/pnas.1405672111"});        
             //  aging project
             mh.AddProject({    'modal_div':"#project3_more",
                                                 'grid_div':"#project3",
@@ -158,19 +142,13 @@
                                                 'description_short':'The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development ',
                                                 'description_long':'This is a collection of in-vivo Human brain templates which are found at <a href="https://pediatricmri.nih.gov/nihpd/info/index.html">The NIH MRI Study of Normal Brain Development</a> data repository.  \
                                                 Multiple age cohorts, or "Objectives" are represented in this multi-site longitudinal study with anatomical MRI, DTI, and MR Spectroscopy.',
-                                                'citation':"Walker, Lindsay; Chang, Lin-Ching; Nayak, Amritha et al. (2016) The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development (PedsDTI). Neuroimage 124:1125-30"});
-                                
-                                
-                                //https://ndar.nih.gov/edit_collection.html?id=1151
-                                // https://pediatricmri.nih.gov/nihpd/info/index.html:  Use children holding hands image
-                                                                
+                                                'citation':"Walker, Lindsay; Chang, Lin-Ching; Nayak, Amritha et al. (2016) The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development (PedsDTI). Neuroimage 124:1125-30"}); 
             //  member 1
             mh.AddTeamMember({    'div': "#member1",
                                                             'name': "Elizabeth Hutchinson",
                                                             'image': "img/team/eh.png",
                                                             'description': "Neuroscientist - Ph.D. (HJF)",
-                                                            'website': "https://www.researchgate.net/profile/Elizabeth_Hutchinson"});
-                                
+                                                            'website': "https://www.researchgate.net/profile/Elizabeth_Hutchinson"});                                
             //  member 2
             mh.AddTeamMember({    'div': "#member2",
                                                             'name': "Carlo Pierpaoli",
@@ -189,62 +167,38 @@
                                                             'image': "img/team/jj.jpg",
                                                             'description': "Computer Scientist - PhD. Candidate (CUA)",
                                                             'website': "https://www.researchgate.net/profile/Jeffrey_Jenkins9"});
-                                
-            //  member 5
+                                            //  member 5
             mh.AddTeamMember({    'div': "#member5",
                                                             'name': "Amritha Nayak",
                                                             'image': "img/team/an.jpeg",
                                                             'description': "Image Scientist - M.S. BME (HJF)",
                                                             'website': "https://www.researchgate.net/profile/Amritha_Nayak"});
-                                
             //  build page content
             mh.Generate();
-            
-            
+                        
             $("#project1").keypress(function(e){
                 if(e.which == 13){//Enter key pressed
                     $('#project1').click();//Trigger search button click event
                 }
-            });
-            
-            
-        });    
-        
-        
+            });            
+        });            
         var callback = function() {
             $("#project1").click()
         };
-
         $("input").keypress(function() {
             if (e.key === " " || e.key === "Enter")  callback();
         });
-
-        
-        
-        
-         var handleBtnKeyPress = function(e)
-            {
+        var handleBtnKeyPress = function(e)
+        {
                 console.log("BTNPRESS");
                 console.log(e.target.id)
                 if (e.key === " " || e.key === "Enter") {
-    // Prevent the default action to stop scrolling when space is pressed
-                    //$("#project1").click()
-                    console.log("YEP")
+                    console.log("enter or space was pressed")
               }
-            };
-            var handleBtnClick = function(e)
-            {
-                //e.preventDefault();      
-                //$("#"+e.target.id).click();
-                /*
-                console.log("BTNPRESS");
-                console.log(e.target.id)
-                if (e.key === " " || e.key === "Enter") {
-    // Prevent the default action to stop scrolling when space is pressed
-                e.preventDefault();                                
-              }
-              */
-            };
+        };
+        var handleBtnClick = function(e)
+        {            
+        };
                     
     </script>
   </body>

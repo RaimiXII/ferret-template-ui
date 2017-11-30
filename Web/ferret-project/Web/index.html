@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">    
+<!-- no cache headers -->
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<!-- end no cache headers -->
     <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>        
         <script src="js/vendor/jquery-min.js"></script>
         <link rel="stylesheet" href="css/bootstrap337.min.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,7 +24,6 @@
         <link rel="stylesheet" type="text/css" href="js/vendor/slick-1.6.0/slick/slick-theme.css"/>
         <link rel="stylesheet" type="text/css" href="js/vendor/css/slider.css"/>
         <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.css"/>
-
         <link rel="stylesheet" type="text/css" src="js/vendor/treed/treed.css">
         <link rel="stylesheet" href="css/mriatlases_layout.css" />
         <title>National Institutes of Health - National Institute of Biomedical Imaging and Bioengineering - Quantitative Medical Imaging - MRI Atlases</title>
@@ -36,13 +40,11 @@
         <script type="text/javascript" src="js/vendor/chartjs-2.7.0/Chart.bundle.min.js"></script>
         <script type="text/javascript" src="js/ChartHelper.js"></script>                
         <script type="text/javascript" src="js/ContextManager.js"></script>
-
     </head>        
     <body>       
         <nav id="navi" class="navbar navbar-inverse" aria-label="nothing here">        
           <div class="container-fluid"  ><div class="navbar-header"><div class="navbar-brand"></div></div></div>
-        </nav>        
-       
+        </nav>               
         <div id="bannerBox" class="pager" style="width:100%;margin:0">
             <img src="img/banner_full.png" alt="Ferret brain web viewer main banner." style="width:100%;" />
             <div id="attentionMessage" class="list-group">
@@ -55,8 +57,7 @@
                 </div>
               </a>
             </div>
-        </div>                     
-        
+        </div>                             
         <div class="container-fluid" id="mri_headers">               
             <div class="row">
                  <div class="col-sm-2">                    
@@ -117,8 +118,7 @@
                             <button type="button" class="btn btn-info btn-outline disabled" id="iv_dti_segmentation" data-toggle="tooltip" title="Use right panel to explore in-vivo DTI data">In-Vivo DTI</button>
                         </div>
                     </div>
-                </div>
-                  
+                </div>                  
                 <div class="col-sm-8" id="MRI_area1">
                     <div class="jumbotron" id="view_container" >                                                               
                         <div id="ex_vivo_dti_viewer" style="width:58vw;">
@@ -148,8 +148,7 @@
                             <div class="form-group">
                                 <button id="search_roi" class="btn btn-success" type="button">Go</button>
                             </div>
-                        </form>
-                        
+                        </form>                        
                         <p>Modality</p>
                         <div class="btn-group  btn-group-justified" data-toggle="buttons">
                           <label id="modality_ev_roi" class="btn btn-primary active">
@@ -185,13 +184,11 @@
                     </div>    
                 </div>                   
             </div>
-       </div>
-       
+       </div>       
        <div class="col-sm-8 col-sm-push-2 container-fluid" id="about_containter">
         <div class="jumbotron" id="about_content"  style="width:58vw;">            
         </div>
-       </div>
-       
+       </div>       
        <div id="form_modal" class="modal fade ">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -270,8 +267,7 @@
         </div>
         </div>
         </div>
-        </div>
-        
+        </div>        
         <!-- roi feedback form -->>
         <div id="feedback_modal" class="modal fade ">
               <div class="modal-dialog modal-lg" role="document">
@@ -352,10 +348,7 @@
         </div>
         </div>
         </div>
-        
-
     <!-- /.container -->
-    
         <div id="loading" class="centered">
             <div class="loading spin-1">
                 <div class="loading spin-2">
@@ -369,8 +362,6 @@
                 </div>            
             </div>            
         </div>
-        
-        
         <script type="text/javascript">
             var params  = [];
             var params1 = [];
@@ -387,9 +378,21 @@
             //var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
             var imageUrl = 'img/black_minimal_bkg.jpg';
             
+            var checkFile = function(fname) {
+	                    filename = fname.trim();
+	
+	                    var response = jQuery.ajax({
+		                    url: filename,
+		                    type: 'HEAD',
+		                    async: false
+	                    }).status;	
+	
+	                    return (response != "200") ? false : true;
+                    };
+            
             $(document).ready(function(){
-            $('ul.sub').hide();
-             $('body').css('background-image', 'url(' + imageUrl + ')');                                
+            //$('ul.sub').hide();
+             $('body, html').css('background-image', 'url(' + imageUrl + ')');                                
                 ui.hideDivs([
                       "#ex_vivo_dti_viewer",
                       "#in_vivo_dti_viewer",
@@ -410,12 +413,23 @@
                       "#success_message_roi",
                 ]);                
                 //  tbd change 300 to screen height derived percentage
-                ch.CreateChart("RoiChart", 300);  
-                
+                ch.CreateChart("RoiChart", 300);                  
                 setTimeout(function(){
-                    ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow"); 
-                    
-                }, 5000);         
+                    var fileExists = checkFile("img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii");
+                    if(fileExists){
+                        console.log("first image file loaded. now check for the last image file.");
+                        if(checkFile("img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii")){
+                            console.log("last image file loaded. show the rest of the page.");
+                            ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow"); 
+                        } else {
+                            console.log("last image file not loaded. reload the page.");
+                            window.location.reload(true);
+                        }
+                    } else {
+                        console.log("first image file not loaded. reload the page.");
+                        window.location.reload(true);
+                    }
+                }, 8000);         
                 ui.FetchBrainRegionData(); 
             });
         </script>        
