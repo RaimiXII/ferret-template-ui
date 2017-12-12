@@ -196,7 +196,7 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"About"}),
-                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"MRI Atlases is the home of numerous projects in the Quantitative Medical Imaging lab, a new section formed in the intramural program at NIBIB."}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.  We extend an invitation to <i>you</i> to contribute and collaborate with us to further this site."}),
                         bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://science.nichd.nih.gov/confluence/display/nihpd/Home",'text':"Visit Us!"}),
                         bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"."}),
                     ]),
@@ -214,7 +214,7 @@ var MriAtlasHelper = function(){
                                         bh.Header({'order':"4",'class':"subheading",'text':"Who we are"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"This website is actively developed and maintained by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH."})
+                                        bh.Paragraph({'class':"text-muted",'text':"This website is developed and maintained by the Quantitative Medical Imaging (QMI) lab at the National Institute of Biomedical Imaging and Bioengineering, NIH."})
                                     ])
                                 ])
                             ]),
@@ -246,6 +246,7 @@ var MriAtlasHelper = function(){
                                     ])
                                 ])
                             ]),
+                            /*
                             $('<li class="timeline-inverted"></li>').append([
                                 bh.Div({'class':"timeline-image"}).append([
                                     $('<img class="rounded-circle img-fluid" src="img/about/nih_4.jpg" alt="">')
@@ -260,6 +261,7 @@ var MriAtlasHelper = function(){
                                     ])
                                 ])
                             ]),
+                            */
                         ])
                     ])
                 ])
@@ -314,7 +316,7 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"Contact Us"}),
-                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"If want to contribute to this site and you are an expert, let's get to know each other!  Fill out the fields below to get the conversation started."})
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"If you are a researcher in the field of a particular atlas and want to contribute to this site we would like to hear from you!  Fill out the fields below to get the conversation started."})
                     ])
                 ]),
                 bh.Div({'class':"row"}).append([
