@@ -391,6 +391,53 @@
 	
 	                    return (response != "200") ? false : true;
                     };
+                    
+            var globalTimeout;
+            
+            
+            
+            var spinCycle =  function(theFile, timer) {
+                console.log("Checking on image file "+theFile+"...");
+                var status = false;
+                globalTimeout = setTimeout(function(){
+                if(theFile){
+                    console.log("image file "+theFile+" loaded. now continue image file.");                    
+                status = true;
+                } else{
+                    console.log("image file "+theFile+" NOT loaded. now continue image file.");
+                    status = false;
+                }
+                }, timer);            
+                return status;
+            };
+            
+            var count = 0;
+            
+            
+// check for count of # of files loaded... (chrome needs this)
+            (function() {
+                var origOpen = XMLHttpRequest.prototype.open;
+                XMLHttpRequest.prototype.open = function(method, url) {
+                    this.addEventListener('load', function() {
+                        console.log('XHR finished loading (custom)', method, url);                        
+                        count = count + 1;
+                        console.log("COUNT -> " + count);
+                        if(count == 23)
+                        {
+                            ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");
+                            console.log("ITS ALL GOOD!");
+                        }                        
+                        clearTimeout(globalTimeout);
+                    });
+                    this.addEventListener('error', function() {
+                        console.log('XHR errored out', method, url);
+                    });
+                    origOpen.apply(this, arguments);
+                };
+            })();
+            
+            
+            
             
             $(document).ready(function(){
             //$('ul.sub').hide();
@@ -416,23 +463,66 @@
                 ]);                
                 //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);                  
-                setTimeout(function(){
-                    var fileExists = checkFile("img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii");
-                    if(fileExists){
-                        console.log("first image file loaded. now check for the last image file.");
-                        if(checkFile("img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii")){
-                            console.log("last image file loaded. show the rest of the page.");
-                            ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow"); 
-                        } else {
-                            console.log("last image file not loaded. reload the page.");
-                            window.location.reload(true);
-                        }
-                    } else {
-                        console.log("first image file not loaded. reload the page.");
-                        window.location.reload(true);
-                    }
-                }, 3000);         
                 ui.FetchBrainRegionData(); 
+                
+                var files = [
+                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii",
+                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii",
+                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
+                    "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm",
+                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
+                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii"                
+                ];
+                
+                
+                var allGood = false;
+                
+                for(var i=0;i<files.length; i++)
+                {
+                     allGood = spinCycle(files[i], 500);
+                     if(allGood){
+                        
+                        console.log("Clearing global timeout for image "+i);
+                     }                     
+                     function reqListener () {
+                        console.log("GOT A REPLY IN REQ LISTENER");
+                      //console.log(this.responseText);
+                       //var x = 1 + 2;
+                    }
+    //  force request to be sent (firefox needs this)
+                    var oReq = new XMLHttpRequest();
+                    oReq.addEventListener("load", reqListener);
+                    oReq.open("GET", files[i]);
+                    oReq.send();              
+                
+                if(allGood == true)
+                {
+                    console.log("WELCOME! All images have been loaded.");                    
+                }                
+                else
+                {
+                    console.log("Some images were not loaded.?");
+                }
+            }
+                
+                
+                         
+                
             });
         </script>        
     </body>
