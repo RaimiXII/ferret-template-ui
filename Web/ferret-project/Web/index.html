@@ -64,10 +64,10 @@
                     <h2 class="well well-lg">Templates</h2>
                  </div>
                  <div class="col-sm-8">                 
-                     <h2 class="well well-lg">MRI Viewer</h2>
+                     <h2 class="well well-lg">Viewer</h2>
                  </div>
                  <div class="col-sm-2">              
-                    <h2 class="well well-lg">Information</h2>   
+                    <h2 class="well well-lg">Info</h2>   
                  </div>
             </div>
         </div>
@@ -86,9 +86,9 @@
                         <br>   
                         <div><hr></div>                     
                         <div class="btn-group-vertical btn-block" id="evdti_modality_buttons">
-                            <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_fa">Fractional Anisotropy</button>
+                            <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_fa" data-toggle="tooltip" title="Fractional Anisotropy">FA</button>
                             <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_tr">Trace</button>
-                            <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_dec" data-toggle="tooltip" title="Directionally Encoded Colormap">DEC Map</button>
+                            <button type="button" class="btn btn-primary btn-outline" id="ex_vivo_dti_dec" data-toggle="tooltip" title="Directionally Encoded Color Map">DEC Map</button>
                         </div>
                         <div class="btn-group-vertical btn-block" id="evt2_modality_buttons">
                             <button type="button" class="btn btn-success btn-outline" id="ex_vivo_T2_10" data-toggle="tooltip" title="Echo Time (milliseconds)">10 ms</button>
@@ -103,7 +103,7 @@
                             <button type="button" class="btn btn-success btn-outline" id="ex_vivo_T2_100" data-toggle="tooltip" title="Echo Time (milliseconds)">100 ms</button>
                         </div>                        
                         <div class="btn-group-vertical btn-block" id="ivdti_modality_buttons">
-                            <button type="button" class="btn btn-danger btn-outline" id="in_vivo_dti_fa">Fractional Anisotropy</button>
+                            <button type="button" class="btn btn-danger btn-outline" id="in_vivo_dti_fa" data-toggle="tooltip" title="Fractional Anisotropy">FA</button>
                             <button type="button" class="btn btn-danger btn-outline" id="in_vivo_dti_tr">Trace</button>
                             <button type="button" class="btn btn-danger btn-outline" id="in_vivo_dti_dec" data-toggle="tooltip" title="Directionally Encoded Colormap">DEC Map</button>
                         </div>
@@ -138,6 +138,7 @@
                 <!--            RIGHT NAV BAR            -->                
                 <div class="col-sm-2" id="template_nav2">                                  
                     <div class="well">
+<!--
                         <form class="form-inline">
                             <div class="form-group mx-sm-3">
                                 <label class="form-control-static" for="query">Search for an ROI:</label>
@@ -148,7 +149,8 @@
                             <div class="form-group">
                                 <button id="search_roi" class="btn btn-success" type="button">Go</button>
                             </div>
-                        </form>                        
+                        </form>          
+-->              
                         <p>Modality</p>
                         <div class="btn-group  btn-group-justified" data-toggle="buttons">
                           <label id="modality_ev_roi" class="btn btn-primary active">
@@ -429,7 +431,7 @@
                         console.log("first image file not loaded. reload the page.");
                         window.location.reload(true);
                     }
-                }, 8000);         
+                }, 3000);         
                 ui.FetchBrainRegionData(); 
             });
         </script>        
