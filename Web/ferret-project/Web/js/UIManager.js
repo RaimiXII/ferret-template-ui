@@ -737,6 +737,7 @@ var UIManager = function(){
                     roi_names.push(data["rois"][i]["data"]["name"])
                 }
                 
+                /*
                 $('#query').typeahead({ local: roi_names });
                 $('.tt-query').css('background-color','#fff');                  
                 
@@ -756,8 +757,10 @@ var UIManager = function(){
                 var ctxMgr4 = new ContextManager();
                 ctxMgr4.SetViewer(3);
                 ctxMgr4.SetRegionObject(brain_region_struct);
+                */
                 
                 var using_surfaces = false;
+                    
                     
                 params1["kioskMode"] = true;   
                 if(using_surfaces){
