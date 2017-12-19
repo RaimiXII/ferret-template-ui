@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title> MRI Atlases - NIH-NIBIB-QMI </title>
+    <title>MRI Atlases - NIH-NIBIB-QMI</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -90,8 +90,7 @@
     <script src="js/agency.js"></script>        
     <!-- Custom scripts site -->
     <script src="js/BootstrapHelper.js"></script>    
-    <script src="js/MriAtlasHelper.js"></script>       
-    
+    <script src="js/MriAtlasHelper.js"></script>        
 
     <script type="text/javascript">    
     
@@ -99,96 +98,6 @@
             console.log("MHelper inits");
             
 
-            console.log("data loaded?");
-            
-                var params1=[];
-                var params2=[];
-                var params3=[];
-                var params4=[];
-                                
-                params1["images"] =  [                                            
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm"
-                                    ];                
-                params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};        
-                
-                //params1["luts"] = [{"name": "Custom", "data":[[0, 1, 0, 0], [.5, 1, 1, 0], [1, 1, 1, 1]]}];
-                params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};
-                 
-                params1.showControls = false; 
-                //params1["contextManager"] = ctxMgr1;
-                
-                //  TBD - put this back in when we get info on the ROIs
-                //ui.LoadNewSurfaces(image_map[current_image],0);
-                
-                using_surfaces = false;
-                
-                //  This just loads the main 3d whole brain surface volume
-                //ui.LoadMainSurface();            
-                params2["kioskMode"] = true;                        
-                                
-                params2["images"] =  [                                            
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
-                                     ];  
-                           
-                params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                  
-                
-                params2.showControls = false;          
-                //params2["contextManager"] = ctxMgr2;            
-                    
-                params3["kioskMode"] = true;      
-                
-                params3["images"] =  [  
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
-                                     ];                                                               
-                params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
-                params3["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
-                
-                params3.showControls = false              
-                //params3["contextManager"] = ctxMgr3;  
-                    
-                params4["kioskMode"] = true;    
-                
-                params4["images"] =  [
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",                                             
-                                     ];  
-                params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                                                                      
-                
-                params4.showControls = false   
-            
-            
             var mh = MriAtlasHelper();
             mh.Init();            
 
