@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">    
-<!-- no cache headers -->
+<!-- no cache headers
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="Cache-Control" content="no-cache">
-<!-- end no cache headers -->
+
+end no cache headers -->
     <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>        
@@ -365,6 +366,35 @@
             </div>            
         </div>
         <script type="text/javascript">
+        
+            var files = [
+                "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii",
+                "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii",
+                "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
+                "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm",
+                "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii"                
+            ];
+        
+        
+        
+        
+        
             var params  = [];
             var params1 = [];
             var params2 = [];
@@ -420,13 +450,13 @@
                 XMLHttpRequest.prototype.open = function(method, url) {
                     this.addEventListener('load', function() {
                         console.log('XHR finished loading (custom)', method, url);                        
-                        count = count + 1;
-                        console.log("COUNT -> " + count);
-                        if(count == 21)
+                        count = count + 1;   
+                        console.log("COUNT -> " + count);                     
+                        if(count == (files.length * 2)) // for some reason we need to do this 2x
                         {
                             ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");
                             console.log("ITS ALL GOOD!");
-                        }                        
+                        }                                         
                         clearTimeout(globalTimeout);
                     });
                     this.addEventListener('error', function() {
@@ -436,7 +466,45 @@
                 };
             })();
             
+            var BrowserDetection = function(fn) {
+                var res = -1;
             
+                //Check if browser is IE
+                if (navigator.userAgent.search("MSIE") >= 0) {
+                    // insert conditional IE code here
+                    console.log("IE detected.");
+                    $.get(fn);
+                    res=1;
+                }
+                //Check if browser is Chrome
+                else if (navigator.userAgent.search("Chrome") >= 0) {
+                    // insert conditional Chrome code here
+                    console.log("Chrome detected.");
+                    res=2;
+                }
+                //Check if browser is Firefox 
+                else if (navigator.userAgent.search("Firefox") >= 0) {
+                    // insert conditional Firefox Code here
+                    console.log("Firefox detected.");
+                    res=3;
+                }
+                //Check if browser is Safari
+                else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
+                    // insert conditional Safari code here
+                    console.log("Safari detected.");
+                    res=4;
+                }
+                //Check if browser is Opera
+                else if (navigator.userAgent.search("Opera") >= 0) {
+                    // insert conditional Opera code here
+                    console.log("Opera detected.");
+                    res=5;
+                }
+                else {
+                    console.log("Unsupported browser.")
+                }
+                return res;
+            }
             
             
             $(document).ready(function(){
@@ -465,35 +533,16 @@
                 ch.CreateChart("RoiChart", 300);                  
                 ui.FetchBrainRegionData(); 
                 
-                var files = [
-                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii",
-                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii",
-                    "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
-                    "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm",
-                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                    "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
-                    "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
-                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
-                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
-                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                    "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii"                
-                ];
+                
+                
+                
                 
                 
                 var allGood = false;
                 
                 for(var i=0;i<files.length; i++)
                 {
+                     
                      allGood = spinCycle(files[i], 500);
                      if(allGood){
                         
@@ -502,11 +551,15 @@
                      function reqListener () {
                         console.log("GOT A REPLY IN REQ LISTENER");
                     }
+                    
     //  force request to be sent (firefox needs this)
+                    
                     var oReq = new XMLHttpRequest();
                     oReq.addEventListener("load", reqListener);
                     oReq.open("GET", files[i]);
-                    oReq.send();              
+                    oReq.send();
+                    var browserType = BrowserDetection(files[i]);
+                     
                 
                 if(allGood == true)
                 {
