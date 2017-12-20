@@ -325,22 +325,22 @@ var MriAtlasHelper = function(){
                             bh.Div({'class':"row"}).append([
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"name",'type':"text",'placeholder':"Your Name *",'data-validation-required-message':"Please enter your name.",'extra':"required"}),
-                                        bh.Paragraph({'class':"help-block text-danger"})
+                                        bh.Input({'class':"form-control",'id':"name",'type':"text",'placeholder':"Your Name *",'data-validation-required-message':"Please enter your name."}),
+                                        bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"email",'type':"email",'placeholder':"Your Email *",'data-validation-required-message':"Please enter your email.",'extra':"required"}),
-                                        bh.Paragraph({'class':"help-block text-danger"})
+                                        bh.Input({'class':"form-control",'id':"email",'type':"email",'placeholder':"Your Email *",'data-validation-required-message':"Please enter your email."}),
+                                        bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution.",'extra':"required"}),
-                                        bh.Paragraph({'class':"help-block text-danger"})
+                                        bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
+                                        bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message.",'extra':"required"}),
-                                        bh.Paragraph({'class':"help-block text-danger"})
+                                        bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
+                                        bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
                                 ]),
                                 bh.Div({'class':"clearfix"}),
@@ -408,22 +408,43 @@ var MriAtlasHelper = function(){
     {
         $("#d_footer").append([
             bh.Div({'class':"container"}).append([
-                bh.Div({'class':"row"}).append([
+                bh.Div({'class':"row", 'style':"margin :5px 0;"}).append([
                     bh.Div({'class':"col-md-4"}).append([
                         bh.Span({'class':"copyright",'text':"Copyright &copy; NIH - NIBIB - QMI, 2017"})
                     ]),
-                    bh.Div({'class':"col-md-4",'id':"socialtest"}),
-                    bh.Div({'class':"col-md-4"}).append([
+                    //bh.Div({'class':"col-md-4",'id':"socialtest"}),
+                    bh.Div({'class':"col-md-8"}).append([
                         bh.UnorderedList({'class':"list-inline quicklinks"}).append([
                             bh.ListItem({'class':"list-inline-item"}).append([
-                                bh.Anchor({'href':"https://www.nibib.nih.gov/policies#privacy",'text':"Privacy Policy"})
+                                bh.Anchor({'href':"https://www.nibib.nih.gov/policies#privacy",'text':"Privacy Policy", 'target' : "_blank", 'style':"margin :5px 10px;"})
+                            ]),
+							bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"https://www.nibib.nih.gov/accessibility",'text':"Accessibility", 'target' : "_blank", 'style':"margin :5px 10px;"})
+                            ]),
+							bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"https://www.nibib.nih.gov/foia",'text':"FOIA", 'target' : "_blank", 'style':"margin :5px 10px;"})
                             ]),
                             bh.ListItem({'class':"list-inline-item"}).append([
-                                bh.Anchor({'href':"https://www.nibib.nih.gov/disclaimer",'text':"Terms of Use"})
+                                bh.Anchor({'href':"https://www.nibib.nih.gov/disclaimer",'text':"Terms of Use", 'target' : "_blank", 'style':"margin :5px 10px;"})
                             ])
                         ])
                     ])
-                ])
+                ]),
+				bh.Div({'class':"row"}).append([
+					bh.Div({'class':"col-md-12", 'style':"margin :10px 0;"}).append([
+                        bh.UnorderedList({'class':"list-inline quicklinks"}).append([
+                            bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"http://www.hhs.gov/",'text':"Department of Health and Human Services", 'target' : "_blank", 'style':"margin :5px 10px;"})
+                            ]),
+							bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"http://www.usa.gov/",'text':"USA.gov", 'target' : "_blank", 'style':"margin :5px 10px;"})
+                            ]),
+							bh.ListItem({'class':"list-inline-item"}).append([
+                                bh.Anchor({'href':"http://www.nih.gov/",'text':"National Institutes of Health", 'target' : "_blank", 'style':"margin :5px 10px;"})
+                            ])
+                        ])
+                    ])
+				])
             ])            
         ]);
     };

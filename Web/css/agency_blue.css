@@ -47,7 +47,11 @@ section {
 
 .btn {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700; }
+  font-weight: 400; }
+
+.btn-lg {
+  font-size: 18px;
+  padding: 10px 20px; }
 
 .btn-xl {
   font-size: 18px;
@@ -55,7 +59,8 @@ section {
 
 .btn-primary {
   background-color: #1893db;
-  border-color: #1893db; }
+  border-color: #1893db;
+  padding: 10px 20px;}
   .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
     background-color: #109ff2 !important;
     border-color: #109ff2 !important;
@@ -181,7 +186,7 @@ header.masthead {
 #portfolio .portfolio-item {
   right: 0;
   margin: 0 0 15px; }
-  #portfolio .portfolio-item .portfolio-link {
+#portfolio .portfolio-item .portfolio-link {
     position: relative;
     display: block;
     max-width: 400px;
@@ -207,7 +212,8 @@ header.masthead {
         height: 20px;
         margin-top: -12px;
         text-align: center;
-        color: white; }
+        color: white;
+		}
         #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
           margin-top: -12px; }
         #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
@@ -215,6 +221,7 @@ header.masthead {
           margin: 0; }
   #portfolio .portfolio-item .portfolio-caption {
     max-width: 400px;
+	min-height: 165px; 
     margin: 0 auto;
     padding: 25px;
     text-align: center;
