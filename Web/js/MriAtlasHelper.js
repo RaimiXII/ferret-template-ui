@@ -332,16 +332,17 @@ var MriAtlasHelper = function(){
                                         bh.Input({'class':"form-control",'id':"email",'type':"email",'placeholder':"Your Email *",'data-validation-required-message':"Please enter your email."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
-                                    bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
-                                        bh.Paragraph({'class':"help-block text-danger",'text':"required"})
-                                    ]),
+                                    
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
                                         bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
+								bh.Div({'class':"form-group"}).append([
+									bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
+									bh.Paragraph({'class':"help-block text-danger",'text':"required"})
+								]),
                                 ]),
                                 bh.Div({'class':"clearfix"}),
                                 bh.Div({'class':"col-lg-12 text-center"}).append([
