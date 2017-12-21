@@ -48,11 +48,30 @@ var ChartHelper = function()
   
   var updateChart = function(new_data, new_min, new_max)
   {  
-  
+    //var csv_as_json = chartHelper.CsvToJson(d);        
+        var c_im_split = current_image.split('_');
+        var c_im_type = c_im_split[c_im_split.length-1];
+        var plot_col;
+        var the_min;
+        var the_max;
+        if(c_im_type == "FA")
+        {
+            console.log("FAFAFAFAFAFAFAFAFA");
+            the_min = 0;
+            the_max = 1;
+        }
+        else
+        {
+            console.log("TRTRTRTRTRTR");
+            the_min = 0;
+            the_max = 1000;
+        }
     console.log("UPDATING MIN -> " + new_min + "   AND    MAX -> " + new_max);
     chart.data.datasets[0].data = new_data;
-    chart.data.labels[0] = (new_min);
-    chart.data.labels[new_data.length-1] = (new_max);
+  //  chart.data.labels[0] = (new_min);
+//    chart.data.labels[new_data.length-1] = (new_max);
+    chart.data.labels[0]= the_min;
+    chart.data.labels[new_data.length-1] = the_max;
     chart.update();    
   }
   
