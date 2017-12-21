@@ -352,6 +352,7 @@
         </div>
     <!-- /.container -->
         <div id="loading" class="centered">
+            <h1 class="text-primary">Loading images, please wait...</h1>
             <div class="loading spin-1">
                 <div class="loading spin-2">
                     <div class="loading spin-3">
@@ -377,23 +378,18 @@
             ctx.SetChartHelper(ch);
             var current_image ="";                     
             var brain_region_struct = {};            
-            //var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
-            var imageUrl = 'img/black_minimal_bkg.jpg';
-            
+            var imageUrl = 'img/black_minimal_bkg.jpg';            
             var checkFile = function(fname) {
-	                    filename = fname.trim();
-	
-	                    var response = jQuery.ajax({
-		                    url: filename,
-		                    type: 'HEAD',
-		                    async: false
-	                    }).status;	
-	
-	                    return (response != "200") ? false : true;
-                    };
+                filename = fname.trim();	
+                var response = jQuery.ajax({
+                    url: filename,
+                    type: 'HEAD',
+                    async: false
+                }).status;		
+                return (response != "200") ? false : true;
+            };
             
             $(document).ready(function(){
-            //$('ul.sub').hide();
              $('body, html').css('background-image', 'url(' + imageUrl + ')');                                
                 ui.hideDivs([
                       "#ex_vivo_dti_viewer",
@@ -413,8 +409,7 @@
                       "#roi_volume", "#roi_mean", "#roi_std_dev",
                       "#about_containter", "#success_message_request",
                       "#success_message_roi",
-                ]);                
-                //  tbd change 300 to screen height derived percentage
+                ]);
                 ch.CreateChart("RoiChart", 300);                  
                 setTimeout(function(){
                     var fileExists = checkFile("img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii");
