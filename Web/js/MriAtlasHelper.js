@@ -93,6 +93,7 @@ var MriAtlasHelper = function(){
         var short_desc = info['description_short'];
         var long_desc = info['description_long'];
         var cite = info['citation'];
+        var active = info['active'];
         
         modal_projects[m_div] = [            
             bh.Div({'class':"modal-dialog"}).append([
@@ -135,6 +136,13 @@ var MriAtlasHelper = function(){
                 ])
             ])
         ];
+        // disable hover and click for under construction projects
+        var active_content;
+        if(active)
+        {
+            active_content = "disabled: true"
+        }
+        
         grid_projects[g_div] = [
             bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href': m_div}).append([
                 bh.Div({'class':"portfolio-hover"}).append([
@@ -196,8 +204,9 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"About"}),
-                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.  We extend an invitation to <i>you</i> to contribute and collaborate with us to further this site."}),
-                        bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://science.nichd.nih.gov/confluence/display/nihpd/Home",'text':"Visit Us!"}),
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average anatomical templates that we have created for various projects.  We extend an invitation to <i>you</i> to contribute and collaborate with us to further this site."}),
+                        bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://www.nibib.nih.gov/labs-at-nibib/quantitative-medical-imaging",'text':"Visit Us!"}),
+                        //bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://science.nichd.nih.gov/confluence/display/nihpd/Home",'text':"Visit Us!"}),
                         bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"."}),
                     ]),
                 ]),
@@ -228,7 +237,7 @@ var MriAtlasHelper = function(){
                                         bh.Header({'order':"4",'class':"subheading",'text':"Why we do it"}),
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"We are a group of scientists who develop methods for processing and analyzing images of the brain."})
+                                        bh.Paragraph({'class':"text-muted",'text':"We are a group of scientists who develop methods for processing and analyzing magnetic resonance images (mostly of the brain)."})
                                     ])
                                 ])
                             ]),
@@ -361,7 +370,7 @@ var MriAtlasHelper = function(){
         $("#mhead").append([
             bh.Div({'class':"intro-text",'id':"bgImage"}).append([
                 bh.Div({'class':"intro-heading text-uppercase", 'text':"MRI Atlases"}), 
-                bh.Div({'class':"intro-lead-in",'text':"An online MRI viewer"}),      
+                bh.Div({'class':"intro-lead-in",'text':"An interactive repository of anatomical templates obtained from quantitative MRI data"}),      
                 bh.Header({'order':"2",'text':"<br>"}),
                 bh.Anchor({'class':"btn btn-primary btn-xl text-uppercase js-scroll-trigger",'href':"#portfolio",'text':"Start Exploring",'id':"start_exploring"})
             ])
@@ -410,7 +419,7 @@ var MriAtlasHelper = function(){
             bh.Div({'class':"container"}).append([
                 bh.Div({'class':"row", 'style':"margin :5px 0;"}).append([
                     bh.Div({'class':"col-md-4"}).append([
-                        bh.Span({'class':"copyright",'text':"Copyright &copy; NIH - NIBIB - QMI, 2017"})
+                        bh.Span({'class':"copyright",'text':"Developed by NIH - NIBIB - QMI, 2017"})
                     ]),
                     //bh.Div({'class':"col-md-4",'id':"socialtest"}),
                     bh.Div({'class':"col-md-8"}).append([

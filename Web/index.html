@@ -45,10 +45,10 @@
                     <div class="col-md-4 col-sm-6 portfolio-item" id="project2"></div>
                     <div class="col-md-4 col-sm-6 portfolio-item" id="project3"></div>                          
                 </div>
-				<div class="row">                
+				<div class="row">
                     <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-primary" data-dismiss="modal" type="button" text="Explore" id="project1_explore">Explore <i class="fa fa-play"> </i></button></div>
-                    <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-primary" data-dismiss="modal" type="button" text="Explore" id="project2_explore">Explore <i class="fa fa-play"> </i></button></div>
-                    <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-primary" data-dismiss="modal" type="button" text="Explore" id="project3_explore">Explore <i class="fa fa-play"> </i></button></div>                          
+                    <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-danger" data-dismiss="modal" type="button" text="Explore" id="project2_explore" disabled="true">Under Construction <i class="fa fa-play"> </i></button></div>
+                    <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-danger" data-dismiss="modal" type="button" text="Explore" id="project3_explore" disabled="true">Under Construction <i class="fa fa-play"> </i></button></div>                          
                 </div>
             </div>    
         </section>
@@ -66,6 +66,8 @@
                     <div class="col-sm-4" id="member3"></div>
                     <div class="col-sm-4" id="member4"></div>
                     <div class="col-sm-4" id="member5"></div>
+                    <div class="col-sm-4" id="member6"></div>
+                    <div class="col-sm-4" id="member7"></div>
                 </div>
                 <div class="col-lg-8 mx-auto text-center">
                     <p class="large text-muted">The core contributors are members of NIH NIBIB QMI section, Bethesda Maryland.</p>
@@ -96,107 +98,11 @@
     <!-- Custom scripts site -->
     <script src="js/BootstrapHelper.js"></script>    
     <script src="js/MriAtlasHelper.js"></script>       
-    
-
     <script type="text/javascript">    
     
-        $(document).ready (function(){
-            console.log("MHelper inits");
-            
-
-            console.log("data loaded?");
-            
-                var params1=[];
-                var params2=[];
-                var params3=[];
-                var params4=[];
-                                
-                params1["images"] =  [                                            
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm"
-                                    ];                
-                params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};        
-                
-                //params1["luts"] = [{"name": "Custom", "data":[[0, 1, 0, 0], [.5, 1, 1, 0], [1, 1, 1, 1]]}];
-                params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};
-                 
-                params1.showControls = false; 
-                //params1["contextManager"] = ctxMgr1;
-                
-                //  TBD - put this back in when we get info on the ROIs
-                //ui.LoadNewSurfaces(image_map[current_image],0);
-                
-                using_surfaces = false;
-                
-                //  This just loads the main 3d whole brain surface volume
-                //ui.LoadMainSurface();            
-                params2["kioskMode"] = true;                        
-                                
-                params2["images"] =  [                                            
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
-                                        "ferret-project/Web/img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
-                                     ];  
-                           
-                params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
-                params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                  
-                
-                params2.showControls = false;          
-                //params2["contextManager"] = ctxMgr2;            
-                    
-                params3["kioskMode"] = true;      
-                
-                params3["images"] =  [  
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii"
-                                     ];                                                               
-                params3["Template4D_TE010.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE020.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE030.nii"] ={"lut": "Hot-Cool", "min": 0, "max":  1500000};
-                params3["Template4D_TE040.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE050.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
-                
-                params3.showControls = false              
-                //params3["contextManager"] = ctxMgr3;  
-                    
-                params4["kioskMode"] = true;    
-                
-                params4["images"] =  [
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
-                                        "ferret-project/Web/img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii",                                             
-                                     ];  
-                params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                                                                      
-                
-                params4.showControls = false   
-            
-            
+        $(document).ready (function(){            
             var mh = MriAtlasHelper();
             mh.Init();            
-
             //  ferret ui
             mh.AddProject({    'modal_div':"#project1_more",
                                                 'grid_div':"#project1",
@@ -213,7 +119,7 @@
                                                 specifics for this project...',
                                                 'citation':"Hutchinson, E.B.; Schwerin, S.C.; Radomski, K.L.; Sadeghi, N.; Jenkins, J.; Komlosh, M.E.; Irfanoglu, M.O.; Juliano, S.L.; and Pierpaoli, C., \"Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis\" (2017). Uniformed Services University of the Health Sciences. 190."});            
             //  human brainstem                 
-            mh.AddProject({    'modal_div':"#project2_more",
+            mh.AddProject({    'modal_div':"#project2_more_defunct",
                                                 'grid_div':"#project2",
                                                 'project_url': "brainstem-project/Web/index.html",
                                                 'name':'Human Brainstem',
@@ -226,9 +132,12 @@
                                                 'description_long':'This is a collection of ex-vivo Human brainstem templates.  \
                                                 ROI segmentation has been performed and ...please insert more text here about \
                                                 specifics for this project...',
-                                                'citation':"Cibu Thomas, Frank Q. Ye, M. Okan Irfanoglu, Pooja Modi, Kadharbatcha S. Saleem, David A. Leopold, and Carlo Pierpaoli, \"Anatomical accuracy of brain connections derived from diffusion MRI tractography is inherently limited\", PNAS 2014 111 (46) 16574-16579; published ahead of print November 3, 2014, doi:10.1073/pnas.1405672111"});        
+                                                'citation':"Cibu Thomas, Frank Q. Ye, M. Okan Irfanoglu, Pooja Modi, Kadharbatcha S. Saleem, David A. Leopold, and Carlo Pierpaoli, \"Anatomical accuracy of brain connections derived from diffusion MRI tractography is inherently limited\", PNAS 2014 111 (46) 16574-16579; published ahead of print November 3, 2014, doi:10.1073/pnas.1405672111",
+                                                'active': "false"}
+                                                
+                                                );        
             //  aging project
-            mh.AddProject({    'modal_div':"#project3_more",
+            mh.AddProject({    'modal_div':"#project3_more_defunct",
                                                 'grid_div':"#project3",
                                                 'project_url': "aging-project/Web/index.html",
                                                 'name':'PedsDTI',
@@ -240,17 +149,18 @@
                                                 'description_short':'The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development ',
                                                 'description_long':'This is a collection of in-vivo Human brain templates which are found at <a href="https://pediatricmri.nih.gov/nihpd/info/index.html">The NIH MRI Study of Normal Brain Development</a> data repository.  \
                                                 Multiple age cohorts, or "Objectives" are represented in this multi-site longitudinal study with anatomical MRI, DTI, and MR Spectroscopy.',
-                                                'citation':"Walker, Lindsay; Chang, Lin-Ching; Nayak, Amritha et al. (2016) The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development (PedsDTI). Neuroimage 124:1125-30"}); 
+                                                'citation':"Walker, Lindsay; Chang, Lin-Ching; Nayak, Amritha et al. (2016) The diffusion tensor imaging (DTI) component of the NIH MRI study of normal brain development (PedsDTI). Neuroimage 124:1125-30",
+                                                'active': "false"}); 
             //  member 1
             mh.AddTeamMember({    'div': "#member1",
                                                             'name': "Elizabeth Hutchinson",
-                                                            'image': "img/team/eh.png",
+                                                            'image': "img/team/bh.jpeg",
                                                             'description': "Neuroscientist - Ph.D. (HJF)",
                                                             'website': "https://www.researchgate.net/profile/Elizabeth_Hutchinson"});                                
             //  member 2
             mh.AddTeamMember({    'div': "#member2",
                                                             'name': "Carlo Pierpaoli",
-                                                            'image': "img/team/cp.jpg",
+                                                            'image': "img/team/cp.jpeg",
                                                             'description': "Principal Investigator - M.D, Ph.D (NIH)",
                                                             'website': "https://scholar.google.com/citations?user=sF8PNIIAAAAJ&hl=en"});      
             //  member 3
@@ -265,40 +175,30 @@
                                                             'image': "img/team/jj.jpg",
                                                             'description': "Computer Scientist - PhD. Candidate (CUA)",
                                                             'website': "https://www.researchgate.net/profile/Jeffrey_Jenkins9"});
-                                            //  member 5
+            //  member 5
             mh.AddTeamMember({    'div': "#member5",
                                                             'name': "Amritha Nayak",
-                                                            'image': "img/team/an.jpeg",
+                                                            'image': "img/team/an.png",
                                                             'description': "Image Scientist - M.S. BME (HJF)",
                                                             'website': "https://www.researchgate.net/profile/Amritha_Nayak"});
+            //  member 6
+            mh.AddTeamMember({    'div': "#member6",
+                                                            'name': "Neda Sadeghi",
+                                                            'image': "img/team/ns.jpeg",
+                                                            'description': "Postdoctoral Fellow - PhD.  (NIBIB)",
+                                                            'website': "https://www.researchgate.net/profile/Neda_Sadeghi"});
+                                                            
+             //  member 7
+            mh.AddTeamMember({    'div': "#member7",
+                                                            'name': "Laura Reyes",
+                                                            'image': "img/team/lr2.png",
+                                                            'description': "Postdoctoral Fellow - PhD.  (NIBIB)",
+                                                            'website': "https://www.researchgate.net/profile/Laura_Reyes8"});
                                                            
             //  build page content
             mh.Generate();
                         
-            $("#project1").keypress(function(e){
-                if(e.which == 13){//Enter key pressed
-                    $('#project1').click();//Trigger search button click event
-                }
-            });            
-        });            
-        var callback = function() {
-            $("#project1").click()
-        };
-        $("input").keypress(function() {
-            if (e.key === " " || e.key === "Enter")  callback();
-        });
-        var handleBtnKeyPress = function(e)
-        {
-                console.log("BTNPRESS");
-                console.log(e.target.id)
-                if (e.key === " " || e.key === "Enter") {
-                    console.log("enter or space was pressed")
-              }
-        };
-        var handleBtnClick = function(e)
-        {            
-        };
-                    
+        });     
     </script>
   </body>
 </html>
