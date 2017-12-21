@@ -204,9 +204,14 @@ var MriAtlasHelper = function(){
                 bh.Div({'class':"row"}).append([
                     bh.Div({'class':"col-lg-12 text-center"}).append([
                         bh.Header({'order':"2",'class':"section-heading text-uppercase",'text':"About"}),
+<<<<<<< HEAD
                         bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average anatomical templates that we have created for various projects.  We extend an invitation to <i>you</i> to contribute and collaborate with us to further this site."}),
                         bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://www.nibib.nih.gov/labs-at-nibib/quantitative-medical-imaging",'text':"Visit Us!"}),
                         //bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://science.nichd.nih.gov/confluence/display/nihpd/Home",'text':"Visit Us!"}),
+=======
+                        bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"The goal of this website is to offer to interested individuals the possibility of inspecting the average brain templates that we have created for various projects.  We extend an invitation to <i>you</i> to contribute and collaborate with us to further this site."}),
+                        bh.Anchor({'class':"btn btn-primary btn-lg",'href':"https://science.nichd.nih.gov/confluence/display/nihpd/Home",'text':"VISIT QMI!"}),
+>>>>>>> 7d7ae204a3e0d2340cc1f4a957b2fb5ffe133a5d
                         bh.Header({'order':"3",'class':"section-subheading text-muted",'text':"."}),
                     ]),
                 ]),
@@ -215,7 +220,7 @@ var MriAtlasHelper = function(){
                         bh.UnorderedList({'class':"timeline"}).append([
                             bh.ListItem({}).append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_1.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_1.jpg" alt="NIBIB Logo">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
@@ -229,7 +234,7 @@ var MriAtlasHelper = function(){
                             ]),
                             bh.ListItem({'class':"timeline-inverted"}).append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_2.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_2.jpg" alt="Patient receiving MRI Brain Scan">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
@@ -243,7 +248,7 @@ var MriAtlasHelper = function(){
                             ]),
                             bh.ListItem({}).append([
                                 bh.Div({'class':"timeline-image"}).append([
-                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_3.jpg" alt="">')
+                                    $('<img class="rounded-circle img-fluid" src="img/about/nih_3.jpg" alt="MRI Brain Scan image">')
                                 ]),
                                 bh.Div({'class':"timeline-panel"}).append([
                                     bh.Div({'class':"timeline-heading"}).append([
@@ -341,16 +346,17 @@ var MriAtlasHelper = function(){
                                         bh.Input({'class':"form-control",'id':"email",'type':"email",'placeholder':"Your Email *",'data-validation-required-message':"Please enter your email."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
-                                    bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
-                                        bh.Paragraph({'class':"help-block text-danger",'text':"required"})
-                                    ]),
+                                    
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
                                         bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
+								bh.Div({'class':"form-group"}).append([
+									bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
+									bh.Paragraph({'class':"help-block text-danger",'text':"required"})
+								]),
                                 ]),
                                 bh.Div({'class':"clearfix"}),
                                 bh.Div({'class':"col-lg-12 text-center"}).append([
@@ -381,8 +387,9 @@ var MriAtlasHelper = function(){
     {
         $("#mainNav").append([
             bh.Div({'class':"container"}).append([
-                bh.Anchor({'class':"navbar-brand js-scroll-trigger",'alt':"", 'href':"https://www.nibib.nih.gov"}).append([
-                    bh.Image({'src':"img/logos/nibib_logo_wide_white.png",'height':"45vh"})
+                bh.Anchor({'class':"navbar-brand js-scroll-trigger", 'href':"https://www.nibib.nih.gov", 'target':"_blank"}).append([
+                    bh.Image({'src':"img/logos/nibib_logo_wide_white.png",'height':"45vh",'alt':"National Institute of Biomedical Imaging and Bioengineering"})
+					//,bh.Div({'style':"text-indent: -10000px;",'text':"National Institute of Biomedical Imaging and Bioengineering"})
                 ]),
                 /*
                 bh.Button({'class':"navbar-toggler navbar-toggler-right", 'type':"button", 'data-toggle':"collapse", 'data-target':"#navbarResponsive", 'aria-controls':"navbarResponsive", 'aria-expanded':"false", 'aria-label':"Toggle navigation"}).append([
