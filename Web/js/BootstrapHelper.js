@@ -9,8 +9,8 @@ var BootstrapHelper = function(){
         for(var i=0; i < ks.length; i++){
             if(ks[i] == "tag"){}
             else{
-                if(ks[i]=="text"{_txt = params["text"];}
-                if(ks[i]=='extra'){_xtra=params['extra'];}
+                if(ks[i]=="text"){_txt = params["text"];}
+                if(ks[i]=="extra"){_xtra=params['extra'];}
                 else{argstr = argstr+' '+(ks[i] + '="' + params[ks[i]])+'"';}
             }
         }

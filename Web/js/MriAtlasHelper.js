@@ -335,7 +335,7 @@ var MriAtlasHelper = function(){
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control", 'height':"40",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
+                                        bh.TextWindow({'class':"form-control", 'rows':"8", 'cols':"40",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),								
                                 ]),
@@ -353,10 +353,7 @@ var MriAtlasHelper = function(){
         $("#name").val("");
         $("#email").val("");
         $("#institution").val("");
-        document.getElementById("message").style.height = "21vh";
-
-        $("#message").val("");
-        
+        $("#message").val("");        
     };
     
     var BuildHeader = function()
