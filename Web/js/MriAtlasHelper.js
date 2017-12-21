@@ -140,7 +140,7 @@ var MriAtlasHelper = function(){
         var active_content;
         if(active=="true")
         {
-            active_content = bh.Div({'class':"portfolio-hover",'disabled':"true"}).append([
+            active_content = bh.Div({'class':"portfolio-hover"}).append([
                     bh.Div({'class':"portfolio-hover-content"}).append([
                         bh.Icon({'class':"fa fa-plus fa-3x"})
                     ])
@@ -319,7 +319,7 @@ var MriAtlasHelper = function(){
                     bh.Div({'class':"col-lg-12"}).append([
                         bh.Form({'id':"contactForm",'name':"sentMessage"}).append([
                             bh.Div({'class':"row"}).append([
-                                bh.Div({'class':"col-md-6"}).append([
+                                bh.Div({'class':"col-md-6",'id':"lhs_contact"}).append([
                                     bh.Div({'class':"form-group"}).append([
                                         bh.Input({'class':"form-control",'id':"name",'type':"text",'placeholder':"Your Name *",'data-validation-required-message':"Please enter your name."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
@@ -329,14 +329,13 @@ var MriAtlasHelper = function(){
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
                                     bh.Div({'class':"form-group"}).append([
-									bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
-									bh.Paragraph({'class':"help-block text-danger",'text':"required"})
-								]),
-                                    
+									    bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
+									    bh.Paragraph({'class':"help-block text-danger",'text':"required"})
+								    ]),                                    
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.TextArea({'class':"form-control",'rows':"10", 'cols':"40", 'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
+                                        bh.Input({'class':"form-control", 'height':"40",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),								
                                 ]),
@@ -354,7 +353,10 @@ var MriAtlasHelper = function(){
         $("#name").val("");
         $("#email").val("");
         $("#institution").val("");
+        document.getElementById("message").style.height = "21vh";
+
         $("#message").val("");
+        
     };
     
     var BuildHeader = function()

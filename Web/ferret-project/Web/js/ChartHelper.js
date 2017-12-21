@@ -48,6 +48,7 @@ var ChartHelper = function()
   
   var updateChart = function(new_data, new_min, new_max)
   {  
+  
     console.log("UPDATING MIN -> " + new_min + "   AND    MAX -> " + new_max);
     chart.data.datasets[0].data = new_data;
     chart.data.labels[0] = (new_min);
@@ -250,12 +251,8 @@ var ChartHelper = function()
   };
   
   var FindVolume = function(arr, res){
-  
-  
     var vox_vol = res[0]*res[1]*res[2];
     return arr.length * vox_vol;
-    
-  
   };
   
   
@@ -272,8 +269,6 @@ var ChartHelper = function()
     var mu = MeanFloatArray(sorted_v1);
     var sd = StdDevFloatArray(sorted_v1);
     var vol = FindVolume(sorted_v1, [0.5, 0.5, 0.5]);
-    
-    //console.log("MU -> " + mu + "  STD DEV -> " + sd + " VOL -> " + vol);
     
     $("#roi_mean").html("Mean of ROI: <b>"+mu+" micrometer squared per second</b><br><br>")
     $("#roi_std_dev").html("Standard Deviation of ROI: <b>"+sd+"</b><br><br>")
