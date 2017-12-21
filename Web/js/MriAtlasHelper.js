@@ -138,18 +138,22 @@ var MriAtlasHelper = function(){
         ];
         // disable hover and click for under construction projects
         var active_content;
-        if(active)
+        if(active=="true")
         {
-            active_content = "disabled: true"
+            active_content = bh.Div({'class':"portfolio-hover",'disabled':"true"}).append([
+                    bh.Div({'class':"portfolio-hover-content"}).append([
+                        bh.Icon({'class':"fa fa-plus fa-3x"})
+                    ])
+                ]);            
+        }
+        else
+        {
+            active_content = bh.Div({});
         }
         
         grid_projects[g_div] = [
             bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href': m_div}).append([
-                bh.Div({'class':"portfolio-hover"}).append([
-                    bh.Div({'class':"portfolio-hover-content"}).append([
-                        bh.Icon({'class':"fa fa-plus fa-3x"})
-                    ])
-                ]),
+                active_content,
                 bh.Image({'class':"img-fluid",'src':img_thumb,'alt':""})
             ]),                    
             bh.Div({'class':"portfolio-caption"}).append([
