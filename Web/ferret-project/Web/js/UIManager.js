@@ -572,15 +572,15 @@ var UIManager = function(){
         var plot_col;
         if(c_im_type == "FA")
         {
-            chartHelper.CreateHistogram(csv_as_json, 25,0);
+            chartHelper.CreateHistogram(csv_as_json, 35,0);
             var val = GetVoxelValue(image_map[current_image], GetCursorLocation(image_map[current_image])[0]);            
-            $("#voxel_value").html("<br>Value at cursor position ("+GetCursorLocation(image_map[current_image])[0]+") : <b>"+ (val)+"</b><br><br>")
+            $("#voxel_value").html("<br>Value at cursor position ("+GetCursorLocation(image_map[current_image])[0]+") : <b>"+ (val)+" (micrometer squared per second)</b><br><br>")
         }
         else if(c_im_type == "TR")
         {
-            chartHelper.CreateHistogram(csv_as_json, 25,1);
+            chartHelper.CreateHistogram(csv_as_json, 35,1);
             var val = GetVoxelValue(image_map[current_image], GetCursorLocation(image_map[current_image])[0]);            
-            $("#voxel_value").html("<br>Value at cursor position ("+GetCursorLocation(image_map[current_image])[0]+") : <b>"+ (val)+"(micrometer squared per second)</b><br><br>")
+            $("#voxel_value").html("<br>Value at cursor position ("+GetCursorLocation(image_map[current_image])[0]+") : <b>"+ (val)+" (micrometer squared per second)</b><br><br>")
         }
         else
         {

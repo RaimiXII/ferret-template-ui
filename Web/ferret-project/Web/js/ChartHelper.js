@@ -75,15 +75,15 @@ var ChartHelper = function()
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "Max"],
+                labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "", "", "","","","","","","","","Max"],
                 datasets: [{
                     label: '# of Voxels',
-                    data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],                        
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],                        
                     backgroundColor: [
-                        br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,
+                        br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,
                     ],
                     borderColor: [
-                        bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,
+                        bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,
                     ],                        
                     borderWidth: 1
                 }]
@@ -281,7 +281,7 @@ var ChartHelper = function()
     
     $("#roi_mean").html("Mean of ROI: <b>"+mu+" micrometer squared per second</b><br><br>")
     $("#roi_std_dev").html("Standard Deviation of ROI: <b>"+sd+"</b><br><br>")
-    $("#roi_volume").html(" Volume: <b>"+vol+" micrometer squared per second</b><br><br>")
+    $("#roi_volume").html(" Volume of ROI: <b>"+vol+" micrometer squared per second</b><br><br>")
 
     var intervals = [];    var histogram =[];    
     for(var i=0; i < nbins; i++)
