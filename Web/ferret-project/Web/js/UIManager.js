@@ -38,7 +38,7 @@ var UIManager = function(){
         var line = '<hr class="my-4">';
         var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
         var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
-        var back_button = $("#back_button");
+        var back_button = '<p class="lead"><input class="btn btn-primary btn-lg" type="button" id="back_button" value="Back" onclick="javascript: onBack()" /></p>';
         var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button+back_button;
         $("#about_content").html(content);
     };
@@ -46,6 +46,29 @@ var UIManager = function(){
     var LoadRequestForm = function(){
     };
     
+    //  TBD FIX THE BACK BUTTON
+    var onBack = function(){
+        console.log('clicked back');
+        
+        ui.hideDivs([
+                          "#ex_vivo_dti_viewer",
+                          "#in_vivo_dti_viewer",
+                          "#ex_vivo_t2_viewer",
+                          "#in_vivo_t2_viewer",                                    
+                          "#navi", 
+                          "#MRI_area1", 
+                          "#visualization_templates", 
+                          "#bannerBox",  
+                          "#mri_headers","#template_content",                               
+                          "#template_nav2",
+                          "#histogram_container",
+                          "#roi_volume", "#roi_mean", "#roi_std_dev",
+                          "#about_containter", "#success_message_request",
+                          "#success_message_roi",
+                    ]);                         
+                    $("#about_content").clear("");
+                ui.fadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
+    }
     
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -175,6 +198,7 @@ var UIManager = function(){
     
     $("#back_button").on('click', function(e){
         console.log('clicked back');
+        
         ui.hideDivs([
                           "#ex_vivo_dti_viewer",
                           "#in_vivo_dti_viewer",
@@ -191,7 +215,7 @@ var UIManager = function(){
                           "#about_containter", "#success_message_request",
                           "#success_message_roi",
                     ]);                         
-                    $("#about_content").clear("")
+                    $("#about_content").clear("");
                 ui.fadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
     });
     
