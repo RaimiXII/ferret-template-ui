@@ -251,7 +251,7 @@ var MriAtlasHelper = function(){
                                         bh.Header({'order':"4",'class':"subheading",'text':"How it's done"})
                                     ]),
                                     bh.Div({'class':"timeline-body"}).append([
-                                        bh.Paragraph({'class':"text-muted",'text':"We have developed tools to morph individual brains into an average brain representation of the population, as well as tools to extract an average brain from a series of individual brains."})
+                                        bh.Paragraph({'class':"text-muted",'text':"We have developed tools <a href='https://science.nichd.nih.gov/confluence/display/nihpd/Home'>(check out TORTOISE!)</a> to morph individual brains into an average brain representation of the population, as well as tools to extract an average brain from a series of individual brains."})
                                     ])
                                 ])
                             ]),
@@ -341,17 +341,18 @@ var MriAtlasHelper = function(){
                                         bh.Input({'class':"form-control",'id':"email",'type':"email",'placeholder':"Your Email *",'data-validation-required-message':"Please enter your email."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),
+                                    bh.Div({'class':"form-group"}).append([
+									bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
+									bh.Paragraph({'class':"help-block text-danger",'text':"required"})
+								]),
                                     
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
+                                       // bh.Input({'class':"form-control",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
+                                        bh.TextArea({'class':"form-control",'rows':"10", 'cols':"40", 'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
-                                    ]),
-								bh.Div({'class':"form-group"}).append([
-									bh.Input({'class':"form-control",'id':"institution",'type':"institution",'placeholder':"Your Institution *",'data-validation-required-message':"Please enter your institution."}),
-									bh.Paragraph({'class':"help-block text-danger",'text':"required"})
-								]),
+                                    ]),								
                                 ]),
                                 bh.Div({'class':"clearfix"}),
                                 bh.Div({'class':"col-lg-12 text-center"}).append([
@@ -364,6 +365,10 @@ var MriAtlasHelper = function(){
                 ])
             ])    
         ]); 
+        $("#name").val("");
+        $("#email").val("");
+        $("#institution").val("");
+        $("#message").val("");
     };
     
     var BuildHeader = function()

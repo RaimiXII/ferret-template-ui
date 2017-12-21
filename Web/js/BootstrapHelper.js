@@ -55,7 +55,7 @@ var BootstrapHelper = function(){
     var Input = function(params){
         params['tag'] = "input";
         return $(FormatArgStr(params));
-    }
+    };    
     
     var Icon = function(params){
         params['tag'] = "i";
@@ -75,7 +75,12 @@ var BootstrapHelper = function(){
     var Span = function(params){
         params['tag'] = "span";
         return $(FormatArgStr(params));
-    }
+    };
+    
+    var TextArea = function(params){
+        params['tag'] = "textarea";
+        return $(FormatArgStr(params));
+    };
     
     var UnorderedList = function(params){
         params['tag'] = "ul";
@@ -95,6 +100,7 @@ var BootstrapHelper = function(){
         ListItem:ListItem,
         Paragraph:Paragraph,
         Span:Span,
+        TextArea:TextArea,
         UnorderedList:UnorderedList,
         
     };
