@@ -490,40 +490,6 @@ var MriAtlasHelper = function(){
             ])            
         ]);
     };
-    
-    var OnContactSubmit = function()
-    {
-
-            var full_name = $("#name").val()
-            var first = full_name.split(" ")[0]
-            var last = full_name.split(" ")[1]
-            var e_mail = $("#email").val()
-            var inst = $("#institution").val();
-            var msg = $("#message").val();
-            
-            var data_to_send = {
-                first_name: first,
-                last_name: last,
-                email: e_mail,
-                institution: inst,
-                message: msg
-            };
-            console.log("MESSSAGE FROM MAIN INDEX");
-            
-            console.log(data_to_send);
-            /*
-            $.ajax({
-                type: "POST",
-                url: "/mail/index.php",
-                dataType: 'text',
-                data: data_to_send,
-                success: function(data){
-                    $('.success').fadeIn(1000);
-                    $('.success').fadeOut(4000);
-                }
-            });
-            */    
-    };
 
     return {
         Init:Init,
@@ -540,8 +506,7 @@ var MriAtlasHelper = function(){
         BuildNavBar:BuildNavBar,
         BuildContactSection:BuildContactSection,
         BuildServicesSection:BuildServicesSection,
-        BuildFooter:BuildFooter,    
-        OnContactSubmit:OnContactSubmit,
+        BuildFooter:BuildFooter,
     };
 
 };
