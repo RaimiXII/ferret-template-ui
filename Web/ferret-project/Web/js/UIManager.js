@@ -50,11 +50,17 @@ var UIManager = function(){
                     ]);                         
                     //$("#about_content").clear("");
                 ui.FadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
-    }
+    };
     
+    var onDescribe = function(){
+        LoadAboutPage();
+        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates","#mri_headers"]  );
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
+        fade_divs_in(["#about_containter"])    
+    };   
     
     var LoadAboutPage = function(){
-        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
+        var title = '<h1 class="display-3">About The Ferret Brain Web Viewer Project - MRI Atlases!</h1>'
         var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
         var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
         var additional = '<p> with anatomical labels according to the book chapter: </p>';
@@ -68,9 +74,7 @@ var UIManager = function(){
     };
     
     var LoadRequestForm = function(){
-    };
-    
-    
+    };    
     
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -105,8 +109,13 @@ var UIManager = function(){
     var SetROIContent = function(name){
         var r_str = "<br>ROI name: <b>"+name+"</b>";
 
-        var email_button = '<p class="lead"><a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
+        // old version which lets user submit ROI suggestion email
+        //var email_button = '<p class="lead"><a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
+        var email_button = '<button class="btn btn-primary btn-sm" id="describe_button" onclick="javascript: ui.onDescribe();">Describe this ROI</button>';
+        
+        
         var d_str = "Description: <b>"+email_button+"</b>";
+        //var d_str = email_button;
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
@@ -188,6 +197,13 @@ var UIManager = function(){
     });
     $("#submit_button").on('click', function(e) {
         LoadRequestForm();
+    });
+    
+    $("#describe_button").on('click',function(e){
+        LoadAboutPage();
+        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates","#mri_headers"]  );
+        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
+        fade_divs_in(["#about_containter"])
     });
     
     $("#about_page_button").on('click', function(e) {
@@ -595,6 +611,7 @@ var UIManager = function(){
      
   return {  
     onBack : onBack,
+    onDescribe : onDescribe,
     SetChartHelper: SetChartHelper,
     hideDivs : HideDivs,    
     showDivs : ShowDivs,    
@@ -657,7 +674,6 @@ var UIManager = function(){
     show_surface : ShowSurface,  
     
     LoadAboutPage :  LoadAboutPage,
-    LoadRequestForm : LoadRequestForm,
     
     LoadMainSurface : function( ) {
     
