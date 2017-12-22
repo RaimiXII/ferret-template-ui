@@ -58,15 +58,13 @@ var MriAtlasHelper = function(){
        
        $("#sendMessageButton").click(function(event){
        
-                var full_name = $("#name").val();
-                
+                var full_name = $("#name").val();                
                 if(full_name.split(" ").length != 2)
                 {
                     alert("Please enter your first and last name seperated by a space")
                 }
                 else
-                {
-                
+                {                
                     var fn = $("#name").val().split(" ")[0];
                     var ln = $("#name").val().split(" ")[1];
                     var em = $("#email").val();
@@ -351,8 +349,6 @@ var MriAtlasHelper = function(){
         ]);
     };
     
-    
-    
     var BuildContactSection = function()
     {
         $("#contact").append([
@@ -401,8 +397,7 @@ var MriAtlasHelper = function(){
         $("#name").val("");
         $("#email").val("");
         $("#institution").val("");
-        $("#message").val("");             
-          
+        $("#message").val("");                       
     };
     
     var BuildHeader = function()
@@ -508,5 +503,4 @@ var MriAtlasHelper = function(){
         BuildServicesSection:BuildServicesSection,
         BuildFooter:BuildFooter,
     };
-
 };
