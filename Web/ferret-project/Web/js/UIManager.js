@@ -74,6 +74,7 @@ var UIManager = function(){
     };
     
     var LoadRequestForm = function(){
+            //  TBD you can use this to do some stuff with the submit request for data button - like maybe look at cookies stored for site and auto-fill name
     };    
     
     var SetSurfaceAlpha = function(index, val){
@@ -108,29 +109,26 @@ var UIManager = function(){
     };    
     var SetROIContent = function(name){
         var r_str = "<br>ROI name: <b>"+name+"</b>";
-
         // old version which lets user submit ROI suggestion email
         //var email_button = '<p class="lead"><a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
-        var email_button = '<button class="btn btn-primary btn-sm" id="describe_button" onclick="javascript: ui.onDescribe();">Describe this ROI</button>';
+        var email_button = '<button class="btn btn-primary btn-sm" id="describe_button" onclick="javascript: ui.onDescribe();">Describe this ROI</button>';        
         
-        
-        var d_str = "Description: <b>"+email_button+"</b>";
+        var d_str = ""+email_button+"";
         //var d_str = email_button;
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
     };
     
-    function objectifyForm(formArray) {//serialize data function
-
-          var returnArray = {};
-          for (var i = 0; i < formArray.length; i++){
-            returnArray[formArray[i]['name']] = formArray[i]['value'];
-          }
-          return returnArray;
-        }
-
-
+    //serialize data function
+    function objectifyForm(formArray) {
+      var returnArray = {};
+      for (var i = 0; i < formArray.length; i++){
+        returnArray[formArray[i]['name']] = formArray[i]['value'];
+      }
+      return returnArray;
+    }
+    
     $('nav li').hover(
         function() {
         $('ul', this).stop().slideDown(200);                
@@ -566,7 +564,7 @@ var UIManager = function(){
             }
             lines.push(tarr);
         }
-    }
+    };    
     
      var GetRegionCsvByName = function(name){
         var roi_list = brain_region_struct["rois"];
@@ -581,7 +579,7 @@ var UIManager = function(){
               dataType: 'text',
             }).done(UpdateRoiData);    
     };
-    
+        
     var UpdateRoiData = function(d){
         var csv_as_json = chartHelper.CsvToJson(d);        
         var c_im_split = current_image.split('_');
@@ -608,7 +606,7 @@ var UIManager = function(){
     var SetChartHelper = function(c){
         chartHelper = c;
     };      
-     
+    
   return {  
     onBack : onBack,
     onDescribe : onDescribe,
@@ -756,10 +754,11 @@ var UIManager = function(){
                 }
                 
                 /*
+                // this is for the ROI search bar - working when we get the ROI centroid and cursor placement automated
                 $('#query').typeahead({ local: roi_names });
                 $('.tt-query').css('background-color','#fff');                  
                 
-                
+                // this is stuff to deal with right click if we wanted to add points to an array
                 var ctxMgr1 = new ContextManager();
                 ctxMgr1.SetViewer(0);
                 ctxMgr1.SetRegionObject(brain_region_struct);
@@ -779,7 +778,6 @@ var UIManager = function(){
                 
                 var using_surfaces = false;
                     
-                    
                 params1["kioskMode"] = true;   
                 if(using_surfaces){
                     params1["surfaces"] = []
@@ -787,8 +785,7 @@ var UIManager = function(){
                     params1["evDTI_SEGMENTATION_RGBA.surf.gii"] = {alpha: 0.75};        
                     params1["showSurfacePlanes"] = false;
                     params1["surfaceBackground"] = "Black";                 
-                }
-                                
+                }                                
                 params1["images"] =  [                                            
                                         "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
                                         "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
@@ -797,23 +794,17 @@ var UIManager = function(){
                                     ];                
                 params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};        
-                
-                //params1["luts"] = [{"name": "Custom", "data":[[0, 1, 0, 0], [.5, 1, 1, 0], [1, 1, 1, 1]]}];
-                params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};
-                 
+                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                        
+                params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};                 
                 params1.showControls = false; 
                 //params1["contextManager"] = ctxMgr1;
                 
                 //  TBD - put this back in when we get info on the ROIs
                 //ui.LoadNewSurfaces(image_map[current_image],0);
-                
-                using_surfaces = false;
-                
                 //  This just loads the main 3d whole brain surface volume
-                //ui.LoadMainSurface();            
-                params2["kioskMode"] = true;                        
-                                
+                //ui.LoadMainSurface();           
+                 
+                params2["kioskMode"] = true;                                
                 params2["images"] =  [                                            
                                         "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
                                         "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
@@ -825,12 +816,10 @@ var UIManager = function(){
                     params2["iv_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};                                         
                     params2["showSurfacePlanes"] = false;
                     params2["surfaceBackground"] = "Black";
-                }
-                           
+                }                           
                 params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                  
-                
+                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                                  
                 params2.showControls = false;          
                 //params2["contextManager"] = ctxMgr2;            
                     
@@ -841,8 +830,7 @@ var UIManager = function(){
                     params3["ev_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};     
                     params3["showSurfacePlanes"] = false;
                     params3["surfaceBackground"] = "Black";
-                }
-                
+                }                
                 params3["images"] =  [  
                                         "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
                                         "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
@@ -864,8 +852,7 @@ var UIManager = function(){
                 params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                 params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                 params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
-                
+                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000}; 
                 params3.showControls = false              
                 //params3["contextManager"] = ctxMgr3;  
                     
@@ -876,8 +863,7 @@ var UIManager = function(){
                     params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};        
                     params4["showSurfacePlanes"] = false;                                                        
                     params4["surfaceBackground"] = "Black";
-                }
-                
+                }                
                 params4["images"] =  [
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
@@ -887,9 +873,7 @@ var UIManager = function(){
                 params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                                                                      
-                
+                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};                
                 params4.showControls = false   
                 //params4["contextManager"] = ctxMgr4;                
             });            
