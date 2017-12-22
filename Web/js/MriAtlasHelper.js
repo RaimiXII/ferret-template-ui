@@ -55,6 +55,52 @@ var MriAtlasHelper = function(){
             $("#mainNav").addClass("navbar-shrink")
         });
        $("#projectContent").hide();
+       
+       $("#sendMessageButton").click(function(event){
+       
+                var full_name = $("#name").val();
+                
+                if(full_name.split(" ").length != 2)
+                {
+                    alert("Please enter your first and last name seperated by a space")
+                }
+                else
+                {
+                
+                    var fn = $("#name").val().split(" ")[0];
+                    var ln = $("#name").val().split(" ")[1];
+                    var em = $("#email").val();
+                    var ins = $("#institution").val();
+                    var msg = $("#message").val();
+                    
+                    console.log('first name -> ' + fn);
+                    console.log('last name -> ' + ln);
+                    console.log('email -> ' + em);
+                    console.log('institution -> ' + ins);
+                    console.log('message -> ' + msg);
+                    
+                    var data_to_send = {
+                        first_name: fn,
+                        last_name: ln,
+                        email: em,
+                        institution: ins,
+                        message: msg
+                    };
+                    console.log(JSON.stringify(data_to_send));
+                    
+                    $.ajax({
+                    type: "POST",
+                    url: "../ferret-project/Web/mail/index.php",
+                    dataType: 'text',
+                    data: data_to_send,
+                    success: function(data){
+                        alert("Thanks for your input!  We will get back to you shortly.");
+                    }
+                });
+                
+                alert("Thanks for your input!  We will get back to you shortly.");
+            }
+        });
     };
     
     var Generate = function()
@@ -76,7 +122,7 @@ var MriAtlasHelper = function(){
         //  setup bindings
        this.SetupBindings();       
        //   setup handler
-       this.SetupHandlers();
+       this.SetupHandlers();       
     };    
     
     var AddProject = function(info)
@@ -305,6 +351,8 @@ var MriAtlasHelper = function(){
         ]);
     };
     
+    
+    
     var BuildContactSection = function()
     {
         $("#contact").append([
@@ -342,7 +390,7 @@ var MriAtlasHelper = function(){
                                 bh.Div({'class':"clearfix"}),
                                 bh.Div({'class':"col-lg-12 text-center"}).append([
                                     bh.Div({'id':"success"}),
-                                    bh.Button({'id':"sendMessageButton",'class':"btn btn-primary btn-xl text-uppercase",'type':"submit",'text':"Send Message"})
+                                    bh.Button({'id':"sendMessageButton",'class':"btn btn-primary btn-xl text-uppercase", 'text':"Send Message"})
                                 ])
                             ])
                         ])
@@ -353,7 +401,8 @@ var MriAtlasHelper = function(){
         $("#name").val("");
         $("#email").val("");
         $("#institution").val("");
-        $("#message").val("");        
+        $("#message").val("");             
+          
     };
     
     var BuildHeader = function()
@@ -441,6 +490,40 @@ var MriAtlasHelper = function(){
             ])            
         ]);
     };
+    
+    var OnContactSubmit = function()
+    {
+
+            var full_name = $("#name").val()
+            var first = full_name.split(" ")[0]
+            var last = full_name.split(" ")[1]
+            var e_mail = $("#email").val()
+            var inst = $("#institution").val();
+            var msg = $("#message").val();
+            
+            var data_to_send = {
+                first_name: first,
+                last_name: last,
+                email: e_mail,
+                institution: inst,
+                message: msg
+            };
+            console.log("MESSSAGE FROM MAIN INDEX");
+            
+            console.log(data_to_send);
+            /*
+            $.ajax({
+                type: "POST",
+                url: "/mail/index.php",
+                dataType: 'text',
+                data: data_to_send,
+                success: function(data){
+                    $('.success').fadeIn(1000);
+                    $('.success').fadeOut(4000);
+                }
+            });
+            */    
+    };
 
     return {
         Init:Init,
@@ -458,6 +541,7 @@ var MriAtlasHelper = function(){
         BuildContactSection:BuildContactSection,
         BuildServicesSection:BuildServicesSection,
         BuildFooter:BuildFooter,    
+        OnContactSubmit:OnContactSubmit,
     };
 
 };

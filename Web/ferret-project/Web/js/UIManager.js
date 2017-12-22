@@ -28,24 +28,6 @@ var UIManager = function(){
     var currentData;
     var currentLabel;
     
-    
-    var LoadAboutPage = function(){
-        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
-        var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
-        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
-        var additional = '<p> with anatomical labels according to the book chapter: </p>';
-        var book_cite = '<p> Neuroanatomy of the Ferret Brain with Focus on the Cerebral Cortex by Christopher D. Kroenke, Brian D. Mills, Jaime F. Olavarria and Jeffrey J. Neil in the book Biology and Diseases of the Ferret, 2014.</p>';
-        var line = '<hr class="my-4">';
-        var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
-        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
-        var back_button = '<p class="lead"><input class="btn btn-primary btn-lg" type="button" id="back_button" value="Back" onclick="javascript: onBack()" /></p>';
-        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button+back_button;
-        $("#about_content").html(content);
-    };
-    
-    var LoadRequestForm = function(){
-    };
-    
     //  TBD FIX THE BACK BUTTON
     var onBack = function(){
         console.log('clicked back');
@@ -66,9 +48,29 @@ var UIManager = function(){
                           "#about_containter", "#success_message_request",
                           "#success_message_roi",
                     ]);                         
-                    $("#about_content").clear("");
-                ui.fadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
+                    //$("#about_content").clear("");
+                ui.FadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
     }
+    
+    
+    var LoadAboutPage = function(){
+        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
+        var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
+        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
+        var additional = '<p> with anatomical labels according to the book chapter: </p>';
+        var book_cite = '<p> Neuroanatomy of the Ferret Brain with Focus on the Cerebral Cortex by Christopher D. Kroenke, Brian D. Mills, Jaime F. Olavarria and Jeffrey J. Neil in the book Biology and Diseases of the Ferret, 2014.</p>';
+        var line = '<hr class="my-4">';
+        var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
+        var back_button = '<button class="btn btn-primary btn-lg" id="back_button" value="Back" onclick="javascript: ui.onBack()" >Back</button>';
+        var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button+back_button;
+        $("#about_content").html(content);
+    };
+    
+    var LoadRequestForm = function(){
+    };
+    
+    
     
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -195,30 +197,7 @@ var UIManager = function(){
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
         fade_divs_in(["#about_containter"])
     });
-    
-    $("#back_button").on('click', function(e){
-        console.log('clicked back');
-        
-        ui.hideDivs([
-                          "#ex_vivo_dti_viewer",
-                          "#in_vivo_dti_viewer",
-                          "#ex_vivo_t2_viewer",
-                          "#in_vivo_t2_viewer",                                    
-                          "#navi", 
-                          "#MRI_area1", 
-                          "#visualization_templates", 
-                          "#bannerBox",  
-                          "#mri_headers","#template_content",                               
-                          "#template_nav2",
-                          "#histogram_container",
-                          "#roi_volume", "#roi_mean", "#roi_std_dev",
-                          "#about_containter", "#success_message_request",
-                          "#success_message_roi",
-                    ]);                         
-                    $("#about_content").clear("");
-                ui.fadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
-    });
-    
+
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -298,8 +277,6 @@ var UIManager = function(){
             
             // Format the form fields into json object
             var dataz = objectifyForm($form.serializeArray());
-            /*console.log(dataz);
-            console.log($form.serialize());*/
                         
             var data_to_send = {
                 first_name: dataz["first_name"],
@@ -403,7 +380,7 @@ var UIManager = function(){
             console.log(dataz);
             console.log($form.serialize());
                         
-            var data = {
+            var data_to_send = {
                 first_name: dataz["first_name"],
                 last_name: dataz["last_name"],
                 email: dataz["email"],
@@ -415,7 +392,7 @@ var UIManager = function(){
                 type: "POST",
                 url: "/mail/index.php",
                 dataType: 'text',
-                data: data,
+                data: data_to_send,
                 success: function(data){
                     console.log('DATA');
                     console.log(data);
@@ -617,6 +594,7 @@ var UIManager = function(){
     };      
      
   return {  
+    onBack : onBack,
     SetChartHelper: SetChartHelper,
     hideDivs : HideDivs,    
     showDivs : ShowDivs,    
