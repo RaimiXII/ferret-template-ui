@@ -379,7 +379,7 @@ var MriAtlasHelper = function(){
                                 ]),
                                 bh.Div({'class':"col-md-6"}).append([
                                     bh.Div({'class':"form-group"}).append([
-                                        bh.TextWindow({'class':"form-control", 'rows':"8", 'cols':"40",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
+                                        bh.TextWindow({'class':"form-control", 'rows':"9", 'cols':"40",'id':"message",'type':"message",'placeholder':"Your Message *",'data-validation-required-message':"Please enter a message."}),
                                         bh.Paragraph({'class':"help-block text-danger",'text':"required"})
                                     ]),								
                                 ]),
