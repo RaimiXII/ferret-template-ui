@@ -169,7 +169,7 @@ var MriAtlasHelper = function(){
                                             bh.Icon({'class':"fa fa-times"})
                                         ]),
                                         bh.Paragraph({'text':"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}),
-                                        bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Explore",'id': g_div.split('#')[1]+"_explore"}).append([
+                                        bh.Button({'class':"btn btn-primary",'data-dismiss':"modal",'type':"button",'text':"Explore",'onclick':"window.open('ferret-project/Web/index.html', '_blank');"/*,'id': g_div.split('#')[1]+"_explore"*/}).append([
                                             bh.Icon({'class':"fa fa-play"})
                                         ]),
                                     ])

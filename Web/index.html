@@ -49,7 +49,7 @@
                     <div class="col-md-4 col-sm-6 portfolio-item" id="project3"></div>                          
                 </div>
 				<div class="row">
-                    <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-primary" data-dismiss="modal" type="button" text="Explore" id="project1_explore">Explore <i class="fa fa-play"> </i></button></div>
+                    <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-primary" type="button" text="Explore" value="New Tab" onclick="window.open('ferret-project/Web/index.html', '_blank');">Explore <i class="fa fa-play"> </i></button></div>
                     <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-danger" data-dismiss="modal" type="button" text="Under Construction" id="project2_explore" disabled="true">Under Construction <i class="fa fa-hourglass"> </i></button></div>
                     <div class="col-md-4 col-sm-6 text-center"><button class="btn btn-danger" data-dismiss="modal" type="button" text="Under Construction" id="project3_explore" disabled="true">Under Construction <i class="fa fa-hourglass"> </i></button></div>                          
                 </div>
@@ -107,7 +107,8 @@
             //  ferret ui
             mh.AddProject({    'modal_div':"#project1_more",
                                                 'grid_div':"#project1",
-                                                'project_url': "ferret-project/Web/index.html",
+                                                //'project_url': "ferret-project/Web/index.html",
+						   						'onclick': "window.open('ferret-project/Web/index.html', '_blank');",
                                                 'name':'Ferret Template',
                                                 'maps':['T2-weighted','DTI (DEC, FA, Trace)'],
                                                 'species':'Ferret',
@@ -200,5 +201,12 @@
                         
         });     
     </script>
+	<script>
+	  function openInNewTab(url) {
+		  var win = window.open(url, '_blank');
+		  win.focus();
+	  }
+	</script>
+	  
   </body>
 </html>
