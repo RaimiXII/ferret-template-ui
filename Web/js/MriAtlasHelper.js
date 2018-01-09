@@ -138,6 +138,8 @@ var MriAtlasHelper = function(){
         var long_desc = info['description_long'];
         var cite = info['citation'];
         var active = info['active'];
+		var alttext = info['alttext'];
+		var alttextthumb = info['alttextthumb']
         
         modal_projects[m_div] = [            
             bh.Div({'class':"modal-dialog"}).append([
@@ -153,7 +155,7 @@ var MriAtlasHelper = function(){
                                 bh.Div({'class':"modal-body"}).append([
                                     bh.Header({'order':"2",'class':"text-uppercase",'text':name}),
                                     bh.Paragraph({'class':"item-intro text-muted",'text':short_desc}),
-                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':img_full,'alt':""}),
+                                    bh.Image({'class':"img-fluid d-block mx-auto",'src':img_full,'alt':alttext}),
                                     bh.Paragraph({'text':long_desc}),
                                     bh.UnorderedList({'class':"list-inline"}).append([
                                         bh.ListItem({'text':"Species: "+species}),
@@ -198,7 +200,7 @@ var MriAtlasHelper = function(){
         grid_projects[g_div] = [
             bh.Div({'class':"portfolio-link",'data-toggle':"modal",'href': m_div}).append([
                 active_content,
-                bh.Image({'class':"img-fluid",'src':img_thumb,'alt':""})
+                bh.Image({'class':"img-fluid",'src':img_thumb,'alt':alttextthumb})
             ]),                    
             bh.Div({'class':"portfolio-caption"}).append([
                 bh.Header({'order':"4",'text':name}),
@@ -215,9 +217,10 @@ var MriAtlasHelper = function(){
         var img  = info['image'];
         var desc = info['description'];
         var site = info['website'];
+		var alttext = info['alttext'];
         members[m_div] = [
             bh.Div({'class':"team-member"}).append([
-                bh.Image({'class':"mx-auto rounded-circle",'src':img,'alt':""}),
+                bh.Image({'class':"mx-auto rounded-circle",'src':img,'alt':alttext}),
                 bh.Header({'order':"4",'text':name}),
                 bh.Paragraph({'class':"text-muted",'text':desc}),
                 bh.Anchor({'class':"btn btn-primary btn-lg",'href':site,'text':"Website"}),
