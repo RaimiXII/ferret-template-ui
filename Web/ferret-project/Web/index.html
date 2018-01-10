@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">    
-<!-- no cache headers -->
+<!-- no cache headers
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="Cache-Control" content="no-cache">
-<!-- end no cache headers -->
+
+end no cache headers -->
     <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>        
@@ -190,9 +191,7 @@
        <div class="col-sm-8 col-sm-push-2 container-fluid" id="about_containter">
         <div class="jumbotron" id="about_content"  style="width:58vw;">            
         </div>
-        
        </div>       
-       
        <div id="form_modal" class="modal fade ">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -272,10 +271,7 @@
         </div>
         </div>
         </div>        
-        
-        
-        
-<!--
+        <!-- roi feedback form -->>
         <div id="feedback_modal" class="modal fade ">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -286,79 +282,77 @@
                     </button>
                   </div>
                   <div id="modal_body_content" class="modal-body">
-                      <form class="well form-horizontal" action=" " method="post"  id="feedback_form">
-                        <fieldset>
-                            
-                            <legend>ROI Feedback form</legend>
-                            
-                            <div class="form-group">
-                              <label class="col-md-4 control-label" for="first_name">First Name</label>  
-                              <div class="col-md-4 inputGroupContainer">
-                              <div class="input-group">
-                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                              <input  id="first_name" name="first_name" placeholder="First Name" class="form-control"  type="text"/>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <label class="col-md-4 control-label" for="first_name">Last Name</label> 
-                                <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                              <input id="last_name" name="last_name" placeholder="Last Name" class="form-control"  type="text"/>
-                                </div>
-                              </div>
-                            </div>
-                             
-                                   <div class="form-group">
-                              <label class="col-md-4 control-label" for="email">E-Mail</label>  
-                                <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                              <input id="email" name="email" placeholder="E-Mail Address" class="form-control"  type="text"/>
-                                </div>
-                              </div>
-                            </div>       
-                            
-                            <div class="form-group">
-                              <label class="col-md-4 control-label" for="institution">Institution</label>  
-                               <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                              <input id="institution" name="institution" placeholder="Institution name" class="form-control" type="text"/>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <label class="col-md-4 control-label" for="message">ROI Description: </label>
-                                <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                    	<textarea id="comment" class="form-control" name="comment" placeholder="<ROI Name> &nbsp;- <ROI Description...>"></textarea>
-                              </div>
-                              </div>
-                            </div>
-                                
-                            <div class="alert alert-success" role="alert" id="success_message_roi">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for submitting your suggestion, we will get back to you shortly.</div>
-                            
-                            <div class="form-group">
-                              <label class="col-md-4 control-label"></label>
-                                  <div class="col-md-4">
-                                    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-                                  </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                </div>
+                  <form class="well form-horizontal" action=" " method="post"  id="feedback_form">
+        <fieldset>
+        <!-- Form Name -->
+        <legend>ROI Feedback form</legend>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="first_name">First Name</label>  
+          <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input  id="first_name" name="first_name" placeholder="First Name" class="form-control"  type="text"/>
             </div>
-        </div>        
--->
+          </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="first_name">Last Name</label> 
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="last_name" name="last_name" placeholder="Last Name" class="form-control"  type="text"/>
+            </div>
+          </div>
+        </div>
+        <!-- Text input-->
+               <div class="form-group">
+          <label class="col-md-4 control-label" for="email">E-Mail</label>  
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <input id="email" name="email" placeholder="E-Mail Address" class="form-control"  type="text"/>
+            </div>
+          </div>
+        </div>       
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="institution">Institution</label>  
+           <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+          <input id="institution" name="institution" placeholder="Institution name" class="form-control" type="text"/>
+            </div>
+          </div>
+        </div>
+        <!-- Text area -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="message">ROI Description: </label>
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                	<textarea id="comment" class="form-control" name="comment" placeholder="<ROI Name> &nbsp;- <ROI Description...>"></textarea>
+          </div>
+          </div>
+        </div>
+        <!-- Success message -->       
+        <div class="alert alert-success" role="alert" id="success_message_roi">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for submitting your suggestion, we will get back to you shortly.</div>
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+          </div>
+        </div>
+        </fieldset>
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
     <!-- /.container -->
         <div id="loading" class="centered">
-            <h1 class="text-primary">Loading images, please wait...</h1>
             <div class="loading spin-1">
                 <div class="loading spin-2">
                     <div class="loading spin-3">
@@ -372,6 +366,35 @@
             </div>            
         </div>
         <script type="text/javascript">
+        
+            var files = [
+                "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii",
+                "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii",
+                "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_TR.nii",
+                "img/linked_content/Templates/DTI_exvivo/ROIs/Anatomy/evDTI_SEGMENTATION.dcm",
+                "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
+                "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
+                "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_TR.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE030.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE040.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE050.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE060.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE070.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE080.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE090.nii",
+                "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE100.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE060.nii",
+                "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii"                
+            ];
+        
+        
+        
+        
+        
             var params  = [];
             var params1 = [];
             var params2 = [];
@@ -384,18 +407,108 @@
             ctx.SetChartHelper(ch);
             var current_image ="";                     
             var brain_region_struct = {};            
-            var imageUrl = 'img/black_minimal_bkg.jpg';            
+            //var imageUrl = 'img/test_bkg.jpg'; //  Image credit - http://combiboilersleeds.com               
+            var imageUrl = 'img/black_minimal_bkg.jpg';
+            
             var checkFile = function(fname) {
-                filename = fname.trim();	
-                var response = jQuery.ajax({
-                    url: filename,
-                    type: 'HEAD',
-                    async: false
-                }).status;		
-                return (response != "200") ? false : true;
+	                    filename = fname.trim();
+	
+	                    var response = jQuery.ajax({
+		                    url: filename,
+		                    type: 'HEAD',
+		                    async: false
+	                    }).status;	
+	
+	                    return (response != "200") ? false : true;
+                    };
+                    
+            var globalTimeout;
+            
+            
+            
+            var spinCycle =  function(theFile, timer) {
+                console.log("Checking on image file "+theFile+"...");
+                var status = false;
+                globalTimeout = setTimeout(function(){
+                if(theFile){
+                    console.log("image file "+theFile+" loaded. now continue image file.");                    
+                status = true;
+                } else{
+                    console.log("image file "+theFile+" NOT loaded. now continue image file.");
+                    status = false;
+                }
+                }, timer);            
+                return status;
             };
             
+            var count = 0;
+            
+            
+// check for count of # of files loaded... (chrome needs this)
+            (function() {
+                var origOpen = XMLHttpRequest.prototype.open;
+                XMLHttpRequest.prototype.open = function(method, url) {
+                    this.addEventListener('load', function() {
+                        console.log('XHR finished loading (custom)', method, url);                        
+                        count = count + 1;   
+                        console.log("COUNT -> " + count);                     
+                        if(count == (files.length * 2)) // for some reason we need to do this 2x
+                        {
+                            ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");
+                            console.log("ITS ALL GOOD!");
+                        }                                         
+                        clearTimeout(globalTimeout);
+                    });
+                    this.addEventListener('error', function() {
+                        console.log('XHR errored out', method, url);
+                    });
+                    origOpen.apply(this, arguments);
+                };
+            })();
+            
+            var BrowserDetection = function(fn) {
+                var res = -1;
+            
+                //Check if browser is IE
+                if (navigator.userAgent.search("MSIE") >= 0) {
+                    // insert conditional IE code here
+                    console.log("IE detected.");
+                    $.get(fn);
+                    res=1;
+                }
+                //Check if browser is Chrome
+                else if (navigator.userAgent.search("Chrome") >= 0) {
+                    // insert conditional Chrome code here
+                    console.log("Chrome detected.");
+                    res=2;
+                }
+                //Check if browser is Firefox 
+                else if (navigator.userAgent.search("Firefox") >= 0) {
+                    // insert conditional Firefox Code here
+                    console.log("Firefox detected.");
+                    res=3;
+                }
+                //Check if browser is Safari
+                else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
+                    // insert conditional Safari code here
+                    console.log("Safari detected.");
+                    res=4;
+                }
+                //Check if browser is Opera
+                else if (navigator.userAgent.search("Opera") >= 0) {
+                    // insert conditional Opera code here
+                    console.log("Opera detected.");
+                    res=5;
+                }
+                else {
+                    console.log("Unsupported browser.")
+                }
+                return res;
+            }
+            
+            
             $(document).ready(function(){
+            //$('ul.sub').hide();
              $('body, html').css('background-image', 'url(' + imageUrl + ')');                                
                 ui.hideDivs([
                       "#ex_vivo_dti_viewer",
@@ -415,25 +528,49 @@
                       "#roi_volume", "#roi_mean", "#roi_std_dev",
                       "#about_containter", "#success_message_request",
                       "#success_message_roi",
-                ]);
+                ]);                
+                //  tbd change 300 to screen height derived percentage
                 ch.CreateChart("RoiChart", 300);                  
-                setTimeout(function(){
-                    var fileExists = checkFile("img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii");
-                    if(fileExists){
-                        console.log("first image file loaded. now check for the last image file.");
-                        if(checkFile("img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE084.nii")){
-                            console.log("last image file loaded. show the rest of the page.");
-                            ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow"); 
-                        } else {
-                            console.log("last image file not loaded. reload the page.");
-                            window.location.reload(true);
-                        }
-                    } else {
-                        console.log("first image file not loaded. reload the page.");
-                        window.location.reload(true);
-                    }
-                }, 3000);         
                 ui.FetchBrainRegionData(); 
+                
+                
+                
+                
+                
+                
+                var allGood = false;
+                
+                for(var i=0;i<files.length; i++)
+                {
+                     
+                     allGood = spinCycle(files[i], 500);
+                     if(allGood){
+                        
+                        console.log("Clearing global timeout for image "+i);
+                     }                     
+                     function reqListener () {
+                        console.log("GOT A REPLY IN REQ LISTENER");
+                    }
+                    
+    //  force request to be sent (firefox needs this)
+                    
+                    var oReq = new XMLHttpRequest();
+                    oReq.addEventListener("load", reqListener);
+                    oReq.open("GET", files[i]);
+                    oReq.send();
+                    var browserType = BrowserDetection(files[i]);
+                     
+                
+                if(allGood == true)
+                {
+                    console.log("WELCOME! All images have been loaded.");                    
+                }                
+                else
+                {
+                    console.log("Some images were not loaded.?");
+                }
+            }
+            
             });
         </script>        
     </body>

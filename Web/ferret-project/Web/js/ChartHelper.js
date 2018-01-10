@@ -48,20 +48,10 @@ var ChartHelper = function()
   
   var updateChart = function(new_data, new_min, new_max)
   {  
-        var c_im_split = current_image.split('_');
-        var c_im_type = c_im_split[c_im_split.length-1];
-        var the_min; var the_max;
-        if(c_im_type == "FA")
-        {
-            the_min = 0; the_max = 1;
-        }
-        else
-        {
-            the_min = 0; the_max = 1000;
-        }
+    console.log("UPDATING MIN -> " + new_min + "   AND    MAX -> " + new_max);
     chart.data.datasets[0].data = new_data;
-    chart.data.labels[0]= the_min;
-    chart.data.labels[new_data.length-1] = the_max;
+    chart.data.labels[0] = (new_min);
+    chart.data.labels[new_data.length-1] = (new_max);
     chart.update();    
   }
   
@@ -75,15 +65,15 @@ var ChartHelper = function()
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "", "", "","","","","","","","","Max"],
+                labels: ["Min", "", "", "","","","","","","","","","","","","","","","","","","","","", "Max"],
                 datasets: [{
                     label: '# of Voxels',
-                    data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],                        
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],                        
                     backgroundColor: [
-                        br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,
+                        br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,br,
                     ],
                     borderColor: [
-                        bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,
+                        bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,bd,
                     ],                        
                     borderWidth: 1
                 }]
@@ -260,8 +250,12 @@ var ChartHelper = function()
   };
   
   var FindVolume = function(arr, res){
+  
+  
     var vox_vol = res[0]*res[1]*res[2];
     return arr.length * vox_vol;
+    
+  
   };
   
   
@@ -279,9 +273,11 @@ var ChartHelper = function()
     var sd = StdDevFloatArray(sorted_v1);
     var vol = FindVolume(sorted_v1, [0.5, 0.5, 0.5]);
     
-    $("#roi_mean").html("Mean of ROI: <b>"+mu+" micrometer squared per second</b><br><br>")
-    $("#roi_std_dev").html("Standard Deviation of ROI: <b>"+sd+"</b><br><br>")
-    $("#roi_volume").html(" Volume of ROI: <b>"+vol+" micrometer squared per second</b><br><br>")
+    //console.log("MU -> " + mu + "  STD DEV -> " + sd + " VOL -> " + vol);
+    
+    $("#roi_mean").html("Mean: <b>"+mu+"</b><br><br>")
+    $("#roi_std_dev").html("Standard Deviation: <b>"+sd+"</b><br><br>")
+    $("#roi_volume").html(" Volume: <b>"+vol+" mm^3</b><br><br>")
 
     var intervals = [];    var histogram =[];    
     for(var i=0; i < nbins; i++)

@@ -28,54 +28,24 @@ var UIManager = function(){
     var currentData;
     var currentLabel;
     
-    //  TBD FIX THE BACK BUTTON
-    var onBack = function(){
-        console.log('clicked back');
-        
-        ui.hideDivs([
-                          "#ex_vivo_dti_viewer",
-                          "#in_vivo_dti_viewer",
-                          "#ex_vivo_t2_viewer",
-                          "#in_vivo_t2_viewer",                                    
-                          "#navi", 
-                          "#MRI_area1", 
-                          "#visualization_templates", 
-                          "#bannerBox",  
-                          "#mri_headers","#template_content",                               
-                          "#template_nav2",
-                          "#histogram_container",
-                          "#roi_volume", "#roi_mean", "#roi_std_dev",
-                          "#about_containter", "#success_message_request",
-                          "#success_message_roi",
-                    ]);                         
-                    //$("#about_content").clear("");
-                ui.FadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
-    };
-    
-    var onDescribe = function(){
-        LoadAboutPage();
-        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates","#mri_headers"]  );
-        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
-        fade_divs_in(["#about_containter"])    
-    };   
     
     var LoadAboutPage = function(){
-        var title = '<h1 class="display-3">About The Ferret Brain Web Viewer Project - MRI Atlases!</h1>'
+        var title = '<h1 class="display-3">About MRI Atlases!</h1>'
         var sub_head = '<p class="lead">This set of ferret brain templates is based on the work described in the following citation:</p>';
-        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740" target="_blank">link</a></p>';
+        var citation = '<p> Hutchinson, E.B., Schwerin, S.C., Radomski, K.L., Sadeghi, N., Jenkins, J., Komlosh, M.E., Irfanoglu, M.O., Juliano, S.L., & Pierpaoli, C. (2017) Population based MRI and DTI templates of the adult ferret brain and tools for voxelwise analysis. Neuroimage,152, 575–589.   <a href="https://www.ncbi.nlm.nih.gov/pubmed/28315740">link</a></p>';
         var additional = '<p> with anatomical labels according to the book chapter: </p>';
         var book_cite = '<p> Neuroanatomy of the Ferret Brain with Focus on the Cerebral Cortex by Christopher D. Kroenke, Brian D. Mills, Jaime F. Olavarria and Jeffrey J. Neil in the book Biology and Diseases of the Ferret, 2014.</p>';
         var line = '<hr class="my-4">';
         var email_info = '<p>If you are interested in downloading these templates and labels to work with them directly, please click the button below to submit a request.</p>';
-        var email_button = '<div class="row"><p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a>';
-        var back_button = '&nbsp;&nbsp;<button class="btn btn-primary btn-lg" id="back_button" value="Back" onclick="javascript: ui.onBack()" >Back</button></p></div>';
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#form_modal"  id="submit_button">Submit Request for Data</a></p>';
+        var back_button = $("#back_button");
         var content = title+sub_head+citation+additional+book_cite+line+email_info+email_button+back_button;
         $("#about_content").html(content);
     };
     
     var LoadRequestForm = function(){
-            //  TBD you can use this to do some stuff with the submit request for data button - like maybe look at cookies stored for site and auto-fill name
-    };    
+    };
+    
     
     var SetSurfaceAlpha = function(index, val){
         papaya.Container.SetSurfaceAlpha(index[0], index[1], val);
@@ -109,26 +79,24 @@ var UIManager = function(){
     };    
     var SetROIContent = function(name){
         var r_str = "<br>ROI name: <b>"+name+"</b>";
-        // old version which lets user submit ROI suggestion email
-        //var email_button = '<p class="lead"><a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
-        var email_button = '<button class="btn btn-primary btn-sm" id="describe_button" onclick="javascript: ui.onDescribe();">Describe this ROI</button>';        
-        
-        var d_str = ""+email_button+"";
-        //var d_str = email_button;
+
+        var email_button = '<p class="lead"><a class="btn btn-primary btn-sm" href="#" role="button" data-toggle="modal" data-target="#feedback_modal"  id="submit_button">Describe</a></p>';
+        var d_str = "Description: <b>"+email_button+"</b>";
         $("#current_roi").html(r_str);
         $("#roi_description").html(d_str);
         var roidata = GetRegionCsvByName(name);        
     };
     
-    //serialize data function
-    function objectifyForm(formArray) {
-      var returnArray = {};
-      for (var i = 0; i < formArray.length; i++){
-        returnArray[formArray[i]['name']] = formArray[i]['value'];
-      }
-      return returnArray;
-    }
-    
+    function objectifyForm(formArray) {//serialize data function
+
+          var returnArray = {};
+          for (var i = 0; i < formArray.length; i++){
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+          }
+          return returnArray;
+        }
+
+
     $('nav li').hover(
         function() {
         $('ul', this).stop().slideDown(200);                
@@ -197,13 +165,6 @@ var UIManager = function(){
         LoadRequestForm();
     });
     
-    $("#describe_button").on('click',function(e){
-        LoadAboutPage();
-        ui.hideDivs(    ["#image_actions", "#visualization_templates", "#template_content", "#download_templates","#mri_headers"]  );
-        fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
-        fade_divs_in(["#about_containter"])
-    });
-    
     $("#about_page_button").on('click', function(e) {
          $("#current_service").html("About");             
         LoadAboutPage();
@@ -211,7 +172,29 @@ var UIManager = function(){
         fade_divs_out(["#ex_vivo_dti", "#MRI_area1", "#bannerBox", "#ferret_atlas_download_content" ]);
         fade_divs_in(["#about_containter"])
     });
-
+    
+    $("#back_button").on('click', function(e){
+        console.log('clicked back');
+        ui.hideDivs([
+                          "#ex_vivo_dti_viewer",
+                          "#in_vivo_dti_viewer",
+                          "#ex_vivo_t2_viewer",
+                          "#in_vivo_t2_viewer",                                    
+                          "#navi", 
+                          "#MRI_area1", 
+                          "#visualization_templates", 
+                          "#bannerBox",  
+                          "#mri_headers","#template_content",                               
+                          "#template_nav2",
+                          "#histogram_container",
+                          "#roi_volume", "#roi_mean", "#roi_std_dev",
+                          "#about_containter", "#success_message_request",
+                          "#success_message_roi",
+                    ]);                         
+                    $("#about_content").clear("")
+                ui.fadeDivsIn( [   "#navi", "#bannerBox" ], "fast"); 
+    });
+    
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -291,6 +274,8 @@ var UIManager = function(){
             
             // Format the form fields into json object
             var dataz = objectifyForm($form.serializeArray());
+            /*console.log(dataz);
+            console.log($form.serialize());*/
                         
             var data_to_send = {
                 first_name: dataz["first_name"],
@@ -394,7 +379,7 @@ var UIManager = function(){
             console.log(dataz);
             console.log($form.serialize());
                         
-            var data_to_send = {
+            var data = {
                 first_name: dataz["first_name"],
                 last_name: dataz["last_name"],
                 email: dataz["email"],
@@ -406,7 +391,7 @@ var UIManager = function(){
                 type: "POST",
                 url: "/mail/index.php",
                 dataType: 'text',
-                data: data_to_send,
+                data: data,
                 success: function(data){
                     console.log('DATA');
                     console.log(data);
@@ -564,7 +549,7 @@ var UIManager = function(){
             }
             lines.push(tarr);
         }
-    };    
+    }
     
      var GetRegionCsvByName = function(name){
         var roi_list = brain_region_struct["rois"];
@@ -579,7 +564,7 @@ var UIManager = function(){
               dataType: 'text',
             }).done(UpdateRoiData);    
     };
-        
+    
     var UpdateRoiData = function(d){
         var csv_as_json = chartHelper.CsvToJson(d);        
         var c_im_split = current_image.split('_');
@@ -587,15 +572,15 @@ var UIManager = function(){
         var plot_col;
         if(c_im_type == "FA")
         {
-            chartHelper.CreateHistogram(csv_as_json, 35,0);
+            chartHelper.CreateHistogram(csv_as_json, 25,0);
             var val = GetVoxelValue(image_map[current_image], GetCursorLocation(image_map[current_image])[0]);            
-            $("#voxel_value").html("<br>Value at cursor position ("+GetCursorLocation(image_map[current_image])[0]+") : <b>"+ (val)+" (micrometer squared per second)</b><br><br>")
+            $("#voxel_value").html("<br>Value: <b>"+ (val)+"</b><br><br>")
         }
         else if(c_im_type == "TR")
         {
-            chartHelper.CreateHistogram(csv_as_json, 35,1);
+            chartHelper.CreateHistogram(csv_as_json, 25,1);
             var val = GetVoxelValue(image_map[current_image], GetCursorLocation(image_map[current_image])[0]);            
-            $("#voxel_value").html("<br>Value at cursor position ("+GetCursorLocation(image_map[current_image])[0]+") : <b>"+ (val)+" (micrometer squared per second)</b><br><br>")
+            $("#voxel_value").html("<br>Value: <b>"+ (val)+"(mm^2)/s</b><br><br>")
         }
         else
         {
@@ -606,10 +591,8 @@ var UIManager = function(){
     var SetChartHelper = function(c){
         chartHelper = c;
     };      
-    
+     
   return {  
-    onBack : onBack,
-    onDescribe : onDescribe,
     SetChartHelper: SetChartHelper,
     hideDivs : HideDivs,    
     showDivs : ShowDivs,    
@@ -672,6 +655,7 @@ var UIManager = function(){
     show_surface : ShowSurface,  
     
     LoadAboutPage :  LoadAboutPage,
+    LoadRequestForm : LoadRequestForm,
     
     LoadMainSurface : function( ) {
     
@@ -754,11 +738,10 @@ var UIManager = function(){
                 }
                 
                 /*
-                // this is for the ROI search bar - working when we get the ROI centroid and cursor placement automated
                 $('#query').typeahead({ local: roi_names });
                 $('.tt-query').css('background-color','#fff');                  
                 
-                // this is stuff to deal with right click if we wanted to add points to an array
+                
                 var ctxMgr1 = new ContextManager();
                 ctxMgr1.SetViewer(0);
                 ctxMgr1.SetRegionObject(brain_region_struct);
@@ -778,6 +761,7 @@ var UIManager = function(){
                 
                 var using_surfaces = false;
                     
+                    
                 params1["kioskMode"] = true;   
                 if(using_surfaces){
                     params1["surfaces"] = []
@@ -785,7 +769,8 @@ var UIManager = function(){
                     params1["evDTI_SEGMENTATION_RGBA.surf.gii"] = {alpha: 0.75};        
                     params1["showSurfacePlanes"] = false;
                     params1["surfaceBackground"] = "Black";                 
-                }                                
+                }
+                                
                 params1["images"] =  [                                            
                                         "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_FA.nii", 
                                         "img/linked_content/Templates/DTI_exvivo/Volumes/ExVivo_DTI_DEC.nii", 
@@ -794,17 +779,23 @@ var UIManager = function(){
                                     ];                
                 params1["ExVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params1["ExVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};                        
-                params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};                 
+                params1["ExVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500};        
+                
+                //params1["luts"] = [{"name": "Custom", "data":[[0, 1, 0, 0], [.5, 1, 1, 0], [1, 1, 1, 1]]}];
+                params1["evDTI_SEGMENTATION.dcm"]  = {"lut": "Ev Dti Seg", "min": 0, "max": 1};
+                 
                 params1.showControls = false; 
                 //params1["contextManager"] = ctxMgr1;
                 
                 //  TBD - put this back in when we get info on the ROIs
                 //ui.LoadNewSurfaces(image_map[current_image],0);
+                
+                using_surfaces = false;
+                
                 //  This just loads the main 3d whole brain surface volume
-                //ui.LoadMainSurface();           
-                 
-                params2["kioskMode"] = true;                                
+                //ui.LoadMainSurface();            
+                params2["kioskMode"] = true;                        
+                                
                 params2["images"] =  [                                            
                                         "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_FA.nii", 
                                         "img/linked_content/Templates/DTI_invivo/Volumes/InVivo_DTI_DEC.nii", 
@@ -816,10 +807,12 @@ var UIManager = function(){
                     params2["iv_dti_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};                                         
                     params2["showSurfacePlanes"] = false;
                     params2["surfaceBackground"] = "Black";
-                }                           
+                }
+                           
                 params2["InVivo_DTI_FA.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1};
                 params2["InVivo_DTI_DEC.nii"] = {"min": 0, "max": 255}; 
-                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                                  
+                params2["InVivo_DTI_TR.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 6000};                  
+                
                 params2.showControls = false;          
                 //params2["contextManager"] = ctxMgr2;            
                     
@@ -830,7 +823,8 @@ var UIManager = function(){
                     params3["ev_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};     
                     params3["showSurfacePlanes"] = false;
                     params3["surfaceBackground"] = "Black";
-                }                
+                }
+                
                 params3["images"] =  [  
                                         "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE010.nii",
                                         "img/linked_content/Templates/T2_exvivo/Volumes/Template4D_TE020.nii",
@@ -852,7 +846,8 @@ var UIManager = function(){
                 params3["Template4D_TE070.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                 params3["Template4D_TE080.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
                 params3["Template4D_TE090.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};
-                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000}; 
+                params3["Template4D_TE100.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 1500000};                
+                
                 params3.showControls = false              
                 //params3["contextManager"] = ctxMgr3;  
                     
@@ -863,7 +858,8 @@ var UIManager = function(){
                     params4["iv_t2_brain.surf.gii"] = {color:[0.8,0.8,0.8], alpha: 0.75};        
                     params4["showSurfacePlanes"] = false;                                                        
                     params4["surfaceBackground"] = "Black";
-                }                
+                }
+                
                 params4["images"] =  [
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE012.nii",
                                         "img/linked_content/Templates/T2_invivo/Volumes/ivT2_TE036.nii",
@@ -873,7 +869,9 @@ var UIManager = function(){
                 params4["ivT2_TE012.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE036.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
                 params4["ivT2_TE060.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
-                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};                
+                params4["ivT2_TE084.nii"] = {"lut": "Hot-Cool", "min": 0, "max": 100};
+                                                                      
+                
                 params4.showControls = false   
                 //params4["contextManager"] = ctxMgr4;                
             });            
