@@ -358,6 +358,7 @@ end no cache headers -->
         </div>
         </div>
     <!-- /.container -->
+        
         <div id="loading" class="centered">
             <div class="loading spin-1">
                 <div class="loading spin-2">
@@ -371,6 +372,7 @@ end no cache headers -->
                 </div>            
             </div>            
         </div>
+        
         <script type="text/javascript">
         
             var files = [
@@ -458,7 +460,7 @@ end no cache headers -->
                         console.log('XHR finished loading (custom)', method, url);                        
                         count = count + 1;   
                         console.log("COUNT -> " + count);                     
-                        if(count == (files.length * 2)) // for some reason we need to do this 2x
+                        if(count == (files.length /* * 2*/)) // for some reason we need to do this 2x
                         {
                             ui.swapDivs( ["#loading"],[   "#navi", "#bannerBox" ], "slow");
                             console.log("ITS ALL GOOD!");
@@ -521,10 +523,11 @@ end no cache headers -->
                       "#in_vivo_dti_viewer",
                       "#ex_vivo_t2_viewer",
                       "#in_vivo_t2_viewer",                                    
-                      "#navi", 
+                      //"#navi", 
                       "#MRI_area1", 
                       "#visualization_templates", 
-                      "#bannerBox",  
+                      //"#bannerBox",
+                      "#loading",  
                       "#mri_headers","#template_content",     
                       "#evt2_modality_buttons", 
                       "#ivdti_modality_buttons", "#ivt2_modality_buttons", 
